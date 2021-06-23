@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        app:constraintSetStart="@id/start"
+        app:constraintSetEnd="@id/end"
+        app:motionInterpolator="easeInOut"
+        app:duration="5200">
+
+        <KeyFrameSet>
+            <KeyCycle
+                app:framePosition="10"
+                app:motionTarget="@id/laugh"
+                app:wavePeriod="2"
+                app:waveOffset="1"
+                app:waveShape="sin"
+                android:rotationY="22"/>
+            <KeyCycle
+                app:framePosition="30"
+                app:motionTarget="@id/laugh"
+                app:wavePeriod="1"
+                app:waveOffset="0"
+                app:waveShape="sin"
+                android:rotationX="15"/>
+            <KeyCycle
+                app:framePosition="65"
+                app:motionTarget="@id/laugh"
+                app:wavePeriod="1"
+                app:waveOffset="0"
+                app:waveShape="sin"
+                android:rotationY="14"/>
+
+            <KeyCycle
+                app:framePosition="92"
+                app:motionTarget="@id/laugh"
+                app:wavePeriod="0"
+                app:waveOffset="0"
+                app:waveShape="sin"
+                android:rotationY="0"
+                android:rotationX="0"/>
+
+        </KeyFrameSet>
+
+        <OnClick
+            app:targetId="@id/laugh"
+            app:clickAction="toggle"/>
+
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@+id/laugh"
+            android:layout_width="158dp"
+            android:layout_height="158dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintVertical_bias="0.5">
+<!--            <CustomAttribute app:attributeName="colorFilter"-->
+<!--                app:customColorValue="#1c75ff"/>-->
+
+        </Constraint>
+
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/laugh"
+            android:layout_width="158dp"
+            android:layout_height="158dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintVertical_bias="0.5">
+<!--            <CustomAttribute app:attributeName="colorFilter"-->
+<!--                app:customColorValue="#d42f65"/>-->
+        </Constraint>
+
+    </ConstraintSet>
+
+</MotionScene>
