@@ -9,7 +9,7 @@ import com.example.kotlindemo.*
 import com.example.kotlindemo.study.LambdaFun
 import kotlinx.android.synthetic.main.activity_second.*
 
-class SecondActivity : AppCompatActivity() {
+class SecondActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

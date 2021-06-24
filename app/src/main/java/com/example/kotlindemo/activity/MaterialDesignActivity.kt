@@ -14,21 +14,19 @@ import com.bumptech.glide.Glide
 import com.example.kotlindemo.R
 import com.example.kotlindemo.adapter.Fruit
 import com.example.kotlindemo.adapter.FruitAdapter
+import com.example.kotlindemo.utils.StatusBarUtil
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_material_design.*
 import kotlinx.android.synthetic.main.activity_material_design.view.*
 import kotlin.concurrent.thread
 
-class MaterialDesignActivity : AppCompatActivity() {
+class MaterialDesignActivity : BaseActivity() {
 
     var fruitList = ArrayList<Fruit>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_material_design)
-        val decorView = window.decorView
-        decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-        window.statusBarColor = Color.TRANSPARENT
         setSupportActionBar(toolbar)
 //        supportActionBar?.let {
 //            it.setDisplayHomeAsUpEnabled(true)

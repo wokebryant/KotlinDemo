@@ -9,7 +9,7 @@ import android.os.Message
 import com.example.kotlindemo.R
 import kotlin.concurrent.thread
 
-class ThirdActivity : AppCompatActivity() {
+class ThirdActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -23,7 +23,7 @@ import kotlinx.android.synthetic.main.activity_first.*
 import java.lang.StringBuilder
 import kotlin.contracts.Returns
 
-class FirstActivity : AppCompatActivity(), View.OnClickListener {
+class FirstActivity : BaseActivity(), View.OnClickListener {
 
     var listViews : ListView? = null
     var fragmentContainer : FrameLayout? = null

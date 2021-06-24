@@ -17,6 +17,7 @@ import com.example.kotlindemo.jetpack.room.entity.User
 import com.example.kotlindemo.jetpack.viewmodel.MainViewModel
 import com.example.kotlindemo.jetpack.viewmodel.MainViewModelFactory
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_viewmodel.*
 import kotlin.concurrent.thread
 
 class MainActivity : AppCompatActivity() {
@@ -26,7 +27,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_viewmodel)
         sp = getPreferences(Context.MODE_PRIVATE)
         val countReserved = sp.getInt("count_reserved", 0)
         viewModel = ViewModelProviders.of(this,

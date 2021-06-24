@@ -17,7 +17,7 @@ import androidx.core.app.NotificationCompat
  * 通知管理
  *  Android8.0之后增加通知渠道（每一条通知对应一个通知渠道，方便用户管理）
  */
-class NotificationActivity : AppCompatActivity() {
+class NotificationActivity : BaseActivity() {
 
     private val CHANNEL_ID = "normal"
     private val CHANNEL_NAME = "Normal"
