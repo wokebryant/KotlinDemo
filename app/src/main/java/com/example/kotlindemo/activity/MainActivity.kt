@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.kotlindemo.R
+import com.example.kotlindemo.jetpack.paging3.PagingActivity
 import com.example.kotlindemo.utils.AppUtil
 import com.example.kotlindemo.utils.StatusBarUtil
 import kotlinx.android.synthetic.main.activity_main.*
@@ -21,6 +22,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         testMaterialBtn.setOnClickListener(this)
         testMotionLayoutBtn.setOnClickListener(this)
         testConstraintLayoutBtn.setOnClickListener(this)
+        testPagingBtn.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -35,6 +37,10 @@ class MainActivity : BaseActivity(), View.OnClickListener {
 
             testConstraintLayoutBtn.id -> {
                 AppUtil.startActivity<ConstraintActivity>(this) {}
+            }
+
+            testPagingBtn.id -> {
+                AppUtil.startActivity<PagingActivity>(this) {}
             }
         }
     }
