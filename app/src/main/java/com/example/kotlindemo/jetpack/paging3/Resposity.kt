@@ -1,10 +1,9 @@
 package com.example.kotlindemo.jetpack.paging3
 
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.PagingData
+import androidx.paging.*
 import com.example.kotlindemo.retrofit.ServiceCreator
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 
 object Resposity {
 
@@ -19,6 +18,18 @@ object Resposity {
                 RepoPagingSource(gitHubService)
             }
 
-        ).flow
+        ).flow.map { value: PagingData<Repo> ->
+            //数据转换
+            value.map {
+                it.name = "标题转换"
+                it
+            }
+            //数据过滤
+//            value.filter { repo ->
+//                repo.name = "flutter"
+//                repo.starCount = 29104
+//                true
+//            }
+        }
     }
 }

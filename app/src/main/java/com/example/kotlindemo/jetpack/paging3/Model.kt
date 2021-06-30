@@ -8,10 +8,10 @@ data class RepoResponse(
 )
 
 data class Repo (
-    @SerializedName("id") val id: Int,
-    @SerializedName("name") val name: String,
+    @SerializedName("id") var id: Int,
+    @SerializedName("name") var name: String,
     @SerializedName("description") val description: String?,
-    @SerializedName("stargazers_count") val starCount: Int
+    @SerializedName("stargazers_count") var starCount: Int
 )
 
 enum class ServiceType {

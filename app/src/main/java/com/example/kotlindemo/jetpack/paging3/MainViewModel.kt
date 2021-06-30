@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 
 class MainViewModel : ViewModel() {
 

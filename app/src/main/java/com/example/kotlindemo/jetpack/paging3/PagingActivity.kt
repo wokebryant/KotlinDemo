@@ -1,7 +1,9 @@
 package com.example.kotlindemo.jetpack.paging3
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
@@ -21,10 +23,17 @@ import kotlinx.coroutines.launch
  */
 class PagingActivity : BaseActivity() {
 
+    companion object {
+        private const val TAG = "PagingActivityLog"
+    }
+
     private val viewModel by lazy {
         ViewModelProvider(this).get(MainViewModel::class.java)
     }
-    private val repoAdapter = RepoAdapter()
+    private val repoAdapter = RepoAdapter{ position, starView, adapter ->
+        (starView as ImageView).setImageResource(R.drawable.ic_start_light)
+        Toast.makeText(this, "is $position item click", Toast.LENGTH_SHORT).show()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,6 +52,7 @@ class PagingActivity : BaseActivity() {
 
         lifecycleScope.launch {
             viewModel.getPagingData().collect { pagingData ->
+                Log.i(TAG, " getDataPaging")
                 repoAdapter.submitData(pagingData)
             }
         }

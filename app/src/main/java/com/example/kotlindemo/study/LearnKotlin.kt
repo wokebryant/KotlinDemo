@@ -116,7 +116,7 @@ fun fruitList() {
     var list = listOf("apple", "juice", "banana", "orange", "pear")
     val apple = list[0]
     // 找到list中最长的字段
-    val maxLengthFruit = list.maxBy { it.length }
+    val maxLengthFruit = list.maxOf { it.length }
     for (fruit in list) {
         println(fruit)
     }

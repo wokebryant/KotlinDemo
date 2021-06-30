@@ -3,13 +3,14 @@ package com.example.kotlindemo.jetpack.paging3
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlindemo.R
 
-class RepoAdapter : PagingDataAdapter<Repo, RepoAdapter.ViewHolder>(COMPARATOR) {
+class RepoAdapter(val itemUpdate: (Int, View, RepoAdapter) -> Unit) : PagingDataAdapter<Repo, RepoAdapter.ViewHolder>(COMPARATOR) {
 
     companion object {
         private val COMPARATOR = object : DiffUtil.ItemCallback<Repo>() {
@@ -23,10 +24,11 @@ class RepoAdapter : PagingDataAdapter<Repo, RepoAdapter.ViewHolder>(COMPARATOR) 
         }
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val name: TextView = itemView.findViewById(R.id.name_text)
         val description: TextView = itemView.findViewById(R.id.description_text)
         val startCount: TextView = itemView.findViewById(R.id.star_count_text)
+        val startImage: ImageView = itemView.findViewById(R.id.star_image)
     }
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ViewHolder {
@@ -40,6 +42,11 @@ class RepoAdapter : PagingDataAdapter<Repo, RepoAdapter.ViewHolder>(COMPARATOR) 
             holder.name.text = it.name
             holder.description.text = it.description
             holder.startCount.text = it.starCount.toString()
+            holder.startImage.apply {
+                setOnClickListener {
+                   itemUpdate(p1, this, this@RepoAdapter)
+                }
+            }
         }
     }
 }
