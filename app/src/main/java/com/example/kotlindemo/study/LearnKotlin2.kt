@@ -4,11 +4,8 @@ import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
 import android.content.UriMatcher
-import android.net.Uri
-import com.example.kotlindemo.activity.FirstActivity
-import com.example.kotlindemo.activity.SecondActivity
+import com.example.kotlindemo.activity.MainActivity
 import java.lang.Exception
-import java.lang.IllegalArgumentException
 import kotlin.reflect.KProperty
 
 /**
@@ -331,7 +328,7 @@ inline fun <reified T> startActivity(context: Context, block: Intent.() -> Unit)
 }
 
 fun test(context: Context) {
-    startActivity<FirstActivity>(context) {
+    startActivity<MainActivity>(context) {
         putExtra("params", "data")
     }
 }

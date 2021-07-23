@@ -5,12 +5,9 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import android.content.res.Resources
-import android.graphics.BitmapFactory
 import android.os.Build
 import android.os.Bundle
 import android.os.PersistableBundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 
 /**
@@ -30,7 +27,7 @@ class NotificationActivity : BaseActivity() {
             manager.createNotificationChannel(channel)
         }
 
-        val intent = Intent(this, FirstActivity::class.java)
+        val intent = Intent(this, MainActivity::class.java)
         val pi = PendingIntent.getActivity(this, 0, intent, 0)
         val notification = NotificationCompat.Builder(this, CHANNEL_ID).run {
             setContentTitle("This is content title")

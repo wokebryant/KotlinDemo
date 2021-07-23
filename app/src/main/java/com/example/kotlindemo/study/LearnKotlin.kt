@@ -91,11 +91,6 @@ fun main() {
         print(i)
     }
 
-    var  person = Person("Jack", 15)
-//    person.age = 15
-    person.name = "Peter"
-    person.eat()
-
     LambdaFun()
 
     if (content != null) {
@@ -146,8 +141,8 @@ fun friutMap() {
  *  集合的Lambda表达式
  */
 fun LambdaFun( ){
-    var list = listOf("apple", "juice", "banana", "orange", "pear")
-    var newList = list.filter { it.length <= 5 }
+    val list = listOf("apple", "juice", "banana", "orange", "pear")
+    val newList = list.filter { it.length <= 5 }
                     .map { it.toUpperCase() }
     // 是否存在一个数长度小于等于5
     var anyResult = list.any{it.length <= 5}
@@ -183,26 +178,6 @@ fun creatRunable() {
  *  object!!.fun()      一定保证object不为空，可以避免编译判空问题
  *  object.let{object -> //业务逻辑} 可以处理全局变量空指针，因为let函数内部加锁同步
  */
-
-fun invoke() {
-    var student: Study? = Student()
-    doSomething(student)
-}
-
-fun doSomething(study: Study?) {
-    if (study != null) {
-        study.doHomework()
-        study.readBooks()
-    }
-
-    study?.readBooks()
-    study?.doHomework()
-
-    study?.let {
-        it.readBooks()
-        it.doHomework()
-    }
-}
 
 fun doSomething2() {
     var a = ""

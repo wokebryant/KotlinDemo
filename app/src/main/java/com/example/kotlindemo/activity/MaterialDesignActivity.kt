@@ -1,26 +1,17 @@
 package com.example.kotlindemo.activity
 
-import android.graphics.Color
 import android.os.Bundle
-import android.os.PersistableBundle
-import android.view.Gravity
-import android.view.MenuItem
-import android.view.View
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
 import com.example.kotlindemo.R
 import com.example.kotlindemo.adapter.Fruit
 import com.example.kotlindemo.adapter.FruitAdapter
-import com.example.kotlindemo.utils.StatusBarUtil
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_material_design.*
-import kotlinx.android.synthetic.main.activity_material_design.view.*
 import kotlin.concurrent.thread
 
-class MaterialDesignActivity : BaseActivity() {
+class MaterialDesignActivity : TransformActivity() {
 
     var fruitList = ArrayList<Fruit>()
 

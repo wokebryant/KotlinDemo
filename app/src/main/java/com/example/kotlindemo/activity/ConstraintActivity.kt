@@ -2,9 +2,8 @@ package com.example.kotlindemo.activity
 
 import android.os.Bundle
 import com.example.kotlindemo.R
-import kotlinx.android.synthetic.main.activity_constraint.*
 
-class ConstraintActivity : BaseActivity() {
+class ConstraintActivity : TransformActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

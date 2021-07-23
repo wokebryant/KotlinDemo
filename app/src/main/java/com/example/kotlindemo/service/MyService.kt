@@ -10,7 +10,7 @@ import android.os.Binder
 import android.os.Build
 import android.os.IBinder
 import androidx.core.app.NotificationCompat
-import com.example.kotlindemo.activity.FirstActivity
+import com.example.kotlindemo.activity.MainActivity
 
 /**
  *  前台Service
@@ -30,7 +30,7 @@ class MyService : Service(){
             manager.createNotificationChannel(channel)
         }
 
-        val intent = Intent(this, FirstActivity::class.java)
+        val intent = Intent(this, MainActivity::class.java)
         val pi = PendingIntent.getActivity(this, 0, intent, 0)
         val notification = NotificationCompat.Builder(this, CHANNEL_ID).run {
             setContentTitle("This is content title")

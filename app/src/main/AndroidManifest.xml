@@ -21,27 +21,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.ThirdActivity">
-            <intent-filter tools:ignore="AppLinkUrlError">
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data android:scheme="https"/>
-            </intent-filter>
-        </activity>
-        <activity android:name=".activity.SecondActivity">
-            <intent-filter>
-                <action android:name="com.example.kotlindemo.ACTION_START" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="com.example.kotlindemo.MY_CATEGORY" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".activity.FirstActivity"/>
         <activity android:name=".retrofit.RetrofitActivity"/>
         <activity android:name=".activity.MaterialDesignActivity"/>
         <activity android:name=".activity.MotionActivity"/>
         <activity android:name=".activity.ConstraintActivity"/>
         <activity android:name=".jetpack.paging3.PagingActivity"/>
+        <activity android:name=".activity.ViewPager2Activity"/>
+        <activity android:name=".activity.TransformActivity"/>
 
     </application>
 

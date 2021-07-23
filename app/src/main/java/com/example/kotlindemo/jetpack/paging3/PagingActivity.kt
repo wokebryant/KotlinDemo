@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlindemo.R
 import com.example.kotlindemo.activity.BaseActivity
+import com.example.kotlindemo.activity.TransformActivity
 import com.example.kotlindemo.utils.StatusBarUtil
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -21,7 +22,7 @@ import kotlinx.coroutines.launch
 /**
  *  Paging3分页示例
  */
-class PagingActivity : BaseActivity() {
+class PagingActivity : TransformActivity() {
 
     companion object {
         private const val TAG = "PagingActivityLog"
