@@ -10,7 +10,8 @@ class MotionActivity : TransformActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_motion)
+//        setContentView(R.layout.activity_motion)
+        setContentView(R.layout.fold_title_view)
     }
 
 
