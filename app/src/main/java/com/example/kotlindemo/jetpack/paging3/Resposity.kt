@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.map
 
 object Resposity {
 
-    private const val PAGE_SIZE = 50        //每页包含的数据条数
+    private const val PAGE_SIZE = 30        //每页包含的数据条数
 
     private val gitHubService = ServiceCreator.create<GitHubService>(ServiceType.GITHUB)
 
@@ -18,7 +18,7 @@ object Resposity {
                 RepoPagingSource(gitHubService)
             }
 
-        ).flow.map { value: PagingData<Repo> ->
+        ).flow/*.map { value: PagingData<Repo> ->
             //数据转换
             value.map {
                 it.name = "标题转换"
@@ -30,6 +30,6 @@ object Resposity {
 //                repo.starCount = 29104
 //                true
 //            }
-        }
+        }*/
     }
 }

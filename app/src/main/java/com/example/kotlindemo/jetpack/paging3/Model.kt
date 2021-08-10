@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 import java.util.Collections.emptyList
 
 data class RepoResponse(
-    @SerializedName("items") val items: List<Repo> = emptyList()
+    @SerializedName("items") var items: List<Repo> = emptyList()
 )
 
 data class Repo (

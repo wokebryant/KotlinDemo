@@ -17,4 +17,11 @@
         android:layout_gravity="center"
         android:text="Retry" />
 
+    <TextView
+        android:id="@+id/no_more_data_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="no more date ~"/>
+
 </FrameLayout>
