@@ -28,6 +28,7 @@
         <activity android:name=".jetpack.paging3.PagingActivity"/>
         <activity android:name=".activity.ViewPager2Activity"/>
         <activity android:name=".activity.TransformActivity"/>
+        <activity android:name=".activity.ProgressBarActivity"/>
 
     </application>
 

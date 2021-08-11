@@ -3,4 +3,14 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorGray">#99FFFFFF</color>
+    <color name="colorTitleBackground">#242F35</color>
+    <color name="colorTitleProgress">#00C87A</color>
+    <color name="colorTitleProgressBackground">#242F35</color>
+<!--    <color name="colorTitleProgressSegment">#90A7B23</color>-->
+    <color name="colorTitleProgressInterval">#000000</color>
+
 </resources>

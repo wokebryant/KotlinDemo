@@ -21,4 +21,8 @@ class FoldTitleView @JvmOverloads constructor(
 
     }
 
+    private fun setData() {
+
+    }
+
 }

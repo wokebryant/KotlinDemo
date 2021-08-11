@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">KotlinDemo</string>
+
+    <string name="title_content">Mark: The People</string>
+    <string name="title_content_expand">Please Mark: The people people people people The people people people people.</string>
+    <string name="title_submit">Submit</string>
+    <string name="title_skip">Skip</string>
+    <string name="title_unmarked">6 unmarked</string>
 </resources>

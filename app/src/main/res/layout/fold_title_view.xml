@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.motion.widget.MotionLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -8,6 +9,7 @@
     app:layoutDescription="@xml/fold_title_description">
 
     <LinearLayout
+        android:id="@+id/title_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -20,25 +22,85 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="44dp">
+                android:layout_height="44dp"
+                android:background="@color/colorTitleBackground">
 
+                <ImageView
+                    android:id="@+id/title_fixed_close_iv"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_marginStart="21dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_close_white"/>
 
+                <TextView
+                    android:id="@+id/title_fixed_content_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@+id/title_fixed_close_iv"
+                    android:layout_marginStart="21dp"
+                    android:includeFontPadding="false"
+                    android:layout_centerVertical="true"
+                    android:text="@string/title_content"
+                    android:textColor="@color/colorWhite"/>
+
+                <TextView
+                    android:id="@+id/title_fixed_skip_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toStartOf="@+id/title_fixed_submit_tv"
+                    android:layout_marginEnd="16dp"
+                    android:text="@string/title_skip"
+                    android:textColor="@color/colorGray"/>
+
+                <TextView
+                    android:id="@+id/title_fixed_submit_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="16dp"
+                    android:text="@string/title_submit"
+                    android:textColor="@color/colorWhite"/>
 
 
             </RelativeLayout>
 
-            <com.example.kotlindemo.widget.HorizontalProgressBar
+            <com.example.kotlindemo.widget.SegmentProgressBar
+                android:id="@+id/title_progress_bar"
                 android:layout_width="match_parent"
-                android:layout_height="4dp"/>
-
+                android:layout_height="4dp"
+                android:visibility="visible"
+                android:background="colorTitleBackground"
+                app:progressBar_height="4dp"/>
 
         </LinearLayout>
 
         <!-- title展开区域-->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@drawable/title_bg_expand"
+            android:paddingStart="20dp"
+            android:orientation="vertical"
+            tools:ignore="RtlSymmetry">
 
+            <TextView
+                android:id="@+id/title_expand_content_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/title_content"
+                android:textColor="@color/colorWhite"/>
+
+            <TextView
+                android:id="@+id/title_expand_unmarked_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="@string/title_unmarked"
+                android:textColor="@color/colorGray"/>
 
         </LinearLayout>
 
