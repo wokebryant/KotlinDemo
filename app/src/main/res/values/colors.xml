@@ -10,7 +10,7 @@
     <color name="colorTitleBackground">#242F35</color>
     <color name="colorTitleProgress">#00C87A</color>
     <color name="colorTitleProgressBackground">#242F35</color>
-<!--    <color name="colorTitleProgressSegment">#90A7B23</color>-->
+    <color name="colorTitleProgressSegment">#90A7B2</color>
     <color name="colorTitleProgressInterval">#000000</color>
 
 </resources>

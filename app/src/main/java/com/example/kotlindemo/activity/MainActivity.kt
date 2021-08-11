@@ -64,7 +64,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
             }
 
             testPagingBtn.id -> {
-                AppUtil.startActivity<ProgressBarActivity>(this, v, SHARE_NAME_PAGING) {
+                AppUtil.startActivity<PagingActivity>(this, v, SHARE_NAME_PAGING) {
                     putExtra(EXTRA_TRANSITION_NAME, SHARE_NAME_PAGING)
                 }
             }

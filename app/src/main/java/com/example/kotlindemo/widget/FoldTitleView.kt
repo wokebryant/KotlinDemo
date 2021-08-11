@@ -18,10 +18,19 @@ class FoldTitleView @JvmOverloads constructor(
     private val binding: FoldTitleViewBinding by binding()
 
     init {
-
+        setData()
     }
 
     private fun setData() {
+        with(binding) {
+            titleFixedSkipTv.setOnClickListener {
+                titleProgressBar.setProgress(currentProgress = 40)
+            }
+
+            titleFixedSubmitTv.setOnClickListener {
+                titleProgressBar.setProgress(segmentProgress = 70)
+            }
+        }
 
     }
 

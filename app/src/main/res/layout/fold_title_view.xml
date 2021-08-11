@@ -2,6 +2,7 @@
 <androidx.constraintlayout.motion.widget.MotionLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/title_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -64,7 +65,6 @@
                     android:text="@string/title_submit"
                     android:textColor="@color/colorWhite"/>
 
-
             </RelativeLayout>
 
             <com.example.kotlindemo.widget.SegmentProgressBar
@@ -72,8 +72,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="4dp"
                 android:visibility="visible"
-                android:background="colorTitleBackground"
-                app:progressBar_height="4dp"/>
+                android:background="@color/colorTitleBackground"
+                app:progressBar_height="4dp"
+                app:progressBar_size="10"/>
 
         </LinearLayout>
 

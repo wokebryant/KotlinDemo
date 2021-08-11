@@ -20,18 +20,25 @@ class SegmentProgressBar @JvmOverloads constructor(
 
     companion object {
         private const val TAG = "SegmentProgressBar"
+        private const val DEFAULT_PROGRESS_SIZE = 0
         private const val DEFAULT_CURRENT_PROGRESS = 0
-        private const val DEFAULT_MAX_PROGRESS = 0
+        private const val DEFAULT_SEGMENT_PROGRESS = 0
+        private const val DEFAULT_MAX_PROGRESS = 100
         private const val DEFAULT_WIDTH = 720f
         private const val DEFAULT_HEIGHT = 0f
         private val DEFAULT_PROGRESS_COLOR = Color.parseColor("#00C87A")
         private val DEFAULT_PROGRESS_BACKGROUND_COLOR = Color.parseColor("#242F35")
-        private val DEFAULT_PROGRESS_SEGMENT_COLOR = Color.parseColor("#90A7B23")
+        private val DEFAULT_PROGRESS_SEGMENT_COLOR = Color.parseColor("#90A7B2")
         private val DEFAULT_PROGRESS_INTERVAL_COLOR = Color.parseColor("#000000")
     }
 
+    //分段数
+    private var progressSize by Delegates.notNull<Int>()
+
     private var currentProgress by Delegates.notNull<Int>()
+    private var segmentProgress by Delegates.notNull<Int>()
     private var maxProgress by Delegates.notNull<Int>()
+
     private var progressBarWidth by Delegates.notNull<Float>()
     private var progressBarHeight by Delegates.notNull<Float>()
 
@@ -48,13 +55,6 @@ class SegmentProgressBar @JvmOverloads constructor(
     private val progressSegmentPaint = Paint()
     private val progressIntervalPaint = Paint()
 
-    private var progressWidth = 0f
-    private var progressSegmentWidth = 0f
-    private var progressSize = 0                //完成数
-    private var progressSegmentSize = 0         //解锁数
-    private var progressAllSize = 0             //分段数
-    private var eachSegmentWidth = 0f           //每段长度
-
     init {
         initAttributes()
         initPaint()
@@ -63,10 +63,14 @@ class SegmentProgressBar @JvmOverloads constructor(
     private fun initAttributes() {
         val attributes = context.obtainStyledAttributes(attributeSet, R.styleable.SegmentProgressBar, defStyleAttr, 0)
 
+        progressSize = attributes.getInteger(R.styleable.SegmentProgressBar_progressBar_size, DEFAULT_PROGRESS_SIZE)
+
         currentProgress = attributes.getInteger(R.styleable.SegmentProgressBar_progressBar_progressValue, DEFAULT_CURRENT_PROGRESS)
+        segmentProgress = attributes.getInteger(R.styleable.SegmentProgressBar_progressBar_segmentValue, DEFAULT_SEGMENT_PROGRESS)
         maxProgress = attributes.getInteger(R.styleable.SegmentProgressBar_progressBar_maxValue, DEFAULT_MAX_PROGRESS)
+
         progressBarWidth = attributes.getDimension(R.styleable.SegmentProgressBar_progressBar_width, DEFAULT_WIDTH)
-        progressBarHeight = attributes.getDimension(R.styleable.SegmentProgressBar_progressBar_width, DEFAULT_HEIGHT)
+        progressBarHeight = attributes.getDimension(R.styleable.SegmentProgressBar_progressBar_height, DEFAULT_HEIGHT)
 
         progressColor = attributes.getColor(R.styleable.SegmentProgressBar_progressBar_progressColor, DEFAULT_PROGRESS_COLOR)
         progressBackgroundColor = attributes.getColor(R.styleable.SegmentProgressBar_progressBar_backgroundColor, DEFAULT_PROGRESS_BACKGROUND_COLOR)
@@ -98,28 +102,46 @@ class SegmentProgressBar @JvmOverloads constructor(
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
         //绘制背景
-        canvas?.drawRect(startDrawX, startDrawY, progressBarWidth, progressBarHeight, progressPaint)
+        canvas?.drawRect(
+            startDrawX,
+            startDrawY,
+            progressBarWidth,
+            progressBarHeight,
+            progressBackGroundPaint)
         //绘制分段
-        canvas?.drawRect(startDrawX, startDrawY, progressSegmentWidth, progressBarHeight, progressSegmentPaint)
+        canvas?.drawRect(
+            startDrawX,
+            startDrawY,
+            segmentProgress.toFloat() / maxProgress.toFloat() * progressBarWidth,
+            progressBarHeight, progressSegmentPaint)
         //绘制进度
-        canvas?.drawRect(startDrawX, startDrawY, progressWidth, progressBarHeight, progressPaint)
+        canvas?.drawRect(
+            startDrawX,
+            startDrawY,
+            currentProgress.toFloat() / maxProgress.toFloat() * progressBarWidth,
+            progressBarHeight, progressPaint)
         //绘制间隔
-        startDrawX = eachSegmentWidth
-        for(i in 0 until progressAllSize - 1) {
-            canvas?.drawLine(startDrawX, startDrawY, startDrawX, startDrawY + (progressBarHeight - startDrawY), progressIntervalPaint)
-            startDrawX += eachSegmentWidth
+        startDrawX = progressBarWidth / progressSize
+        for(i in 0 until progressSize - 1) {
+            canvas?.drawLine(
+                startDrawX,
+                startDrawY,
+                startDrawX,
+                startDrawY + (progressBarHeight - startDrawY), progressIntervalPaint)
+            startDrawX += progressBarWidth / progressSize
         }
         startDrawX = 0f
     }
 
-    fun setProgress(progressSize: Int, segmentSize: Int = 0, allSize: Int = 0) {
-        if (segmentSize > allSize || progressSize > allSize) {
+    fun setProgress(currentProgress: Int = 0, segmentProgress: Int = 0, progressSize: Int = DEFAULT_PROGRESS_SIZE) {
+        if (currentProgress > maxProgress || segmentProgress > maxProgress) {
             return
         }
-        progressAllSize = allSize
-        eachSegmentWidth = progressBarWidth / allSize
-        progressWidth = eachSegmentWidth * progressSize
-        progressSegmentWidth = eachSegmentWidth * segmentSize
+        this.currentProgress = currentProgress
+        this.segmentProgress = segmentProgress
+        this.progressSize = progressSize
+
+        invalidate()
     }
 
 }

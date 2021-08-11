@@ -1,22 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<!--    <declare-styleable name="ProgressbarView">-->
-<!--        <attr name="progressBar_width" format="dimension"/> &lt;!&ndash; 控件宽度 &ndash;&gt;-->
-<!--        <attr name="progressBar_height" format="dimension"/>&lt;!&ndash; 控件高度 &ndash;&gt;-->
-<!--        <attr name="progressBar_maxValue" format="integer"/>&lt;!&ndash; 控件progress最大值 &ndash;&gt;-->
-<!--        <attr name="progressBar_progressValue" format="integer"/>&lt;!&ndash;  当前 progress value &ndash;&gt;-->
-
-<!--        <attr name="progressBar_progressColor" format="color"/>&lt;!&ndash; progress 进度条颜色 &ndash;&gt;-->
-<!--        <attr name="progressBar_backgroundColor" format="color"/>&lt;!&ndash; progress 背景 颜色 &ndash;&gt;-->
-<!--        <attr name="progressBar_segmentColor" format="color"/>&lt;!&ndash; progress 分段 颜色 &ndash;&gt;-->
-<!--        <attr name="progressBar_intervalColor" format="color"/>&lt;!&ndash; progress 分段间隔 颜色 &ndash;&gt;-->
-
-<!--    </declare-styleable>-->
 
     <declare-styleable name="SegmentProgressBar">
         <attr name="progressBar_width" format="dimension"/> <!-- 控件宽度 -->
         <attr name="progressBar_height" format="dimension"/><!-- 控件高度 -->
+
+        <attr name="progressBar_size" format="integer"/><!-- 控件分段数量 -->
         <attr name="progressBar_maxValue" format="integer"/><!-- 控件progress最大值 -->
+        <attr name="progressBar_segmentValue" format="integer"/><!-- 控件分段progress value -->
         <attr name="progressBar_progressValue" format="integer"/><!--  当前 progress value -->
 
         <attr name="progressBar_progressColor" format="color"/><!-- progress 进度条颜色 -->
