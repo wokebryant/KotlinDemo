@@ -6,4 +6,6 @@
     <string name="title_submit">Submit</string>
     <string name="title_skip">Skip</string>
     <string name="title_unmarked">6 unmarked</string>
+    <string name="title_test">Includes APIs for testing your Android app, including Espresso, JUnit Runner, JUnit4 rules, and UI Automator.have less code, powerful tools, and intuitive Kotlin APIs.</string>
+    <string name="title_test2">安卓提供各种尖端工具和功能可帮助您针对数十亿用户日常使用的手机平板电脑电视和汽车来构建应用</string>
 </resources>

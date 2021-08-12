@@ -34,16 +34,27 @@
                     android:layout_centerVertical="true"
                     android:src="@drawable/ic_close_white"/>
 
-                <TextView
+                <com.example.kotlindemo.widget.FoldTextView
                     android:id="@+id/title_fixed_content_tv"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@+id/title_fixed_close_iv"
+                    android:layout_toStartOf="@+id/title_fixed_skip_tv"
                     android:layout_marginStart="21dp"
+                    android:layout_marginEnd="8dp"
                     android:includeFontPadding="false"
                     android:layout_centerVertical="true"
-                    android:text="@string/title_content"
-                    android:textColor="@color/colorWhite"/>
+                    android:textColor="@color/colorWhite"
+                    android:textSize="11sp"
+                    app:showTip="true"
+                    app:showMaxLine="2"
+                    app:tipColor="#000000"
+                    app:foldText="16"
+                    app:tipWithTag="true"
+                    app:tagColor="#90A7B2"
+                    app:tipClickable="false"
+                    app:tipGravity="0"
+                    tools:ignore="SmallSp" />
 
                 <TextView
                     android:id="@+id/title_fixed_skip_tv"

@@ -69,4 +69,33 @@
        shaped corners but doesn't implement the Shapeable interface. -->
   <attr name="transitionShapeAppearance" format="reference"/>
 
+  <declare-styleable name="SegmentProgressBar">
+    <attr name="progressBar_width" format="dimension"/> <!-- 控件宽度 -->
+    <attr name="progressBar_height" format="dimension"/><!-- 控件高度 -->
+
+    <attr name="progressBar_size" format="integer"/><!-- 控件分段数量 -->
+    <attr name="progressBar_maxValue" format="integer"/><!-- 控件progress最大值 -->
+    <attr name="progressBar_segmentValue" format="integer"/><!-- 控件分段progress value -->
+    <attr name="progressBar_progressValue" format="integer"/><!--  当前 progress value -->
+
+    <attr name="progressBar_progressColor" format="color"/><!-- progress 进度条颜色 -->
+    <attr name="progressBar_backgroundColor" format="color"/><!-- progress 背景 颜色 -->
+    <attr name="progressBar_segmentColor" format="color"/><!-- progress 分段 颜色 -->
+    <attr name="progressBar_intervalColor" format="color"/><!-- progress 分段间隔 颜色 -->
+
+  </declare-styleable>
+
+  <declare-styleable name="FoldTextView">
+    <attr name="showTip" format="boolean" />  <!-- 是否展示提示 -->
+    <attr name="showMaxLine" format="integer" />  <!-- 文本展示最大行数 -->
+    <attr name="tipGravity" format="integer" /> <!-- 提示位置 -->
+    <attr name="tipColor" format="reference|color" /> <!-- 提示颜色 -->
+    <attr name="tagColor" format="reference|color" /> <!-- 标签颜色 -->
+    <attr name="tipWithTag" format="boolean"/> <!-- 提示是否添加标签 -->
+    <attr name="tipClickable" format="boolean" /> <!-- 提示可否点击 -->
+    <attr name="foldText" format="string" /> <!-- 折叠提示语 -->
+    <attr name="expandText" format="string" /> <!-- 展开提示语 -->
+    <attr name="showTipAfterExpand" format="boolean" /> <!-- 展开后是否显示提示语 -->
+  </declare-styleable>
+
 </resources>
