@@ -25,8 +25,8 @@ class MotionActivity : TransformActivity() {
         titleTextView.apply {
             isTipWithTag = true
             isTipShow = true
-            mFoldText = "7"
-            text = (resources.getText(R.string.title_test))
+            mFoldText = "157"
+            text = (resources.getText(R.string.title_content))
         }
 
         titleContainer.getConstraintSet(R.id.start)?.let {

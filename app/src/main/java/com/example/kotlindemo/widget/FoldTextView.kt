@@ -6,11 +6,13 @@ import android.graphics.*
 import android.text.*
 import android.text.style.ForegroundColorSpan
 import android.util.AttributeSet
+import android.util.Log
 import android.view.MotionEvent
 import android.view.ViewConfiguration
 import android.view.ViewTreeObserver
 import androidx.appcompat.widget.AppCompatTextView
 import com.example.kotlindemo.R
+import com.example.kotlindemo.utils.StatusBarUtil
 import com.example.kotlindemo.utils.dip2px
 import kotlinx.android.synthetic.main.activity_motion.view.*
 
@@ -18,9 +20,10 @@ import kotlinx.android.synthetic.main.activity_motion.view.*
  *  可折叠文本
  */
 class FoldTextView @JvmOverloads constructor(
-        context: Context,
-        private val attributeSet: AttributeSet? = null,
-        private val defStyleAttr: Int = 0)
+    context: Context,
+    private val attributeSet: AttributeSet? = null,
+    private val defStyleAttr: Int = 0
+)
     : AppCompatTextView(context, attributeSet, defStyleAttr) {
 
     companion object {
@@ -103,6 +106,13 @@ class FoldTextView @JvmOverloads constructor(
     var isTipWithTag = false
 
     /**
+     *  是否展示高亮文本
+     */
+    var isShowLightText = true
+    var behaviorText = "Mark: "
+    var targetText = "ThePeople"
+
+    /**
      * 提示文字坐标范围
      */
     private var minX: Float = 0f
@@ -128,6 +138,11 @@ class FoldTextView @JvmOverloads constructor(
      */
     private var clickTime = 0L
 
+    private val span by lazy {SpannableStringBuilder(mOriginalText)}
+    private val tagSpan by lazy { RadiusBackgroundSpan(mTagColor, mTipColor, tagCorner) }
+    private val behaviorSpan = ForegroundColorSpan(BEHAVIOR_COLOR)
+    private val targetSpan = ForegroundColorSpan(TARGET_COLOR)
+
     init {
         initAttributes()
         initPaint()
@@ -136,7 +151,12 @@ class FoldTextView @JvmOverloads constructor(
     private fun initAttributes() {
         mShowMaxLine = MAX_LINE
         if (attributeSet != null) {
-            val arr = context.obtainStyledAttributes(attributeSet, R.styleable.FoldTextView, defStyleAttr, 0)
+            val arr = context.obtainStyledAttributes(
+                attributeSet,
+                R.styleable.FoldTextView,
+                defStyleAttr,
+                0
+            )
             mShowMaxLine = arr.getInt(R.styleable.FoldTextView_showMaxLine, MAX_LINE)
             mTipGravity = arr.getInt(R.styleable.FoldTextView_tipGravity, END)
             mTipColor = arr.getColor(R.styleable.FoldTextView_tipColor, TIP_COLOR)
@@ -145,7 +165,10 @@ class FoldTextView @JvmOverloads constructor(
             mFoldText = arr.getString(R.styleable.FoldTextView_foldText)
             mExpandText = arr.getString(R.styleable.FoldTextView_expandText)
             isTipShow = arr.getBoolean(R.styleable.FoldTextView_showTip, false)
-            isShowTipAfterExpand = arr.getBoolean(R.styleable.FoldTextView_showTipAfterExpand, false)
+            isShowTipAfterExpand = arr.getBoolean(
+                R.styleable.FoldTextView_showTipAfterExpand,
+                false
+            )
             isTipWithTag = arr.getBoolean(R.styleable.FoldTextView_tipWithTag, false)
             arr.recycle()
         }
@@ -175,7 +198,12 @@ class FoldTextView @JvmOverloads constructor(
             val spannable = SpannableStringBuilder(mOriginalText)
             if (isShowTipAfterExpand) {
                 spannable.append(mExpandText)
-                spannable.setSpan(ForegroundColorSpan(mTipColor), spannable.length - mExpandText!!.length, spannable.length, Spanned.SPAN_INCLUSIVE_EXCLUSIVE)
+                spannable.setSpan(
+                    ForegroundColorSpan(mTipColor),
+                    spannable.length - mExpandText!!.length,
+                    spannable.length,
+                    Spanned.SPAN_INCLUSIVE_EXCLUSIVE
+                )
             }
             super.setText(spannable, type)
             val mLieCount = lineCount
@@ -219,7 +247,8 @@ class FoldTextView @JvmOverloads constructor(
             l = layout
         }
         if (l == null) {
-            viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
+            viewTreeObserver.addOnGlobalLayoutListener(object :
+                ViewTreeObserver.OnGlobalLayoutListener {
                 override fun onGlobalLayout() {
                     viewTreeObserver.removeOnGlobalLayoutListener(this)
                     translateText(layout, type)
@@ -233,6 +262,9 @@ class FoldTextView @JvmOverloads constructor(
     fun translateText(l: Layout, type: BufferType?) {
         //记录原始行数
         originalLineCount = l.lineCount
+        if (isShowLightText) {
+            showForegroundSpan()
+        }
         if (l.lineCount > mShowMaxLine) {
             isOverMaxLine = true
             val span = SpannableStringBuilder()
@@ -242,13 +274,23 @@ class FoldTextView @JvmOverloads constructor(
             var end = l.getLineVisibleEnd(mShowMaxLine - 1)
             if (mTipGravity == END) {
                 //减去尾部字符串的长度
-                val builder = StringBuilder(ELLIPSIZE_END).append("  ").append(if(isTipShow) mFoldText else "")
-                end -= paint.breakText(mOriginalText, start, end, false, paint.measureText(builder.toString()), null)
+                val builder = StringBuilder(ELLIPSIZE_END).append("  ").append(if (isTipShow) mFoldText else "")
+                end -= paint.breakText(
+                    mOriginalText,
+                    start,
+                    end,
+                    false,
+                    paint.measureText(builder.toString()),
+                    null
+                )
             } else {
                 end--
             }
             //获取裁剪后的文本,如果显示标签的话，需要额外减去1，预留一个字符串的空间
-            val ellipsize = if (isTipWithTag) mOriginalText.subSequence(0, end - 1) else mOriginalText.subSequence(0, end)
+            val ellipsize = if (isTipWithTag) mOriginalText.subSequence(0, end - 1) else mOriginalText.subSequence(
+                0,
+                end
+            )
             //裁剪后的文本和...完成拼接
             span.append(ellipsize).append(ELLIPSIZE_END)
             if (mTipGravity != END) {
@@ -260,6 +302,7 @@ class FoldTextView @JvmOverloads constructor(
             if (isTipWithTag) {
                 showBackgroundSpan()
             }
+            super.setText(span, BufferType.NORMAL)
         }
     }
 
@@ -267,27 +310,50 @@ class FoldTextView @JvmOverloads constructor(
      *  展示背景Span
      */
     private fun showBackgroundSpan() {
-        val span = SpannableStringBuilder()
-        val tagSpan = RadiusBackgroundSpan(mTagColor, mTipColor, tagCorner)
-        mOriginalText += "  $mFoldText"
-        val startIndex = mOriginalText.indexOf(mFoldText.toString())
+        val spaceLength = 2
+        val startIndex = mOriginalText.length + spaceLength
         val endIndex = startIndex + mFoldText!!.length
-        span.append(mOriginalText)
+        span.append("  $mFoldText")
         span.setSpan(tagSpan, startIndex, endIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-        super.setText(span, BufferType.NORMAL)
     }
 
     /**
      *  展示前景Span
      */
     private fun showForegroundSpan() {
-        val span = SpannableStringBuilder()
-        val textColorSpan = ForegroundColorSpan(BEHAVIOR_COLOR)
-        val startIndex = 3
-        val endIndex = 5
-        span.append(mOriginalText)
-        span.setSpan(textColorSpan, startIndex, endIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-        super.setText(span, BufferType.NORMAL)
+        val startBehaviorIndex = mOriginalText.indexOf(behaviorText)
+        val endBehaviorIndex = startBehaviorIndex + behaviorText.length
+        span.setSpan(
+            behaviorSpan,
+            startBehaviorIndex,
+            endBehaviorIndex,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+
+        val startTargetIndex = mOriginalText.indexOf(targetText)
+        val endTargetIndex = startTargetIndex + targetText.length
+        span.setSpan(
+            targetSpan,
+            startTargetIndex,
+            endTargetIndex,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+
+        getEmptyByte()
+    }
+
+    private fun getEmptyByte() {
+        val length = targetText.length
+        val stringBuilder = StringBuilder()
+        val test = StatusBarUtil.ToDBC(targetText)
+        Log.i("LUOJIA: ", " lenght $length, ${test.length}")
+//        for (i in 0 until length) {
+//            stringBuilder.append()
+//        }
+//        chars.forEachIndexed { index, c ->
+//
+//            chars[0]= "\\0"
+//        }
     }
 
     @SuppressLint("DrawAllocation")
@@ -306,12 +372,30 @@ class FoldTextView @JvmOverloads constructor(
             maxY = (height - paddingBottom).toFloat()
 
             if (isTipWithTag && isTipShow) {
-                val tagRect = RectF(minX - tagInterval , minY , minX + paint.measureText(mFoldText) , maxY)
-                canvas?.drawRoundRect(tagRect, tagCorner, tagCorner, mPaint.apply { color =  mTagColor})
-                canvas?.drawText(mFoldText!!, minX - tagInterval / 2, height - paint.fontMetrics.descent - paddingBottom, mPaint.apply { color =  mTipColor})
+                val tagRect = RectF(
+                    minX - tagInterval,
+                    minY,
+                    minX + paint.measureText(mFoldText),
+                    maxY
+                )
+                canvas?.drawRoundRect(
+                    tagRect,
+                    tagCorner,
+                    tagCorner,
+                    mPaint.apply { color = mTagColor })
+                canvas?.drawText(
+                    mFoldText!!,
+                    minX - tagInterval / 2,
+                    height - paint.fontMetrics.descent - paddingBottom,
+                    mPaint.apply { color = mTipColor })
             } else {
                 mFoldText = if (isTipShow) mFoldText else ""
-                canvas?.drawText(mFoldText!!, minX, height - paint.fontMetrics.descent - paddingBottom, mPaint)
+                canvas?.drawText(
+                    mFoldText!!,
+                    minX,
+                    height - paint.fontMetrics.descent - paddingBottom,
+                    mPaint
+                )
             }
         }
     }
@@ -330,7 +414,11 @@ class FoldTextView @JvmOverloads constructor(
                 MotionEvent.ACTION_UP -> {
                     val delTime = System.currentTimeMillis() - clickTime
                     clickTime = 0L
-                    if (delTime < ViewConfiguration.getTapTimeout() && isInRange(event.x, event.y)) {
+                    if (delTime < ViewConfiguration.getTapTimeout() && isInRange(
+                            event.x,
+                            event.y
+                        )
+                    ) {
                         isExpand = !isExpand
                         text = mOriginalText
                         return true
