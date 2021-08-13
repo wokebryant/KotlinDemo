@@ -95,16 +95,22 @@
             android:layout_height="wrap_content"
             android:background="@drawable/title_bg_expand"
             android:paddingStart="20dp"
+            android:paddingEnd="20dp"
             android:orientation="vertical"
             tools:ignore="RtlSymmetry">
 
-            <TextView
+            <com.example.kotlindemo.widget.FoldTextView
                 android:id="@+id/title_expand_content_tv"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="@string/title_content"
-                android:textColor="@color/colorWhite"/>
+                android:includeFontPadding="false"
+                android:textColor="@color/colorWhite"
+                android:textSize="14sp"
+                app:showMaxLine="3"
+                app:tipClickable="false"
+                app:tipGravity="0"
+                tools:ignore="SmallSp" />
 
             <TextView
                 android:id="@+id/title_expand_unmarked_tv"
