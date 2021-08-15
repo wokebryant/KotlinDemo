@@ -6,6 +6,9 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.text.style.ImageSpan;
 
+/**
+ *  居中ImageSpan
+ */
 public class CenterImageSpan extends ImageSpan {
     public CenterImageSpan(Drawable drawable) {
         super(drawable);

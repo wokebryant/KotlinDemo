@@ -95,8 +95,6 @@ class FoldTextView @JvmOverloads constructor(
     var isShowTag = false
     //是否展示高亮文本
     var isShowLightText = false
-    //是否闪烁
-    var isFlash = false
     //是否展示图片
     var isShowImage = false
 
@@ -301,6 +299,20 @@ class FoldTextView @JvmOverloads constructor(
     }
 
     /**
+     *  拼接图片
+     */
+    @SuppressLint("UseCompatLoadingForDrawables")
+    private fun setImageSpan() {
+        textSpan.clear()
+        val imageStr = SpannableString(IMAGE_SPAN_TEXT)
+        val drawable = resources.getDrawable(R.drawable.ic_question_white)
+        drawable.setBounds(0, 0, dip2px(15.6f), dip2px(15.6f))
+        imageSpan = CenterImageSpan(drawable)
+        imageStr.setSpan(imageSpan, 0, IMAGE_SPAN_TEXT.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        textSpan.append(imageStr)
+    }
+
+    /**
      *  展示tag Span,针对没超过最大行数的情况
      */
     private fun showTagSpan() {
@@ -332,12 +344,6 @@ class FoldTextView @JvmOverloads constructor(
         }
         setBehaviorSpan()
         setTargetSpan(cutEndTargetIndex)
-
-        if (isFlash) {
-            flashTask?.cancel()
-            flashTask = FlashTask()
-            timer.schedule(flashTask, LIGHT_TEXT_FLASH_INTERVAL, LIGHT_TEXT_FLASH_INTERVAL)
-        }
     }
 
     private fun setBehaviorSpan() {
@@ -369,6 +375,12 @@ class FoldTextView @JvmOverloads constructor(
     /**
      *  高亮文本闪烁效果
      */
+    fun startTextFlashTask () {
+        flashTask?.cancel()
+        flashTask = FlashTask()
+        timer.schedule(flashTask, LIGHT_TEXT_FLASH_INTERVAL, LIGHT_TEXT_FLASH_INTERVAL)
+    }
+
     private fun startTextFlashAnim() {
         if (currentFlashNum >= LIGHT_TEXT_FLASH_NUM) {
             flashTask?.cancel()
@@ -383,20 +395,6 @@ class FoldTextView @JvmOverloads constructor(
         setTargetSpan()
 
         super.setText(textSpan, BufferType.NORMAL)
-    }
-
-    /**
-     *  拼接图片
-     */
-    @SuppressLint("UseCompatLoadingForDrawables")
-    private fun setImageSpan() {
-        textSpan.clear()
-        val imageStr = SpannableString(IMAGE_SPAN_TEXT)
-        val drawable = resources.getDrawable(R.drawable.ic_question_white)
-        drawable.setBounds(0, 0, dip2px(15.6f), dip2px(15.6f))
-        imageSpan = CenterImageSpan(drawable)
-        imageStr.setSpan(imageSpan, 0, IMAGE_SPAN_TEXT.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-        textSpan.append(imageStr)
     }
 
     @SuppressLint("DrawAllocation")
