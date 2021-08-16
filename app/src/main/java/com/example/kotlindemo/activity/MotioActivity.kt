@@ -32,6 +32,8 @@ class MotionActivity : TransformActivity() {
         binding.titleTestClickBtn.setOnClickListener {
             Toast.makeText(this, " click space", Toast.LENGTH_SHORT).show()
         }
+
+//        binding.titleView.tvTaskDes.text = "哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈"
     }
 
 //    private fun changeTitle(isStart: Boolean) {

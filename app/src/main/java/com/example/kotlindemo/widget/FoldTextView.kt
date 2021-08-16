@@ -5,16 +5,13 @@ import android.content.Context
 import android.graphics.*
 import android.text.*
 import android.text.style.ForegroundColorSpan
-import android.text.style.ImageSpan
 import android.util.AttributeSet
-import android.util.Log
 import android.view.MotionEvent
 import android.view.ViewConfiguration
 import android.view.ViewTreeObserver
 import android.view.ViewTreeObserver.OnGlobalLayoutListener
 import androidx.appcompat.widget.AppCompatTextView
 import com.example.kotlindemo.R
-import com.example.kotlindemo.utils.StatusBarUtil
 import com.example.kotlindemo.utils.dip2px
 import kotlinx.android.synthetic.main.activity_motion.view.*
 import java.util.*
