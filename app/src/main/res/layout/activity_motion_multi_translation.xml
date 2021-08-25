@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.motion.widget.MotionLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="30dp"
+    app:layoutDescription="@xml/motion_multi_translation">
+
+    <ImageView
+        android:id="@+id/laugh"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:src="@drawable/lf_combsend_laugh"/>
+    <ImageView
+        android:id="@+id/like"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:src="@drawable/lf_combsend_like"/>
+    <ImageView
+        android:id="@+id/heart"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:src="@drawable/lf_combsend_heart"/>
+    <TextView
+        android:id="@+id/tipText"
+        android:text="滑动笑脸解锁"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:textStyle="bold"
+        android:textSize="17dp"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+</androidx.constraintlayout.motion.widget.MotionLayout>

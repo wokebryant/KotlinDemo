@@ -1,0 +1,19 @@
+package com.example.kotlindemo.study.motion
+
+import android.os.Bundle
+import com.example.kotlindemo.activity.BaseActivity
+import com.example.kotlindemo.databinding.ActivityMotionSingleTranslationBinding
+import com.example.kotlindemo.utils.binding
+
+/**
+ *  MotionLayout示例：单个控件平移
+ */
+class MotionSingleTranslationActivity : BaseActivity() {
+
+    private val binding: ActivityMotionSingleTranslationBinding by binding()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        with(binding) {}
+    }
+}

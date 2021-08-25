@@ -7,17 +7,12 @@
         app:constraintSetEnd="@id/end">
 
         <KeyFrameSet>
-            <KeyPosition
-                app:framePosition="25"
-                app:motionTarget="@id/laugh"
-                app:keyPositionType="parentRelative"
-                app:percentY="0.5" />
 
             <KeyPosition
                 app:framePosition="50"
                 app:motionTarget="@id/laugh"
                 app:keyPositionType="parentRelative"
-                app:percentY="0.75"/>
+                app:percentY="0.5"/>
 
             <KeyAttribute
                 app:motionTarget="@id/laugh"
@@ -29,10 +24,6 @@
                 app:motionTarget="@id/laugh"
                 android:rotation="-720"
                 app:framePosition="100"/>
-            <KeyAttribute
-                app:motionTarget="@id/tipText"
-                app:framePosition="50"
-                android:alpha="0.0"/>
 
         </KeyFrameSet>
 

@@ -6,6 +6,7 @@ import android.text.Spannable
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
+import android.view.View.OnTouchListener
 import android.widget.FrameLayout
 import android.widget.TextView
 import android.widget.Toast
@@ -32,43 +33,15 @@ class FoldTitleView @JvmOverloads constructor(
         private val FixedTitleWithProgressHeight = dip2px(48f)
     }
 
-    enum class TitleType {
-        /**
-         *  普通任务类型， 单次提交
-         */
-        NORMAL,
-
-        /**
-         *  组题，多次提交
-         */
-        MULTI_TASK,
-
-        /**
-         * 确定数量子任务，单次提交
-         */
-        DETERMINE_CHILD,
-
-        /**
-         *  不确定数量子任务，单次提交
-         */
-        UNCERTAIN_CHILD,
-    }
-
     private val binding: FoldTitleViewBinding by binding()
 
-    lateinit var tvTaskDes: FoldTextView
+    lateinit var titleMotionLayout: MotionLayout
+    lateinit var tvTaskDes: TextView
 
-    private var fixedTitleContent = resources.getText(R.string.title_content)
-    private var expandTitleContent = resources.getText(R.string.title_content)
-
-    private var isShowTaskProgress = false
-    private var unMarkedNum = 0
-
-    private var titleStateListener: TitleStateListener? = null
+    var titleExpand: ((Boolean) -> Unit?)? = null
 
     init {
         initView()
-        setData()
     }
 
     private fun initView() {
@@ -77,50 +50,9 @@ class FoldTitleView @JvmOverloads constructor(
             titleFixedCloseIv.setOnClickListener(this@FoldTitleView)
             titleFixedSkipTv.setOnClickListener(this@FoldTitleView)
             titleFixedSubmitTv.setOnClickListener(this@FoldTitleView)
-            spaceView.setOnClickListener(this@FoldTitleView)
 
             tvTaskDes = binding.titleFixedContentTv
-        }
-    }
-
-    fun setData() {
-        binding.titleFixedContentTv.apply {
-            isShowTip = true
-            isShowTag = true
-            isShowLightText = true
-            mFoldText = "6"
-//            text = fixedTitleContent
-        }
-
-        binding.titleExpandContentTv.apply {
-            isShowImage = true
-            isShowTag = true
-            isShowLightText = true
-//            text = expandTitleContent
-        }
-    }
-
-    /**
-     *  根据任务类型设置title样式
-     */
-    fun setStyleWithType(type: TitleType) {
-        when (type) {
-            TitleType.NORMAL -> {
-                setFixedTitleHeight(false)
-            }
-
-            TitleType.MULTI_TASK -> {
-                setFixedTitleHeight(false)
-
-            }
-
-            TitleType.DETERMINE_CHILD -> {
-                setFixedTitleHeight(true)
-            }
-
-            TitleType.UNCERTAIN_CHILD -> {
-                setFixedTitleHeight(true)
-            }
+            titleMotionLayout = binding.titleContainer
         }
     }
 
@@ -142,15 +74,12 @@ class FoldTitleView @JvmOverloads constructor(
     override fun onClick(v: View?) {
         with(binding) {
             when (v?.id) {
-                titleLayout.id -> {
-                    if (titleContainer.progress == 0f) {
-                        expandTitle()
-                    }
-                }
 
-                spaceView.id -> {
-                    if (titleContainer.progress == 1f) {
+                titleLayout.id -> {
+                    if (titleContainer.progress == 1.0f) {
                         collapseTitle()
+                    } else if (titleContainer.progress == 0.0f) {
+                        expandTitle()
                     }
                 }
 
@@ -172,7 +101,6 @@ class FoldTitleView @JvmOverloads constructor(
     override fun onFinishInflate() {
         super.onFinishInflate()
         binding.titleContainer.setTransitionListener(transListener)
-        binding.titleExpandContentTv.setOnTouchListener(onQuestionIconClickListener)
     }
 
     /**
@@ -180,23 +108,23 @@ class FoldTitleView @JvmOverloads constructor(
      */
     private val transListener = object : MotionLayout.TransitionListener{
 
-        override fun onTransitionStarted(p0: MotionLayout?, p1: Int, p2: Int) {}
+        override fun onTransitionStarted(p0: MotionLayout?, p1: Int, p2: Int) {
+
+        }
+
 
         override fun onTransitionChange(
             p0: MotionLayout?,
             p1: Int,
             p2: Int,
             p3: Float
-        ) {
-            binding.titleContainer.post {
-                binding.titleFixedContentTv.alpha = 1.0f - p3
-                binding.titleExpandContentTv.alpha = p3
-            }
-        }
+        ) {}
 
         override fun onTransitionCompleted(p0: MotionLayout?, p1: Int) {
             if (binding.titleContainer.progress == 1.0f) {
-                binding.titleExpandContentTv.startTextFlashTask()
+                titleExpand?.invoke(true)
+            } else if (binding.titleContainer.progress == 0.0f) {
+                titleExpand?.invoke(false)
             }
         }
 
@@ -209,67 +137,17 @@ class FoldTitleView @JvmOverloads constructor(
     }
 
     /**
-     *  问号Icon点击
-     */
-    private val onQuestionIconClickListener = OnTouchListener { v, event ->
-        val widget = v as TextView
-        val text = widget.text
-        val spannableText = Spannable.Factory.getInstance().newSpannable(text)
-
-        if (event.action == MotionEvent.ACTION_UP || event.action == MotionEvent.ACTION_DOWN) {
-            var x = event.x
-            var y = event.y
-
-            x -= widget.totalPaddingLeft
-            y -= widget.totalPaddingTop
-
-            x += widget.scrollX
-            y += widget.scrollY
-
-            val layout = widget.layout
-            val line = layout.getLineForVertical(y.toInt())
-            val off = layout.getOffsetForHorizontal(line, x)
-
-            val imageSpans = spannableText.getSpans(off, off, CenterImageSpan::class.java)
-            if (imageSpans.isNotEmpty()) {
-                if (event.action == MotionEvent.ACTION_DOWN) {
-                    Toast.makeText(context, "问号点击", Toast.LENGTH_SHORT).show()
-                }
-                true
-            }
-        }
-        false
-    }
-
-    /**
      * 折叠标题栏
      */
-    fun collapseTitle() {
+    private fun collapseTitle() {
         binding.titleContainer.transitionToStart()
     }
 
     /**
      *  展开标题栏
      */
-    fun expandTitle() {
+    private fun expandTitle() {
         binding.titleContainer.transitionToEnd()
-    }
-
-    /**
-     *  显示任务进度条
-     */
-    fun showTaskProgress() {
-
-    }
-
-    fun setTitleStateListener(titleStateListener: TitleStateListener) {
-        this.titleStateListener = titleStateListener
-    }
-
-    interface TitleStateListener {
-        fun onTitleExpand()
-
-        fun onTitleCollapse()
     }
 
 }

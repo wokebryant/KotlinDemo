@@ -13,4 +13,8 @@
     <color name="colorTitleProgressSegment">#90A7B2</color>
     <color name="colorTitleProgressInterval">#000000</color>
 
+    <color name="title_color">#232336</color>
+    <color name="content_text_color">#999aaa</color>
+    <color name="date_text_color">#fe9a9aaa</color>
+
 </resources>

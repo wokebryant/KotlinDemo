@@ -12,28 +12,32 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:networkSecurityConfig="@xml/network_config">
+        android:networkSecurityConfig="@xml/network_config"
+        tools:targetApi="n">
         <activity android:name=".activity.BaseActivity"/>
         <activity android:name=".activity.MainActivity">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-        </activity>
-        <activity android:name=".retrofit.RetrofitActivity"/>
-        <activity android:name=".activity.MaterialDesignActivity"/>
-        <activity android:name=".activity.MotionActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".retrofit.RetrofitActivity"/>
+        <activity android:name=".activity.MaterialDesignActivity"/>
         <activity android:name=".activity.ConstraintActivity"/>
         <activity android:name=".jetpack.paging3.PagingActivity"/>
         <activity android:name=".activity.ViewPager2Activity"/>
         <activity android:name=".activity.TransformActivity"/>
+        <activity android:name=".activity.MotionActivity"/>
+        <activity android:name=".study.motion.MotionSingleTranslationActivity"/>
+        <activity android:name=".study.motion.MotionMultiTranslationActivity"/>
+        <activity android:name=".study.motion.MotionKeyPositionActivity"/>
+        <activity android:name=".study.motion.MotionKeyAttributeActivity"/>
+        <activity android:name=".study.motion.MotionKeyCycleActivity"/>
+        <activity android:name=".study.motion.MotionCustomActivity"/>
+        <activity android:name=".study.motion.MotionWithAppBarActivity"/>
+        <activity android:name=".study.motion.MotionWithLottieActivity"/>
+        <activity android:name=".study.motion.MotionWithRecycleViewActivity"/>
 
     </application>
 

@@ -52,7 +52,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
             }
 
             testMotionLayoutBtn.id -> {
-                AppUtil.startActivity<MotionActivity>(this, v, SHARE_NAME_MOTION) {
+                AppUtil.startActivity<MotionActivity>(this) {
                     putExtra(EXTRA_TRANSITION_NAME, SHARE_NAME_MOTION)
                 }
             }
