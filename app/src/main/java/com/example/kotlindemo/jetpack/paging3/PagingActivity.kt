@@ -1,5 +1,6 @@
 package com.example.kotlindemo.jetpack.paging3
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -37,17 +38,24 @@ class PagingActivity : TransformActivity() {
         ViewModelProvider(this).get(MainViewModel::class.java)
     }
 
-    private val itemUpdate: (Int, Repo, RepoAdapter) -> Unit = {position, repo, adapter ->
+    @SuppressLint("NotifyDataSetChanged")
+    private val itemUpdate: (Int, Repo, RepoAdapter) -> Unit = { position, repo, adapter ->
         repo.name = "修改数据$position"
         adapter.notifyDataSetChanged()
     }
 
-    private val itemDelete: (Int) ->Unit = { position ->
-        mPagingData = mPagingData.filter {
-            it != repoAdapter.getData(0) }
-        repoAdapter.submitData(lifecycle, mPagingData)
-//        repoAdapter.notifyItemRemoved(position)
-        Toast.makeText(this, "删除 $position", Toast.LENGTH_SHORT).show()
+    private val itemDelete: (Repo) ->Unit = { repo ->
+        val pagingData = viewModel.pagingData.value
+
+        pagingData
+            ?.filter { repo.id != it.id }
+            .let {
+                if (it != null) {
+                    viewModel.updatePagingData(it)
+                }
+            }
+
+        Toast.makeText(this, "删除 ${repo.id}", Toast.LENGTH_SHORT).show()
     }
 
     private val repoAdapter = RepoAdapter(itemUpdate, itemDelete)
@@ -70,12 +78,16 @@ class PagingActivity : TransformActivity() {
             repoAdapter.refresh()
         }
 
-        lifecycleScope.launch {
-            viewModel.getPagingData().flowOn(Dispatchers.IO).collect { pagingData ->
-                Log.i(TAG, " getDataPaging")
-                mPagingData = pagingData
-                repoAdapter.submitData(lifecycle, mPagingData)
-            }
+//        lifecycleScope.launch {
+//            viewModel.getPagingData().flowOn(Dispatchers.IO).collect { pagingData ->
+//                Log.i(TAG, " getDataPaging")
+//                repoAdapter.submitData(lifecycle, mPagingData)
+//            }
+//        }
+
+        //增删liveData相比flow容易操作
+        viewModel.pagingData.observe(this) {
+            repoAdapter.submitData(lifecycle, it)
         }
 
         repoAdapter.addLoadStateListener {

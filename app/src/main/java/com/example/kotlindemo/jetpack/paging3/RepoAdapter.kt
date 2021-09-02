@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlindemo.R
 
 class RepoAdapter(val itemUpdate: (Int, Repo, RepoAdapter) -> Unit, 
-                  val itemDelete: (Int) -> Unit) 
+                  val itemDelete: (Repo) -> Unit)
     : PagingDataAdapter<Repo, RepoAdapter.ViewHolder>(COMPARATOR) {
 
     companion object {
@@ -53,7 +53,7 @@ class RepoAdapter(val itemUpdate: (Int, Repo, RepoAdapter) -> Unit,
             }
             
             holder.deleteTv.setOnClickListener { 
-//                itemDelete(p1)
+                itemDelete(repo)
             }
         }
     }

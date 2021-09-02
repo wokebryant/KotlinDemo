@@ -34,7 +34,7 @@ class RepoPagingSource(private val gitHubService: GitHubService) : PagingSource<
         val repo = RepoResponse()
         val list = arrayListOf<Repo>()
         for (i in 0..29) {
-            val skillInfo = Repo(page * 100 + i, "标题 $i", " 描述", page + i)
+            val skillInfo = Repo(page * 100 + i, "标题 ${page * 100 + i}", " 描述", page + i)
 
             list.add(skillInfo)
         }
