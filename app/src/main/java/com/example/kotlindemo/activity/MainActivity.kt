@@ -41,6 +41,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         testConstraintLayoutBtn.setOnClickListener(this)
         testPagingBtn.setOnClickListener(this)
         testViewPager2Btn.setOnClickListener(this)
+        testMarkBtn.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -72,6 +73,12 @@ class MainActivity : BaseActivity(), View.OnClickListener {
             testViewPager2Btn.id -> {
                 AppUtil.startActivity<ViewPager2Activity>(this, v, SHARE_NAME_VIEW_PAGER) {
                     putExtra(EXTRA_TRANSITION_NAME, SHARE_NAME_VIEW_PAGER)
+                }
+            }
+
+            testMarkBtn.id -> {
+                AppUtil.startActivity<MarkActivity>(this) {
+
                 }
             }
         }
