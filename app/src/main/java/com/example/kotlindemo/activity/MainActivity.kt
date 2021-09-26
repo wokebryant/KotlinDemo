@@ -5,6 +5,7 @@ import android.view.View
 import android.view.Window
 import com.example.kotlindemo.R
 import com.example.kotlindemo.jetpack.paging3.PagingActivity
+import com.example.kotlindemo.study.kotlinshare.KotlinShare
 import com.example.kotlindemo.utils.AppUtil
 import com.example.kotlindemo.utils.StatusBarUtil
 import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback
@@ -27,6 +28,8 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         setContentView(R.layout.activity_main)
         initView()
         StatusBarUtil.setRootViewFitsSystemWindows(this, true)
+
+        val kotlinShare = KotlinShare()
     }
 
     private fun doContainerTransform() {
