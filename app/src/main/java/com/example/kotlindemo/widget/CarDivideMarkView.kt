@@ -23,11 +23,10 @@ class CarDivideMarkView @JvmOverloads constructor(
         private const val TAG = "CarDivideMarkView"
 
         private val TOUCH_AREA_WIDTH = 66.dp
-        private val MOVE_SAFE_DISTANCE = 2.dp
         private val DIVIDE_LINE_WIDTH  = 2.dp
         private val DIVIDE_LINE_SEGMENT = 3.dp
-        private val DIVIDE_DARK_COLOR = Color.parseColor("#01ffce")
-        private val DIVIDE_LINE_COLOR = Color.parseColor("#ffff00")
+        private val DIVIDE_DARK_COLOR = Color.parseColor("#4D000000")
+        private val DIVIDE_LINE_COLOR = Color.parseColor("#FFFF00")
         private val DIVIDE_LINE_SLIDER_COLOR = Color.parseColor("#FFFFFF")
         private val DIVIDE_LINE_SLIDER_BORDER_COLOR = Color.parseColor("#000000")
     }
@@ -50,21 +49,6 @@ class CarDivideMarkView @JvmOverloads constructor(
         get() = DashPathEffect(
             floatArrayOf(DIVIDE_LINE_SEGMENT, DIVIDE_LINE_SEGMENT, DIVIDE_LINE_SEGMENT, DIVIDE_LINE_SEGMENT),
             0f)
-
-    /**
-     *  是否能够移动滑块
-     */
-    private val canMoveSlider: Boolean
-        get() {
-            if (isVertical && abs(currentSliderX - previousSliderX) <= MOVE_SAFE_DISTANCE) {
-                return false
-            }
-            else if (!isVertical && abs(currentSliderY - previousSliderY) <= MOVE_SAFE_DISTANCE) {
-                return false
-            }
-
-            return true
-        }
 
     private val divideDarkPaint = Paint()
     private val divideLinePaint = Paint()
@@ -186,31 +170,32 @@ class CarDivideMarkView @JvmOverloads constructor(
      */
     @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent?): Boolean {
-        if (event == null || !touchArea.contains(event.x, event.y)) {
+        if (event == null) {
             return false
         }
 
         when (event.actionMasked) {
             MotionEvent.ACTION_DOWN -> {
+                if (!touchArea.contains(event.x, event.y)) {
+                    return false
+                }
                 previousSliderX = event.x
                 previousSliderY = event.y
             }
 
             MotionEvent.ACTION_MOVE -> {
+
                 if (isVertical) {
-                    currentSliderX = event.x
+                    currentSliderX += event.x - previousSliderX
                 } else {
-                    currentSliderY = event.y
+                    currentSliderY += event.y - previousSliderY
                 }
 
-//                if (!canMoveSlider) {
-//                    return false
-//                }
+                previousSliderX = event.x
+                previousSliderY = event.y
 
                 updateSlideRect()
                 invalidate()
-                previousSliderX = currentSliderX
-                previousSliderY = currentSliderY
             }
         }
         return true

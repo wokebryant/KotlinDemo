@@ -8,8 +8,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.2930253623188406" />
-        <entry key="app/src/main/res/layout/activity_mark.xml" value="0.2930253623188406" />
+        <entry key="app/src/main/res/drawable/bg_circle.xml" value="0.3490740740740741" />
+        <entry key="app/src/main/res/drawable/ic_star_dark.xml" value="0.3490740740740741" />
+        <entry key="app/src/main/res/drawable/ic_start_light.xml" value="0.3490740740740741" />
+        <entry key="app/src/main/res/drawable/title_bg_question.xml" value="0.3490740740740741" />
+        <entry key="app/src/main/res/layout/activity_magnifier.xml" value="0.307518115942029" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.21835443037974683" />
+        <entry key="app/src/main/res/layout/activity_mark.xml" value="0.21835443037974683" />
         <entry key="app/src/main/res/layout/activity_material_design.xml" value="0.1752786220871327" />
         <entry key="app/src/main/res/layout/activity_matk.xml" value="0.2930253623188406" />
         <entry key="app/src/main/res/layout/activity_motion_custom.xml" value="0.2930253623188406" />

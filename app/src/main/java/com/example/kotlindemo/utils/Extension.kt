@@ -3,7 +3,6 @@ package com.example.kotlindemo.utils
 import android.content.Context
 import android.content.res.Resources
 import android.graphics.Point
-import android.os.Build
 import android.util.Log
 import android.util.TypedValue
 import android.view.WindowManager
@@ -61,5 +60,22 @@ fun getNavBarHeight(context: Context): Int {
         res.getDimensionPixelSize(resourceId)
     } else {
         0
+    }
+}
+
+/**
+ *  浮点数限制
+ */
+fun Float.limit(min: Float = 0f, max: Float): Float {
+    return when {
+        this < min -> {
+            min
+        }
+        this > max -> {
+            max
+        }
+        else -> {
+            this
+        }
     }
 }

@@ -42,6 +42,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         testPagingBtn.setOnClickListener(this)
         testViewPager2Btn.setOnClickListener(this)
         testMarkBtn.setOnClickListener(this)
+        testMagnifierBtn.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -80,6 +81,9 @@ class MainActivity : BaseActivity(), View.OnClickListener {
                 AppUtil.startActivity<MarkActivity>(this) {
 
                 }
+            }
+
+            testMagnifierBtn.id -> {
             }
         }
     }

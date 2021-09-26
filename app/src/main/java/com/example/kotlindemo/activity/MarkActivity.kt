@@ -1,5 +1,7 @@
 package com.example.kotlindemo.activity
 
+import android.graphics.Bitmap
+import android.graphics.Canvas
 import android.os.Bundle
 import android.view.View
 import com.example.kotlindemo.databinding.ActivityMarkBinding
@@ -40,8 +42,24 @@ class MarkActivity : BaseActivity() {
             }
         }
 
-        binding.markContainerView.removeAllViews()
-        binding.markContainerView.addView(markView)
+        binding.markContainerView.apply {
+            removeAllViews()
+            addView(markView)
+        }
+
+        if (markView is WheelPointMarkView) {
+            markView.magnifierBitmap = copyByCanvas2(binding.rootView)
+        }
+    }
+
+    fun copyByCanvas2(view: View): Bitmap? {
+        val width = view.measuredWidth
+        val height = view.measuredHeight
+        val bp = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565)
+        val canvas = Canvas(bp)
+        view.draw(canvas)
+        canvas.save()
+        return bp
     }
 
 }
