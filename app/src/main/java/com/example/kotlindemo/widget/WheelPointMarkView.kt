@@ -337,6 +337,11 @@ class WheelPointMarkView @JvmOverloads constructor(
                 eventDownX = event.x
                 eventDownY = event.y
                 downTime = System.currentTimeMillis()
+
+                if (!leftTouchArea.contains(eventDownX, eventDownY) &&
+                    !rightTouchArea.contains(eventDownX, eventDownY)) {
+                    return false
+                }
             }
 
             MotionEvent.ACTION_MOVE -> {
