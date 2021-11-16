@@ -61,9 +61,9 @@ class MotionCustomActivity : BaseActivity() {
 
         titleContainer.getConstraintSet(constraintSetId)?.let { constraintSet ->
             constraintSet.getConstraint(R.id.title_fixed_content_tv)?.let {
-                val attrSize = ConstraintAttribute("", ConstraintAttribute.AttributeType.FLOAT_TYPE, contentSize)
-                val attrString = ConstraintAttribute("", ConstraintAttribute.AttributeType.STRING_TYPE, contentString)
-                val attrColor = ConstraintAttribute("", ConstraintAttribute.AttributeType.COLOR_TYPE, Color.parseColor(contentColor))
+                val attrSize = ConstraintAttribute(ConstraintAttribute("", ConstraintAttribute.AttributeType.FLOAT_TYPE), contentSize)
+                val attrString = ConstraintAttribute(ConstraintAttribute("", ConstraintAttribute.AttributeType.STRING_TYPE), contentString)
+                val attrColor = ConstraintAttribute(ConstraintAttribute("", ConstraintAttribute.AttributeType.COLOR_TYPE), Color.parseColor(contentColor))
 
 //                    it.mCustomConstraints["TextSize"] = attrSize
                 it.mCustomConstraints["Text"] = attrString

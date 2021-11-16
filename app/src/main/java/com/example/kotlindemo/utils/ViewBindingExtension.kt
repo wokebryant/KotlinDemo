@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.ComponentActivity
-import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
@@ -29,7 +28,6 @@ import kotlin.reflect.KProperty
 inline fun <reified VB : ViewBinding> ComponentActivity.binding() = lazy {
     inflateBinding<VB>(layoutInflater).also {
         setContentView(it.root)
-        if (this is ViewDataBinding) lifecycleOwner = this@binding
     }
 }
 
@@ -97,9 +95,7 @@ class FragmentBindingDelegate<VB : ViewBinding>(private val block: () -> VB) : R
 
     override fun getValue(thisRef: Fragment, property: KProperty<*>): VB {
         if (binding == null) {
-            binding = block().also {
-                if (it is ViewDataBinding) it.lifecycleOwner = thisRef.viewLifecycleOwner
-            }
+            binding = block()
             thisRef.doOnDestroyView {
                 if (thisRef is BindingLifecycleOwner) thisRef.onDestroyViewBinding(binding!!)
                 binding = null

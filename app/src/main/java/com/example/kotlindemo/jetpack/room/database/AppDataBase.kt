@@ -10,7 +10,6 @@ import com.example.kotlindemo.jetpack.room.dao.BookDao
 import com.example.kotlindemo.jetpack.room.dao.UserDao
 import com.example.kotlindemo.jetpack.room.entity.Book
 import com.example.kotlindemo.jetpack.room.entity.User
-import okhttp3.internal.Internal.instance
 
 @Database(version = 2, entities = [User::class, Book::class])
 abstract class AppDataBase : RoomDatabase() {
