@@ -136,10 +136,10 @@
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <Button
-        android:id="@+id/testMagnifierBtn"
+        android:id="@+id/testWalletBtn"
         android:layout_width="0dp"
         android:layout_height="80dp"
-        android:text="测试"
+        android:text="区块链钱包"
         android:textAllCaps="false"
         android:textStyle="bold"
         style="?android:attr/borderlessButtonStyle"

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.wallet">
+
+    <application >
+
+        <activity android:name=".KeyStoreActivity"/>
+        <activity android:name=".MnemonicActivity"/>
+        <activity android:name=".PrivateKeyActivity"/>
+        <activity android:name=".WalletActivity"/>
+        <activity android:name=".BitcoinWalletActivity"/>
+        <activity android:name=".EthereumWalletActivity"/>
+    </application>
+
+</manifest>

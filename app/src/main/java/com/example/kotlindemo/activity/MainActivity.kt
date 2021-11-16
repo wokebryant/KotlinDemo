@@ -8,6 +8,7 @@ import com.example.kotlindemo.jetpack.paging3.PagingActivity
 import com.example.kotlindemo.study.kotlinshare.KotlinShare
 import com.example.kotlindemo.utils.AppUtil
 import com.example.kotlindemo.utils.StatusBarUtil
+import com.example.wallet.WalletActivity
 import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -45,7 +46,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         testPagingBtn.setOnClickListener(this)
         testViewPager2Btn.setOnClickListener(this)
         testMarkBtn.setOnClickListener(this)
-        testMagnifierBtn.setOnClickListener(this)
+        testWalletBtn.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -86,7 +87,8 @@ class MainActivity : BaseActivity(), View.OnClickListener {
                 }
             }
 
-            testMagnifierBtn.id -> {
+            testWalletBtn.id -> {
+                AppUtil.startActivity<WalletActivity>(this){}
             }
         }
     }
