@@ -291,6 +291,41 @@ class Later<T>(val block: () -> T) {
 }
 
 /**
+ *  可以同多定义多个接口，通过委托，实现多继承
+ */
+interface TestDelegationA {
+    var height: (Int) -> Unit
+    val age: (Int) -> Unit
+}
+
+interface TestDelegationB {
+    val address: (Int) -> Unit
+    val weight: (Int) -> Unit
+}
+
+class TestDelegationAImpl : TestDelegationA {
+    override var height: (Int) -> Unit = {}
+
+    override val age: (Int) -> Unit = {}
+}
+
+class TestDelegationBImpl : TestDelegationB {
+    override val address: (Int) -> Unit = {}
+
+    override val weight: (Int) -> Unit = {}
+
+}
+
+class Delegation :
+    TestDelegationA by TestDelegationAImpl(),
+    TestDelegationB by TestDelegationBImpl() {
+
+    init {
+        height = { }
+    }
+}
+
+/**
  *  kotlin使用infix函数(简化语法，省略.和())
  *  infix只能接受一个参数
  *  必须是成员函数或拓展函数
