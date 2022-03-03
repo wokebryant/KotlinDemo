@@ -3,14 +3,14 @@ package com.example.kotlindemo.activity
 import android.os.Bundle
 import android.view.View
 import android.view.Window
-import com.example.kotlindemo.R
+import com.example.kotlindemo.databinding.ActivityMainBinding
 import com.example.kotlindemo.jetpack.paging3.PagingActivity
 import com.example.kotlindemo.study.kotlinshare.KotlinShare
 import com.example.kotlindemo.utils.AppUtil
 import com.example.kotlindemo.utils.StatusBarUtil
+import com.example.kotlindemo.utils.binding
 import com.example.wallet.WalletActivity
 import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity(), View.OnClickListener {
 
@@ -20,13 +20,13 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         private const val SHARE_NAME_CONSTRAINT = "CONSTRAINT"
         private const val SHARE_NAME_PAGING = "PAGING"
         private const val SHARE_NAME_VIEW_PAGER = "VIEW_PAGER"
-
     }
+
+    private val binding: ActivityMainBinding by binding()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         doContainerTransform()
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
         initView()
         StatusBarUtil.setRootViewFitsSystemWindows(this, true)
 
@@ -40,54 +40,56 @@ class MainActivity : BaseActivity(), View.OnClickListener {
     }
 
     private fun initView() {
-        testMaterialBtn.setOnClickListener(this)
-        testMotionLayoutBtn.setOnClickListener(this)
-        testConstraintLayoutBtn.setOnClickListener(this)
-        testPagingBtn.setOnClickListener(this)
-        testViewPager2Btn.setOnClickListener(this)
-        testMarkBtn.setOnClickListener(this)
-        testWalletBtn.setOnClickListener(this)
+        with(binding) {
+            testMaterialBtn.setOnClickListener(this@MainActivity)
+            testMotionLayoutBtn.setOnClickListener(this@MainActivity)
+            testConstraintLayoutBtn.setOnClickListener(this@MainActivity)
+            testPagingBtn.setOnClickListener(this@MainActivity)
+            testViewPager2Btn.setOnClickListener(this@MainActivity)
+            testMarkBtn.setOnClickListener(this@MainActivity)
+            testWalletBtn.setOnClickListener(this@MainActivity)
+        }
     }
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            testMaterialBtn.id -> {
+            binding.testMaterialBtn.id -> {
                 AppUtil.startActivity<MaterialDesignActivity>(this, v, SHARE_NAME_MATERIAL) {
                     putExtra(EXTRA_TRANSITION_NAME, SHARE_NAME_MATERIAL)
                 }
             }
 
-            testMotionLayoutBtn.id -> {
+            binding.testMotionLayoutBtn.id -> {
                 AppUtil.startActivity<MotionActivity>(this) {
                     putExtra(EXTRA_TRANSITION_NAME, SHARE_NAME_MOTION)
                 }
             }
 
-            testConstraintLayoutBtn.id -> {
+            binding.testConstraintLayoutBtn.id -> {
                 AppUtil.startActivity<ConstraintActivity>(this, v, SHARE_NAME_CONSTRAINT) {
                     putExtra(EXTRA_TRANSITION_NAME, SHARE_NAME_CONSTRAINT)
                 }
             }
 
-            testPagingBtn.id -> {
+            binding.testPagingBtn.id -> {
                 AppUtil.startActivity<PagingActivity>(this, v, SHARE_NAME_PAGING) {
                     putExtra(EXTRA_TRANSITION_NAME, SHARE_NAME_PAGING)
                 }
             }
 
-            testViewPager2Btn.id -> {
+            binding.testViewPager2Btn.id -> {
                 AppUtil.startActivity<ViewPager2Activity>(this, v, SHARE_NAME_VIEW_PAGER) {
                     putExtra(EXTRA_TRANSITION_NAME, SHARE_NAME_VIEW_PAGER)
                 }
             }
 
-            testMarkBtn.id -> {
+            binding.testMarkBtn.id -> {
                 AppUtil.startActivity<MarkActivity>(this) {
 
                 }
             }
 
-            testWalletBtn.id -> {
+            binding.testWalletBtn.id -> {
                 AppUtil.startActivity<WalletActivity>(this){}
             }
         }

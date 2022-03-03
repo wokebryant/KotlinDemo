@@ -7,36 +7,38 @@ import com.bumptech.glide.Glide
 import com.example.kotlindemo.R
 import com.example.kotlindemo.adapter.Fruit
 import com.example.kotlindemo.adapter.FruitAdapter
+import com.example.kotlindemo.databinding.ActivityMaterialDesignBinding
+import com.example.kotlindemo.utils.binding
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.activity_material_design.*
 import kotlin.concurrent.thread
 
 class MaterialDesignActivity : TransformActivity() {
+
+    private val binding: ActivityMaterialDesignBinding by binding()
 
     var fruitList = ArrayList<Fruit>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_material_design)
-        setSupportActionBar(toolbar)
+        setSupportActionBar(binding.toolbar)
 //        supportActionBar?.let {
 //            it.setDisplayHomeAsUpEnabled(true)
 //            it.setHomeAsUpIndicator(R.drawable.ic_menu)
 //        }
 //        collapsingToolbar.title = "wokebryant"
-        collapsingToolbar.expandedTitleMarginStart = 35
-        Glide.with(this).load(R.drawable.lf_combsend_heart).into(fruitImage)
-        navView.setCheckedItem(R.id.navCall)
-        navView.setNavigationItemSelectedListener {
+        binding.collapsingToolbar.expandedTitleMarginStart = 35
+        Glide.with(this).load(R.drawable.lf_combsend_heart).into(binding.fruitImage)
+        binding.navView.setCheckedItem(R.id.navCall)
+        binding.navView.setNavigationItemSelectedListener {
             when(it.itemId) {
                 R.id.navCall -> ""
                 R.id.navFriends -> ""
-                R.id.navLocation -> drawerLayout.closeDrawers()
+                R.id.navLocation -> binding.drawerLayout.closeDrawers()
 
             }
             true
         }
-        fab.setOnClickListener {
+        binding.fab.setOnClickListener {
             Snackbar.make(it, "Data deleted", Snackbar.LENGTH_SHORT)
                 .setAction("Undo") {
                 Toast.makeText(this, "Data restored", Toast.LENGTH_SHORT).show()
@@ -44,13 +46,13 @@ class MaterialDesignActivity : TransformActivity() {
         }
 
         val layoutManager = GridLayoutManager(this, 2)
-        recyclerView.layoutManager = layoutManager
+        binding.recyclerView.layoutManager = layoutManager
         initFruits()
         val adapter = FruitAdapter(this, fruitList)
-        recyclerView.adapter = adapter
+        binding.recyclerView.adapter = adapter
 
-        swipeRefresh.setColorSchemeResources(R.color.colorPrimary)
-        swipeRefresh.setOnRefreshListener {
+        binding.swipeRefresh.setColorSchemeResources(R.color.colorPrimary)
+        binding.swipeRefresh.setOnRefreshListener {
             refreshFruits(adapter)
         }
     }
@@ -89,7 +91,7 @@ class MaterialDesignActivity : TransformActivity() {
             runOnUiThread {
                 initFruits()
                 adapter.notifyDataSetChanged()
-                swipeRefresh.isRefreshing = false
+                binding.swipeRefresh.isRefreshing = false
             }
         }
     }

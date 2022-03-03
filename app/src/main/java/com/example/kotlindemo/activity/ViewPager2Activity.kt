@@ -10,15 +10,18 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.kotlindemo.R
 import com.example.kotlindemo.adapter.FragmentPagerAdapter
 import com.example.kotlindemo.adapter.Viewpager2Adapter
+import com.example.kotlindemo.databinding.ActivityViewPager2Binding
 import com.example.kotlindemo.study.TAG
+import com.example.kotlindemo.utils.binding
 import com.example.kotlindemo.widget.pageTransformer.ScaleInTransformer
 import com.google.android.material.tabs.TabLayoutMediator
-import kotlinx.android.synthetic.main.activity_view_pager2.*
 
 /**
  *  ViewPager2示例
  */
 class ViewPager2Activity : TransformActivity(), View.OnClickListener {
+
+    private val binding: ActivityViewPager2Binding by binding()
 
     private lateinit var mViewPager: ViewPager2
     private var mPagerAdapter: Viewpager2Adapter? = null
@@ -32,7 +35,6 @@ class ViewPager2Activity : TransformActivity(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_view_pager2)
 //        initViewpager()
         initFragmentPager()
     }
@@ -40,8 +42,8 @@ class ViewPager2Activity : TransformActivity(), View.OnClickListener {
     private fun initViewpager() {
         mPagerAdapter = Viewpager2Adapter(getDataList())
 
-        mViewPager = findViewById(R.id.view_pager)
-        drag_btn.setOnClickListener(this)
+        mViewPager = binding.viewPager
+        binding.dragBtn.setOnClickListener(this)
         mViewPager.apply {
             //设置滑动方向
             orientation = ViewPager2.ORIENTATION_HORIZONTAL
@@ -67,11 +69,11 @@ class ViewPager2Activity : TransformActivity(), View.OnClickListener {
     }
 
     private fun initFragmentPager() {
-        view_pager_fragment.adapter = FragmentPagerAdapter(this)
-        view_pager_fragment.offscreenPageLimit = 3
-        view_pager_fragment.isUserInputEnabled = true
+        binding.viewPagerFragment.adapter = FragmentPagerAdapter(this)
+        binding.viewPagerFragment.offscreenPageLimit = 3
+        binding.viewPagerFragment.isUserInputEnabled = true
 
-        TabLayoutMediator(table_layout, view_pager_fragment) {tab, position ->
+        TabLayoutMediator(binding.tableLayout, binding.viewPagerFragment) {tab, position ->
             tab.text = position.toString()
         }.attach()
     }
@@ -101,7 +103,7 @@ class ViewPager2Activity : TransformActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when(v?.id) {
-            drag_btn.id -> {
+            binding.dragBtn.id -> {
                 fakeDragBy()
             }
         }

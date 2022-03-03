@@ -1,5 +1,6 @@
 package com.example.kotlindemo.jetpack.viewmodel
 
+import android.app.Activity
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -8,43 +9,45 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.kotlindemo.R
+import com.example.kotlindemo.databinding.ActivityViewmodelBinding
 import com.example.kotlindemo.jetpack.lifecycle.MyObserver
 import com.example.kotlindemo.jetpack.room.database.AppDataBase
 import com.example.kotlindemo.jetpack.room.entity.User
-import kotlinx.android.synthetic.main.activity_viewmodel.*
+import com.example.kotlindemo.utils.binding
 import kotlin.concurrent.thread
 
 class ViewModelActivity : AppCompatActivity() {
+
+    private val binding: ActivityViewmodelBinding by binding()
 
     lateinit var viewModel: MainViewModel
     lateinit var sp: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_viewmodel)
         sp = getPreferences(Context.MODE_PRIVATE)
         val countReserved = sp.getInt("count_reserved", 0)
         viewModel = ViewModelProviders.of(this,
             MainViewModelFactory(countReserved)
         ).get(MainViewModel::class.java)
-        plusOneBtn.setOnClickListener {
+        binding.plusOneBtn.setOnClickListener {
             viewModel.plusOne()
         }
 
-        clearBtn.setOnClickListener {
+        binding.clearBtn.setOnClickListener {
             viewModel.clear()
         }
 
-        getUserBtn.setOnClickListener {
+        binding.getUserBtn.setOnClickListener {
             val userId = (0..10000).random().toString()
             viewModel.user.observe(this, Observer {
-                infoText.text = it.firstName
+                binding.infoText.text = it.firstName
             })
         }
 
         //liveData核心：观察者模式
         viewModel.counter.observe(this, Observer {
-            infoText.text = it.toString()
+            binding.infoText.text = it.toString()
         })
 
         viewModel.userName.observe(this, Observer {
@@ -67,27 +70,27 @@ class ViewModelActivity : AppCompatActivity() {
         val userDao = AppDataBase.getDataBase(this).userDao()
         val user1 = User("Tom", "Brady", 40)
         val user2 = User("Tom", "Hanks", 63)
-        addDataBtn.setOnClickListener {
+        binding.addDataBtn.setOnClickListener {
             thread {
                 user1.id = userDao.insertUser(user1)
                 user2.id = userDao.insertUser(user2)
             }
         }
 
-        updateDataBtn.setOnClickListener {
+        binding.updateDataBtn.setOnClickListener {
             thread {
                 user1.age = 42
                 userDao.updateUser(user1)
             }
         }
 
-        deleteDataBtn.setOnClickListener {
+        binding.deleteDataBtn.setOnClickListener {
             thread {
                 userDao.deleteUserByLastName("Hanks")
             }
         }
 
-        queryDataBtn.setOnClickListener {
+        binding.queryDataBtn.setOnClickListener {
             thread {
                 for (user in userDao.loadAllUsers()) {
                     Log.d("MainActivity", user.toString())

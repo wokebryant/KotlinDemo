@@ -6,9 +6,10 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.kotlindemo.R
+import com.example.kotlindemo.databinding.ActivityRetrofitBinding
 import com.example.kotlindemo.retrofit.`interface`.AppService
 import com.example.kotlindemo.retrofit.model.App
-import kotlinx.android.synthetic.main.activity_retrofit.*
+import com.example.kotlindemo.utils.binding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -26,15 +27,16 @@ class RetrofitActivity : AppCompatActivity() {
         const val TAG = "RetrofitActivity"
     }
 
+    private val binding: ActivityRetrofitBinding by binding()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_retrofit)
-        getAppDataBtn.setOnClickListener(viewClickListener)
+        binding.getAppDataBtn.setOnClickListener(viewClickListener)
     }
 
     private val viewClickListener = View.OnClickListener {
         when(it.id) {
-            getAppDataBtn.id -> getAppData()
+            binding.getAppDataBtn.id -> getAppData()
         }
     }
 

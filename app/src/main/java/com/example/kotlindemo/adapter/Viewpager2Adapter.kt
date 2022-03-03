@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlindemo.R
-import kotlinx.android.synthetic.main.item_view_pager2.view.*
 
 class Viewpager2Adapter(var dataList: ArrayList<Int>) : RecyclerView.Adapter<Viewpager2Adapter.PagerViewHolder>() {
 

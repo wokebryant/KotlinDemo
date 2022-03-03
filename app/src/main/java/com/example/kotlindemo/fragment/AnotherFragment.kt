@@ -7,7 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kotlindemo.R
-import kotlinx.android.synthetic.main.fragment_another.*
+import com.example.kotlindemo.databinding.FragmentAnotherBinding
+import com.example.kotlindemo.utils.binding
 
 class AnotherFragment : Fragment() {
 
@@ -15,12 +16,15 @@ class AnotherFragment : Fragment() {
         const val TAG = "RightFragment"
     }
 
+    private lateinit var binding: FragmentAnotherBinding
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return View.inflate(context, R.layout.fragment_another, container)
+    ): View {
+        binding = FragmentAnotherBinding.inflate(inflater)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -30,6 +34,6 @@ class AnotherFragment : Fragment() {
 
     private fun initView() {
         val layoutManager = LinearLayoutManager(activity)
-        recyclerView.layoutManager = layoutManager
+        binding.recyclerView.layoutManager = layoutManager
     }
 }

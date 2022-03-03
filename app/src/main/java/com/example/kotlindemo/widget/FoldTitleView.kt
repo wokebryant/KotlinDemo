@@ -2,20 +2,15 @@ package com.example.kotlindemo.widget
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.text.Spannable
 import android.util.AttributeSet
-import android.view.MotionEvent
 import android.view.View
-import android.view.View.OnTouchListener
 import android.widget.FrameLayout
 import android.widget.TextView
-import android.widget.Toast
 import androidx.constraintlayout.motion.widget.MotionLayout
 import com.example.kotlindemo.R
 import com.example.kotlindemo.databinding.FoldTitleViewBinding
 import com.example.kotlindemo.utils.binding
 import com.example.kotlindemo.utils.dip2px
-import kotlinx.android.synthetic.main.activty_motion_title.view.*
 
 /**
  *  可折叠标题栏

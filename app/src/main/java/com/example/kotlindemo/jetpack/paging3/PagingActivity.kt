@@ -15,9 +15,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlindemo.R
 import com.example.kotlindemo.activity.TransformActivity
+import com.example.kotlindemo.databinding.ActivityPagingBinding
 import com.example.kotlindemo.utils.StatusBarUtil
-import kotlinx.android.synthetic.main.activity_paging.*
-import kotlinx.android.synthetic.main.repo_footer.*
+import com.example.kotlindemo.utils.binding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flowOn
@@ -31,6 +31,8 @@ class PagingActivity : TransformActivity() {
     companion object {
         private const val TAG = "PagingActivityLog"
     }
+
+    private val binding: ActivityPagingBinding by binding()
 
     private lateinit var mPagingData: PagingData<Repo>
 
@@ -62,19 +64,17 @@ class PagingActivity : TransformActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_paging)
         initView()
         StatusBarUtil.setRootViewFitsSystemWindows(this, true)
     }
 
     private fun initView() {
-        val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = repoAdapter.withLoadStateFooter(FooterAdapter {
+        binding.recyclerView.layoutManager = LinearLayoutManager(this)
+        binding.recyclerView.adapter = repoAdapter.withLoadStateFooter(FooterAdapter {
             repoAdapter.retry()
         })
 
-        refresh_layout.setOnRefreshListener {
+        binding.refreshLayout.setOnRefreshListener {
             repoAdapter.refresh()
         }
 
@@ -93,19 +93,19 @@ class PagingActivity : TransformActivity() {
         repoAdapter.addLoadStateListener {
             when (it.refresh) {
                 is LoadState.NotLoading -> {
-                    refresh_layout.isRefreshing = false
+                    binding.refreshLayout.isRefreshing = false
                     if (it.source.append.endOfPaginationReached) {
                         Log.i("LUOJIA ", " loadData= start" )
                     }
                 }
 
                 is LoadState.Loading -> {
-                    refresh_layout.isRefreshing = true
+                    binding.refreshLayout.isRefreshing = true
                 }
 
                 is LoadState.Error -> {
                     val state = it.refresh as LoadState.Error
-                    refresh_layout.isRefreshing = false
+                    binding.refreshLayout.isRefreshing = false
                     Toast.makeText(this, "Load Error: ${state.error.message}", Toast.LENGTH_SHORT).show()
                 }
             }

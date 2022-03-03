@@ -13,7 +13,6 @@ import android.view.ViewTreeObserver.OnGlobalLayoutListener
 import androidx.appcompat.widget.AppCompatTextView
 import com.example.kotlindemo.R
 import com.example.kotlindemo.utils.dip2px
-import kotlinx.android.synthetic.main.activity_motion.view.*
 import java.util.*
 
 /**
