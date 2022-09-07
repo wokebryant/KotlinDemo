@@ -16,5 +16,6 @@
     <color name="title_color">#232336</color>
     <color name="content_text_color">#999aaa</color>
     <color name="date_text_color">#fe9a9aaa</color>
+    <color name="color_587CF7">#5B7BE9</color>
 
 </resources>

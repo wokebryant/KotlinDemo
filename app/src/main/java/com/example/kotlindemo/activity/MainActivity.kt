@@ -6,6 +6,7 @@ import android.view.Window
 import com.example.kotlindemo.databinding.ActivityMainBinding
 import com.example.kotlindemo.jetpack.paging3.PagingActivity
 import com.example.kotlindemo.study.kotlinshare.KotlinShare
+import com.example.kotlindemo.task.mutildelivery.DeliveryActivity
 import com.example.kotlindemo.utils.AppUtil
 import com.example.kotlindemo.utils.StatusBarUtil
 import com.example.kotlindemo.utils.binding
@@ -48,6 +49,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
             testViewPager2Btn.setOnClickListener(this@MainActivity)
             testMarkBtn.setOnClickListener(this@MainActivity)
             testWalletBtn.setOnClickListener(this@MainActivity)
+            testJobRankBtn.setOnClickListener(this@MainActivity)
         }
     }
 
@@ -91,6 +93,10 @@ class MainActivity : BaseActivity(), View.OnClickListener {
 
             binding.testWalletBtn.id -> {
                 AppUtil.startActivity<WalletActivity>(this){}
+            }
+
+            binding.testJobRankBtn.id -> {
+                AppUtil.startActivity<DeliveryActivity>(this) {}
             }
         }
     }

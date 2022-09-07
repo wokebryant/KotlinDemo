@@ -9,6 +9,7 @@ buildscript {
         google()
         mavenCentral()
         maven { url "https://jitpack.io" }
+        maven { url 'https://maven-central.zhaopin.com/repository/zl-app-group/' }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:7.1.2'
@@ -21,6 +22,7 @@ allprojects {
         google()
         mavenCentral()
         maven { url "https://jitpack.io" }
+        maven { url 'https://maven-central.zhaopin.com/repository/zl-app-group/' }
     }
 }
 
