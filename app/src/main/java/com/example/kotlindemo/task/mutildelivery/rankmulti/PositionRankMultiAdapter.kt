@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.util.Util
 import com.example.kotlindemo.R
 import com.example.kotlindemo.databinding.AdapterPositionRankMultiChildBinding
+import com.example.kotlindemo.utils.AppUtil
+import com.example.kotlindemo.utils.dip2px
 
 /**
  * @Description 职位榜单批投适配器
@@ -49,31 +51,42 @@ class PositionRankMultiAdapter(
             tvMultiWorkYear.text = itemData.workYear
             tvMultiEducation.text = itemData.education
             tvMultiSkill.text = itemData.skill
-            tvMultiDelivered.visibility =
-                if (itemData.checkState == CheckState.Gray) View.VISIBLE else View.GONE
+            viewDivideLine.visibility = if (position == jobList.size - 1) View.GONE else View.VISIBLE
             updateCheckView(ivMultiCheck, itemData.checkState)
             getRealWidth(holder)
         }
     }
 
     private fun getRealWidth(holder: MultiViewHolder) {
-        val tvJob = holder.binding.tvMultiJob
-        tvJob.post {
-            val viewWith = tvJob.width
+        if (!isDelivered) {
+            return
+        }
+        holder.binding.run {
+            val tagPaddingHorizontal = dip2px(8f)
+            val tagMargin = dip2px(3f)
+            tvMultiJob.post {
+                // 职位文本长度
+                val textPaintWidth = tvMultiJob.paint.measureText(tvMultiJob.text as String?)
+                // "已投递"标签长度
+                val tagPaintWidth = tvMultiDelivered.paint.measureText(tvMultiDelivered.text as String?) + tagPaddingHorizontal
+                // 职位TextView长度
+                val textViewWidth = llMultiJob.width - tagPaintWidth - tagMargin
 
-            val textPaint = tvJob.paint
-            val paintWidth = textPaint.measureText(tvJob.text as String?)
-
-            // 文字长度小于TextView长度, 需要重新计算TextView
-            val lp = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-            if (viewWith > paintWidth) {
-                lp.width = paintWidth.toInt()
-                lp.weight = 0f
-                tvJob.layoutParams = lp
+                // 文字长度小于TextView长度, 需要重新计算TextView
+                val lp = LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+                )
+                if (textViewWidth > textPaintWidth) {
+                    tvMultiJob.layoutParams = lp.apply {
+                        weight = 0f
+                        width = textPaintWidth.toInt()
+                    }
+                }
+                // 当前职位是否为已投递状态
+                val currentPositionDelivered = jobList[holder.layoutPosition].checkState == CheckState.Gray
+                tvMultiDelivered.visibility = if (currentPositionDelivered) View.VISIBLE else View.GONE
             }
-
-            Log.i("LuoJia: ", " viewWidth= $viewWith")
-            Log.i("LuoJia: ", " paintWidth= $paintWidth")
         }
     }
 

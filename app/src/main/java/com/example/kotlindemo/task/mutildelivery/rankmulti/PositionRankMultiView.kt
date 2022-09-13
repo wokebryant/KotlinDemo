@@ -149,18 +149,32 @@ class PositionRankMultiView @JvmOverloads constructor(
 
     private fun getTestData(): ArrayList<PositionRankMultiModel> {
         val list = ArrayList<PositionRankMultiModel>()
-        for (i in 0 until 5) {
-            val model = PositionRankMultiModel(
-                job = "智能硬件智能硬件智能硬件",
-                salary = "1.5-3.5万",
-                company = "小米公司.1000人以上",
-                workYear = "3-5年",
-                education = "本科/研究生",
-                skill = "数据分析",
-                checkState = CheckState.Check
-            )
-            list.add(model)
-        }
+        val model = PositionRankMultiModel(
+            job = "Android软件工程师",
+            salary = "2万-3万",
+            company = "小米公司.1000人以上",
+            workYear = "3-5年",
+            education = "本科/研究生",
+            skill = "数据分析",
+            checkState = CheckState.Check
+        )
+        val model2 = model.copy(
+            job = "Android软件"
+        )
+        val model3 = model.copy(
+            job = "Android软件工程师软件工程师"
+        )
+        val model4 = model.copy(
+            salary = "2万-3万.14薪"
+        )
+        val model5 = model2.copy(
+            salary = "2万-3万.14薪"
+        )
+        list.add(model)
+        list.add(model2)
+        list.add(model3)
+        list.add(model4)
+        list.add(model5)
         return list
     }
 
@@ -172,7 +186,7 @@ class PositionRankMultiView @JvmOverloads constructor(
             }
 
             override fun onUpload(exposureList: List<Int>?): Boolean {
-                Log.d("exposure-positionList", exposureList.toString())
+//                Log.d("exposure-positionList", exposureList.toString())
                 // 上报成功后返回true
                 return true
             }
