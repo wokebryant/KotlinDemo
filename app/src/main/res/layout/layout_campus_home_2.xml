@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="8dp"
+        android:background="@drawable/campus_home_bg">
+
+        <!-- 提示区域 -->
+        <include
+            android:id="@+id/lyCampusHomeTip"
+            layout="@layout/layout_campus_home_tip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp" />
+
+        <!-- 卡片区域 -->
+        <include
+            android:id="@+id/lyCampusHomeCard"
+            layout="@layout/layout_campus_home_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/lyCampusHomeTip"/>
+
+        <!-- 底部按钮区域 -->
+        <include
+            android:id="@+id/lyCampusHomeBottom"
+            layout="@layout/layout_campus_home_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/lyCampusHomeCard"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

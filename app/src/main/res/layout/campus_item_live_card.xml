@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#00000000">
+
+        <com.zhaopin.common.widget.RCFrameLayout
+            android:layout_width="98dp"
+            android:layout_height="132dp"
+            android:padding="1dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:background="@drawable/campus_bg_white"
+            tools:ignore="MissingConstraints">
+
+            <androidx.constraintlayout.utils.widget.ImageFilterView
+                android:id="@+id/ivCampusLiveCover"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:round="6dp"
+                android:scaleType="centerCrop" />
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/position_bg_home_index_group_living">
+
+                <ImageView
+                    android:id="@+id/ivCampusLiveState"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    tools:src="@drawable/position_home_gif_living_white"/>
+
+                <TextView
+                    android:id="@+id/tvCampusLiveState"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:includeFontPadding="false"
+                    android:layout_marginStart="19dp"
+                    android:layout_marginEnd="3dp"
+                    android:textSize="11sp"
+                    android:textColor="@color/C_FFFFFF"
+                    tools:text="今天13:30"/>
+
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/tvCampusLiveType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:background="@drawable/position_bg_live_date"
+                android:padding="6dp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textSize="@dimen/F_13"
+                android:textColor="@color/C_FFFFFF"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                tools:text="教育产品销售"/>
+
+        </com.zhaopin.common.widget.RCFrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/campus_home_card_bg"
+    android:padding="8dp"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- 企业招聘轮播 -->
+    <com.zhaopin.common.widget.RCConstraintLayout
+        android:id="@+id/rlCampusFlipper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="20dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.example.kotlindemo.task.appbar.CampusFlipper
+            android:id="@+id/ivCompanyIconFlipper"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:inAnimation="@anim/anim_marquee_in"
+            android:outAnimation="@anim/anim_marquee_out"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ivCompanyIconFlipper">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/tvCompanyJob"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                    android:textSize="@dimen/F_12"
+                    android:textColor="#FF6800"
+                    android:textStyle="bold"
+                    android:text="秋招网申进行时"/>
+
+                <TextView
+                    android:id="@+id/tvCompanyJobNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
+                    android:paddingVertical="2dp"
+                    android:paddingHorizontal="4dp"
+                    android:includeFontPadding="false"
+                    android:background="@drawable/campus_orange_round"
+                    android:textSize="@dimen/F_10"
+                    android:textStyle="bold"
+                    android:textColor="#FF6800"
+                    android:text="600+"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:src="@drawable/c_base_ic_triangle_r_blue_1"/>
+
+            </LinearLayout>
+
+            <com.example.kotlindemo.task.appbar.CampusFlipper
+                android:id="@+id/tvCompanyJobFlipper"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:inAnimation="@anim/anim_marquee_in"
+                android:outAnimation="@anim/anim_marquee_out" />
+
+        </LinearLayout>
+
+    </com.zhaopin.common.widget.RCConstraintLayout>
+
+    <!-- 直播招聘&本周校招活动 -->
+    <LinearLayout
+        android:id="@+id/llRecruitment"
+        android:layout_width="match_parent"
+        android:layout_height="196dp"
+        android:layout_marginTop="1dp"
+        app:layout_constraintTop_toBottomOf="@id/rlCampusFlipper"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <!-- 直播招聘 -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/lyCampusLive"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:paddingHorizontal="12dp"
+            android:paddingTop="16dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tvLiveJob"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:textColor="@color/C_222222"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                style="@style/style_text_bold_14"
+                android:text="直播招聘"/>
+
+            <TextView
+                android:id="@+id/tvLiveMore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:drawablePadding="4dp"
+                android:layout_marginTop="1dp"
+                android:includeFontPadding="false"
+                android:textSize="@dimen/F_12"
+                android:textColor="#7996F9"
+                android:text="更多"
+                app:drawableEndCompat="@drawable/c_base_ic_triangle_r_blue_1" />
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/vpLiveCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginHorizontal="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvLiveJob" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- 直播招聘(空页面) -->
+        <LinearLayout
+            android:id="@+id/lyCampusLiveEmpty"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@color/colorTitleProgress"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="9dp"
+                android:includeFontPadding="false"
+                android:text="直播敬请期待"
+                android:textColor="@color/C_666666"
+                style="@style/style_text_normal_12"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:includeFontPadding="false"
+                android:text="去看看职位吧"
+                android:textColor="@color/C_999FA6"
+                style="@style/style_text_normal_10"/>
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="1dp"
+            android:layout_height="match_parent"/>
+
+        <!-- 本周校招活动 -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/lyCampusActivity"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:paddingHorizontal="12dp"
+            android:paddingTop="16dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tvCurrentWeekJob"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:textColor="@color/C_222222"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                style="@style/style_text_bold_14"
+                android:text="本周校招活动"/>
+
+            <TextView
+                android:id="@+id/tvActivityMore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:drawablePadding="4dp"
+                android:layout_marginTop="1dp"
+                android:includeFontPadding="false"
+                android:textSize="@dimen/F_12"
+                android:textColor="#7996F9"
+                android:text="更多"
+                app:drawableEndCompat="@drawable/c_base_ic_triangle_r_blue_1" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/tvCurrentWeekJob"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/ivCurrentWeekTop"
+                    android:layout_width="match_parent"
+                    android:layout_height="64dp"
+                    android:background="@color/colorTitleBackground"/>
+
+                <ImageView
+                    android:id="@+id/ivCurrentWeekBottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="64dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@color/colorTitleProgress"/>
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- 本周校招活动(空页面) -->
+        <LinearLayout
+            android:id="@+id/lyCampusActivityEmpty"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@color/colorTitleProgress"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="9dp"
+                android:includeFontPadding="false"
+                android:text="活动敬请期待"
+                android:textColor="@color/C_666666"
+                style="@style/style_text_normal_12"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:includeFontPadding="false"
+                android:text="去看看职位吧"
+                android:textColor="@color/C_999FA6"
+                style="@style/style_text_normal_10"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

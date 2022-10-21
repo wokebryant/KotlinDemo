@@ -2,13 +2,16 @@ package com.example.kotlindemo.utils
 
 
 import android.content.Context
+import android.content.res.Resources
 import android.graphics.Bitmap
+import android.util.TypedValue
 import android.view.View
 import android.widget.ImageView
 import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.Fragment
+import com.example.kotlindemo.study.getResultWithContext
 
 
 /**
@@ -65,3 +68,4 @@ fun <T> Collection<T>.mutableCopyOf(): MutableCollection<T> {
     return mutableListOf<T>().apply { addAll(original) }
 }
 
+fun Int.toPx(): Int = (this * Resources.getSystem().displayMetrics.density).toInt()

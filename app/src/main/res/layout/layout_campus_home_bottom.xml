@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#f9fcfe"
+        android:paddingHorizontal="7dp">
+
+        <com.example.kotlindemo.widget.shadowlayout.ShadowLayout
+            android:id="@+id/lyLeft"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:hl_strokeColor="#80D3E2FF"
+            app:hl_strokeWith="0.5dp"
+            app:hl_shadowColor="#2997cbff"
+            app:hl_cornerRadius="21dp"
+            app:hl_shadowLimit="5dp"
+            app:hl_shadowOffsetY="2dp"
+            app:hl_layoutBackground="#FBFDFE">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="12dp"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginEnd="5dp"
+                    android:background="@color/C_000000" />
+
+                <TextView
+                    android:id="@+id/tvCampusSatrt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/C_222222"
+                    android:textSize="@dimen/F_14"
+                    android:text="宣讲会" />
+
+            </LinearLayout>
+
+        </com.example.kotlindemo.widget.shadowlayout.ShadowLayout>
+
+        <com.example.kotlindemo.widget.shadowlayout.ShadowLayout
+            android:id="@+id/lyCenter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:hl_strokeColor="#80D3E2FF"
+            app:hl_strokeWith="0.5dp"
+            app:hl_shadowColor="#2997cbff"
+            app:hl_cornerRadius="21dp"
+            app:hl_shadowLimit="5dp"
+            app:hl_shadowOffsetY="2dp"
+            app:hl_layoutBackground="#FBFDFE">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="12dp"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginEnd="5dp"
+                    android:background="@color/C_000000" />
+
+                <TextView
+                    android:id="@+id/tvCampusCenter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/C_222222"
+                    android:textSize="@dimen/F_14"
+                    android:text="双选会" />
+
+            </LinearLayout>
+
+        </com.example.kotlindemo.widget.shadowlayout.ShadowLayout>
+
+        <com.example.kotlindemo.widget.shadowlayout.ShadowLayout
+            android:id="@+id/lyRight"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:hl_strokeColor="#80D3E2FF"
+            app:hl_strokeWith="0.5dp"
+            app:hl_shadowColor="#2997cbff"
+            app:hl_cornerRadius="21dp"
+            app:hl_shadowLimit="5dp"
+            app:hl_shadowOffsetY="2dp"
+            app:hl_layoutBackground="#FBFDFE">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="12dp"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginEnd="5dp"
+                    android:background="@color/C_000000" />
+
+                <TextView
+                    android:id="@+id/tvCampusRight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/C_222222"
+                    android:textSize="@dimen/F_14"
+                    android:text="校招解读" />
+
+            </LinearLayout>
+
+        </com.example.kotlindemo.widget.shadowlayout.ShadowLayout>
+
+    </LinearLayout>
+</layout>

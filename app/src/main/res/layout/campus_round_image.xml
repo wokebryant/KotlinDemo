@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/ttt"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:src="@color/colorTitleProgress"
+        app:strokeWidth="2dp"
+        app:strokeColor="@color/C_EEEEEE"
+        app:shapeAppearance="@style/RoundedStyle"/>
+</layout>

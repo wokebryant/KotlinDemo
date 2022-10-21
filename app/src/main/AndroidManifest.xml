@@ -39,6 +39,7 @@
         <activity android:name=".study.motion.MotionWithAppBarActivity"/>
         <activity android:name=".activity.MarkActivity"/>
         <activity android:name=".task.mutildelivery.DeliveryActivity"/>
+        <activity android:name=".task.appbar.AppBarActivity"/>
 
         <!-- 定义Startup Provider参数 -->
         <provider
