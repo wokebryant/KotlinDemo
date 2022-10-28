@@ -12,23 +12,19 @@ import com.bumptech.glide.Glide
 import com.example.kotlindemo.R
 import com.example.kotlindemo.application.MyApplication.Companion.context
 import com.example.kotlindemo.databinding.CampusItemLiveCardBinding
+import com.example.kotlindemo.utils.setGone
+import com.example.kotlindemo.utils.setInvisible
+import com.example.kotlindemo.utils.setVisible
 
 class LiveCardViewpagerAdapter(
-    var dataList: ArrayList<String>,
-    val onItemClickListener: (Int) -> Unit
-    ) : RecyclerView.Adapter<LiveCardViewpagerAdapter.PagerViewHolder>() {
+    var dataList: List<LiveCardModel>,
+) : RecyclerView.Adapter<LiveCardViewpagerAdapter.PagerViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PagerViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(
             R.layout.campus_item_live_card, parent, false
         )
-        val viewHolder = PagerViewHolder(view).apply {
-            binding.root.setOnClickListener {
-                val realPosition = CampusBannerUtil.getRealPosition(bindingAdapterPosition, dataList.size)
-                onItemClickListener(realPosition)
-            }
-        }
-        return viewHolder
+        return PagerViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: PagerViewHolder, position: Int) {
@@ -39,20 +35,43 @@ class LiveCardViewpagerAdapter(
                 .asGif()
                 .load(R.drawable.position_home_gif_living_white)
                 .into(ivCampusLiveState)
-            tvCampusLiveState.text = "测试时间开播"
+            tvCampusLiveState.text = dataList[realPosition].position.toString()
             // 加载封面图
-            val testUrl = dataList[realPosition]
+            val testUrl = dataList[realPosition].url
             Glide.with(context)
                 .asBitmap()
                 .load(testUrl)
                 .into(ivCampusLiveCover)
             // 显示直播类型
             tvCampusLiveType.text = "中国联通校园"
+            // 选中态和非选中态UI
+            val selectPosition = dataList[realPosition].position
+            if (selectPosition == position) {
+//                viewLiveCardMask.setGone()
+                tvCampusLiveType.setVisible()
+                tvCampusLiveState.setVisible()
+                ivCampusLiveState.setVisible()
+            } else {
+//                viewLiveCardMask.setVisible()
+                tvCampusLiveType.setGone()
+                tvCampusLiveState.setGone()
+                ivCampusLiveState.setGone()
+            }
+
+            when (dataList.size) {
+                3, 4, 5 -> {
+                    if (position == selectPosition + 2 || position == selectPosition - 2) {
+                        root.setInvisible()
+                    } else {
+                        root.setVisible()
+                    }
+                }
+            }
         }
     }
 
     override fun getItemCount(): Int {
-        return if (dataList.size > 1) {
+        return if (dataList.size > 2) {
             CampusBannerUtil.MAX_VALUE
         } else {
             dataList.size

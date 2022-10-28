@@ -1,10 +1,13 @@
 package com.example.kotlindemo.task.appbar
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.animation.Animation
+import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentActivity
@@ -20,6 +23,7 @@ import com.example.kotlindemo.widget.drawable.GradientBorderDrawable
 import com.example.kotlindemo.widget.pageTransformer.OverlapSliderTransformer
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
+import kotlin.math.abs
 
 /**
  * @Description 校园首页AppBar改版页面
@@ -46,9 +50,9 @@ class CampusAppBar @JvmOverloads constructor(
             val compositePageTransformer = CompositePageTransformer()
             compositePageTransformer.addTransformer(OverlapSliderTransformer(
                 ViewPager2.ORIENTATION_HORIZONTAL,
-                0.85f,
+                0.3f,
                 0f,
-                1f,
+                1.0f,
                 -dip2px(55f).toFloat())
             )
             return compositePageTransformer
@@ -173,16 +177,31 @@ class CampusAppBar @JvmOverloads constructor(
         iconFlipper.startFlipping()
     }
 
+    private var currentSelectPage = -1;
+
     /**
      * 处理直播卡片轮播
      */
+    @SuppressLint("NotifyDataSetChanged")
     private fun handleLiveCardViewPager() {
-        val liveCardViewPager = binding.lyCampusHomeCard.vpLiveCard
-        val liveCardAdapter = LiveCardViewpagerAdapter(textLiveCardUrlList, {})
-        liveCardViewPager.run {
+        val data = mutableListOf(
+            LiveCardModel(url = textLiveCardUrlList[0], position =  0),
+            LiveCardModel(url = textLiveCardUrlList[1], position =  0),
+//            LiveCardModel(url = textLiveCardUrlList[2], position =  0),
+//            LiveCardModel(url = textLiveCardUrlList[3], position =  0),
+//            LiveCardModel(url = textLiveCardUrlList[4], position =  0)
+        )
+        val currentItem = if (data.size <= 2) 0
+                          else CampusBannerUtil.getOriginalPosition(data.size)
+        val realData = data.map {
+            it.position = currentItem
+            it
+        }
+        val liveCardAdapter = LiveCardViewpagerAdapter(realData)
+        binding.lyCampusHomeCard.vpLiveCard.run {
             adapter = liveCardAdapter
             offscreenPageLimit = 1
-            setCurrentItem(CampusBannerUtil.getOriginalPosition(textLiveCardUrlList.size), false)
+            setCurrentItem(currentItem, false)
             val recyclerView= getChildAt(0) as RecyclerView
             recyclerView.apply {
                 val leftPadding = dip2px(10f)
@@ -191,7 +210,56 @@ class CampusAppBar @JvmOverloads constructor(
                 clipToPadding = false
             }
             setPageTransformer(pageTransformer)
+            registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+                override fun onPageSelected(position: Int) {
+                    super.onPageSelected(position)
+                    realData.forEach {
+                        it.position = position
+                    }
+                    liveCardAdapter.notifyDataSetChanged()
+                    currentSelectPage = position
+                    Log.i("LuoJia", "selectedPage= $position")
+                }
+
+                var cp = 0f
+                var tempCp = 0f
+
+                override fun onPageScrolled(
+                    position: Int,
+                    positionOffset: Float,
+                    positionOffsetPixels: Int
+                ) {
+                    super.onPageScrolled(position, positionOffset, positionOffsetPixels)
+                    cp = positionOffset
+                    if (tempCp - cp > 0) {
+
+                    } else {
+
+                    }
+
+                    var realPosition = position
+                    if (currentSelectPage != -1) {
+                        realPosition = currentSelectPage
+                    }
+                    val viewHolder = recyclerView.findViewHolderForAdapterPosition(realPosition)?.let {
+                        it as LiveCardViewpagerAdapter.PagerViewHolder
+                    }
+                    var alpha = positionOffset
+                    viewHolder?.binding?.flCampusLiveState?.alpha = alpha
+                    viewHolder?.binding?.tvCampusLiveType?.alpha = alpha
+
+                    Log.i("LuoJia", " position= $realPosition, offset = $positionOffset pixels= $positionOffsetPixels")
+                }
+            })
         }
+
+    }
+
+    private fun hideItem(position: Int) {
+        val recyclerView = getChildAt(0) as RecyclerView
+        val itemView = recyclerView.findViewHolderForAdapterPosition(position) as LiveCardViewpagerAdapter.PagerViewHolder
+        itemView.binding.flCampusLiveState.setGone()
+
     }
 
     /**

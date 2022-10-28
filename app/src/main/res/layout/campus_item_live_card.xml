@@ -9,6 +9,7 @@
         android:background="#00000000">
 
         <com.zhaopin.common.widget.RCFrameLayout
+            android:id="@+id/flLivecard"
             android:layout_width="98dp"
             android:layout_height="132dp"
             android:padding="1dp"
@@ -27,6 +28,7 @@
                 android:scaleType="centerCrop" />
 
             <FrameLayout
+                android:id="@+id/flCampusLiveState"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="3dp"
@@ -69,6 +71,18 @@
                 tools:text="教育产品销售"/>
 
         </com.zhaopin.common.widget.RCFrameLayout>
+
+        <androidx.constraintlayout.utils.widget.ImageFilterView
+            android:id="@+id/viewLiveCardMask"
+            android:layout_width="98dp"
+            android:layout_height="132dp"
+            android:background="#54000000"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="@id/flLivecard"
+            app:layout_constraintTop_toTopOf="@id/flLivecard"
+            app:layout_constraintEnd_toEndOf="@id/flLivecard"
+            app:layout_constraintBottom_toBottomOf="@id/flLivecard"
+            app:round="6dp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

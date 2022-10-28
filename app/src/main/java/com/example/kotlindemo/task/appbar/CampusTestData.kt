@@ -29,3 +29,10 @@ val textLiveCardUrlList = arrayListOf(
     "https://storage-public.zhaopin.cn/user/avatar/1649833296492788491/37f40760-0126-427a-b049-62842786b7f7.jpg",
     "https://storage-public.zhaopin.cn/bvideo/cover/1660295773920746109/804c7760-0ee5-43a1-b9e5-0a54016c3ee7.jpg",
 )
+
+val liveCardUrl = "https://storage-public.zhaopin.cn/kongxuan/org/image/1665897744765696464/a2ae2a21ac039cd902ba04206.png"
+
+data class LiveCardModel(
+    val url: String,
+    var position: Int
+)
