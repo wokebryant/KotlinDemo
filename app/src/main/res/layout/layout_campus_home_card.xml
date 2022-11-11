@@ -130,10 +130,9 @@
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/vpLiveCard"
-                android:layout_width="match_parent"
+                android:layout_width="172dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:layout_marginHorizontal="8dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvLiveJob" />

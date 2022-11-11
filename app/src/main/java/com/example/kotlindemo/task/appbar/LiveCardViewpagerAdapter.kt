@@ -47,12 +47,12 @@ class LiveCardViewpagerAdapter(
             // 选中态和非选中态UI
             val selectPosition = dataList[realPosition].position
             if (selectPosition == position) {
-//                viewLiveCardMask.setGone()
+                viewLiveCardMask.setGone()
                 tvCampusLiveType.setVisible()
                 tvCampusLiveState.setVisible()
                 ivCampusLiveState.setVisible()
             } else {
-//                viewLiveCardMask.setVisible()
+                viewLiveCardMask.setVisible()
                 tvCampusLiveType.setGone()
                 tvCampusLiveState.setGone()
                 ivCampusLiveState.setGone()

@@ -8,10 +8,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.kotlindemo.R
 import com.example.kotlindemo.databinding.ItemMultiDeliveryBinding
 import com.example.kotlindemo.study.content
 import com.example.kotlindemo.task.mutildelivery.rankmulti.PositionRankMultiView
 import com.example.kotlindemo.utils.BindingViewHolder
+import com.example.kotlindemo.utils.dip2px
+import com.example.kotlindemo.utils.dp
 
 /**
  * @Description
@@ -49,6 +52,9 @@ class DeliveryAdapter(
         holder.binding.run {
             itemName.text = itemData.name
             itemJob.text = itemData.job
+            ivZl.setAllPadding(dip2px(0.5f))
+            ivZl.setBorderColor(R.color.colorBlack)
+            ivZl.setBorderWidth(dip2px(1f).toFloat())
         }
         Log.i("DeliveryAdapter", " onBindViewHolder")
 
