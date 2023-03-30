@@ -2,9 +2,11 @@ package com.example.kotlindemo.study
 
 import com.example.kotlindemo.jetpack.paging3.Repo
 import kotlinx.coroutines.*
+import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.*
 import okhttp3.Dispatcher
 import java.lang.RuntimeException
+import kotlin.concurrent.thread
 import kotlin.system.measureTimeMillis
 
 /**
@@ -20,7 +22,7 @@ suspend fun main() {
 //    cancelFlow()
 //    exceptionOfFlow()
 //    retryFlow()
-//    debounceFlow()
+    debounceFlow()
 //    sampleFlow()
 //    reduceFlow()
 //    foldFlow()
@@ -29,7 +31,7 @@ suspend fun main() {
 //    flatMapLatestFlow()
 //    zipFlow()
 //    bufferFlow2()
-    conflateFlow()
+//    conflateFlow()
 }
 
 /**
@@ -395,6 +397,34 @@ suspend fun conflateFlow() {
             delay(2000)
             println("finish handle $it")
         }
+}
+
+/**
+ * CallBackFlow
+ * 将基于回调当Api包装成Flow，类似于挂起协程
+ * https://www.cnblogs.com/joy99/p/15805962.html#%E4%B8%89callbackflow--%E5%B0%86%E5%9F%BA%E4%BA%8E%E5%9B%9E%E8%B0%83%E7%9A%84-api-%E8%BD%AC%E6%8D%A2%E4%B8%BA%E6%95%B0%E6%8D%AE%E6%B5%81
+ */
+suspend fun callbackFlow(): Flow<Any> = callbackFlow {
+    // 注释的代码时请求网络操作
+    // trySend 发送flow
+//    val res = object: Result<String> {
+//        override fun onSuccess(t: String) {
+//            trySend(t)
+//            close(Exception("completion"))
+//        }
+//
+//        override fun onFail(msg: String) {
+//        }
+//    }
+
+//    getApi(res)
+
+
+    awaitClose {
+        // 使用 awaitClose 来保持流运行
+        // 流取消时会回调此方法
+        // ......
+    }
 }
 
 

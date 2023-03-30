@@ -30,6 +30,7 @@
         <activity android:name=".activity.ViewPager2Activity"/>
         <activity android:name=".activity.TransformActivity"/>
         <activity android:name=".activity.MotionActivity"/>
+        <activity android:name=".activity.flow.FlowActivity"/>
         <activity android:name=".study.motion.MotionSingleTranslationActivity"/>
         <activity android:name=".study.motion.MotionMultiTranslationActivity"/>
         <activity android:name=".study.motion.MotionKeyPositionActivity"/>

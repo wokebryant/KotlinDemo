@@ -1,14 +1,12 @@
 package com.example.kotlindemo.jetpack.viewmodel
 
-import android.app.Activity
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
-import com.example.kotlindemo.R
 import com.example.kotlindemo.databinding.ActivityViewmodelBinding
 import com.example.kotlindemo.jetpack.lifecycle.MyObserver
 import com.example.kotlindemo.jetpack.room.database.AppDataBase
@@ -20,16 +18,13 @@ class ViewModelActivity : AppCompatActivity() {
 
     private val binding: ActivityViewmodelBinding by binding()
 
-    lateinit var viewModel: MainViewModel
+    private val viewModel by viewModels<MainViewModel>()
     lateinit var sp: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sp = getPreferences(Context.MODE_PRIVATE)
         val countReserved = sp.getInt("count_reserved", 0)
-        viewModel = ViewModelProviders.of(this,
-            MainViewModelFactory(countReserved)
-        ).get(MainViewModel::class.java)
         binding.plusOneBtn.setOnClickListener {
             viewModel.plusOne()
         }
