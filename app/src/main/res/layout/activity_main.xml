@@ -1,214 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.core.widget.NestedScrollView
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <Button
-        android:id="@+id/testMaterialBtn"
-        android:layout_width="0dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="0dp"
-        android:text="Material示例"
-        android:textAllCaps="false"
-        android:textStyle="bold"
-        style="?android:attr/borderlessButtonStyle"
-        app:layout_constraintWidth_percent="1.0"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
-    <View
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#22000000"
-        app:layout_constraintTop_toBottomOf="@+id/testMaterialBtn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/testMotionLayoutBtn"
-        android:layout_width="0dp"
-        android:layout_height="80dp"
-        android:text="MotionLayout测试"
-        android:textAllCaps="false"
-        android:textStyle="bold"
-        style="?android:attr/borderlessButtonStyle"
-        app:layout_constraintWidth_percent="1.0"
-        app:layout_constraintTop_toBottomOf="@id/testMaterialBtn"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        <Button
+            android:id="@+id/testMaterialBtn"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="0dp"
+            android:text="Material示例"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            style="?android:attr/borderlessButtonStyle"/>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#22000000"
-        app:layout_constraintTop_toBottomOf="@+id/testMotionLayoutBtn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#22000000" />
 
-    <Button
-        android:id="@+id/testConstraintLayoutBtn"
-        android:layout_width="0dp"
-        android:layout_height="80dp"
-        android:text="ConstraintLayout测试"
-        android:textAllCaps="false"
-        android:textStyle="bold"
-        style="?android:attr/borderlessButtonStyle"
-        app:layout_constraintWidth_percent="1.0"
-        app:layout_constraintTop_toBottomOf="@id/testMotionLayoutBtn"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        <Button
+            android:id="@+id/testMotionLayoutBtn"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:text="MotionLayout测试"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            style="?android:attr/borderlessButtonStyle" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#22000000"
-        app:layout_constraintTop_toBottomOf="@+id/testConstraintLayoutBtn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#22000000" />
 
+        <Button
+            android:id="@+id/testConstraintLayoutBtn"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:text="ConstraintLayout测试"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            style="?android:attr/borderlessButtonStyle" />
 
-    <Button
-        android:id="@+id/testPagingBtn"
-        android:layout_width="0dp"
-        android:layout_height="80dp"
-        android:text="Paging测试"
-        android:textAllCaps="false"
-        android:textStyle="bold"
-        style="?android:attr/borderlessButtonStyle"
-        app:layout_constraintWidth_percent="1.0"
-        app:layout_constraintTop_toBottomOf="@id/testConstraintLayoutBtn"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#22000000" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#22000000"
-        app:layout_constraintTop_toBottomOf="@+id/testPagingBtn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        <Button
+            android:id="@+id/testPagingBtn"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:text="Paging测试"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            style="?android:attr/borderlessButtonStyle" />
 
-    <Button
-        android:id="@+id/testViewPager2Btn"
-        android:layout_width="0dp"
-        android:layout_height="80dp"
-        android:text="ViewPager2测试"
-        android:textAllCaps="false"
-        android:textStyle="bold"
-        style="?android:attr/borderlessButtonStyle"
-        app:layout_constraintWidth_percent="1.0"
-        app:layout_constraintTop_toBottomOf="@id/testPagingBtn"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#22000000" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#22000000"
-        app:layout_constraintTop_toBottomOf="@+id/testViewPager2Btn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        <Button
+            android:id="@+id/testViewPager2Btn"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:text="ViewPager2测试"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            style="?android:attr/borderlessButtonStyle" />
 
-    <Button
-        android:id="@+id/testMarkBtn"
-        android:layout_width="0dp"
-        android:layout_height="80dp"
-        android:text="Mark测试"
-        android:textAllCaps="false"
-        android:textStyle="bold"
-        style="?android:attr/borderlessButtonStyle"
-        app:layout_constraintWidth_percent="1.0"
-        app:layout_constraintTop_toBottomOf="@id/testViewPager2Btn"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#22000000" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#22000000"
-        app:layout_constraintTop_toBottomOf="@+id/testMarkBtn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        <Button
+            android:id="@+id/testMarkBtn"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:text="Mark测试"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            style="?android:attr/borderlessButtonStyle" />
 
-    <Button
-        android:id="@+id/testWalletBtn"
-        android:layout_width="0dp"
-        android:layout_height="80dp"
-        android:text="区块链钱包"
-        android:textAllCaps="false"
-        android:textStyle="bold"
-        style="?android:attr/borderlessButtonStyle"
-        app:layout_constraintWidth_percent="1.0"
-        app:layout_constraintTop_toBottomOf="@id/testMarkBtn"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#22000000" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#22000000"
-        app:layout_constraintTop_toBottomOf="@+id/testWalletBtn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        <Button
+            android:id="@+id/testWalletBtn"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:text="区块链钱包"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            style="?android:attr/borderlessButtonStyle" />
 
-    <Button
-        android:id="@+id/testJobRankBtn"
-        android:layout_width="0dp"
-        android:layout_height="80dp"
-        android:text="职位排行榜"
-        android:textAllCaps="false"
-        android:textStyle="bold"
-        style="?android:attr/borderlessButtonStyle"
-        app:layout_constraintWidth_percent="1.0"
-        app:layout_constraintTop_toBottomOf="@id/testWalletBtn"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#22000000" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#22000000"
-        app:layout_constraintTop_toBottomOf="@+id/testJobRankBtn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        <Button
+            android:id="@+id/testJobRankBtn"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:text="职位排行榜"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            style="?android:attr/borderlessButtonStyle" />
 
-    <Button
-        android:id="@+id/testAppBarBtn"
-        android:layout_width="0dp"
-        android:layout_height="80dp"
-        android:text="AppBar"
-        android:textAllCaps="false"
-        android:textStyle="bold"
-        style="?android:attr/borderlessButtonStyle"
-        app:layout_constraintWidth_percent="1.0"
-        app:layout_constraintTop_toBottomOf="@id/testJobRankBtn"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#22000000" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#22000000"
-        app:layout_constraintTop_toBottomOf="@+id/testAppBarBtn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        <Button
+            android:id="@+id/testAppBarBtn"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:text="AppBar"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            style="?android:attr/borderlessButtonStyle" />
 
-    <Button
-        android:id="@+id/testFlowBtn"
-        android:layout_width="0dp"
-        android:layout_height="80dp"
-        android:text="Flow"
-        android:textAllCaps="false"
-        android:textStyle="bold"
-        style="?android:attr/borderlessButtonStyle"
-        app:layout_constraintWidth_percent="1.0"
-        app:layout_constraintTop_toBottomOf="@id/testAppBarBtn"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#22000000" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/testFlowBtn"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:text="Flow"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            style="?android:attr/borderlessButtonStyle" />
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

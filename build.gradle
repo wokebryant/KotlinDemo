@@ -2,7 +2,7 @@ buildscript {
     ext {
         kotlin_version = '1.6.10'
         compose_version = '1.1.1'
-        coroutines_version = '1.6.0'
+        coroutines_version = '1.6.4'
         accompanist_version = '0.23.1'
     }
     repositories {

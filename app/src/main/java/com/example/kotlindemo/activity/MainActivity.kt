@@ -53,6 +53,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
             testWalletBtn.setOnClickListener(this@MainActivity)
             testJobRankBtn.setOnClickListener(this@MainActivity)
             testAppBarBtn.setOnClickListener(this@MainActivity)
+            testFlowBtn.setOnClickListener(this@MainActivity)
         }
     }
 
@@ -104,6 +105,10 @@ class MainActivity : BaseActivity(), View.OnClickListener {
 
             binding.testAppBarBtn.id -> {
                 AppUtil.startActivity<AppBarActivity>(this) {}
+            }
+
+            binding.testFlowBtn.id -> {
+                AppUtil.startActivity<FlowActivity>(this) {}
             }
         }
     }

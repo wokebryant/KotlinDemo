@@ -26,6 +26,7 @@ class MyObserver(val lifecycle: Lifecycle) : LifecycleObserver {
         when(lifecycle.currentState) {
             Lifecycle.State.INITIALIZED -> activityStart()
             Lifecycle.State.DESTROYED -> activityStop()
+            else -> {}
         }
         return lifecycle.currentState
     }
