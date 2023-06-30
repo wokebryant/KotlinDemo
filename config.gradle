@@ -1,0 +1,99 @@
+android {
+    useLibrary 'org.apache.http.legacy'
+
+
+    defaultConfig {
+        multiDexEnabled true
+        manifestPlaceholders = [
+                GETUI_APPID       : "soAgXpVfCaAdens98kjkh",
+                GETUI_APP_KEY     : "LSsq1EO6XhAVOeLLB5m2c7",
+                GETUI_APP_SECRET  : "5mYk0BdWAw7kTTmZu7yQD8",
+                HUAWEI_APP_ID     : "1179545",
+                XIAOMI_APP_ID     : "2882303761517140722",
+                XIAOMI_APP_KEY    : "5401714091722",
+                OPPO_APP_KEY      : "21JDPtwMWm1w8okkOkKk4Ksk",
+                OPPO_APP_SECRET   : "040B7cabA3259D6527679f36bFD7b50B",
+                MEIZU_APP_ID      : "116137",
+                MEIZU_APP_KEY     : "6d85a223be6246bab6af17946b7755ab",
+                VIVO_APP_ID       : "11177",
+                VIVO_APP_KEY      : "a9d056b5-944f-450d-b307-7ba67e4f9d9d",
+                JPUSH_APPKEY      : "32203e8c692d58d0bf664df4",//极光一键登录appKey
+                JPUSH_CHANNEL     : "zhaopin",//极光一键登录 默认渠道号
+                gaode_loacationkey: "962597476d45e3d294ae64e96c785929",
+                ZX_APPID          : "a2026775-9426-406a-828a-19662758fd34"
+        ]
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                //除去：AROUTER_GENERATE_DOC: "enable"
+                //NPE:com.alibaba.android.arouter.compiler.processor.RouteProcessor.init(RouteProcessor.java:86)
+                arguments = [AROUTER_MODULE_NAME    : project.getName(),
+                             "room.schemaLocation"  : "$projectDir/schemas".toString(),
+                             "room.incremental"     : "true",
+                             "room.expandProjection": "true"]
+            }
+        }
+        consumerProguardFiles 'consumer-rules.pro'
+        resConfigs("en", "zh", "zh-rCN")
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    sourceSets {
+        androidTest.setRoot('tests')
+        debug.setRoot('build-types/debug')
+        release.setRoot('build-types/release')
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
+    buildFeatures {
+        dataBinding = true
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false//nt时候终止错误上报,防止编译的时候莫名的失败
+        // 防止在发布的时候出现因MissingTranslation导致Build Failed!
+        disable 'MissingTranslation'
+        htmlReport true
+    }
+
+    //解决so库冲突问题
+    packagingOptions {
+        exclude 'LICENSE.txt'
+        pickFirst 'lib/arm64-v8a/libc++_shared.so'
+        pickFirst 'lib/x86/libc++_shared.so'
+        pickFirst 'lib/x86_64/libc++_shared.so'
+        pickFirst 'lib/armeabi-v7a/libc++_shared.so'
+        pickFirst 'lib/armeabi-v7a/libgetuiext3.so'
+        pickFirst 'lib/arm64-v8a/libgetuiext3.so'
+        pickFirst 'lib/x86/libgetuiext3.so'
+        // weex
+        pickFirst "lib/armeabi-v7a/libjsc.so"
+        pickFirst "lib/arm64-v8a/libjsc.so"
+        pickFirst "lib/x86/libjsc.so"
+
+        doNotStrip "*/armeabi-v7a/*.so"
+        doNotStrip "*/x86/*.so"
+        doNotStrip "*/arm64-v8a/*.so"
+        doNotStrip "*/x86_64/*.so"
+        doNotStrip "armeabi.so"
+        //深知需要以下配置
+        doNotStrip "*/armeabi/libdeepknow-lib.so"
+        doNotStrip "*/armeabi-v7a/libdeepknow-lib.so"
+        doNotStrip "*/x86/libdeepknow-lib.so"
+        doNotStrip "*/arm64-v8a/libdeepknow-lib.so"
+        doNotStrip "*/x86_64/libdeepknow-lib.so"
+    }
+
+}
+
+configurations.all {
+    // 检查是否需要拉去最新SNAPSHOT依赖
+    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+}

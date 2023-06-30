@@ -54,6 +54,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
             testJobRankBtn.setOnClickListener(this@MainActivity)
             testAppBarBtn.setOnClickListener(this@MainActivity)
             testFlowBtn.setOnClickListener(this@MainActivity)
+            testLinkageBtn.setOnClickListener(this@MainActivity)
         }
     }
 
@@ -109,6 +110,10 @@ class MainActivity : BaseActivity(), View.OnClickListener {
 
             binding.testFlowBtn.id -> {
                 AppUtil.startActivity<FlowActivity>(this) {}
+            }
+
+            binding.testLinkageBtn.id -> {
+                AppUtil.startActivity<ZLLinkageActivity>(this) {}
             }
         }
     }
