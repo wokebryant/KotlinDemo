@@ -1,5 +1,7 @@
 package com.example.kotlindemo.activity.flow
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
@@ -25,6 +27,11 @@ class FlowActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         with(binding) {
+            binding.btnClose.setOnClickListener {
+                Intent().putExtra("result", "updateTagLayout")
+                this@FlowActivity.setResult(Activity.RESULT_OK, intent)
+                this@FlowActivity.finish()
+            }
             viewModel.startTimer()
             collectStateFlow()
 //            button.setOnClickListener {

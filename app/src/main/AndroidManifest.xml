@@ -41,7 +41,7 @@
         <activity android:name=".activity.MarkActivity"/>
         <activity android:name=".task.mutildelivery.DeliveryActivity"/>
         <activity android:name=".task.appbar.AppBarActivity"/>
-        <activity android:name=".activity.ZLLinkageActivity"/>
+        <activity android:name=".activity.linkage.LinkageActivity"/>
 
         <!-- 定义Startup Provider参数 -->
         <provider

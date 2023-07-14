@@ -6,6 +6,14 @@ import android.graphics.Point
 import android.util.Log
 import android.util.TypedValue
 import android.view.WindowManager
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 val Number.dp get() = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, this.toFloat(), Resources.getSystem().displayMetrics)
 
@@ -78,4 +86,19 @@ fun Float.limit(min: Float = 0f, max: Float): Float {
             this
         }
     }
+}
+
+fun <T> Flow<T>.collectIn(
+    lifecycleOwner: LifecycleOwner,
+    minActiveState: Lifecycle.State = Lifecycle.State.STARTED,
+    action: (T) -> Unit
+): Job = lifecycleOwner.lifecycleScope.launch {
+    flowWithLifecycle(lifecycleOwner.lifecycle, minActiveState).collect(action)
+}
+
+fun <T> Flow<T>.collectLast(
+    lifecycleOwner: LifecycleOwner,
+    action: (T) -> Unit
+): Job = lifecycleOwner.lifecycleScope.launchWhenStarted {
+    collectLatest(action)
 }

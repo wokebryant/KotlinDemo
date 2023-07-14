@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.Window
 import com.example.kotlindemo.activity.flow.FlowActivity
+import com.example.kotlindemo.activity.linkage.LinkageActivity
 import com.example.kotlindemo.databinding.ActivityMainBinding
 import com.example.kotlindemo.jetpack.paging3.PagingActivity
 import com.example.kotlindemo.study.kotlinshare.KotlinShare
@@ -113,7 +114,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
             }
 
             binding.testLinkageBtn.id -> {
-                AppUtil.startActivity<ZLLinkageActivity>(this) {}
+                AppUtil.startActivity<LinkageActivity>(this) {}
             }
         }
     }

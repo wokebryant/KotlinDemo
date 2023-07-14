@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="52dp"
+    android:background="@color/C_FFFFFF"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/secondaryHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_gravity="center_vertical"
+        style="@style/style_text_bold_16"
+        android:textColor="@color/C_222222"
+        tools:text="月薪"/>
+
+    <TextView
+        android:id="@+id/tvAll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|center_vertical"
+        android:layout_marginEnd="12dp"
+        android:drawableEnd="@drawable/icon_arrow"
+        android:drawablePadding="6dp"
+        android:textColor="#9399AD"
+        android:textSize="14sp"
+        android:text="全部"
+        android:visibility="gone"/>
+
+</FrameLayout>

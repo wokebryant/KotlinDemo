@@ -4,6 +4,10 @@ package com.example.kotlindemo.utils
 import android.content.Context
 import android.content.res.Resources
 import android.graphics.Bitmap
+import android.graphics.Color
+import android.text.Spannable
+import android.text.SpannableStringBuilder
+import android.text.style.ForegroundColorSpan
 import android.util.TypedValue
 import android.view.View
 import android.widget.ImageView
@@ -69,3 +73,15 @@ fun <T> Collection<T>.mutableCopyOf(): MutableCollection<T> {
 }
 
 fun Int.toPx(): Int = (this * Resources.getSystem().displayMetrics.density).toInt()
+
+/**
+ * 给指定字符串上色
+ */
+fun CharSequence.colorSpan(colorText: String, color: String) = SpannableStringBuilder(this).apply {
+    setSpan(
+        ForegroundColorSpan(Color.parseColor(color)),
+        indexOf(colorText),
+        indexOf(colorText) + colorText.length,
+        Spannable.SPAN_EXCLUSIVE_INCLUSIVE
+    )
+}

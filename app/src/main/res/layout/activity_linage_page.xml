@@ -1,7 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/C_FFFFFF"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginTop="32dp"
+        android:gravity="center_vertical"
+        android:layout_marginHorizontal="16dp">
+
+        <ImageView
+            android:id="@+id/tvBack"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:padding="3dp"
+            android:src="@drawable/c_base_page_close"/>
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="筛选 · 3"
+            android:textColor="@color/C_222222"
+            style="@style/style_text_bold_18"/>
+
+        <TextView
+            android:id="@+id/tvClear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="清空"
+            android:textColor="@color/C_222222"
+            style="@style/style_text_normal_16"/>
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvSelected"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginHorizontal="12dp"
+        android:paddingVertical="12dp"
+        android:visibility="gone"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_linkage_selected"
+        tools:visibility="visible"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/C_EEEEEE"/>
+
+    <com.zhaopin.common.widget.linkage.LinkageRecyclerView
+        android:id="@+id/rvLinkage"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/C_F7F8FA"/>
+
+    <TextView
+        android:id="@+id/tvSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="64dp"
+        android:layout_marginBottom="16dp"
+        android:paddingVertical="14dp"
+        android:text="确定"
+        android:gravity="center"
+        style="@style/style_text_bold_16"
+        android:textColor="@color/white"
+        tools:background="@color/C_666666"/>
+
+</LinearLayout>

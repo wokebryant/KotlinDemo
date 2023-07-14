@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="4dp"
+    android:paddingVertical="10dp"
+    android:layout_marginEnd="12dp"
+    android:layout_marginBottom="12dp"
+    android:singleLine="true"
+    android:gravity="center"
+    tools:text="医药制造"
+    android:background="@drawable/enterprise_tag_bg_selector"
+    android:textColor="@color/enterprise_tag_text_selector"
+    android:textSize="13sp"
+    tools:width="110dp"/>
