@@ -1,8 +1,12 @@
 package com.example.kotlindemo.activity
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.kotlindemo.R
 import com.example.kotlindemo.adapter.Fruit
@@ -50,11 +54,13 @@ class MaterialDesignActivity : TransformActivity() {
         initFruits()
         val adapter = FruitAdapter(this, fruitList)
         binding.recyclerView.adapter = adapter
+        binding.recyclerView.addOnScrollListener(scrollListener)
 
         binding.swipeRefresh.setColorSchemeResources(R.color.colorPrimary)
         binding.swipeRefresh.setOnRefreshListener {
             refreshFruits(adapter)
         }
+        setFreeChatBall()
     }
 
 //    override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -96,5 +102,45 @@ class MaterialDesignActivity : TransformActivity() {
         }
     }
 
+    /**
+     * 悬浮球控制
+     */
+    private fun setFreeChatBall() {
+//        binding.freeChatBall.setFirstLevelChat()
+        binding.freeChatBall.setSecondLevelChat(2, 3)
+    }
+
+    private var curScrollState = RecyclerView.SCROLL_STATE_IDLE
+    private val handler = Handler(Looper.getMainLooper())
+
+    private val scrollListener = object : RecyclerView.OnScrollListener() {
+        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+            super.onScrolled(recyclerView, dx, dy)
+        }
+
+        override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+            super.onScrollStateChanged(recyclerView, newState)
+            Log.i("LuoJia: ", newState.toString())
+            curScrollState = newState
+            if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                showBallAnim()
+            } else {
+                binding.freeChatBall.startBallHideAnim()
+            }
+        }
+    }
+
+    private fun showBallAnim() {
+        handler.removeCallbacks(runnable)
+        handler.postDelayed(runnable, 2000)
+    }
+
+
+    private var runnable = Runnable {
+        if (curScrollState != RecyclerView.SCROLL_STATE_IDLE) {
+            return@Runnable
+        }
+        binding.freeChatBall.startBallShowAnim()
+    }
 
 }

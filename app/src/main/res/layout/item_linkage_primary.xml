@@ -5,7 +5,8 @@
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
     android:gravity="center_vertical"
-    android:paddingVertical="16dp">
+    android:paddingVertical="16dp"
+    tools:layout_width="120dp">
 
     <View
         android:id="@+id/tvPrimaryDivide"
@@ -16,9 +17,10 @@
 
     <TextView
         android:id="@+id/tvPrimaryTitle"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="9dp"
+        android:layout_marginEnd="12dp"
         android:textColor="@color/C_5B7BE9"
         style="@style/style_text_bold_14"
         tools:text="月薪"/>

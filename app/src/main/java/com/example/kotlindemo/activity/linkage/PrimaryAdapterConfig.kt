@@ -1,6 +1,7 @@
 package com.example.kotlindemo.activity.linkage
 
 import android.content.Context
+import android.graphics.Typeface
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
@@ -38,6 +39,7 @@ class PrimaryAdapterConfig : ILinkagePrimaryAdapterConfig {
             it.setTextColor(
                 if (selected) it.getColor(R.color.C_5B7BE9) else it.getColor(R.color.C_222222)
             )
+            it.typeface = if (selected) Typeface.DEFAULT_BOLD else Typeface.DEFAULT
         }
         (holder?.layout as? ViewGroup)?.let {
             it.isFocusable = selected

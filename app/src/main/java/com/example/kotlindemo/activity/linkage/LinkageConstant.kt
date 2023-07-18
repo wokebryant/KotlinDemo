@@ -16,6 +16,7 @@ package com.example.kotlindemo.activity.linkage
 object LinkageConstant {
     const val HEADER_SALARY = "月薪"
     const val HEADER_EDU = "学历"
+    const val HEADER_PUBLISH = "发布时间"
     const val HEADER_EXP = "经验"
     const val HEADER_JOB_TYPE = "职位类型"
     const val HEADER_INDUSTRY = "行业"
@@ -29,7 +30,7 @@ object LinkageConstant {
         val allData = mutableListOf<LinkageItem>()
         // 1 月薪
         val salaryData = LinkageItem(
-            title = "月薪",
+            title = "月薪测试长文本哈哈",
             type = "salary_for_search",
             showMore = false,
             multiple = false,

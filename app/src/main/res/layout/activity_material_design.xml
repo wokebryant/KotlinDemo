@@ -103,7 +103,15 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_margin="16dp"
-            android:src="@drawable/ic_menu"/>
+            android:src="@drawable/ic_menu"
+            android:visibility="gone"/>
+
+        <com.example.kotlindemo.task.freechat.FreeChatFloatBallView
+            android:id="@+id/freeChatBall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginBottom="60dp"/>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
