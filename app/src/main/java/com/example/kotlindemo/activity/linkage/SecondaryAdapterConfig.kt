@@ -7,11 +7,14 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.view.updateLayoutParams
 import com.example.kotlindemo.R
+import com.example.kotlindemo.activity.linkage.origin.FlowLayoutOrigin1
+import com.example.kotlindemo.activity.linkage.origin.TagAdapterOrigin1
+import com.example.kotlindemo.activity.linkage.origin.TagFlowLayoutOrigin1
 import com.example.kotlindemo.utils.setVisible
 import com.zhaopin.common.widget.flowLayout.origin.FlowLayoutOrigin
 import com.zhaopin.common.widget.flowLayout.origin.TagAdapterOrigin
 import com.zhaopin.common.widget.flowLayout.origin.TagFlowLayoutOrigin
-import com.zhaopin.common.widget.flowLayout.origin.TagState
+import com.example.kotlindemo.activity.linkage.origin.TagState
 import com.zhaopin.common.widget.linkage.adapter.viewholder.LinkageSecondaryHeaderViewHolder
 import com.zhaopin.common.widget.linkage.adapter.viewholder.LinkageSecondaryViewHolder
 import com.zhaopin.common.widget.linkage.bean.BaseGroupedItem
@@ -22,7 +25,7 @@ import com.zhaopin.social.common.extension.setGone
 import com.zhaopin.social.module_common_util.ext.dp
 import com.zhaopin.social.module_common_util.ext.onClick
 import com.zhaopin.toast.showToast
-import java.util.Locale.FilteringMode
+import kotlin.math.max
 
 /**
  * @Description 职位二级筛选列表适配器配置（右侧）
@@ -64,7 +67,7 @@ class SecondaryAdapterConfig(
         holder: LinkageSecondaryViewHolder,
         item: BaseGroupedItem<LinkageGroupItem.ItemInfo>
     ) {
-        val tagLayout = holder.getView<TagFlowLayoutOrigin>(R.id.tagLayout)
+        val tagLayout = holder.getView<TagFlowLayoutOrigin1>(R.id.tagLayout)
         val seekBar = holder.getView<RangeSeekBar>(R.id.seekBar2)
         val salaryView = holder.getView<TextView>(R.id.tvSeekProgress)
         val sliderList = item.info.linkageItem?.slider
@@ -83,7 +86,7 @@ class SecondaryAdapterConfig(
         item: BaseGroupedItem<LinkageGroupItem.ItemInfo>,
         payloads: MutableList<Any>
     ) {
-        val tagLayout = holder.getView<TagFlowLayoutOrigin>(R.id.tagLayout)
+        val tagLayout = holder.getView<TagFlowLayoutOrigin1>(R.id.tagLayout)
         val seekBar = holder.getView<RangeSeekBar>(R.id.seekBar2)
 
         val payload = payloads[0] as? Pair<*, *>
@@ -111,7 +114,7 @@ class SecondaryAdapterConfig(
     /**
      * Tag删除
      */
-    private fun onTagRemove(tagLayout: TagFlowLayoutOrigin, position: Any?) {
+    private fun onTagRemove(tagLayout: TagFlowLayoutOrigin1, position: Any?) {
         if (position is Int) {
             tagLayout.doSelect(position)
             if (tagLayout.selectedList.isEmpty()) {
@@ -131,7 +134,7 @@ class SecondaryAdapterConfig(
      * Tag添加
      */
     private fun onTagAdd(
-        tagLayout: TagFlowLayoutOrigin,
+        tagLayout: TagFlowLayoutOrigin1,
         tagSelectedIndexList: Any?,
         item: BaseGroupedItem<LinkageGroupItem.ItemInfo>
     ) {
@@ -146,7 +149,7 @@ class SecondaryAdapterConfig(
      * 初始化TagLayout
      */
     private fun initTagLayout(
-        tagLayout: TagFlowLayoutOrigin,
+        tagLayout: TagFlowLayoutOrigin1,
         linkageItem: LinkageItem?,
         selectList: Set<Int> = mutableSetOf(0),
         tagClick: ((Int) -> Unit)? = null
@@ -158,12 +161,12 @@ class SecondaryAdapterConfig(
         val tagStringList = tagList.map { it.name }
 
         // 设置适配器
-        val tagAdapter = object : TagAdapterOrigin<String>(tagStringList) {
-            override fun getView(parent: FlowLayoutOrigin, position: Int, str: String?): View {
+        val tagAdapter = object : TagAdapterOrigin1<String>(tagStringList) {
+            override fun getView(parent: FlowLayoutOrigin1, position: Int, str: Any): View {
                 val tagView = LayoutInflater.from(context)
                     .inflate(R.layout.item_linkage_secondary_tag, parent, false) as TextView
                 tagView.run {
-                    text = str
+                    text = str as String
                     post {
                         updateLayoutParams<ViewGroup.LayoutParams> {
                             width = (tagLayout.width - 24.dp) / 2
@@ -193,7 +196,7 @@ class SecondaryAdapterConfig(
      * Tag点击
      */
     private fun onTagClick(
-        tagLayout: TagFlowLayoutOrigin,
+        tagLayout: TagFlowLayoutOrigin1,
         position: Int,
         group: String,
         tagList: List<LinkageChildItem>,
@@ -246,7 +249,7 @@ class SecondaryAdapterConfig(
      */
     private fun initSeekBar(
         seekBar: RangeSeekBar,
-        tagLayout: TagFlowLayoutOrigin,
+        tagLayout: TagFlowLayoutOrigin1,
         salaryView: TextView,
         slider: List<LinkageSlider>?,
     ) {
@@ -272,7 +275,7 @@ class SecondaryAdapterConfig(
                     isFromUser: Boolean
                 ) {
                     // 更新工资范围文案
-                    val realLeftValue = leftValue.toInt()
+                    val realLeftValue = max(leftValue.toInt(), 1)
                     var realRightValue = minOf(rightValue.toInt(), maxValue.toInt() - 1)
                     // 极端情况
                     if (realRightValue == realLeftValue) {
@@ -328,7 +331,7 @@ class SecondaryAdapterConfig(
      */
     private fun handleSeekBarWhenTagClick(
         position: Int,
-        tagLayout: TagFlowLayoutOrigin,
+        tagLayout: TagFlowLayoutOrigin1,
         seekBar: RangeSeekBar,
         linkageItem: LinkageItem,
         sliderList: List<LinkageSlider>?
@@ -344,7 +347,10 @@ class SecondaryAdapterConfig(
             val startCode = currentSelectTagCode.substring(0, 6)
             val endCode = currentSelectTagCode.substring(6, 12)
             val startValue = getSeekbarValueByCode(startCode, sliderList)
-            val endValue = getSeekbarValueByCode(endCode, sliderList)
+            var endValue = getSeekbarValueByCode(endCode, sliderList)
+            if (endValue == sliderList.size - 1) {
+                endValue = sliderList.size
+            }
             seekBar.setProgress(startValue.toFloat(), endValue.toFloat())
         }
     }
@@ -364,7 +370,7 @@ class SecondaryAdapterConfig(
 
 }
 
-internal fun TagFlowLayoutOrigin.setSelectedMode(group: String, multi: Boolean) {
+internal fun TagFlowLayoutOrigin1.setSelectedMode(group: String, multi: Boolean) {
     if (multi) {
         if (group == "行业") {
             this.setMaxSelectCount(3)
@@ -376,7 +382,7 @@ internal fun TagFlowLayoutOrigin.setSelectedMode(group: String, multi: Boolean) 
     }
 }
 
-internal fun TagFlowLayoutOrigin.isFirstTagSelected() =
+internal fun TagFlowLayoutOrigin1.isFirstTagSelected() =
     this.selectedList.isNotEmpty() && this.selectedList.contains(0)
 
 

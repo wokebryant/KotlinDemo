@@ -2,6 +2,9 @@ package com.example.kotlindemo.base.mvi
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.kotlindemo.study.mvi.core.IUiEvent
+import com.example.kotlindemo.study.mvi.core.IUiIntent
+import com.example.kotlindemo.study.mvi.core.IUiState
 import com.zhaopin.social.module_common_util.log.LogKitty
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.channels.Channel

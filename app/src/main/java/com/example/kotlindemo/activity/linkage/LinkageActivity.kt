@@ -3,6 +3,8 @@ package com.example.kotlindemo.activity.linkage
 import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
@@ -18,7 +20,7 @@ import com.example.kotlindemo.utils.collectLast
 import com.example.kotlindemo.utils.colorSpan
 import com.example.kotlindemo.utils.getColor
 import com.example.kotlindemo.utils.setVisible
-import com.zhaopin.common.widget.flowLayout.origin.TagState
+import com.example.kotlindemo.activity.linkage.origin.TagState
 import com.zhaopin.common.widget.linkage.contract.ILinkageSecondaryScrollListener
 import com.zhaopin.list.multitype.adapter.MultiTypeAdapter
 import com.zhaopin.social.background.util.Bovb
@@ -72,6 +74,14 @@ class LinkageActivity : BaseActivity(),
         binding.tvSubmit.run {
             background = Bovb.with().color(getColor(R.color.C_587CF7)).radius(22f.dp).build()
             onClick { viewModel.sendUiIntent(LinkageIntent.SubmitFilterData) }
+        }
+        binding.ivMask.run {
+            val backGround = Bovb.with()
+                .gradientColor(intArrayOf(getColor(R.color.C_FFFFFF), Color.parseColor("#05FFFFFF")))
+                .gradientType(GradientDrawable.LINEAR_GRADIENT)
+                .gradientOrientation(GradientDrawable.Orientation.BOTTOM_TOP)
+                .build()
+            background = backGround
         }
         binding.tvBack.onClick { finish() }
         binding.tvClear.onClick { viewModel.sendUiIntent(LinkageIntent.ClearAll) }

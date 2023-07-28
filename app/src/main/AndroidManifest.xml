@@ -42,6 +42,7 @@
         <activity android:name=".task.mutildelivery.DeliveryActivity"/>
         <activity android:name=".task.appbar.AppBarActivity"/>
         <activity android:name=".activity.linkage.LinkageActivity"/>
+        <activity android:name=".study.mvi.MviSampleActivity"/>
 
         <!-- 定义Startup Provider参数 -->
         <provider

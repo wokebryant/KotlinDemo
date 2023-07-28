@@ -1,9 +1,9 @@
 package com.example.kotlindemo.activity.linkage
 
-import com.example.kotlindemo.base.mvi.IUiEvent
-import com.example.kotlindemo.base.mvi.IUiIntent
-import com.example.kotlindemo.base.mvi.IUiState
-import com.zhaopin.common.widget.flowLayout.origin.TagState
+import com.example.kotlindemo.study.mvi.core.IUiEvent
+import com.example.kotlindemo.study.mvi.core.IUiIntent
+import com.example.kotlindemo.study.mvi.core.IUiState
+import com.example.kotlindemo.activity.linkage.origin.TagState
 
 /**
  * @Description

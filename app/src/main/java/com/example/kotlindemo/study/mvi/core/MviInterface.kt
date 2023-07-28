@@ -1,4 +1,4 @@
-package com.example.kotlindemo.base.mvi
+package com.example.kotlindemo.study.mvi.core
 
 /**
  * @Description MVI接口

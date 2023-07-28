@@ -47,7 +47,7 @@ class PrimaryAdapterConfig : ILinkagePrimaryAdapterConfig {
             it.setBackgroundColor(
                 if (selected) it.getColor(R.color.C_FFFFFF) else it.getColor(R.color.C_F7F8FA)
             )
-            it.findViewById<View>(R.id.tvPrimaryDivide)?.visibility = if (selected) View.VISIBLE else View.GONE
+            it.findViewById<View>(R.id.tvPrimaryDivide)?.visibility = if (selected) View.VISIBLE else View.INVISIBLE
         }
     }
 }

@@ -30,7 +30,7 @@ object LinkageConstant {
         val allData = mutableListOf<LinkageItem>()
         // 1 月薪
         val salaryData = LinkageItem(
-            title = "月薪测试长文本哈哈",
+            title = "月薪",
             type = "salary_for_search",
             showMore = false,
             multiple = false,

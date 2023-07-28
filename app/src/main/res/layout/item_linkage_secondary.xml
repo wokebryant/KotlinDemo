@@ -14,7 +14,7 @@
         android:layout_marginBottom="5dp"
         android:layout_gravity="center_horizontal"
         android:textColor="@color/C_P1"
-        android:textSize="13sp"
+        style="@style/style_text_bold_13"
         android:visibility="gone"
         tools:visibility="visible"
         tools:text="3千-5万"/>
@@ -23,20 +23,21 @@
         android:id="@+id/seekBar2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
+        android:layout_marginHorizontal="10dp"
         app:rsb_progress_height="4dp"
         app:rsb_progress_color="@color/C_P1"
         app:rsb_progress_default_color="@color/C_B6"
         app:rsb_thumb_width="40dp"
         app:rsb_thumb_height="40dp"
-        app:rsb_thumb_drawable="@drawable/b_common_ic_seek_btn"
-        app:rsb_thumb_inactivated_drawable="@drawable/b_common_ic_seek_btn"/>
+        app:rsb_thumb_drawable="@drawable/b_common_ic_seek_btn_round"
+        app:rsb_thumb_inactivated_drawable="@drawable/b_common_ic_seek_btn_round"/>
 
-    <com.zhaopin.common.widget.flowLayout.origin.TagFlowLayoutOrigin
+    <com.example.kotlindemo.activity.linkage.origin.TagFlowLayoutOrigin1
         android:id="@+id/tagLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
+        android:layout_marginBottom="2dp"
         app:max_select="1"/>
 
 </LinearLayout>

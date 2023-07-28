@@ -1,8 +1,8 @@
 package com.example.kotlindemo.activity.linkage
 
-import com.example.kotlindemo.base.mvi.IUiIntent
+import com.example.kotlindemo.study.mvi.core.IUiIntent
 import com.example.kotlindemo.base.mvi.MviViewModel
-import com.zhaopin.common.widget.flowLayout.origin.TagState
+import com.example.kotlindemo.activity.linkage.origin.TagState
 
 /**
  * @Description 筛选页数据ViewModel

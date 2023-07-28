@@ -8,6 +8,7 @@ import com.example.kotlindemo.activity.linkage.LinkageActivity
 import com.example.kotlindemo.databinding.ActivityMainBinding
 import com.example.kotlindemo.jetpack.paging3.PagingActivity
 import com.example.kotlindemo.study.kotlinshare.KotlinShare
+import com.example.kotlindemo.study.mvi.MviSampleActivity
 import com.example.kotlindemo.task.appbar.AppBarActivity
 import com.example.kotlindemo.task.mutildelivery.DeliveryActivity
 import com.example.kotlindemo.utils.AppUtil
@@ -56,6 +57,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
             testAppBarBtn.setOnClickListener(this@MainActivity)
             testFlowBtn.setOnClickListener(this@MainActivity)
             testLinkageBtn.setOnClickListener(this@MainActivity)
+            testMviBtn.setOnClickListener(this@MainActivity)
         }
     }
 
@@ -115,6 +117,10 @@ class MainActivity : BaseActivity(), View.OnClickListener {
 
             binding.testLinkageBtn.id -> {
                 AppUtil.startActivity<LinkageActivity>(this) {}
+            }
+
+            binding.testMviBtn.id -> {
+                AppUtil.startActivity<MviSampleActivity>(this) {}
             }
         }
     }
