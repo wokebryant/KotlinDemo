@@ -12,7 +12,7 @@ import com.zhaopin.social.module_common_util.ext.onClick
  * @Author LuoJia
  * @Date 2023/7/19
  */
-class MviListItemDelegate(val context: Context): BindingViewDelegate<MviListItemState, ItemMviSampleBinding>(diffUtil = ItemDiffCallback()) {
+class MviListItemDelegate(): BindingViewDelegate<MviListItemState, ItemMviSampleBinding>(diffUtil = ItemDiffCallback()) {
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(

@@ -36,6 +36,8 @@ public class TagFlowLayoutOrigin1 extends FlowLayoutOrigin1
     private OnTagClickListener mOnTagClickListener;
     private OnSelectStateChange mOnSelectStateChange;
 
+    private boolean selectedBold = false;
+
     public interface OnSelectListener {
         void onSelected(Set<Integer> selectPosSet);
     }
@@ -165,7 +167,7 @@ public class TagFlowLayoutOrigin1 extends FlowLayoutOrigin1
 
     private void setChildChecked(int position, TagView view) {
         view.setChecked(true);
-        if (view.getChildAt(0) instanceof TextView) {
+        if (view.getChildAt(0) instanceof TextView && selectedBold) {
             ((TextView) view.getChildAt(0)).setTypeface(Typeface.DEFAULT_BOLD);
         }
         mTagAdapter.onSelected(position, view.getTagView());
@@ -173,7 +175,7 @@ public class TagFlowLayoutOrigin1 extends FlowLayoutOrigin1
 
     private void setChildUnChecked(int position, TagView view) {
         view.setChecked(false);
-        if (view.getChildAt(0) instanceof TextView) {
+        if (view.getChildAt(0) instanceof TextView && selectedBold) {
             ((TextView) view.getChildAt(0)).setTypeface(Typeface.DEFAULT);
         }
         mTagAdapter.unSelected(position, view.getTagView());
@@ -294,6 +296,13 @@ public class TagFlowLayoutOrigin1 extends FlowLayoutOrigin1
      */
     public void doSelect(int position) {
         doSelect((TagView) getChildAt(position), position);
+    }
+
+    /**
+     * 设置是否选中的Tag字体为粗体
+     */
+    public void setSelectedTextBold() {
+        selectedBold = true;
     }
 
     public static int dip2px(Context context, float dpValue) {

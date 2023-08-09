@@ -2,6 +2,7 @@ package com.example.kotlindemo.activity.linkage.origin;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.util.LayoutDirection;
 import android.view.View;
@@ -30,12 +31,15 @@ public class FlowLayoutOrigin1 extends ViewGroup {
     protected List<Integer> mLineHeight = new ArrayList<Integer>();
     protected List<Integer> mLineWidth = new ArrayList<Integer>();
     private int mGravity;
+    private final boolean isSingleLine;
     private List<View> lineViews = new ArrayList<>();
 
     public FlowLayoutOrigin1(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.TagFlowLayout);
         mGravity = ta.getInt(R.styleable.TagFlowLayout_gravity, LEFT);
+        // 默认是多行
+        isSingleLine = ta.getInt(R.styleable.TagFlowLayout_max_lines, 2) == 1;
         int layoutDirection = TextUtilsCompat.getLayoutDirectionFromLocale(Locale.getDefault());
         if (layoutDirection == LayoutDirection.RTL) {
             if (mGravity == LEFT) {
@@ -90,10 +94,13 @@ public class FlowLayoutOrigin1 extends ViewGroup {
                     + lp.bottomMargin;
 
             if (lineWidth + childWidth > sizeWidth - getPaddingLeft() - getPaddingRight()) {
-                width = Math.max(width, lineWidth);
-                lineWidth = childWidth;
-                height += lineHeight;
-                lineHeight = childHeight;
+                // 非单行，才测量换行高度
+                if (!isSingleLine) {
+                    width = Math.max(width, lineWidth);
+                    lineWidth = childWidth;
+                    height += lineHeight;
+                    lineHeight = childHeight;
+                }
             } else {
                 lineWidth += childWidth;
                 lineHeight = Math.max(lineHeight, childHeight);
@@ -119,6 +126,9 @@ public class FlowLayoutOrigin1 extends ViewGroup {
         mLineWidth.clear();
         lineViews.clear();
 
+        // 是否处理多行裁剪
+        boolean isHandleMuLineCut = false;
+
         int width = getWidth();
 
         int lineWidth = 0;
@@ -135,20 +145,42 @@ public class FlowLayoutOrigin1 extends ViewGroup {
             int childWidth = child.getMeasuredWidth();
             int childHeight = child.getMeasuredHeight();
 
-            if (childWidth + lineWidth + lp.leftMargin + lp.rightMargin > width - getPaddingLeft() - getPaddingRight()) {
-                mLineHeight.add(lineHeight);
-                mAllViews.add(lineViews);
-                mLineWidth.add(lineWidth);
+            // 单行
+            if (isSingleLine) {
+                if (childWidth + lineWidth + lp.leftMargin + lp.rightMargin < width - getPaddingLeft() - getPaddingRight()) {
+                    boolean isNotLastChild = i != cCount - 1;
+                    if (!isHandleMuLineCut && isNotLastChild) {
+                        lineWidth += childWidth + lp.leftMargin + lp.rightMargin;
+                        lineHeight = Math.max(lineHeight, childHeight + lp.topMargin
+                                + lp.bottomMargin);
+                        lineViews.add(child);
+                    }
+                } else {
+                    if (!isHandleMuLineCut) {
+                        lineViews.remove(lineViews.size() - 1);
+                        lineWidth -= childWidth;
+                        lineWidth += getChildAt(cCount - 1).getMeasuredWidth();
+                        lineViews.add(getChildAt(cCount - 1));
+                        isHandleMuLineCut = true;
+                    }
+                }
+            } else {
+                // 多行
+                if (childWidth + lineWidth + lp.leftMargin + lp.rightMargin > width - getPaddingLeft() - getPaddingRight()) {
+                    mLineHeight.add(lineHeight);
+                    mAllViews.add(lineViews);
+                    mLineWidth.add(lineWidth);
 
-                lineWidth = 0;
-                lineHeight = childHeight + lp.topMargin + lp.bottomMargin;
-                lineViews = new ArrayList<View>();
+                    lineWidth = 0;
+                    lineHeight = childHeight + lp.topMargin + lp.bottomMargin;
+                    lineViews = new ArrayList<View>();
+                }
+                lineWidth += childWidth + lp.leftMargin + lp.rightMargin;
+                lineHeight = Math.max(lineHeight, childHeight + lp.topMargin
+                        + lp.bottomMargin);
+                lineViews.add(child);
+
             }
-            lineWidth += childWidth + lp.leftMargin + lp.rightMargin;
-            lineHeight = Math.max(lineHeight, childHeight + lp.topMargin
-                    + lp.bottomMargin);
-            lineViews.add(child);
-
         }
         mLineHeight.add(lineHeight);
         mLineWidth.add(lineWidth);

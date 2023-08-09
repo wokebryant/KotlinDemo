@@ -18,7 +18,7 @@ class MviListSampleViewModel(
 
     fun requestListData(isLoadMore: Boolean) {
         viewModelScope.launch(exceptionHandler) {
-            val list = mutableListOf<MviListItemState>()
+            val list = mutableListOf<Any>()
             if (isLoadMore) {
                 // 加载更多
                 val loadMoreList = repository.requestLoadMoreListData().map { itemState ->
@@ -31,13 +31,14 @@ class MviListSampleViewModel(
                 list.addAll(loadMoreList)
             } else {
                 // 全量刷新
-                val fullList = repository.requestListData().map { itemState ->
-                    itemState.copy(
-                        clickState = { clickState, mviListItemState ->
-                            handleItemClick(clickState, mviListItemState)
-                        }
-                    )
-                }
+                val fullList = repository.requestListData()
+//                    .map { itemState ->
+//                    itemState.copy(
+//                        clickState = { clickState, mviListItemState ->
+//                            handleItemClick(clickState, mviListItemState)
+//                        }
+//                    )
+//                }
                 repository.itemList = fullList.toMutableList()
                 list.addAll(fullList)
             }
@@ -69,7 +70,7 @@ class MviListSampleViewModel(
             ClickState.Remove -> repository.remove(item)
         }
 
-        val newList = mutableListOf<MviListItemState>().apply { addAll(repository.itemList) }
+        val newList = mutableListOf<Any>().apply { addAll(repository.itemList) }
         setState {
             copy(
                 loadList = newList

@@ -37,7 +37,8 @@ class MviSampleActivity : BaseActivity() {
 //            loadMore = LoadMore(loadMoreStatus = LoadMoreStatus.Loading),
 //            loadMoreListener = { request(isLoadMore = true) }
         ).apply {
-            register(MviListItemDelegate(this@MviSampleActivity))
+            register(JobKeyWordDelegate(this@MviSampleActivity))
+            register(MviListItemDelegate())
         }
     }
 
@@ -90,7 +91,9 @@ class MviSampleActivity : BaseActivity() {
         viewModel.stateFlow.collectState(this, MviSampleState::loadList) {
             Log.i("collectState: ", " Part")
             if (it.isNotEmpty()) {
-                listAdapter.submitList(it)
+                listAdapter.submitList(it) {
+
+                }
             }
         }
         // UiEvent订阅

@@ -9,7 +9,7 @@ class MviSampleRepository(
     private val netApi: Any? = null
 ) {
 
-    var itemList: MutableList<MviListItemState> = mutableListOf()
+    var itemList: MutableList<Any> = mutableListOf()
 
     private val mockStringList = mutableListOf(
         "Android Studio Giraffe 发布，快来看有什么更新吧",
@@ -34,16 +34,16 @@ class MviSampleRepository(
         "刷新屏幕上的数据",
     )
 
-    suspend fun requestListData(): MutableList<MviListItemState> {
-        val itemList = mutableListOf<MviListItemState>()
+    suspend fun requestListData(): MutableList<Any> {
+        val itemList = mutableListOf<Any>()
         val pageSize = (20..25).random()
+        val topCard = MockDataStore.mockJobKeyWordsBean
+        itemList.add(topCard)
         repeat(pageSize) {
             val string = mockStringList.random()
             val item = MviListItemState(content = "$string \n下标: $it", position = it)
             itemList.add(item)
         }
-
-        itemList.random()
         return itemList
     }
 

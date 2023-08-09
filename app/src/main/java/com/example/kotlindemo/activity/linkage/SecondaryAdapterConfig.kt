@@ -179,6 +179,7 @@ class SecondaryAdapterConfig(
         }
         // 设置TagLayout
         tagLayout.run {
+            setSelectedTextBold()
             adapter = tagAdapter
             setSelectedMode(title, multi)
             adapter.setSelectedList(selectList)

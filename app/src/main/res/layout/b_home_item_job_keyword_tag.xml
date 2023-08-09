@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="8dp"
+    android:background="@color/C_B7">
+
+    <TextView
+        android:id="@+id/tv_tag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="8dp"
+        android:paddingVertical="8dp"
+        android:singleLine="true"
+        android:layout_gravity="center"
+        android:textColor="#606578"
+        android:textSize="12sp"
+        tools:text="医药制造"
+        tools:visibility="visible"/>
+
+    <ImageView
+        android:id="@+id/iv_tag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingHorizontal="7dp"
+        android:paddingVertical="8.5dp"
+        android:src="@drawable/resume_recommend_ellipsis"
+        android:visibility="gone"/>
+
+</FrameLayout>
