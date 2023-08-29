@@ -128,6 +128,7 @@ public class FlowLayoutOrigin1 extends ViewGroup {
 
         // 是否处理多行裁剪
         boolean isHandleMuLineCut = false;
+        int firstOverMaxWidth = 0;
 
         int width = getWidth();
 
@@ -149,13 +150,21 @@ public class FlowLayoutOrigin1 extends ViewGroup {
             if (isSingleLine) {
                 if (childWidth + lineWidth + lp.leftMargin + lp.rightMargin < width - getPaddingLeft() - getPaddingRight()) {
                     boolean isNotLastChild = i != cCount - 1;
-                    if (!isHandleMuLineCut && isNotLastChild) {
+                    if (!isHandleMuLineCut && isNotLastChild || firstOverMaxWidth != 0) {
                         lineWidth += childWidth + lp.leftMargin + lp.rightMargin;
                         lineHeight = Math.max(lineHeight, childHeight + lp.topMargin
                                 + lp.bottomMargin);
                         lineViews.add(child);
                     }
+                    // 当倒数第二个能完全显示下，说明不需要裁剪
+                    if (i >= cCount - 2) {
+                        isHandleMuLineCut = true;
+                    }
                 } else {
+                    if (firstOverMaxWidth == 0) {
+                        firstOverMaxWidth = childWidth;
+                        continue;
+                    }
                     if (!isHandleMuLineCut) {
                         lineViews.remove(lineViews.size() - 1);
                         lineWidth -= childWidth;

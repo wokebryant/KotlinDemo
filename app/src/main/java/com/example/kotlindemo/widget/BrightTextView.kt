@@ -3,10 +3,8 @@ package com.example.kotlindemo.widget
 import android.content.Context
 import android.text.SpannableString
 import android.text.Spanned
-import android.text.method.LinkMovementMethod
 import android.util.AttributeSet
 import android.view.ViewTreeObserver
-import android.widget.TextView
 import androidx.annotation.ColorRes
 import androidx.appcompat.widget.AppCompatTextView
 import com.example.kotlindemo.R
@@ -122,25 +120,30 @@ class BrightTextView @JvmOverloads constructor(
         }
 
         val originSpan = SpannableString(originText)
-        val bright = Pattern.compile(brightText)
-        val match = bright.matcher(originSpan)
-        var count = 0
-        while (match.find()) {
+        try {
+            val bright = Pattern.compile(brightText)
+            val match = bright.matcher(originSpan)
+            var count = 0
+            while (match.find()) {
 //            if (count > 0) return originSpan
-            val start = match.start()
-            val end = match.end()
-            // 满足范围限制条件
-            if (isAvailableRange(match, brightRange)) {
-                originSpan.setSpan(
-                    HighLightSpan(
-                        getColor(brightColor),
-                        (textSize * 1.5).toInt()
-                    ), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-                )
-                count ++
+                val start = match.start()
+                val end = match.end()
+                // 满足范围限制条件
+                if (isAvailableRange(match, brightRange)) {
+                    originSpan.setSpan(
+                        HighLightSpan(
+                            getColor(brightColor),
+                            (textSize * 1.5).toInt()
+                        ), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                    )
+                    count ++
 
+                }
             }
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
+
         return originSpan
     }
 

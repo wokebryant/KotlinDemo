@@ -8,6 +8,7 @@ import com.example.kotlindemo.databinding.ActivityMviSampleBinding
 import com.example.kotlindemo.study.mvi.core.collectEvent
 import com.example.kotlindemo.study.mvi.core.collectState
 import com.example.kotlindemo.study.mvi.core.collectStateLast
+import com.example.kotlindemo.task.jobtag.RecommendJobTagDelegate
 import com.example.kotlindemo.utils.binding
 import com.example.kotlindemo.utils.setGone
 import com.example.kotlindemo.utils.setVisible
@@ -38,6 +39,7 @@ class MviSampleActivity : BaseActivity() {
 //            loadMoreListener = { request(isLoadMore = true) }
         ).apply {
             register(JobKeyWordDelegate(this@MviSampleActivity))
+            register(RecommendJobTagDelegate())
             register(MviListItemDelegate())
         }
     }

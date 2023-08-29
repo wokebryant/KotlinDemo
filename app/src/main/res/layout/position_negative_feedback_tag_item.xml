@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="12dp"
+        android:layout_marginStart="20dp"
+        android:textColor="@color/C_B1"
+        style="@style/style_text_bold_16"
+        android:text="@string/other_reason"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_setting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="12dp"
+        android:paddingBottom="14dp"
+        android:layout_marginEnd="20dp"
+        style="@style/style_text_normal_13"
+        android:textColor="@color/C_P1"
+        android:text="@string/mine_setting"
+        android:drawablePadding="2dp"
+        app:drawableEndCompat="@drawable/icon_arrow_blue"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <com.zhaopin.common.widget.flowLayout.origin.TagFlowLayoutOrigin
+        android:id="@+id/layout_tag_flow"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_title"
+        app:max_select="1" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

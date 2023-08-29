@@ -17,7 +17,7 @@
         android:paddingVertical="8dp"
         app:layout_radius="8dp">
 
-        <TextView
+        <com.example.kotlindemo.widget.BrightTextView
             android:id="@+id/tvContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

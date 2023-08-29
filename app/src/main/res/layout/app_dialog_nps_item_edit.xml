@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:ignore="ResourceName">
+
+    <com.example.kotlindemo.task.negavition.item.AppNPSEditText
+        android:id="@+id/et_think"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="top|start"
+        android:hint="反馈与建议"
+        android:focusableInTouchMode="true"
+        android:background="@drawable/bg_ffffff_radius8_stroke_eeeeee"
+        android:focusable="true"
+        android:paddingLeft="12dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingRight="12dp"
+        android:textColor="#282b2d"
+        android:textColorHint="#aab0b7"
+        android:textSize="13sp" />
+
+    <TextView
+        android:id="@+id/tv_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:layout_marginEnd="8dp"
+        tools:text="50/50"
+        android:textColor="@color/C_B5"
+        android:textSize="12sp" />
+</LinearLayout>

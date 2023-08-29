@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:ignore="MissingDefaultResource"
+    android:paddingHorizontal="8dp"
+    android:background="@color/C_B6">
+
+    <!-- 选择 -->
+    <com.zhaopin.common.widget.RCConstraintLayout
+        android:id="@+id/ll_choose"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/C_FFFFFF"
+        app:layout_radius="10dp"
+        tools:visibility="gone">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:paddingStart="12dp"
+            android:paddingTop="20dp"
+            android:textColor="@color/C_222222"
+            android:background="@drawable/position_recommend_opt_card_choose_bg"
+            style="@style/style_text_bold_17"
+            tools:text="@string/choose_tag_recommend"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="RtlSymmetry" />
+
+        <ImageView
+            android:id="@+id/iv_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/b_common_b_app_home_ic_item_close"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_tag"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="12dp"
+            android:paddingBottom="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="vertical"
+            tools:listitem="@layout/position_recommend_job_tag_item"
+            tools:itemCount="3"/>
+
+    </com.zhaopin.common.widget.RCConstraintLayout>
+
+    <!-- 修改 -->
+    <com.zhaopin.common.widget.RCFrameLayout
+        android:id="@+id/fl_modify"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        app:layout_radius="10dp"
+        android:background="@color/C_FFFFFF"
+        tools:visibility="gone">
+
+        <TextView
+            android:id="@+id/tv_modify_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="12dp"
+            android:textColor="@color/C_B1"
+            style="@style/style_text_bold_14"
+            android:text="@string/recommend_by_your_selected"/>
+
+        <TextView
+            android:id="@+id/tv_modify"
+            android:layout_width="wrap_content"
+            android:layout_height="28dp"
+            android:layout_gravity="center_vertical|end"
+            android:layout_marginEnd="12dp"
+            android:paddingHorizontal="20dp"
+            android:gravity="center"
+            style="@style/style_text_normal_12"
+            android:textColor="@color/C_FFFFFF"
+            android:text="@string/modify"
+            tools:background="@drawable/zpws_base_shape_round_blue"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/position_recommend_opt_card_modify_bg"/>
+
+    </com.zhaopin.common.widget.RCFrameLayout>
+
+    <!-- 加载 -->
+    <LinearLayout
+        android:id="@+id/ll_loading"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:gravity="center">
+
+        <com.example.kotlindemo.widget.ZLLottieAnimationView
+            android:id="@+id/lottie_loading"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            app:lottie_fileName="anim_loading_more.json"
+            app:lottie_loop="true"
+            app:lottie_autoPlay="true" />
+
+        <TextView
+            android:id="@+id/tv_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            style="@style/style_text_normal_13"
+            android:textColor="@color/C_B3"
+            android:text="@string/is_loading"/>
+
+    </LinearLayout>
+
+</FrameLayout>

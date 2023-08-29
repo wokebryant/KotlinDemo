@@ -24,4 +24,20 @@
     <string name="home_key_word_title">以下是您为该职位添加的关键词</string>
     <string name="home_key_word_content">修改后，可重新匹配相关人才</string>
     <string name="home_key_word_edit">去修改</string>
+
+    <string name="position_negative_feedback_title">选择不满意原因，为你优化推荐结果</string>
+    <string name="position_negative_feedback__gray_tip">如该职位涉嫌违法、欺诈，请</string>
+    <string name="position_negative_feedback__blue_tip"> 立即举报</string>
+    <string name="submit">确定</string>
+    <string name="other_reason">其他原因</string>
+    <string name="mine_setting">我的设置</string>
+
+    <string name="choose_tag_recommend">选择标签，为你推荐</string>
+    <string name="job_type">职位类别</string>
+    <string name="salary_range">薪资范围</string>
+    <string name="city">城市</string>
+    <string name="recommend_by_your_selected">已根据你选择的标签推荐</string>
+    <string name="modify">修改</string>
+    <string name="is_loading">正在加载...</string>
+
 </resources>

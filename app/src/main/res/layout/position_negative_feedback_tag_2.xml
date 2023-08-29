@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingVertical="9dp"
+    android:paddingHorizontal="9dp"
+    android:layout_marginEnd="12dp"
+    android:layout_marginBottom="12dp"
+    android:gravity="center_horizontal"
+    android:background="@drawable/enterprise_tag_bg_selector">
+
+    <TextView
+        android:id="@+id/tv_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:gravity="center"
+        android:textColor="@color/enterprise_tag_viewgroup_selector"
+        android:textSize="13sp"
+        tools:text="「"/>
+
+    <TextView
+        android:id="@+id/tv_center"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:singleLine="true"
+        android:gravity="center"
+        android:textColor="@color/enterprise_tag_viewgroup_selector"
+        android:textSize="13sp"
+        tools:text="北京网通责任有限公司"/>
+
+    <TextView
+        android:id="@+id/tv_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:gravity="center"
+        android:textColor="@color/enterprise_tag_viewgroup_selector"
+        android:textSize="13sp"
+        tools:text="」公司"/>
+
+</LinearLayout>

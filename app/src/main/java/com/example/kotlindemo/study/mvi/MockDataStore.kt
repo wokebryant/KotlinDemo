@@ -1,5 +1,9 @@
 package com.example.kotlindemo.study.mvi
 
+import com.example.kotlindemo.task.jobtag.RecommendJobCard
+import com.example.kotlindemo.task.jobtag.RecommendJobTag
+import com.example.kotlindemo.task.jobtag.RecommendJobTagBean
+
 /**
  * @Description
  * @Author LuoJia
@@ -50,5 +54,40 @@ object MockDataStore {
             )
             add(item)
         }
+    )
+
+    val mockJobTypeCardBean = RecommendJobTagBean(
+        title = "选择标签，为你推荐",
+        cardList = mutableListOf(
+            RecommendJobCard(
+                title = "职位类别",
+                tagList = mutableListOf(
+                    RecommendJobTag(name = "社区/社群运营"),
+                    RecommendJobTag(name = "平台运营"),
+                    RecommendJobTag(name = "新媒体运营"),
+                    RecommendJobTag(name = "跨境电商运营"),
+                    RecommendJobTag(name = "数据运营"),
+                    RecommendJobTag(name = "产品运营")
+                )
+            ),
+            RecommendJobCard(
+                title = "薪资范围",
+                tagList = mutableListOf(
+                    RecommendJobTag(name = "2.4千-4.8千"),
+                    RecommendJobTag(name = "1.2万-1.4万"),
+                )
+            ),
+            RecommendJobCard(
+                title = "城市",
+                tagList = mutableListOf(
+                    RecommendJobTag(name = "北京"),
+                    RecommendJobTag(name = "上海"),
+                    RecommendJobTag(name = "武汉"),
+                    RecommendJobTag(name = "南京"),
+                    RecommendJobTag(name = "深圳"),
+                )
+            ),
+
+        )
     )
 }

@@ -38,7 +38,9 @@ class MviSampleRepository(
         val itemList = mutableListOf<Any>()
         val pageSize = (20..25).random()
         val topCard = MockDataStore.mockJobKeyWordsBean
+        val jobTypeCard = MockDataStore.mockJobTypeCardBean
         itemList.add(topCard)
+        itemList.add(jobTypeCard)
         repeat(pageSize) {
             val string = mockStringList.random()
             val item = MviListItemState(content = "$string \n下标: $it", position = it)

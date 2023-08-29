@@ -1,28 +1,33 @@
 package com.example.kotlindemo.widget
 
+import android.annotation.SuppressLint
 import android.content.DialogInterface
 import android.os.Bundle
 import android.view.KeyEvent
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.FrameLayout
+import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
+import androidx.viewbinding.ViewBinding
 import com.example.kotlindemo.R
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.zhaopin.social.appbase.util.currentActivity
+import com.zhaopin.social.module_common_util.binding.FragmentBinding
+import com.zhaopin.social.module_common_util.binding.FragmentBindingDelegate
+import com.zhaopin.toast.showToast
 
 /**
- * @Author: LuoJia
- * @Date:
  * @Description: BottomSheetDialogFragment基类
+ * @Author: LuoJia
+ * @Date: 2023/5/6
  */
-open class BaseBottomSheetDialogFragment : BottomSheetDialogFragment() {
-
-    companion object {
-        const val EXTRA_DATA = "extra_data"
-        const val EXTRA_ANSWER = "extra_answer"
-        const val EXTRA_BITMAP_INFO = "extra_bitmap_info"
-    }
+abstract class BaseBottomSheetDialogFragment<VB : ViewBinding> : BottomSheetDialogFragment(),
+    FragmentBinding<VB> by FragmentBindingDelegate() {
 
     var listener: BottomSheetDialogListener? = null
 
@@ -31,15 +36,19 @@ open class BaseBottomSheetDialogFragment : BottomSheetDialogFragment() {
     /** 设置Dialog折叠状态下的高度 */
     var peekHeight = 0
     /** 设置Dialog展开状态下的高度 */
-    var expandHeight = -1
+    var expandHeight = ViewGroup.LayoutParams.WRAP_CONTENT
+
     /** 设置是否允许拖动 */
     var isDraggable = false
     /** 设置拖动时Dialog是否可以隐藏 */
     var isHideable = true
     /** 设置拖动时是否跳过折叠态 */
     var skipCollapsed = true
+
     /** 设置是否屏蔽返回键 */
-    var allowBackClose = true
+    var disableBackClose = true
+    /** 设置点击空白处是否能够关闭弹窗 */
+    var outsideClickClose = false
 
     /**
      *  设置Dialog样式
@@ -49,38 +58,101 @@ open class BaseBottomSheetDialogFragment : BottomSheetDialogFragment() {
         setStyle(STYLE_NORMAL, R.style.DefaultBottomSheetDialogStyle)
     }
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return createViewWithBinding(inflater, container)
+    }
+
     /**
      *  设置Dialog属性(根据需求自定义)
+     *  偶现[RuntimeException: InputChannel is not initialized]
+     *  为Google已知Bug,暂时没有解决方案,暂时try-catch
+     *  https://issuetracker.google.com/issues/37018931
      */
+    @SuppressLint("ResourceType")
     override fun onStart() {
-        super.onStart()
-        val dialog = dialog as BottomSheetDialog
-        val rootView = dialog.findViewById<FrameLayout>(R.id.design_bottom_sheet)!!
-        rootView.layoutParams.height = expandHeight
-        dialog.apply {
-            behavior.state = initState
-            behavior.peekHeight = peekHeight
-            behavior.isDraggable = isDraggable
-            behavior.isHideable = isHideable
-            behavior.skipCollapsed = skipCollapsed
-            // 去除从后台切到前台的动画
-//            window?.setWindowAnimations(R.style.BottomSheetNoAnim)
-            setOnKeyListener { _, keyCode, _ ->
-                return@setOnKeyListener if (allowBackClose) {
-                    keyCode == KeyEvent.KEYCODE_BACK
-                } else {
-                    keyCode != KeyEvent.KEYCODE_BACK
+        try {
+            super.onStart()
+            val dialog = dialog as BottomSheetDialog
+            val rootView = dialog.findViewById<FrameLayout>(R.id.design_bottom_sheet)!!
+            rootView.layoutParams.height = expandHeight
+            dialog.apply {
+                setCanceledOnTouchOutside(outsideClickClose)
+                behavior.state = initState
+                behavior.peekHeight = peekHeight
+                behavior.isDraggable = isDraggable
+                behavior.isHideable = isHideable
+                behavior.skipCollapsed = skipCollapsed
+                setOnKeyListener { _, keyCode, _ ->
+                    return@setOnKeyListener if (disableBackClose) {
+                        keyCode == KeyEvent.KEYCODE_BACK
+                    } else {
+                        false
+                    }
                 }
             }
+
+            val outSide = dialog.findViewById<View>(R.id.touch_outside)
+            if (outsideClickClose) {
+                outSide?.setOnClickListener {
+                    onOutSideClick()
+                }
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        // 去除后台切换至前台的动画
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.P) {
+            dialog?.window?.setWindowAnimations(-1)
         }
     }
 
     /**
      *  展示Dialog
      */
-    fun show(manager: FragmentManager, listener: BottomSheetDialogListener) {
+    @JvmOverloads
+    fun show(manager: FragmentManager, listener: BottomSheetDialogListener? = null) {
         this.listener = listener
-        super.show(manager, javaClass.simpleName)
+        showAllowingStateLoss(manager, javaClass.simpleName)
+    }
+
+    /**
+     *  如果在ShowDialog之前宿主Activity被销毁或者跳转到下一个Activity。
+     *  会报错: Can not perform this action after onSaveInstanceState
+     */
+    private fun showAllowingStateLoss(manager: FragmentManager, tag: String?) {
+        try {
+            // 反射修改变量值
+            DialogFragment::class.java.getDeclaredField("mDismissed").apply {
+                isAccessible = true
+                set(this, false)
+            }
+
+            DialogFragment::class.java.getDeclaredField("mShownByMe").apply {
+                isAccessible = true
+                set(this, true)
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        // commitAllowingStateLoss代替commit
+        val ft = manager.beginTransaction()
+        ft.add(this, tag)
+        ft.commitAllowingStateLoss()
+    }
+
+    /**
+     * 空白区域点击
+     */
+    open fun onOutSideClick() {
+        dismissAllowingStateLoss()
     }
 
     /**

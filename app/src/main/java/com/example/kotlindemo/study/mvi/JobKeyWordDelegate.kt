@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlindemo.R
@@ -13,16 +14,20 @@ import com.example.kotlindemo.activity.linkage.origin.FlowLayoutOrigin1
 import com.example.kotlindemo.activity.linkage.origin.TagAdapterOrigin1
 import com.example.kotlindemo.databinding.BHomeItemJobKeywordBinding
 import com.example.kotlindemo.databinding.BHomeItemJobKeywordTagBinding
+import com.example.kotlindemo.task.negavition.PositionNegativeFeedbackPanel
+import com.example.kotlindemo.task.negavition.getMockData
 import com.example.kotlindemo.utils.copyOf
 import com.example.kotlindemo.utils.getColor
 import com.example.kotlindemo.utils.setGone
 import com.zhaopin.list.multitype.adapter.MultiTypeAdapter
 import com.zhaopin.list.multitype.adapter.setList
 import com.zhaopin.list.multitype.binder.BindingViewDelegate
+import com.zhaopin.social.appbase.util.curContext
 import com.zhaopin.social.background.util.Bovb
 import com.zhaopin.social.common.extension.setVisible
 import com.zhaopin.social.module_common_util.ext.dp
 import com.zhaopin.social.module_common_util.ext.onClick
+import com.zhaopin.toast.showToast
 
 /**
  * @Description 关键词入口Item
@@ -48,12 +53,21 @@ class JobKeyWordDelegate(private val context: Context) : BindingViewDelegate<Job
             }
 
             llEdit.onClick {
-
+                (context as? FragmentActivity)?.supportFragmentManager?.let {
+                    PositionNegativeFeedbackPanel.newInstance(getMockData()).show(it)
+                }
             }
 
             // 设置适配器
-            val tagStringList = mutableListOf("Java", "全栈", "性能优化1111", "MVI", "标签", "标签6", "标签7", "标签8", "标签9", "...")
-            val tagAdapter = object : TagAdapterOrigin1<String>(tagStringList) {
+            val tagStringList = mutableListOf("农副产品加工", "1", "234", "1", "2344", "...")
+            val newTagStringList = tagStringList.map {
+                if (it.length > 6) {
+                    it.substring(0, 6) + "..."
+                } else {
+                    it
+                }
+            }
+            val tagAdapter = object : TagAdapterOrigin1<String>(newTagStringList) {
                 override fun getView(parent: FlowLayoutOrigin1, position: Int, str: Any): View {
                     val tagView: View
                     if (str == "...") {
