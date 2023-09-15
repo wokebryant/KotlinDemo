@@ -10,6 +10,8 @@ import com.example.kotlindemo.jetpack.paging3.PagingActivity
 import com.example.kotlindemo.study.kotlinshare.KotlinShare
 import com.example.kotlindemo.study.mvi.MviSampleActivity
 import com.example.kotlindemo.task.appbar.AppBarActivity
+import com.example.kotlindemo.task.microenterprises.view.home.MicroResumeHomeFragment
+import com.example.kotlindemo.task.microenterprises.view.page.MicroResumeListFragment
 import com.example.kotlindemo.task.mutildelivery.DeliveryActivity
 import com.example.kotlindemo.utils.AppUtil
 import com.example.kotlindemo.utils.StatusBarUtil
@@ -58,6 +60,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
             testFlowBtn.setOnClickListener(this@MainActivity)
             testLinkageBtn.setOnClickListener(this@MainActivity)
             testMviBtn.setOnClickListener(this@MainActivity)
+            testMircoBtn.setOnClickListener(this@MainActivity)
         }
     }
 
@@ -121,6 +124,10 @@ class MainActivity : BaseActivity(), View.OnClickListener {
 
             binding.testMviBtn.id -> {
                 AppUtil.startActivity<MviSampleActivity>(this) {}
+            }
+
+            binding.testMircoBtn.id -> {
+                AppUtil.startActivity<MicroResumeHomeFragment>(this) {}
             }
         }
     }

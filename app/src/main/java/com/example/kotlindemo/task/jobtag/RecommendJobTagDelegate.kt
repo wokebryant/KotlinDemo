@@ -43,7 +43,7 @@ class RecommendJobTagDelegate : BindingViewDelegate<RecommendJobTagBean, HomeInd
     private lateinit var expandList: BooleanArray
     private lateinit var divideLineList: BooleanArray
     /** 是否开启折叠动画 */
-    private var openFoldAnim = false
+    private var openFoldAnim = true
     private lateinit var binding: HomeIndexItemRecommendOptBinding
     private lateinit var item: RecommendJobTagBean
     /** 设置当前卡片状态 */

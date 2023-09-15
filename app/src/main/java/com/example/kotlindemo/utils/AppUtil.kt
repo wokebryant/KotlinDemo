@@ -21,8 +21,8 @@ object AppUtil {
         context: Context,
         shareElement: View? = null,
         transformName: String? = null,
-        block: Intent.() -> Unit)
-    {
+        block: Intent.() -> Unit
+    ) {
         val intent = Intent(context, T::class.java)
         intent.block()
 

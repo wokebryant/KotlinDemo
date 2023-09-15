@@ -80,13 +80,13 @@ fun getMockData(): NegativeFeedbackBean {
 
 val reduceItemList = mutableListOf(
 //    LabelItem(code = "1", name = "不喜欢「{0}」", keyword = "代理商销售哈哈哈"),
-//    LabelItem(code = "2", name = "「{0}」距离远", keyword = "齐齐哈尔"),
+    LabelItem(code = "2", name = "「{0}」行业", keyword = "云计算/大数据1"),
     LabelItem(code = "3", name = "「{0}」薪资低", keyword = "1万"),
 //    LabelItem(code = "4", name = "不看「{0}」行业", keyword = "生物工程哈哈哈哈哈哈")
 )
 
 val noItemList = mutableListOf(
 //    LabelItem(code = "5", name = "「{0}」公司", keyword = "北京网安通科技有限公司"),
-    LabelItem(code = "3", name = "「{0}」薪资低", keyword = "1.1万-2.2万"),
+    LabelItem(code = "3", name = "「{0}」薪资低", keyword = "1.1万-2.1万"),
 //    LabelItem(code = "6", name = "「{0}」职位", keyword = "代招/派遣"),
 )

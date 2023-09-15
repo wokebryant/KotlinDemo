@@ -168,7 +168,7 @@ class LinkageActivity : BaseActivity(),
             SecondaryAdapterConfig(onTagSelectedCallback, onClickAllIndustryListener),
             this
         )
-        binding.rvLinkage.setPercent(0.30f)
+        binding.rvLinkage.setPercent(0.24f)
     }
 
     /**

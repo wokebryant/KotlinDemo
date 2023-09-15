@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/C_F7F8FA">
+
+    <com.zhaopin.common.widget.RCConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/C_W1"
+        android:layout_marginTop="8dp"
+        android:layout_marginHorizontal="10dp"
+        android:paddingBottom="16dp"
+        android:gravity="center_vertical"
+        app:layout_radius="10dp">
+
+        <!-- 头像 -->
+        <com.zhaopin.common.widget.ZLCircleImageView
+            android:id="@+id/iv_avatar"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginStart="14dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@color/C_P1"/>
+
+        <!-- 姓名/标签 -->
+        <LinearLayout
+            android:id="@+id/ll_name_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="14dp"
+            android:gravity="center_vertical"
+            app:layout_constraintStart_toEndOf="@id/iv_avatar"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/C_B1"
+                style="@style/style_text_bold_16"
+                tools:text="郭女士"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_active_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:paddingHorizontal="3dp"
+                android:paddingVertical="2dp"
+                android:textColor="@color/C_P1"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:text="本周活跃"
+                tools:ignore="SmallSp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_distance_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:paddingHorizontal="3dp"
+                android:paddingVertical="2dp"
+                android:textColor="@color/C_S1"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:text="距你2千米"
+                tools:ignore="SmallSp" />
+
+        </LinearLayout>
+
+        <!-- 年龄/身份/学历/工资 -->
+        <com.example.kotlindemo.task.microenterprises.widget.FieldListRecyclerView
+            android:id="@+id/rv_field"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="-6dp"
+            android:layout_marginTop="2dp"
+            tools:listitem="@layout/layout_resume_filed_info"
+            tools:itemCount="4"
+            app:layout_constraintTop_toBottomOf="@id/ll_name_tag"
+            app:layout_constraintStart_toStartOf="@id/ll_name_tag"/>
+
+        <!-- 标签 -->
+        <com.zhaopin.common.widget.flowLayout.origin.TagFlowLayoutOrigin
+            android:id="@+id/layout_flow"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="14dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rv_field"/>
+
+        <!-- 期望 -->
+        <TextView
+            android:id="@+id/tv_expect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            app:layout_constraintTop_toBottomOf="@id/layout_flow"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textColor="@color/C_B1"
+            android:textSize="13sp"
+            android:text="期望：销售经理·互联网"/>
+
+        <!-- 工作经历 -->
+        <TextView
+            android:id="@+id/tv_work_exp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_expect"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textColor="@color/C_B1"
+            android:textSize="13sp"
+            android:text="阿里妈妈菜·门店销售·1年半"/>
+
+        <!-- 提示 -->
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_tip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="12dp"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="8dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_work_exp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:drawableStartCompat="@drawable/icon_arrow_blue"
+            android:drawablePadding="2dp"
+            android:textColor="#0DAEFF"
+            android:textSize="12sp"
+            android:text="5个同行要了他的电话"
+            android:background="#EBF8FF"/>
+
+        <ImageView
+            android:id="@+id/iv_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/b_icon_micro_resume_close"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </com.zhaopin.common.widget.RCConstraintLayout>
+
+</FrameLayout>

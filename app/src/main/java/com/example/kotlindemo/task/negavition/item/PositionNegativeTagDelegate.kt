@@ -89,7 +89,10 @@ class PositionNegativeTagDelegate(
                                 val centerTextPaintWidth = paint.measureText(center)
                                 if (width > centerTextPaintWidth) {
                                     val offset = width - centerTextPaintWidth
-                                    val padding = if (offset > 4.dp) 4.dp else 2.dp
+                                    var padding = if (offset > 4.dp) 4.dp else 2.dp
+                                    if (offset <= 1.dp) {
+                                        padding = 1.dp
+                                    }
                                     updateLayoutParams<LinearLayout.LayoutParams> {
                                         weight = 0f
                                         // 多2dp兼容粗体

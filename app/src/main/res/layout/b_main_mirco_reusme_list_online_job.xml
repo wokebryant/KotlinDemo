@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/C_F7F8FA">
+
+    <com.zhaopin.common.widget.RCLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/C_W1"
+        android:layout_marginTop="8dp"
+        android:layout_marginHorizontal="10dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="16dp"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        app:layout_radius="10dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:drawablePadding="6dp"
+            android:textColor="@color/C_B2"
+            android:textSize="13sp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            tools:text="当前职位已下线 , 人才无法查看该职位"
+            app:drawableStartCompat="@drawable/icon_arrow" />
+
+        <com.zhaopin.common.widget.RCConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
+            android:background="@color/C_B10"
+            android:layout_marginHorizontal="16dp"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="12dp"
+            app:layout_radius="10dp">
+
+            <TextView
+                android:id="@+id/tv_jobName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/style_text_bold_16"
+                android:textColor="@color/zpws_black_282b2d"
+                tools:text="销售经理"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:textColor="@color/C_W1"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="8dp"
+                tools:background="@color/C_P1"
+                tools:text="上线职位"/>
+
+            <com.example.kotlindemo.task.microenterprises.widget.FieldListRecyclerView
+                android:id="@+id/rv_field"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:layout_marginStart="-6dp"
+                tools:listitem="@layout/layout_resume_filed_info"
+                tools:itemCount="4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_jobName" />
+
+        </com.zhaopin.common.widget.RCConstraintLayout>
+
+    </com.zhaopin.common.widget.RCLinearLayout>
+
+</FrameLayout>

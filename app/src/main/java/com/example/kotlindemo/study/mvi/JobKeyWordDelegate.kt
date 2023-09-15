@@ -14,6 +14,7 @@ import com.example.kotlindemo.activity.linkage.origin.FlowLayoutOrigin1
 import com.example.kotlindemo.activity.linkage.origin.TagAdapterOrigin1
 import com.example.kotlindemo.databinding.BHomeItemJobKeywordBinding
 import com.example.kotlindemo.databinding.BHomeItemJobKeywordTagBinding
+import com.example.kotlindemo.task.negavition.ContentRecommendDetailDialog
 import com.example.kotlindemo.task.negavition.PositionNegativeFeedbackPanel
 import com.example.kotlindemo.task.negavition.getMockData
 import com.example.kotlindemo.utils.copyOf
@@ -54,7 +55,8 @@ class JobKeyWordDelegate(private val context: Context) : BindingViewDelegate<Job
 
             llEdit.onClick {
                 (context as? FragmentActivity)?.supportFragmentManager?.let {
-                    PositionNegativeFeedbackPanel.newInstance(getMockData()).show(it)
+//                    PositionNegativeFeedbackPanel.newInstance(getMockData()).show(it)
+                    ContentRecommendDetailDialog.newInstance().show(it)
                 }
             }
 
