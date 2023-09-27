@@ -44,6 +44,8 @@
         <activity android:name=".activity.linkage.LinkageActivity"/>
         <activity android:name=".study.mvi.MviSampleActivity"/>
         <activity android:name=".task.microenterprises.view.home.MicroResumeHomeFragment"/>
+        <activity android:name=".task.jobtag.card.RecommendJobActivity"/>
+        <activity android:name=".task.search.PositionSearchBridgeActivity"/>
 
         <!-- 定义Startup Provider参数 -->
         <provider

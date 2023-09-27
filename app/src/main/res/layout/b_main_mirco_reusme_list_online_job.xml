@@ -65,12 +65,12 @@
 
             <com.example.kotlindemo.task.microenterprises.widget.FieldListRecyclerView
                 android:id="@+id/rv_field"
-                android:layout_width="wrap_content"
+                android:layout_width="220dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:layout_marginStart="-6dp"
                 tools:listitem="@layout/layout_resume_filed_info"
-                tools:itemCount="4"
+                tools:itemCount="27"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_jobName" />
 

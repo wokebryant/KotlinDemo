@@ -3,6 +3,9 @@ package com.example.kotlindemo.study.mvi
 import com.example.kotlindemo.task.jobtag.RecommendJobCard
 import com.example.kotlindemo.task.jobtag.RecommendJobTag
 import com.example.kotlindemo.task.jobtag.RecommendJobTagBean
+import com.example.kotlindemo.task.jobtag.card.RecommendJobCardItem
+import com.example.kotlindemo.task.jobtag.card.RecommendJobCardState
+import com.example.kotlindemo.task.jobtag.card.RecommendJobCardTag
 
 /**
  * @Description
@@ -88,6 +91,38 @@ object MockDataStore {
                 )
             ),
 
+        )
+    )
+
+    val mockJobTypeNoFoldCardBean = RecommendJobCardState(
+        title = "找销售经理的人也在看",
+        cardList = mutableListOf(
+            RecommendJobCardItem(
+                title = "职位",
+                tagList = mutableListOf(
+                    RecommendJobCardTag(name = "代理商销售"),
+                    RecommendJobCardTag(name = "销售行政主管"),
+                    RecommendJobCardTag(name = "销售团队经理"),
+                    RecommendJobCardTag(name = "大客户代表"),
+                    RecommendJobCardTag(name = "商户经理"),
+                    RecommendJobCardTag(name = "电子元器件销售经理")
+                )
+            ),
+            RecommendJobCardItem(
+                title = "薪资",
+                tagList = mutableListOf(
+                    RecommendJobCardTag(name = "9千-1.8万"),
+                    RecommendJobCardTag(name = "1-2.1万"),
+                )
+            ),
+            RecommendJobCardItem(
+                title = "城市",
+                tagList = mutableListOf(
+                    RecommendJobCardTag(name = "天津"),
+                    RecommendJobCardTag(name = "石家庄"),
+                    RecommendJobCardTag(name = "乌鲁木齐")
+                )
+            )
         )
     )
 }

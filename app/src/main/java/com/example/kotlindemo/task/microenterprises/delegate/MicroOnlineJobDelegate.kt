@@ -16,6 +16,10 @@ class MicroOnlineJobDelegate : BindingViewDelegate<MicroResumeOnlineJobBean, BMa
         item: MicroResumeOnlineJobBean,
         position: Int
     ) {
-        TODO("Not yet implemented")
+        with(binding) {
+            tvTitle.text = item.title
+            tvJobName.text = item.jobName
+            rvField.setData(item.jobTagList)
+        }
     }
 }

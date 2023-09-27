@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/C_B10"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:visibility="gone"
+    android:orientation="vertical"
+    tools:visibility="visible">
+
+    <com.example.kotlindemo.task.jobtag.card.RecommendJobCardGirdLayout
+        android:id="@+id/layout_gird"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="8dp"
+        android:paddingBottom="16dp"
+        android:background="@color/C_W1"/>
+
+    <com.zhaopin.common.widget.RCLinearLayout
+        android:id="@+id/ll_empty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginTop="8dp"
+        android:paddingVertical="28dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:background="@color/C_W1"
+        app:layout_radius="10dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/b_common_b_app_no_data_icon"/>
+
+        <TextView
+            android:id="@+id/tv_empty_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            style="@style/style_text_bold_16"
+            android:textColor="@color/C_B1"
+            tools:text="未找到「乌鲁木齐」的销售经理职位"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textSize="14sp"
+            android:textColor="@color/C_B3"
+            android:text="@string/change_tag_retry"/>
+
+    </com.zhaopin.common.widget.RCLinearLayout>
+
+</LinearLayout>

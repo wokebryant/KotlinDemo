@@ -188,6 +188,20 @@
             android:textStyle="bold"
             style="?android:attr/borderlessButtonStyle" />
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#22000000" />
+
+        <Button
+            android:id="@+id/testJobSearchBtn"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:text="职位搜索桥"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            style="?android:attr/borderlessButtonStyle" />
+
     </LinearLayout>
 
 </androidx.core.widget.NestedScrollView>

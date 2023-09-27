@@ -13,6 +13,7 @@ import com.example.kotlindemo.task.appbar.AppBarActivity
 import com.example.kotlindemo.task.microenterprises.view.home.MicroResumeHomeFragment
 import com.example.kotlindemo.task.microenterprises.view.page.MicroResumeListFragment
 import com.example.kotlindemo.task.mutildelivery.DeliveryActivity
+import com.example.kotlindemo.task.search.PositionSearchBridgeActivity
 import com.example.kotlindemo.utils.AppUtil
 import com.example.kotlindemo.utils.StatusBarUtil
 import com.example.kotlindemo.utils.binding
@@ -61,6 +62,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
             testLinkageBtn.setOnClickListener(this@MainActivity)
             testMviBtn.setOnClickListener(this@MainActivity)
             testMircoBtn.setOnClickListener(this@MainActivity)
+            testJobSearchBtn.setOnClickListener(this@MainActivity)
         }
     }
 
@@ -128,6 +130,10 @@ class MainActivity : BaseActivity(), View.OnClickListener {
 
             binding.testMircoBtn.id -> {
                 AppUtil.startActivity<MicroResumeHomeFragment>(this) {}
+            }
+
+            binding.testJobSearchBtn.id -> {
+                AppUtil.startActivity<PositionSearchBridgeActivity>(this) {}
             }
         }
     }

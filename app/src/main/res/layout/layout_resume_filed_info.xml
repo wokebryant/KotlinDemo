@@ -13,6 +13,8 @@
         android:includeFontPadding="false"
         android:textSize="12sp"
         android:textColor="#555C70"
+        android:maxLines="1"
+        android:ellipsize="end"
         tools:text="5-10万"/>
 
     <View

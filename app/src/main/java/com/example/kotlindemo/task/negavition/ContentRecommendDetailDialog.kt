@@ -8,6 +8,7 @@ import com.example.kotlindemo.utils.getColor
 import com.zhaopin.common.widget.BaseBottomSheetDialogFragment
 import com.zhaopin.social.background.util.Bovb
 import com.zhaopin.social.module_common_util.ext.dp
+import com.zhaopin.social.module_common_util.ext.onClick
 
 /**
  * @Description 内容推荐算法说明
@@ -27,6 +28,9 @@ class ContentRecommendDetailDialog : BaseBottomSheetDialogFragment<MyContentReco
         with(binding) {
             tvTitle.background =
                 Bovb.with().color(getColor(R.color.C_W1)).topLeftRadius(16f.dp).topRightRadius(16f.dp).build()
+            ivClose.onClick {
+                dismissAllowingStateLoss()
+            }
         }
     }
 

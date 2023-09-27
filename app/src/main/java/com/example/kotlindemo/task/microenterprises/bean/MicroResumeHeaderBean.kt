@@ -16,5 +16,7 @@ data class MicroResumeListToBePaidBean(
 ) : KeepProtocol
 
 data class MicroResumeOnlineJobBean(
-    val title: String?
+    val title: String?,
+    val jobName: String?,
+    val jobTagList: List<String>
 ) : KeepProtocol

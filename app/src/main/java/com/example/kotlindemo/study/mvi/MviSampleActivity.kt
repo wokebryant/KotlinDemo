@@ -7,14 +7,12 @@ import com.example.kotlindemo.activity.BaseActivity
 import com.example.kotlindemo.databinding.ActivityMviSampleBinding
 import com.example.kotlindemo.study.mvi.core.collectEvent
 import com.example.kotlindemo.study.mvi.core.collectState
-import com.example.kotlindemo.study.mvi.core.collectStateLast
+import com.example.kotlindemo.task.jobtag.card.RecommendJobCardDelegate
 import com.example.kotlindemo.task.jobtag.RecommendJobTagDelegate
 import com.example.kotlindemo.utils.binding
 import com.example.kotlindemo.utils.setGone
 import com.example.kotlindemo.utils.setVisible
 import com.zhaopin.list.multitype.adapter.MultiTypeAdapter
-import com.zhaopin.list.multitype.loadmore.delegate.LoadMoreDelegate
-import com.zhaopin.list.multitype.loadmore.model.LoadMore
 import com.zhaopin.list.multitype.loadmore.model.LoadMoreStatus
 import com.zhaopin.social.module_common_util.ext.onClick
 import com.zhaopin.toast.showToast
@@ -40,6 +38,7 @@ class MviSampleActivity : BaseActivity() {
         ).apply {
             register(JobKeyWordDelegate(this@MviSampleActivity))
             register(RecommendJobTagDelegate())
+            register(RecommendJobCardDelegate())
             register(MviListItemDelegate())
         }
     }
