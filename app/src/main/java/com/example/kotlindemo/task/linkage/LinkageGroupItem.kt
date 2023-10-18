@@ -1,4 +1,4 @@
-package com.example.kotlindemo.activity.linkage
+package com.example.kotlindemo.task.linkage
 
 import com.zhaopin.common.widget.linkage.bean.BaseGroupedItem
 

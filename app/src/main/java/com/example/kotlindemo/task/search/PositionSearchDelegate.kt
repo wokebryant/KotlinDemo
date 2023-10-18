@@ -11,7 +11,9 @@ import com.zhaopin.social.module_common_util.ext.onClick
  * @Author LuoJia
  * @Date 2023/9/27
  */
-class PositionSearchDelegate : BindingViewDelegate<SearchItemState, ItemPositionSearchHistoryBinding>() {
+class PositionSearchDelegate : BindingViewDelegate<SearchItemState, ItemPositionSearchHistoryBinding>(
+        diffUtil = ItemDiffCallback()
+) {
 
     override fun onBindViewHolder(
         binding: ItemPositionSearchHistoryBinding,
@@ -22,7 +24,7 @@ class PositionSearchDelegate : BindingViewDelegate<SearchItemState, ItemPosition
             tvTitle.text = item.title
             tvSubscribed.visibility = if (item.isSubscribe) View.VISIBLE else View.GONE
             ivDelete.onClick {
-                item.onItemClick.invoke(position, item)
+                item.onItemDelete.invoke(position, item)
             }
             root.onClick {
                 item.onItemClick.invoke(position, item)

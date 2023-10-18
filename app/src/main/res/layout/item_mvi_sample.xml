@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/C_B6">
+    android:background="@color/C_S2">
 
     <com.zhaopin.common.widget.RCConstraintLayout
         android:layout_width="match_parent"

@@ -25,6 +25,7 @@ class JobHorizontalScrollView @JvmOverloads constructor(
 
     private var item: RecommendJobCardItem? = null
     private var itemIndex = 0
+    private var title = ""
 
     /** 展开按钮点击 */
     var onExpandClick: (() -> Unit)? = null
@@ -40,9 +41,9 @@ class JobHorizontalScrollView @JvmOverloads constructor(
     fun initData(data: RecommendJobCardItem?, itemIndex: Int, tagIndex: Int) {
         item = data
         this.itemIndex = itemIndex
+        this.title = data?.title ?: ""
         // 设置横向列表数据
         data?.let {
-            binding.tvTitle.text = it.title
             it.tagList?.let { tagList ->
                 if (tagList.size > 1)
                     binding.ivExpand.setVisible()
@@ -51,7 +52,7 @@ class JobHorizontalScrollView @JvmOverloads constructor(
                 binding.rvFlow.adapter = flowAdapter
                 binding.rvFlow.setHasFixedSize(true)
                 binding.rvFlow.itemAnimator = null
-                flowAdapter.list = tagList.toFlowUiState()
+                flowAdapter.list = tagList.toFlowUiState(title)
                 binding.rvFlow.smoothScrollToPosition(tagIndex)
             }
         }
@@ -60,10 +61,10 @@ class JobHorizontalScrollView @JvmOverloads constructor(
     fun updateData(data: RecommendJobCardItem?, clickInfo: ClickInfo) {
         item = data
         this.itemIndex = clickInfo.itemIndex
+        this.title = data?.title ?: ""
         data?.let {
-            binding.tvTitle.text = it.title
             it.tagList?.let { tagList ->
-                flowAdapter.list = tagList.toFlowUiState()
+                flowAdapter.list = tagList.toFlowUiState(title)
                 binding.rvFlow.smoothScrollToPosition(clickInfo.tagIndex)
             }
         }
@@ -83,15 +84,16 @@ class JobHorizontalScrollView @JvmOverloads constructor(
         item?.tagList?.let {
             it.forEachIndexed { index, tag ->
                 tag.selected = tagIndex == index && !tag.selected
-                flowAdapter.list = it.toFlowUiState()
+                flowAdapter.list = it.toFlowUiState(title)
             }
         }
     }
 
-    private fun List<RecommendJobCardTag>.toFlowUiState() = this.map {
+    private fun List<RecommendJobCardTag>.toFlowUiState(title: String) = this.map {
         JobFlowLayoutUIState(
             name = it.name,
             selected = it.selected,
+            title = title,
             enable = it.enable,
             itemClick = ::onTagClick
         )

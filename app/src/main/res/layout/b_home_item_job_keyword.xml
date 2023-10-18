@@ -64,7 +64,7 @@
             tools:listitem="@layout/b_home_item_job_keyword_tag"
             android:visibility="gone"/>
 
-        <com.example.kotlindemo.activity.linkage.origin.TagFlowLayoutOrigin1
+        <com.example.kotlindemo.widget.flowlayout.TagFlowLayoutOrigin1
             android:id="@+id/rv_tag"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

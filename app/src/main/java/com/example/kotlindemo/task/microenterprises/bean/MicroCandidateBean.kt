@@ -1,6 +1,6 @@
 package com.example.kotlindemo.task.microenterprises.bean
 
-import com.example.kotlindemo.activity.linkage.KeepProtocol
+import com.example.kotlindemo.task.linkage.KeepProtocol
 
 /**
  * @Description

@@ -4,6 +4,7 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.os.Bundle
 import android.view.View
+import com.example.kotlindemo.base.BaseActivity
 import com.example.kotlindemo.databinding.ActivityMarkBinding
 import com.example.kotlindemo.utils.binding
 import com.example.kotlindemo.widget.CarDivideMarkView

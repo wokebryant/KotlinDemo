@@ -4,6 +4,8 @@ import android.graphics.Typeface
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.kotlindemo.databinding.ItemJobFlowLayoutBinding
+import com.example.kotlindemo.utils.setGone
+import com.example.kotlindemo.utils.setVisible
 import com.zhaopin.common.widget.mvx.flowLayout.FlowMVXLayoutAdapter
 import com.zhaopin.common.widget.mvx.flowLayout.MVXFlowLayoutUIState
 import com.zhaopin.common.widget.mvx.flowLayout.MVXTagUIState
@@ -27,11 +29,16 @@ class JobFlowSelectAdapter : FlowMVXLayoutAdapter<JobFlowLayoutUIState, ItemJobF
         data: JobFlowLayoutUIState,
         position: Int
     ) {
-        binding.root.text = data.name
-        binding.root.isEnabled = data.enable
+        binding.tvTag.text = data.name
+        binding.tvTag.isEnabled = data.enable
         if (data.enable) {
-            binding.root.isSelected = data.selected
-            binding.root.typeface = if (data.selected) Typeface.DEFAULT_BOLD else Typeface.DEFAULT
+            binding.tvTag.isSelected = data.selected
+            binding.tvTag.typeface = if (data.selected) Typeface.DEFAULT_BOLD else Typeface.DEFAULT
+        }
+        if (position == 0) {
+            binding.tvTitle.setVisible()
+        } else {
+            binding.tvTitle.setGone()
         }
     }
 }
@@ -39,6 +46,7 @@ class JobFlowSelectAdapter : FlowMVXLayoutAdapter<JobFlowLayoutUIState, ItemJobF
 data class JobFlowLayoutUIState(
     override val name: String,
     override val selected: Boolean,
+    val title: String,
     val enable: Boolean,
     val itemClick: (position: Int, data: JobFlowLayoutUIState) -> Unit,
 ) : MVXTagUIState

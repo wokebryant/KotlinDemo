@@ -1,4 +1,4 @@
-package com.example.kotlindemo
+package com.example.kotlindemo.base
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.zhaopin.social.module_common_util.binding.FragmentBinding
 import com.zhaopin.social.module_common_util.binding.FragmentBindingDelegate
 

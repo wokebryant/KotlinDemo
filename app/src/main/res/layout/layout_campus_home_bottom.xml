@@ -1,66 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#f9fcfe"
+    android:paddingHorizontal="7dp">
 
-    <data>
-
-    </data>
-
-    <LinearLayout
-        android:layout_width="match_parent"
+    <com.example.kotlindemo.widget.shadowlayout.ShadowLayout
+        android:id="@+id/lyLeft"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="#f9fcfe"
-        android:paddingHorizontal="7dp">
+        android:layout_weight="1"
+        app:hl_shadowColor="#3397cbff"
+        app:hl_cornerRadius="21dp"
+        app:hl_shadowLimit="5dp"
+        app:hl_shadowOffsetY="2dp">
 
-        <com.example.kotlindemo.widget.shadowlayout.ShadowLayout
-            android:id="@+id/lyLeft"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:hl_shadowColor="#3397cbff"
-            app:hl_cornerRadius="21dp"
-            app:hl_shadowLimit="5dp"
-            app:hl_shadowOffsetY="2dp">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="38dp" />
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="38dp" />
+    </com.example.kotlindemo.widget.shadowlayout.ShadowLayout>
 
-        </com.example.kotlindemo.widget.shadowlayout.ShadowLayout>
+    <com.example.kotlindemo.widget.shadowlayout.ShadowLayout
+        android:id="@+id/lyCenter"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        app:hl_shadowColor="#3397cbff"
+        app:hl_cornerRadius="21dp"
+        app:hl_shadowLimit="5dp"
+        app:hl_shadowOffsetY="2dp">
 
-        <com.example.kotlindemo.widget.shadowlayout.ShadowLayout
-            android:id="@+id/lyCenter"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:hl_shadowColor="#3397cbff"
-            app:hl_cornerRadius="21dp"
-            app:hl_shadowLimit="5dp"
-            app:hl_shadowOffsetY="2dp">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:src="@color/white_90"/>
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="38dp"
-                android:src="@color/white_90"/>
+    </com.example.kotlindemo.widget.shadowlayout.ShadowLayout>
 
-        </com.example.kotlindemo.widget.shadowlayout.ShadowLayout>
+    <com.example.kotlindemo.widget.shadowlayout.ShadowLayout
+        android:id="@+id/lyRight"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        app:hl_shadowColor="#3397cbff"
+        app:hl_cornerRadius="21dp"
+        app:hl_shadowLimit="5dp"
+        app:hl_shadowOffsetY="2dp">
 
-        <com.example.kotlindemo.widget.shadowlayout.ShadowLayout
-            android:id="@+id/lyRight"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:hl_shadowColor="#3397cbff"
-            app:hl_cornerRadius="21dp"
-            app:hl_shadowLimit="5dp"
-            app:hl_shadowOffsetY="2dp">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:src="@color/white_90"/>
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="38dp"
-                android:src="@color/white_90"/>
+    </com.example.kotlindemo.widget.shadowlayout.ShadowLayout>
 
-        </com.example.kotlindemo.widget.shadowlayout.ShadowLayout>
-
-    </LinearLayout>
-</layout>
+</LinearLayout>

@@ -1,4 +1,4 @@
-package com.example.kotlindemo.activity.linkage
+package com.example.kotlindemo.task.linkage
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,14 +7,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.view.updateLayoutParams
 import com.example.kotlindemo.R
-import com.example.kotlindemo.activity.linkage.origin.FlowLayoutOrigin1
-import com.example.kotlindemo.activity.linkage.origin.TagAdapterOrigin1
-import com.example.kotlindemo.activity.linkage.origin.TagFlowLayoutOrigin1
+import com.example.kotlindemo.widget.flowlayout.FlowLayoutOrigin1
+import com.example.kotlindemo.widget.flowlayout.TagAdapterOrigin1
+import com.example.kotlindemo.widget.flowlayout.TagFlowLayoutOrigin1
 import com.example.kotlindemo.utils.setVisible
-import com.zhaopin.common.widget.flowLayout.origin.FlowLayoutOrigin
-import com.zhaopin.common.widget.flowLayout.origin.TagAdapterOrigin
-import com.zhaopin.common.widget.flowLayout.origin.TagFlowLayoutOrigin
-import com.example.kotlindemo.activity.linkage.origin.TagState
+import com.example.kotlindemo.widget.flowlayout.TagState
 import com.zhaopin.common.widget.linkage.adapter.viewholder.LinkageSecondaryHeaderViewHolder
 import com.zhaopin.common.widget.linkage.adapter.viewholder.LinkageSecondaryViewHolder
 import com.zhaopin.common.widget.linkage.bean.BaseGroupedItem
@@ -38,7 +35,7 @@ class SecondaryAdapterConfig(
 ) : ILinkageSecondaryAdapterConfig<LinkageGroupItem.ItemInfo> {
 
     private var context: Context? = null
-    private var sliderTag: LinkageChildItem ?= null
+    private var sliderTag: LinkageChildItem?= null
 
     override fun setContext(context: Context?) {
         this.context = context

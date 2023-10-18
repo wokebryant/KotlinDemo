@@ -34,8 +34,8 @@ class CampusFlipper @JvmOverloads constructor(
     fun startImageFlipper(iconList: List<Int>) {
         setCommonParams()
         for (icon in iconList) {
-            val layout = DataBindingUtil.inflate<CampusRoundImageBinding>(LayoutInflater.from(context), R.layout.campus_round_image, this, false)
-            addView(layout.root)
+//            val layout = DataBindingUtil.inflate<CampusRoundImageBinding>(LayoutInflater.from(context), R.layout.campus_round_image, this, false)
+//            addView(layout.root)
         }
 //        startFlipping()
     }

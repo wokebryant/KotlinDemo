@@ -6,7 +6,7 @@ import android.widget.TextView
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.constraintlayout.widget.ConstraintAttribute
 import com.example.kotlindemo.R
-import com.example.kotlindemo.activity.BaseActivity
+import com.example.kotlindemo.base.BaseActivity
 import com.example.kotlindemo.databinding.ActivityMotionCustomBinding
 import com.example.kotlindemo.utils.binding
 import com.example.kotlindemo.utils.dip2px

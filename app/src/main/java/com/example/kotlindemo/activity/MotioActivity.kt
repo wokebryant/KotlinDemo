@@ -2,6 +2,7 @@ package com.example.kotlindemo.activity
 
 import android.os.Bundle
 import android.view.View
+import com.example.kotlindemo.base.BaseActivity
 import com.example.kotlindemo.databinding.ActivityMotionBinding
 import com.example.kotlindemo.study.motion.*
 import com.example.kotlindemo.utils.AppUtil

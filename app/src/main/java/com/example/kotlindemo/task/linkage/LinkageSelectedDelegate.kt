@@ -1,4 +1,4 @@
-package com.example.kotlindemo.activity.linkage
+package com.example.kotlindemo.task.linkage
 
 import androidx.recyclerview.widget.DiffUtil
 import com.example.kotlindemo.R

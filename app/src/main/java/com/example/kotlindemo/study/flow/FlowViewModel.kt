@@ -1,4 +1,4 @@
-package com.example.kotlindemo.activity.flow
+package com.example.kotlindemo.study.flow
 
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.delay

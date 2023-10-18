@@ -32,7 +32,7 @@
         app:rsb_thumb_drawable="@drawable/b_common_ic_seek_btn_round"
         app:rsb_thumb_inactivated_drawable="@drawable/b_common_ic_seek_btn_round"/>
 
-    <com.example.kotlindemo.activity.linkage.origin.TagFlowLayoutOrigin1
+    <com.example.kotlindemo.widget.flowlayout.TagFlowLayoutOrigin1
         android:id="@+id/tagLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

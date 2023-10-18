@@ -3,15 +3,17 @@ package com.example.kotlindemo.activity
 import android.os.Bundle
 import android.view.View
 import android.view.Window
-import com.example.kotlindemo.activity.flow.FlowActivity
-import com.example.kotlindemo.activity.linkage.LinkageActivity
+import com.example.kotlindemo.study.flow.FlowActivity
+import com.example.kotlindemo.adapter.delegate.MainItemDelegate
+import com.example.kotlindemo.base.BaseActivity
+import com.example.kotlindemo.data.mainItemList
+import com.example.kotlindemo.task.linkage.LinkageActivity
 import com.example.kotlindemo.databinding.ActivityMainBinding
 import com.example.kotlindemo.jetpack.paging3.PagingActivity
-import com.example.kotlindemo.study.kotlinshare.KotlinShare
+import com.example.kotlindemo.model.MainItemType
 import com.example.kotlindemo.study.mvi.MviSampleActivity
 import com.example.kotlindemo.task.appbar.AppBarActivity
 import com.example.kotlindemo.task.microenterprises.view.home.MicroResumeHomeFragment
-import com.example.kotlindemo.task.microenterprises.view.page.MicroResumeListFragment
 import com.example.kotlindemo.task.mutildelivery.DeliveryActivity
 import com.example.kotlindemo.task.search.PositionSearchBridgeActivity
 import com.example.kotlindemo.utils.AppUtil
@@ -19,8 +21,10 @@ import com.example.kotlindemo.utils.StatusBarUtil
 import com.example.kotlindemo.utils.binding
 import com.example.wallet.WalletActivity
 import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback
+import com.zhaopin.list.multitype.adapter.MultiTypeAdapter
+import com.zhaopin.list.multitype.adapter.setList
 
-class MainActivity : BaseActivity(), View.OnClickListener {
+class MainActivity : BaseActivity() {
 
     companion object {
         private const val SHARE_NAME_MATERIAL = "MATERIAL"
@@ -32,13 +36,55 @@ class MainActivity : BaseActivity(), View.OnClickListener {
 
     private val binding: ActivityMainBinding by binding()
 
+    private val listAdapter by lazy {
+        MultiTypeAdapter(
+        ).apply {
+            register(MainItemDelegate(::onItemClick))
+        }
+    }
+
+    /**
+     * 首页Item点击
+     */
+    private fun onItemClick(type: MainItemType) {
+        when (type) {
+            MainItemType.Material -> AppUtil.startActivity<MaterialDesignActivity>(this) {}
+
+            MainItemType.Motion -> AppUtil.startActivity<MotionActivity>(this) {}
+
+            MainItemType.Constraint -> AppUtil.startActivity<ConstraintActivity>(this) {}
+
+            MainItemType.Paging -> AppUtil.startActivity<PagingActivity>(this) {}
+
+            MainItemType.ViewPager2 -> AppUtil.startActivity<ViewPager2Activity>(this) {}
+
+            MainItemType.Mark -> AppUtil.startActivity<MarkActivity>(this) {}
+
+            MainItemType.BlockChain -> AppUtil.startActivity<WalletActivity>(this) {}
+
+            MainItemType.MVI -> AppUtil.startActivity<MviSampleActivity>(this) {}
+
+            MainItemType.Flow -> AppUtil.startActivity<FlowActivity>(this) {}
+
+            MainItemType.ZLTask -> { }
+
+            MainItemType.AppBar -> AppUtil.startActivity<AppBarActivity>(this) {}
+
+            MainItemType.Linkage -> AppUtil.startActivity<LinkageActivity>(this) {}
+
+            MainItemType.MircoCompany -> AppUtil.startActivity<MicroResumeHomeFragment>(this) {}
+
+            MainItemType.SearchBridge -> AppUtil.startActivity<PositionSearchBridgeActivity>(this) {}
+
+            MainItemType.PositionRank -> AppUtil.startActivity<DeliveryActivity>(this) {}
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         doContainerTransform()
         super.onCreate(savedInstanceState)
         initView()
         StatusBarUtil.setRootViewFitsSystemWindows(this, true)
-
-        val kotlinShare = KotlinShare()
     }
 
     private fun doContainerTransform() {
@@ -48,93 +94,8 @@ class MainActivity : BaseActivity(), View.OnClickListener {
     }
 
     private fun initView() {
-        with(binding) {
-            testMaterialBtn.setOnClickListener(this@MainActivity)
-            testMotionLayoutBtn.setOnClickListener(this@MainActivity)
-            testConstraintLayoutBtn.setOnClickListener(this@MainActivity)
-            testPagingBtn.setOnClickListener(this@MainActivity)
-            testViewPager2Btn.setOnClickListener(this@MainActivity)
-            testMarkBtn.setOnClickListener(this@MainActivity)
-            testWalletBtn.setOnClickListener(this@MainActivity)
-            testJobRankBtn.setOnClickListener(this@MainActivity)
-            testAppBarBtn.setOnClickListener(this@MainActivity)
-            testFlowBtn.setOnClickListener(this@MainActivity)
-            testLinkageBtn.setOnClickListener(this@MainActivity)
-            testMviBtn.setOnClickListener(this@MainActivity)
-            testMircoBtn.setOnClickListener(this@MainActivity)
-            testJobSearchBtn.setOnClickListener(this@MainActivity)
-        }
+        binding.rvMain.adapter = listAdapter
+        listAdapter.setList(mainItemList)
     }
 
-    override fun onClick(v: View?) {
-        when (v?.id) {
-            binding.testMaterialBtn.id -> {
-                AppUtil.startActivity<MaterialDesignActivity>(this, v, SHARE_NAME_MATERIAL) {
-                    putExtra(EXTRA_TRANSITION_NAME, SHARE_NAME_MATERIAL)
-                }
-            }
-
-            binding.testMotionLayoutBtn.id -> {
-                AppUtil.startActivity<MotionActivity>(this) {
-                    putExtra(EXTRA_TRANSITION_NAME, SHARE_NAME_MOTION)
-                }
-            }
-
-            binding.testConstraintLayoutBtn.id -> {
-                AppUtil.startActivity<ConstraintActivity>(this, v, SHARE_NAME_CONSTRAINT) {
-                    putExtra(EXTRA_TRANSITION_NAME, SHARE_NAME_CONSTRAINT)
-                }
-            }
-
-            binding.testPagingBtn.id -> {
-                AppUtil.startActivity<PagingActivity>(this, v, SHARE_NAME_PAGING) {
-                    putExtra(EXTRA_TRANSITION_NAME, SHARE_NAME_PAGING)
-                }
-            }
-
-            binding.testViewPager2Btn.id -> {
-                AppUtil.startActivity<ViewPager2Activity>(this, v, SHARE_NAME_VIEW_PAGER) {
-                    putExtra(EXTRA_TRANSITION_NAME, SHARE_NAME_VIEW_PAGER)
-                }
-            }
-
-            binding.testMarkBtn.id -> {
-                AppUtil.startActivity<MarkActivity>(this) {
-
-                }
-            }
-
-            binding.testWalletBtn.id -> {
-                AppUtil.startActivity<WalletActivity>(this){}
-            }
-
-            binding.testJobRankBtn.id -> {
-                AppUtil.startActivity<DeliveryActivity>(this) {}
-            }
-
-            binding.testAppBarBtn.id -> {
-                AppUtil.startActivity<AppBarActivity>(this) {}
-            }
-
-            binding.testFlowBtn.id -> {
-                AppUtil.startActivity<FlowActivity>(this) {}
-            }
-
-            binding.testLinkageBtn.id -> {
-                AppUtil.startActivity<LinkageActivity>(this) {}
-            }
-
-            binding.testMviBtn.id -> {
-                AppUtil.startActivity<MviSampleActivity>(this) {}
-            }
-
-            binding.testMircoBtn.id -> {
-                AppUtil.startActivity<MicroResumeHomeFragment>(this) {}
-            }
-
-            binding.testJobSearchBtn.id -> {
-                AppUtil.startActivity<PositionSearchBridgeActivity>(this) {}
-            }
-        }
-    }
 }

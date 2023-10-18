@@ -1,4 +1,4 @@
-package com.example.kotlindemo.activity.flow
+package com.example.kotlindemo.study.flow
 
 import android.app.Activity
 import android.content.Intent
@@ -8,7 +8,7 @@ import androidx.activity.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.example.kotlindemo.activity.BaseActivity
+import com.example.kotlindemo.base.BaseActivity
 import com.example.kotlindemo.databinding.ActivityFlowBinding
 import com.example.kotlindemo.utils.binding
 import kotlinx.coroutines.launch

@@ -1,4 +1,4 @@
-package com.example.kotlindemo.activity.linkage.origin;
+package com.example.kotlindemo.widget.flowlayout;
 
 import android.content.Context;
 import android.content.res.TypedArray;

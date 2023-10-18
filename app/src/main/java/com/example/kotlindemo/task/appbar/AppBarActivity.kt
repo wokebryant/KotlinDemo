@@ -1,9 +1,10 @@
 package com.example.kotlindemo.task.appbar
 
 import android.os.Bundle
-import com.example.kotlindemo.activity.BaseActivity
+import com.example.kotlindemo.base.BaseActivity
 import com.example.kotlindemo.databinding.ActivityAppbarBinding
 import com.example.kotlindemo.utils.binding
+import com.example.kotlindemo.utils.setVisible
 
 /**
  * @Description
@@ -17,7 +18,7 @@ class AppBarActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         with(binding) {
-
+//            appbar.setVisible()
         }
     }
 

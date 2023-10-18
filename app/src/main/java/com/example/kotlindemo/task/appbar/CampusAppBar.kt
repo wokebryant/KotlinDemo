@@ -23,6 +23,7 @@ import com.example.kotlindemo.databinding.LayoutCampusHome2Binding
 import com.example.kotlindemo.utils.*
 import com.example.kotlindemo.widget.drawable.GradientBorderDrawable
 import com.example.kotlindemo.widget.pageTransformer.OverlapSliderTransformer
+import com.zhaopin.social.module_common_util.ext.binding
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import kotlin.math.abs
@@ -43,9 +44,11 @@ class CampusAppBar @JvmOverloads constructor(
         private const val STANDARD_DENSITY = 2.75
     }
 
-    private val binding: LayoutCampusHome2Binding by lazy {
-        DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.layout_campus_home_2, this, true)
-    }
+//    private val binding: LayoutCampusHome2Binding by lazy {
+//        DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.layout_campus_home_2, this, true)
+//    }
+
+    private val binding: LayoutCampusHome2Binding by binding()
 
     /** 直播卡片滑动效果 */
     private val pageTransformer: CompositePageTransformer

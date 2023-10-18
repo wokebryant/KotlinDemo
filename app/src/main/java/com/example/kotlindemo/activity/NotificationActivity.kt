@@ -9,6 +9,7 @@ import android.os.Build
 import android.os.Bundle
 import android.os.PersistableBundle
 import androidx.core.app.NotificationCompat
+import com.example.kotlindemo.base.BaseActivity
 
 /**
  * 通知管理

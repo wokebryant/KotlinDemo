@@ -1,4 +1,4 @@
-package com.example.kotlindemo.activity.linkage
+package com.example.kotlindemo.task.linkage
 
 import android.animation.ValueAnimator
 import android.annotation.SuppressLint
@@ -12,15 +12,15 @@ import androidx.activity.viewModels
 import androidx.core.view.updateLayoutParams
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kotlindemo.R
-import com.example.kotlindemo.activity.BaseActivity
-import com.example.kotlindemo.activity.flow.FlowActivity
+import com.example.kotlindemo.base.BaseActivity
+import com.example.kotlindemo.study.flow.FlowActivity
 import com.example.kotlindemo.databinding.ActivityLinagePageBinding
 import com.example.kotlindemo.utils.binding
 import com.example.kotlindemo.utils.collectLast
 import com.example.kotlindemo.utils.colorSpan
 import com.example.kotlindemo.utils.getColor
 import com.example.kotlindemo.utils.setVisible
-import com.example.kotlindemo.activity.linkage.origin.TagState
+import com.example.kotlindemo.widget.flowlayout.TagState
 import com.zhaopin.common.widget.linkage.contract.ILinkageSecondaryScrollListener
 import com.zhaopin.list.multitype.adapter.MultiTypeAdapter
 import com.zhaopin.social.background.util.Bovb

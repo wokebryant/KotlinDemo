@@ -3,7 +3,7 @@ package com.example.kotlindemo.task.microenterprises.view.home
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.viewpager2.widget.ViewPager2
-import com.example.kotlindemo.activity.BaseActivity
+import com.example.kotlindemo.base.BaseActivity
 import com.example.kotlindemo.databinding.BMainMicroFragmentResumeHomeBinding
 import com.example.kotlindemo.databinding.BMainMicroFragmentResumeTabItemBinding
 import com.example.kotlindemo.task.microenterprises.bean.MircoResumeJobBean

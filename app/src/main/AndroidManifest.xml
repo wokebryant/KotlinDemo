@@ -14,7 +14,7 @@
         android:theme="@style/AppTheme"
         android:networkSecurityConfig="@xml/network_config"
         tools:targetApi="n">
-        <activity android:name=".activity.BaseActivity"/>
+        <activity android:name=".base.BaseActivity"/>
         <activity android:name=".activity.MainActivity"
                   android:exported="true">
             <intent-filter>
@@ -30,7 +30,7 @@
         <activity android:name=".activity.ViewPager2Activity"/>
         <activity android:name=".activity.TransformActivity"/>
         <activity android:name=".activity.MotionActivity"/>
-        <activity android:name=".activity.flow.FlowActivity"/>
+        <activity android:name=".study.flow.FlowActivity"/>
         <activity android:name=".study.motion.MotionSingleTranslationActivity"/>
         <activity android:name=".study.motion.MotionMultiTranslationActivity"/>
         <activity android:name=".study.motion.MotionKeyPositionActivity"/>
@@ -41,7 +41,7 @@
         <activity android:name=".activity.MarkActivity"/>
         <activity android:name=".task.mutildelivery.DeliveryActivity"/>
         <activity android:name=".task.appbar.AppBarActivity"/>
-        <activity android:name=".activity.linkage.LinkageActivity"/>
+        <activity android:name=".task.linkage.LinkageActivity"/>
         <activity android:name=".study.mvi.MviSampleActivity"/>
         <activity android:name=".task.microenterprises.view.home.MicroResumeHomeFragment"/>
         <activity android:name=".task.jobtag.card.RecommendJobActivity"/>

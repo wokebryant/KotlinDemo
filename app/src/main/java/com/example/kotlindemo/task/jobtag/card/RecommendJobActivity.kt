@@ -1,13 +1,11 @@
 package com.example.kotlindemo.task.jobtag.card
 
 import android.os.Bundle
-import com.example.kotlindemo.activity.BaseActivity
+import com.example.kotlindemo.base.BaseActivity
 import com.example.kotlindemo.databinding.ActivityRecommendJobBinding
 import com.example.kotlindemo.utils.binding
 import com.example.kotlindemo.utils.setGone
 import com.example.kotlindemo.utils.setVisible
-import com.zhaopin.social.module_common_util.ext.onClick
-import com.zhaopin.toast.showToast
 
 /**
  * @Description 测试首页
@@ -66,10 +64,6 @@ class RecommendJobActivity : BaseActivity() {
                    progressBar.setGone()
                    layoutEmpty.hide()
                 }, 2000)
-            }
-
-            inLayout.root.onClick {
-                showToast("点击卡片")
             }
         }
     }

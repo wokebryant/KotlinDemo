@@ -3,7 +3,7 @@ package com.example.kotlindemo.study.mvi
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
-import com.example.kotlindemo.activity.BaseActivity
+import com.example.kotlindemo.base.BaseActivity
 import com.example.kotlindemo.databinding.ActivityMviSampleBinding
 import com.example.kotlindemo.study.mvi.core.collectEvent
 import com.example.kotlindemo.study.mvi.core.collectState

@@ -11,17 +11,19 @@ import com.example.kotlindemo.study.mvi.core.IUiState
  */
 
 data class SearchBridgeState (
+    /** 是否展示展开更多按钮 */
+    val showExpandAll: Boolean = false,
     /** 搜索列表（搜索历史和订阅记录） */
     val searchList: List<Any>? = emptyList(),
     /** 职位推荐列表 */
-    val recommendList: List<Any>? = emptyList(),
+    val recommendData: SearchRecommendJobSate? = null,
     /** 广告Banner列表 */
     val bannerList: List<Any>? = emptyList(),
-    /** 搜索结果列表 */
-    val searchResultList: List<Any>? = emptyList(),
+    /** 关键词联想列表 */
+    val keyWordList: List<String>? = emptyList(),
     /** 页面状态 */
     val pageState: PageState = PageState.Loading
-) : IUiState
+): IUiState
 
 sealed class SearchBridgeEvent : IUiEvent {
     /** 展示取消订阅并删除全部历史记录弹窗 */
@@ -29,7 +31,9 @@ sealed class SearchBridgeEvent : IUiEvent {
     /** 展示删除全部历史记录弹窗 */
     object ShowClearAllDialog : SearchBridgeEvent()
     /** 展示取消订阅并删除记录弹窗 */
-    object ShowUnsubscribeAndClearDialog : SearchBridgeEvent()
+    data class ShowUnsubscribeAndClearDialog(val index: Int) : SearchBridgeEvent()
+    /** 删除单条历史记录（无订阅） */
+    data class ClearSingleHistory(val index: Int) : SearchBridgeEvent()
 }
 
 enum class PageState {
@@ -43,8 +47,11 @@ enum class PageState {
     Empty
 }
 
+/**
+ * 搜索/订阅Item UIState
+ */
 data class SearchItemState(
-    val id: String,
+    val id: Long,
     val title: String,
     val isSubscribe: Boolean,
     val workCity: String,
@@ -57,4 +64,20 @@ data class SearchItemState(
     val industry: String,
     val onItemClick: (Int, SearchItemState) -> Unit,
     val onItemDelete: (Int, SearchItemState) -> Unit
+)
+
+/**
+ * 推荐职位 UIState
+ */
+data class SearchRecommendJobSate(
+    val title: String,
+    val itemList:  List<SearchRecommendJobItemState>
+)
+
+/**
+ * 推荐职位 Item UIState
+ */
+data class SearchRecommendJobItemState(
+    val code: String,
+    val name: String
 )

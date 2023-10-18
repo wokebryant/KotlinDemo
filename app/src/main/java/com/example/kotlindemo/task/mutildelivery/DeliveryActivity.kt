@@ -2,14 +2,9 @@ package com.example.kotlindemo.task.mutildelivery
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.os.PersistableBundle
-import android.view.View
-import android.view.ViewGroup
-import androidx.activity.ComponentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.kotlindemo.activity.BaseActivity
+import com.example.kotlindemo.base.BaseActivity
 import com.example.kotlindemo.databinding.ActivityMultiDeliveryBinding
-import com.example.kotlindemo.task.mutildelivery.rankmulti.PositionRankMultiView
 import com.example.kotlindemo.utils.binding
 
 /**

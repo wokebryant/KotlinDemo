@@ -1,6 +1,6 @@
 package com.example.kotlindemo.task.search
 
-import com.example.kotlindemo.activity.linkage.KeepProtocol
+import com.example.kotlindemo.task.linkage.KeepProtocol
 
 /**
  * @Description 职位搜索桥页面数据Bean

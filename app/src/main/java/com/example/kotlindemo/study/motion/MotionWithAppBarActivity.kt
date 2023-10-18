@@ -1,7 +1,7 @@
 package com.example.kotlindemo.study.motion
 
 import android.os.Bundle
-import com.example.kotlindemo.activity.BaseActivity
+import com.example.kotlindemo.base.BaseActivity
 import com.example.kotlindemo.databinding.ActivityMotionAppBarBinding
 import com.example.kotlindemo.utils.binding
 

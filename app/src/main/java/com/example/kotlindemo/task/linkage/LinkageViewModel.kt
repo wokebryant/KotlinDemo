@@ -1,8 +1,8 @@
-package com.example.kotlindemo.activity.linkage
+package com.example.kotlindemo.task.linkage
 
 import com.example.kotlindemo.study.mvi.core.IUiIntent
-import com.example.kotlindemo.base.mvi.MviViewModel
-import com.example.kotlindemo.activity.linkage.origin.TagState
+import com.example.kotlindemo.base.MviViewModel
+import com.example.kotlindemo.widget.flowlayout.TagState
 
 /**
  * @Description 筛选页数据ViewModel
@@ -97,9 +97,11 @@ class LinkageViewModel(
     private fun deleteLinkageTag(items: Set<LinkageChildItem>) {
         val childItem = items.toList()[0]
         val deleteIndexData = repository.getDeleteItemIndexData(childItem)
-        sendUiEvent(LinkageEvent.OnLinkageItemRemove(
-            data = deleteIndexData
-        ))
+        sendUiEvent(
+            LinkageEvent.OnLinkageItemRemove(
+                data = deleteIndexData
+            )
+        )
     }
 
     /**
@@ -128,9 +130,11 @@ class LinkageViewModel(
      */
     private fun clearLinkageTag() {
         val listSize = repository.getFilterListSize()
-        sendUiEvent(LinkageEvent.OnLinkageItemClear(
-            size = listSize
-        ))
+        sendUiEvent(
+            LinkageEvent.OnLinkageItemClear(
+                size = listSize
+            )
+        )
     }
 
     /**

@@ -1,4 +1,4 @@
-package com.example.kotlindemo.activity.linkage.origin;
+package com.example.kotlindemo.widget.flowlayout;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -71,11 +71,11 @@ public class TagFlowLayoutOrigin1 extends FlowLayoutOrigin1
         int cCount = getChildCount();
         for (int i = 0; i < cCount; i++) {
             TagView tagView = (TagView) getChildAt(i);
-            if (tagView.getVisibility() == View.GONE) {
+            if (tagView.getVisibility() == GONE) {
                 continue;
             }
-            if (tagView.getTagView().getVisibility() == View.GONE) {
-                tagView.setVisibility(View.GONE);
+            if (tagView.getTagView().getVisibility() == GONE) {
+                tagView.setVisibility(GONE);
             }
         }
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);

@@ -3,7 +3,7 @@ package com.example.kotlindemo.task.microenterprises.view.page
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
-import com.example.kotlindemo.BaseFragment
+import com.example.kotlindemo.base.BaseFragment
 import com.example.kotlindemo.databinding.BMainMicroFragmentResumeListBinding
 import com.example.kotlindemo.study.mvi.core.collectEvent
 import com.example.kotlindemo.study.mvi.core.collectState

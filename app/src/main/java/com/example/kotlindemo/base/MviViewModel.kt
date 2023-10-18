@@ -1,4 +1,4 @@
-package com.example.kotlindemo.base.mvi
+package com.example.kotlindemo.base
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

@@ -51,8 +51,8 @@
         app:duration="200"
         app:motionInterpolator="easeInOut">
 
-        <OnClick app:targetId="@id/tv_collapse"
-                 app:clickAction="transitionToStart"/>
+<!--        <OnClick app:targetId="@id/tv_collapse"-->
+<!--                 app:clickAction="transitionToStart"/>-->
 
     </Transition>
 

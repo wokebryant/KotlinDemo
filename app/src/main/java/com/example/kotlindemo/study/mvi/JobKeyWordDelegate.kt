@@ -9,26 +9,22 @@ import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlindemo.R
-import com.example.kotlindemo.activity.linkage.KeepProtocol
-import com.example.kotlindemo.activity.linkage.origin.FlowLayoutOrigin1
-import com.example.kotlindemo.activity.linkage.origin.TagAdapterOrigin1
+import com.example.kotlindemo.task.linkage.KeepProtocol
+import com.example.kotlindemo.widget.flowlayout.FlowLayoutOrigin1
+import com.example.kotlindemo.widget.flowlayout.TagAdapterOrigin1
 import com.example.kotlindemo.databinding.BHomeItemJobKeywordBinding
 import com.example.kotlindemo.databinding.BHomeItemJobKeywordTagBinding
 import com.example.kotlindemo.task.negavition.ContentRecommendDetailDialog
-import com.example.kotlindemo.task.negavition.PositionNegativeFeedbackPanel
-import com.example.kotlindemo.task.negavition.getMockData
 import com.example.kotlindemo.utils.copyOf
 import com.example.kotlindemo.utils.getColor
 import com.example.kotlindemo.utils.setGone
 import com.zhaopin.list.multitype.adapter.MultiTypeAdapter
 import com.zhaopin.list.multitype.adapter.setList
 import com.zhaopin.list.multitype.binder.BindingViewDelegate
-import com.zhaopin.social.appbase.util.curContext
 import com.zhaopin.social.background.util.Bovb
 import com.zhaopin.social.common.extension.setVisible
 import com.zhaopin.social.module_common_util.ext.dp
 import com.zhaopin.social.module_common_util.ext.onClick
-import com.zhaopin.toast.showToast
 
 /**
  * @Description 关键词入口Item
