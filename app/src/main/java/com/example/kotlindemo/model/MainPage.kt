@@ -32,5 +32,6 @@ sealed class MainItemType {
     object Linkage: MainItemType()
     object MircoCompany: MainItemType()
     object SearchBridge: MainItemType()
+    object SearchResult: MainItemType()
     object PositionRank: MainItemType()
 }

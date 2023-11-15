@@ -35,7 +35,7 @@ class JobFlowSelectAdapter : FlowMVXLayoutAdapter<JobFlowLayoutUIState, ItemJobF
             binding.tvTag.isSelected = data.selected
             binding.tvTag.typeface = if (data.selected) Typeface.DEFAULT_BOLD else Typeface.DEFAULT
         }
-        if (position == 0) {
+        if (position == 0 && data.title.isNotEmpty()) {
             binding.tvTitle.setVisible()
         } else {
             binding.tvTitle.setGone()

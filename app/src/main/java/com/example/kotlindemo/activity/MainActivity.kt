@@ -16,6 +16,7 @@ import com.example.kotlindemo.task.appbar.AppBarActivity
 import com.example.kotlindemo.task.microenterprises.view.home.MicroResumeHomeFragment
 import com.example.kotlindemo.task.mutildelivery.DeliveryActivity
 import com.example.kotlindemo.task.search.PositionSearchBridgeActivity
+import com.example.kotlindemo.task.searchresult.PositionSearchResultActivity
 import com.example.kotlindemo.utils.AppUtil
 import com.example.kotlindemo.utils.StatusBarUtil
 import com.example.kotlindemo.utils.binding
@@ -75,6 +76,8 @@ class MainActivity : BaseActivity() {
             MainItemType.MircoCompany -> AppUtil.startActivity<MicroResumeHomeFragment>(this) {}
 
             MainItemType.SearchBridge -> AppUtil.startActivity<PositionSearchBridgeActivity>(this) {}
+
+            MainItemType.SearchResult -> AppUtil.startActivity<PositionSearchResultActivity>(this) {}
 
             MainItemType.PositionRank -> AppUtil.startActivity<DeliveryActivity>(this) {}
         }

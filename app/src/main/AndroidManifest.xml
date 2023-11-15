@@ -46,6 +46,7 @@
         <activity android:name=".task.microenterprises.view.home.MicroResumeHomeFragment"/>
         <activity android:name=".task.jobtag.card.RecommendJobActivity"/>
         <activity android:name=".task.search.PositionSearchBridgeActivity"/>
+        <activity android:name=".task.searchresult.PositionSearchResultActivity"/>
 
         <!-- 定义Startup Provider参数 -->
         <provider
