@@ -2,8 +2,9 @@ package com.example.kotlindemo.jetpack.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.map
+import androidx.lifecycle.switchMap
 
 /**
  *  ViewModel 数据通过LiveData包装，可以将数据变化通知给观察者
@@ -39,7 +40,7 @@ class MainViewModel(countReserved: Int) : ViewModel() {
      */
     private val userLiveData = MutableLiveData<User>()
 
-    val userName: LiveData<String> = Transformations.map(userLiveData) {
+    val userName: LiveData<String> = userLiveData.map {
         "${it.firstName} ${it.secondName}"
     }
 
@@ -49,7 +50,7 @@ class MainViewModel(countReserved: Int) : ViewModel() {
      */
     private val userIdLiveData = MutableLiveData<String>()
 
-    val user: LiveData<User> = Transformations.switchMap(userIdLiveData) {
+    val user: LiveData<User> = userIdLiveData.switchMap {
         Repository.getUser(it)
     }
 

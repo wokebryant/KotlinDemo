@@ -33,6 +33,7 @@ class SimpleWorker(context: Context, params: WorkerParameters) : Worker(context,
             when (it.state) {
                 WorkInfo.State.SUCCEEDED -> Log.d(TAG, "")
                 WorkInfo.State.FAILED -> Log.d(TAG, "")
+                else -> {}
             }
         })
     }

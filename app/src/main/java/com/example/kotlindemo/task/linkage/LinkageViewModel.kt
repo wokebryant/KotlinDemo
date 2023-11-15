@@ -79,6 +79,7 @@ class LinkageViewModel(
                 // 再添加当前的工资Item
                 repository.selectedList.add(salaryItem)
             }
+            else -> { }
         }
         // 删除 不限/全部 选项
         val filterSelectedList = repository.selectedList.filter { it.code != "-1" }
