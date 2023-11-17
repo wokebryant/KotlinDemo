@@ -86,4 +86,10 @@ val mainItemList = mutableListOf(
         textColor = R.color.C_W1,
         bgColor = R.color.C_P3
     ),
+    MainItemState(
+        title = "收藏页Compose",
+        type = MainItemType.CollectCompose,
+        textColor = R.color.C_W1,
+        bgColor = R.color.C_P3
+    ),
 )

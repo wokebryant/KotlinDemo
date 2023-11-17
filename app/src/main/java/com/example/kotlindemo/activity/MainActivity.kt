@@ -6,6 +6,7 @@ import android.view.Window
 import com.example.kotlindemo.study.flow.FlowActivity
 import com.example.kotlindemo.adapter.delegate.MainItemDelegate
 import com.example.kotlindemo.base.BaseActivity
+import com.example.kotlindemo.compose.CollectActivity
 import com.example.kotlindemo.data.mainItemList
 import com.example.kotlindemo.task.linkage.LinkageActivity
 import com.example.kotlindemo.databinding.ActivityMainBinding
@@ -80,6 +81,8 @@ class MainActivity : BaseActivity() {
             MainItemType.SearchResult -> AppUtil.startActivity<PositionSearchResultActivity>(this) {}
 
             MainItemType.PositionRank -> AppUtil.startActivity<DeliveryActivity>(this) {}
+
+            MainItemType.CollectCompose -> AppUtil.startActivity<CollectActivity>(this) {}
         }
     }
 

@@ -34,4 +34,5 @@ sealed class MainItemType {
     object SearchBridge: MainItemType()
     object SearchResult: MainItemType()
     object PositionRank: MainItemType()
+    object CollectCompose: MainItemType()
 }

@@ -48,6 +48,7 @@
         <activity android:name=".task.search.PositionSearchBridgeActivity"/>
         <activity android:name=".task.searchresult.PositionSearchResultActivity"/>
         <activity android:name=".compose.ComposeActivity"/>
+        <activity android:name=".compose.CollectActivity"/>
 
         <!-- 定义Startup Provider参数 -->
         <provider
