@@ -28,7 +28,7 @@ class FoldTextView @JvmOverloads constructor(
 
     companion object {
         private const val ELLIPSIZE_END = "..."
-        private const val MAX_LINE = 2
+        private const val MAX_LINE = 4
         private const val EXPAND_TIP_TEXT = "  收起全文"
         private const val FOLD_TIP_TEXT = "全文"
         private const val IMAGE_SPAN_TEXT = "[]"
@@ -36,9 +36,6 @@ class FoldTextView @JvmOverloads constructor(
         private const val TAG_COLOR = -0x1
         private val BEHAVIOR_COLOR = Color.parseColor("#ffff00")
         private val TARGET_COLOR = Color.parseColor("#01ffce")
-        private val TARGET_HIDE_COLOR = Color.parseColor("#242F35")
-        private const val LIGHT_TEXT_FLASH_NUM = 4
-        private const val LIGHT_TEXT_FLASH_INTERVAL = 300L
         private const val END = 0
     }
 
@@ -92,7 +89,7 @@ class FoldTextView @JvmOverloads constructor(
     //是否展示高亮文本
     var isShowLightText = false
     //是否展示图片
-    var isShowImage = false
+    var isShowImage = true
 
     //富文本效果
     private val textSpan by lazy { SpannableStringBuilder(mOriginalText) }
@@ -103,16 +100,6 @@ class FoldTextView @JvmOverloads constructor(
 
     var behaviorText = "Mark: "
     var targetText = "ThePeople"
-    var currentFlashNum = 0
-
-    private var timer = Timer()
-    private var flashTask: TimerTask? = null
-
-    inner class FlashTask : TimerTask() {
-        override fun run() {
-            startTextFlashAnim()
-        }
-    }
 
     init {
         initAttributes()
@@ -258,7 +245,7 @@ class FoldTextView @JvmOverloads constructor(
             } else {
                 end--
             }
-            //TODO 获取裁剪后的文本,如果显示标签的话，需要额外减去1，预留一个字符串的空间
+            // 获取裁剪后的文本,如果显示标签的话，需要额外减去1，预留一个字符串的空间
             var ellipsize = if (isShowTag) mOriginalText.subSequence(0, end - 1) else mOriginalText.subSequence(0, end)
             //如果显示图片，需要裁剪图片字符
             if (isShowImage) {
@@ -290,10 +277,6 @@ class FoldTextView @JvmOverloads constructor(
         }
     }
 
-    private fun handleFullTextInMaxLine() {
-        //TODO 针对，一行，两行顶到头，还要展示标签的情况
-    }
-
     /**
      *  拼接图片
      */
@@ -301,7 +284,7 @@ class FoldTextView @JvmOverloads constructor(
     private fun setImageSpan() {
         textSpan.clear()
         val imageStr = SpannableString(IMAGE_SPAN_TEXT)
-        val drawable = resources.getDrawable(R.drawable.ic_question_white)
+        val drawable = resources.getDrawable(R.drawable.ic_edu)
         drawable.setBounds(0, 0, dip2px(15.6f), dip2px(15.6f))
         imageSpan = CenterImageSpan(drawable)
         imageStr.setSpan(imageSpan, 0, IMAGE_SPAN_TEXT.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
@@ -366,31 +349,6 @@ class FoldTextView @JvmOverloads constructor(
             endTargetIndex,
             Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
         )
-    }
-
-    /**
-     *  高亮文本闪烁效果
-     */
-    fun startTextFlashTask () {
-        flashTask?.cancel()
-        flashTask = FlashTask()
-        timer.schedule(flashTask, LIGHT_TEXT_FLASH_INTERVAL, LIGHT_TEXT_FLASH_INTERVAL)
-    }
-
-    private fun startTextFlashAnim() {
-        if (currentFlashNum >= LIGHT_TEXT_FLASH_NUM) {
-            flashTask?.cancel()
-            return
-        }
-        currentFlashNum ++
-
-        val currentColor = targetSpan.foregroundColor
-        val nextColor = if (currentColor == TARGET_COLOR) TARGET_HIDE_COLOR else TARGET_COLOR
-
-        targetSpan = ForegroundColorSpan(nextColor)
-        setTargetSpan()
-
-        super.setText(textSpan, BufferType.NORMAL)
     }
 
     @SuppressLint("DrawAllocation")

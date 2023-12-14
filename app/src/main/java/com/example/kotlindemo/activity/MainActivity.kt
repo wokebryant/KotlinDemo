@@ -14,6 +14,7 @@ import com.example.kotlindemo.jetpack.paging3.PagingActivity
 import com.example.kotlindemo.model.MainItemType
 import com.example.kotlindemo.study.mvi.MviSampleActivity
 import com.example.kotlindemo.task.appbar.AppBarActivity
+import com.example.kotlindemo.task.jobdetail.JobDetailActivity
 import com.example.kotlindemo.task.microenterprises.view.home.MicroResumeHomeFragment
 import com.example.kotlindemo.task.mutildelivery.DeliveryActivity
 import com.example.kotlindemo.task.search.PositionSearchBridgeActivity
@@ -81,6 +82,8 @@ class MainActivity : BaseActivity() {
             MainItemType.SearchResult -> AppUtil.startActivity<PositionSearchResultActivity>(this) {}
 
             MainItemType.PositionRank -> AppUtil.startActivity<DeliveryActivity>(this) {}
+
+            MainItemType.JobDetail -> AppUtil.startActivity<JobDetailActivity>(this) {}
 
             MainItemType.CollectCompose -> AppUtil.startActivity<CollectActivity>(this) {}
         }

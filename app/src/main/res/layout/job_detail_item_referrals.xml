@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhaopin.common.widget.RCConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/C_W1"
+    android:layout_marginTop="10dp"
+    android:layout_marginHorizontal="10dp"
+    android:paddingHorizontal="12dp"
+    android:paddingVertical="16dp"
+    app:layout_radius="10dp">
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="14dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/job_detail_referrals_bg"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <com.zhaopin.common.widget.ZLCircleImageView
+        android:id="@+id/iv_avatar"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="12dp"
+        android:src="@drawable/c_common_icon_hr_new_default"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        android:id="@+id/iv_title_bg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:layout_marginBottom="3.5dp"
+        android:src="@drawable/job_detail_referrals_title_bg"
+        app:layout_constraintBottom_toBottomOf="@id/iv_avatar"
+        app:layout_constraintStart_toEndOf="@id/iv_avatar"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="2dp"
+        android:text="@string/recommend_reason"
+        style="@style/style_text_bold_14"
+        android:textColor="@color/C_B1"
+        app:layout_constraintStart_toEndOf="@id/iv_avatar"
+        app:layout_constraintBottom_toBottomOf="@id/iv_title_bg"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="12dp"
+        style="@style/style_text_bold_14"
+        android:textColor="@color/C_4C6EE0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_avatar"
+        tools:text="行业龙头企业，福利好，上市机率高"/>
+
+</com.zhaopin.common.widget.RCConstraintLayout>

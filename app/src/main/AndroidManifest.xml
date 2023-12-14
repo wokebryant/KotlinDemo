@@ -49,6 +49,7 @@
         <activity android:name=".task.searchresult.PositionSearchResultActivity"/>
         <activity android:name=".compose.ComposeActivity"/>
         <activity android:name=".compose.CollectActivity"/>
+        <activity android:name=".task.jobdetail.JobDetailActivity"/>
 
         <!-- 定义Startup Provider参数 -->
         <provider

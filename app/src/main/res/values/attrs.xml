@@ -88,6 +88,7 @@
   <declare-styleable name="FoldTextView">
     <attr name="showTip" format="boolean" />  <!-- 是否展示提示 -->
     <attr name="showMaxLine" format="integer" />  <!-- 文本展示最大行数 -->
+    <attr name="showMaxHeight" format="dimension" />  <!-- 文本展示最大高度 -->
     <attr name="tipGravity" format="integer" /> <!-- 提示位置 -->
     <attr name="tipColor" format="reference|color" /> <!-- 提示颜色 -->
     <attr name="tagColor" format="reference|color" /> <!-- 标签颜色 -->

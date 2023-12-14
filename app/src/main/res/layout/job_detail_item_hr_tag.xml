@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fl_root"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="4dp"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/tv_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="17dp"
+        android:gravity="center"
+        android:paddingHorizontal="3dp"
+        android:textSize="11sp"
+        android:textColor="@color/C_B2"
+        tools:text="今日回复 10+"/>
+
+</FrameLayout>

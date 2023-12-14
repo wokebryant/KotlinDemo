@@ -81,6 +81,12 @@ val mainItemList = mutableListOf(
         bgColor = R.color.C_P3
     ),
     MainItemState(
+        title = "职位详情页",
+        type = MainItemType.JobDetail,
+        textColor = R.color.C_W1,
+        bgColor = R.color.C_P3
+    ),
+    MainItemState(
         title = "职位排行榜",
         type = MainItemType.PositionRank,
         textColor = R.color.C_W1,

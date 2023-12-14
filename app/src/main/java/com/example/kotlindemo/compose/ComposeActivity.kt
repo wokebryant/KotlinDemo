@@ -3,7 +3,6 @@ package com.example.kotlindemo.compose
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.material.pullrefresh.PullRefreshIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
@@ -21,7 +20,10 @@ abstract class ComposeActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MainPage()
+            ZlTheme {
+                StatusBar()
+                MainPage()
+            }
         }
     }
 

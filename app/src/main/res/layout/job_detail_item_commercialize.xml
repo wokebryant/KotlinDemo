@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhaopin.common.widget.RCConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginTop="10dp"
+    android:layout_marginHorizontal="10dp"
+    app:layout_radius="10dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="11dp"
+        android:background="@drawable/job_detail_commercialize_bg" >
+
+        <TextView
+            android:id="@+id/tv_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="22dp"
+            android:maxWidth="227dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="邀请资深大牛优化简历，可大幅提升成功率"
+            android:textColor="@color/C_B1"
+            style="@style/style_text_bold_16"/>
+
+        <ImageView
+            android:id="@+id/iv_icon"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="14dp"
+            android:src="@drawable/ic_template"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_content"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_sub_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:textColor="@color/C_B2"
+            android:textSize="13sp"
+            app:layout_constraintStart_toEndOf="@id/iv_icon"
+            app:layout_constraintTop_toTopOf="@id/iv_icon"
+            app:layout_constraintBottom_toBottomOf="@id/iv_icon"
+            tools:text="为你甄选出128份模版"/>
+
+        <ImageView
+            android:id="@+id/iv_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:src="@drawable/job_detail_commercialize_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+            android:id="@+id/tv_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="#B35C6A99"
+            android:layout_marginBottom="4dp"
+            tools:text="马上提升"
+            app:layout_constraintTop_toTopOf="@id/iv_btn"
+            app:layout_constraintBottom_toBottomOf="@id/iv_btn"
+            app:layout_constraintStart_toStartOf="@id/iv_btn"
+            app:layout_constraintEnd_toEndOf="@id/iv_btn"/>
+        
+        <ImageView
+            android:id="@+id/iv_close"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginTop="4dp"
+            android:src="@drawable/job_detail_commercialize_close"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_title"
+        android:layout_width="wrap_content"
+        android:layout_height="22dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="center_vertical"
+        android:paddingStart="10dp"
+        android:paddingEnd="12dp"
+        android:background="@drawable/job_detail_commercialize_purple">
+
+        <ImageView
+            android:id="@+id/iv_light"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:src="@drawable/ic_light" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:textSize="12sp"
+            android:textColor="@color/C_W1"
+            tools:text="高成功率小技巧" />
+
+    </LinearLayout>
+
+</com.zhaopin.common.widget.RCConstraintLayout>

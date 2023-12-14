@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhaopin.common.widget.RCLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="72dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginHorizontal="10dp"
+    android:layout_marginTop="10dp"
+    android:paddingVertical="16dp"
+    android:paddingHorizontal="12dp"
+    android:gravity="center_vertical"
+    android:background="@color/C_W1"
+    app:layout_radius="10dp">
+    
+    <com.zhaopin.common.widget.ZLCircleImageView
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:src="@drawable/c_common_icon_hr_new_default" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="3dp"
+        android:src="@drawable/job_detail_expert_title"/>
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:textSize="13sp"
+        android:textColor="@color/C_B1"
+        tools:text="职位高度匹配，面试机率大"/>
+
+</com.zhaopin.common.widget.RCLinearLayout>
