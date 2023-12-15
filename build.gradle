@@ -14,7 +14,7 @@ buildscript {
         maven { url 'https://maven-central.zhaopin.com/repository/zl-app-group/' }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.1.2'
+        classpath 'com.android.tools.build:gradle:7.2.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
