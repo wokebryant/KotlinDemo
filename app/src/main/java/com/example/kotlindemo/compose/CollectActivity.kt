@@ -1,9 +1,11 @@
 package com.example.kotlindemo.compose
 
+import androidx.activity.viewModels
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -14,59 +16,80 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.layout.wrapContentWidth
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.ModalBottomSheetState
+import androidx.compose.material.ModalBottomSheetValue
 import androidx.compose.material.Scaffold
 import androidx.compose.material.ScrollableTabRow
 import androidx.compose.material.Surface
+import androidx.compose.material.TabRow
 import androidx.compose.material.Text
+import androidx.compose.material.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshotFlow
+import androidx.compose.runtime.snapshots.SnapshotMutableState
+import androidx.compose.runtime.snapshots.SnapshotStateMap
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.ExperimentalTextApi
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.rememberTextMeasurer
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
+import androidx.paging.filter
+import coil.compose.AsyncImage
+import coil.request.ImageRequest
 import com.example.kotlindemo.R
+import com.example.kotlindemo.compose.data.CollectCompanyItem
 import com.example.kotlindemo.compose.data.CollectJobItem
 import com.example.kotlindemo.compose.ui.ZlColors
 import com.example.kotlindemo.compose.util.ComposeUIUtil
 import com.example.kotlindemo.compose.viewmodel.CollectViewModel
 import com.example.kotlindemo.compose.widget.CenterTopAppBar
-import com.example.kotlindemo.compose.widget.LottieHeader
-import com.example.kotlindemo.compose.widget.LottieHeader2
+import com.example.kotlindemo.compose.widget.CollectDialog
+import com.example.kotlindemo.compose.widget.LoadMoreLazyColum
 import com.example.kotlindemo.compose.widget.PagerTab
 import com.example.kotlindemo.compose.widget.PagerTabIndicator
-import com.example.kotlindemo.compose.widget.PullRefresh
-import com.loren.component.view.composesmartrefresh.SmartSwipeRefresh
-import com.loren.component.view.composesmartrefresh.SmartSwipeStateFlag
-import com.loren.component.view.composesmartrefresh.rememberSmartSwipeRefreshState
+import com.example.kotlindemo.compose.widget.refresh.SwipeRefreshLayout
+import com.example.kotlindemo.compose.widget.refresh.header.LoadHeader
+import com.example.kotlindemo.utils.copyOf
 import com.zhaopin.social.appbase.util.curContext
 import com.zhaopin.toast.showToast
-import com.zj.refreshlayout.SwipeRefreshLayout
-import kotlinx.coroutines.delay
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 /**
@@ -74,11 +97,10 @@ import kotlinx.coroutines.launch
  * @Author LuoJia
  * @Date 2023/11/15
  */
-@OptIn(ExperimentalFoundationApi::class, ExperimentalLayoutApi::class)
+@OptIn(ExperimentalFoundationApi::class, ExperimentalLayoutApi::class, ExperimentalMaterialApi::class)
 class CollectActivity : ComposeActivity() {
 
-    private val pageList = arrayOf("职位", "公司")
-    private val tagList = listOf("1-3年", "大专", "企业客户(2B)", "电话销售")
+    private val viewModel by viewModels<CollectViewModel>()
 
     @Preview
     @Composable
@@ -87,15 +109,13 @@ class CollectActivity : ComposeActivity() {
             ComposeUIUtil.hackTabMinWidth()
         }
 
-        val jobViewModel = viewModel<CollectViewModel>()
-        val jobList = jobViewModel.jobData.collectAsLazyPagingItems()
-//        val jobList = null
-        if (jobList.itemSnapshotList.isEmpty()) {
-            return
-        }
+        // 获取数据
+        val pageList = viewModel.pageList
+        viewModel.getJobData()
 
         val pagerState = rememberPagerState()
         val scope = rememberCoroutineScope()
+        val bottomSheetState = rememberModalBottomSheetState(ModalBottomSheetValue.Hidden)
 
         Scaffold(
             topBar = { CollectAppBar() }
@@ -137,30 +157,36 @@ class CollectActivity : ComposeActivity() {
                     modifier = Modifier.fillMaxSize()
                 ) { pageIndex ->
                     if (pageIndex == 0) {
-                        JobPage3(jobList)
+                        JobPage(scope, bottomSheetState)
                     } else {
-                        CompanyPage()
+                        CompanyPage(scope, bottomSheetState)
                     }
                 }
             }
         }
+
+        // 底部弹窗
+        CollectDialog(
+            onClick = {
+
+            },
+            scope = scope,
+            state = bottomSheetState
+        )
     }
 
     @Composable
-    fun JobPage3(list: LazyPagingItems<CollectJobItem>?) {
-        var refreshing by remember { mutableStateOf(false) }
-        LaunchedEffect(refreshing) {
-            if (refreshing) {
-                delay(2000)
-                refreshing = false
-            }
-        }
+    fun JobPage(
+        scope: CoroutineScope,
+        bottomSheetState: ModalBottomSheetState
+    ) {
+        val list: LazyPagingItems<CollectJobItem> = viewModel.jobData.collectAsLazyPagingItems()
 
         SwipeRefreshLayout(
-            isRefreshing = refreshing,
-            onRefresh = { refreshing = true },
+            isRefreshing = list.loadState.refresh is LoadState.Loading && list.itemCount > 0,
+            onRefresh = { list.refresh() },
             indicator = {
-                LottieHeader2(state = it)
+                LoadHeader(state = it)
             },
             modifier = Modifier.background(ZlColors.C_S2)
         ) {
@@ -170,100 +196,83 @@ class CollectActivity : ComposeActivity() {
                     .background(ZlColors.C_S2)
                     .padding(horizontal = 8.dp)
             ) {
-                LazyColumn(
+                LoadMoreLazyColum(
+                    listSize = list.itemCount,
+                    loadState = list.loadState,
                     modifier = Modifier.fillMaxSize()
                 ) {
-                    items(10) {
-                        val itemData = list?.get(it) ?: return@items
-                        CollectJobCard(itemData)
+                    items(
+                        count = list.itemCount,
+                        key = {
+                            list[it]?.jobName ?: ""
+                        }
+                    ) { it ->
+                        val itemData = list[it] ?: return@items
+                        CollectJobCard(
+                            jobItem = itemData,
+                            onLongClick = {
+                                scope.launch {
+                                    bottomSheetState.show()
+                                }
+                            }
+                        )
                     }
                 }
             }
         }
     }
 
-//    @Composable
-//    fun JobPage2() {
-//        PullRefresh {
-//            Box(
-//                modifier = Modifier
-//                    .fillMaxSize()
-//                    .background(ZlColors.C_S2)
-//                    .padding(horizontal = 8.dp)
-//            ) {
-//                LazyColumn(
-//                    modifier = Modifier.fillMaxSize()
-//                ) {
-//                    items(10) {
-//                        CollectJobCard()
-//                    }
-//                }
-//            }
-//        }
-//    }
-
-//    @Composable
-//    fun JobPage1() {
-//        val refreshState = rememberSmartSwipeRefreshState()
-//
-//        LaunchedEffect(refreshState.refreshFlag) {
-//            if (refreshState.isRefreshing()) {
-//                delay(2000)
-//                refreshState.refreshFlag = SmartSwipeStateFlag.SUCCESS
-//            }
-//        }
-//        SmartSwipeRefresh(
-//            modifier = Modifier.background(ZlColors.C_S2),
-//            state = refreshState,
-//            isNeedRefresh = true,
-//            isNeedLoadMore = true,
-//            headerIndicator = {
-//                LottieHeader(state = refreshState.refreshFlag)
-//            },
-//            onRefresh = {
-//
-//            },
-//            onLoadMore = {
-//
-//            }
-//        ) {
-//            Box(
-//                modifier = Modifier
-//                    .fillMaxSize()
-//                    .background(ZlColors.C_S2)
-//                    .padding(horizontal = 8.dp)
-//            ) {
-//                LazyColumn(
-//                    modifier = Modifier.fillMaxSize()
-//                ) {
-//                    items(10) {
-//                        CollectJobCard()
-//                    }
-//                }
-//            }
-//        }
-//    }
-
     @Composable
-    fun CompanyPage() {
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(ZlColors.C_S2)
-                .padding(horizontal = 8.dp)
+    fun CompanyPage(
+        scope: CoroutineScope,
+        bottomSheetState: ModalBottomSheetState
+    ) {
+        val list = viewModel.companyData.collectAsLazyPagingItems()
+
+        SwipeRefreshLayout(
+            isRefreshing = list.loadState.refresh is LoadState.Loading && list.itemCount > 0,
+            onRefresh = { list.refresh() },
+            indicator = {
+                LoadHeader(state = it)
+            },
+            modifier = Modifier.background(ZlColors.C_S2)
         ) {
-            LazyColumn(
-                modifier = Modifier.fillMaxSize()
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(ZlColors.C_S2)
+                    .padding(horizontal = 8.dp)
             ) {
-                items(3) {
-                    CollectCompanyCard()
+                LoadMoreLazyColum(
+                    listSize = list.itemCount,
+                    loadState = list.loadState,
+                    modifier = Modifier.fillMaxSize()
+                ) {
+                    items(list.itemCount) {
+                        val itemData = list[it] ?: return@items
+                        CollectCompanyCard(
+                            companyItem = itemData,
+                            onLongClick = {
+                                scope.launch {
+                                    bottomSheetState.show()
+                                }
+                            }
+                        )
+                    }
                 }
             }
         }
+
     }
 
+    @OptIn(ExperimentalTextApi::class)
     @Composable
-    fun CollectJobCard(jobItem: CollectJobItem) {
+    fun CollectJobCard(jobItem: CollectJobItem, onLongClick: () -> Unit) {
+        val contentColor = if (jobItem.isOffline) jobItem.offlineColor else jobItem.onlineColor
+        var jobNameWidth by remember {
+            mutableStateOf(300)
+        }
+
         Surface(
             modifier = Modifier
                 .fillMaxWidth()
@@ -271,35 +280,69 @@ class CollectActivity : ComposeActivity() {
                 .clip(RoundedCornerShape(10.dp))
                 .background(Color.White)
                 .padding(horizontal = 12.dp, vertical = 16.dp)
+                .pointerInput(Unit) {
+                    detectTapGestures(
+                        onLongPress = {
+                            onLongClick.invoke()
+                        },
+                        onTap = {
+
+                        }
+                    )
+                }
         ) {
             Column(
                 modifier = Modifier.fillMaxWidth()
             ) {
-                // 职位-公司
+                // 职位-工资
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                 ) {
-                    Text(
+                    Row(
                         modifier = Modifier
                             .fillMaxWidth()
                             .weight(1f)
                             .padding(end = 10.dp),
-                        text = jobItem.jobName,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis,
-                        style = TextStyle(
-                            fontSize = 17.sp,
-                            fontWeight = FontWeight.Bold,
-                            color = ZlColors.C_B1
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.Start
+                    ) {
+                        Text(
+                            modifier = Modifier.widthIn(max = 200.dp),
+                            text = jobItem.jobName,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
+                            style = TextStyle(
+                                fontSize = 18.sp,
+                                fontWeight = FontWeight.Bold,
+                                color = if (jobItem.isOffline) jobItem.offlineColor else jobItem.jobNameColor
+                            ),
                         )
-                    )
+                        if (jobItem.firstTagUrl.isNotEmpty()) {
+                            AsyncImage(
+                                model = ImageRequest.Builder(LocalContext.current).data(jobItem.firstTagUrl).build(),
+                                contentDescription = "",
+                                modifier = Modifier.padding(start = 5.dp)
+                            )
+                        }
+                        if (jobItem.secondTagUrl.isNotEmpty()) {
+                            AsyncImage(
+                                model = ImageRequest.Builder(LocalContext.current).data(jobItem.secondTagUrl).build(),
+                                contentDescription = "",
+                                modifier = Modifier
+                                    .padding(start = 5.dp)
+                                    .fillMaxWidth()
+                                    .weight(1f)
+                            )
+                        }
+                    }
+
                     Text(
                         modifier = Modifier.wrapContentWidth(),
-                        text = jobItem.salary,
+                        text = if (jobItem.isOffline) "职位已下线" else jobItem.salary,
                         style = TextStyle(
                             fontSize = 16.sp,
                             fontWeight = FontWeight.Bold,
-                            color = ZlColors.C_5B7BE9
+                            color = if (jobItem.isOffline) jobItem.offlineColor else jobItem.salaryColor
                         )
                     )
                 }
@@ -309,20 +352,20 @@ class CollectActivity : ComposeActivity() {
                         .fillMaxWidth()
                         .padding(top = 8.dp)
                 ) {
-                    CompanyText(text = jobItem.companyName, fontSize = 14.sp)
-                    CompanyText(text = jobItem.companyStrength, fontSize = 14.sp)
-                    CompanyText(text = jobItem.companySize, fontSize = 14.sp)
+                    CompanyText(text = jobItem.companyName, fontSize = 14.sp, color = contentColor)
+                    CompanyText(text = jobItem.companyStrength, fontSize = 14.sp, color = contentColor)
+                    CompanyText(text = jobItem.companySize, fontSize = 14.sp, color = contentColor)
                 }
                 // 标签
-                CollectFlow(jobItem.skillList)
+                CollectFlow(jobItem.skillList, contentColor)
                 // HR信息
-                HrLayout(jobItem)
+                HrLayout(jobItem, contentColor)
             }
         }
     }
 
     @Composable
-    private fun CollectCompanyCard() {
+    private fun CollectCompanyCard(companyItem: CollectCompanyItem, onLongClick: () -> Unit) {
         Surface(
             modifier = Modifier
                 .fillMaxWidth()
@@ -330,8 +373,15 @@ class CollectActivity : ComposeActivity() {
                 .clip(RoundedCornerShape(10.dp))
                 .background(Color.White)
                 .padding(horizontal = 12.dp, vertical = 16.dp)
-                .clickable {
-                    curContext.showToast("点击了")
+                .pointerInput(Unit) {
+                    detectTapGestures(
+                        onLongPress = {
+                            onLongClick.invoke()
+                        },
+                        onTap = {
+
+                        }
+                    )
                 }
         ) {
             Row(
@@ -353,10 +403,10 @@ class CollectActivity : ComposeActivity() {
                 ) {
                     // 公司名
                     Text(
-                        text = "智联招聘",
+                        text = companyItem.companyName,
                         style = TextStyle(
                             color = ZlColors.C_B1,
-                            fontSize = 17.sp,
+                            fontSize = 18.sp,
                             fontWeight = FontWeight.Bold
                         )
                     )
@@ -364,13 +414,13 @@ class CollectActivity : ComposeActivity() {
                     Row(
                         modifier = Modifier.padding(top = 8.dp)
                     ) {
-                        CompanyText(text = "其它", fontSize = 13.sp)
-                        CompanyText(text = "1000-9999人", fontSize = 13.sp)
-                        CompanyText(text = "互联网", fontSize = 13.sp)
+                        CompanyText(text = companyItem.companyProperty, fontSize = 13.sp)
+                        CompanyText(text = companyItem.companySize, fontSize = 13.sp)
+                        CompanyText(text = companyItem.industry, fontSize = 13.sp)
                     }
                     // 公司地址
                     Text(
-                        text = "北京市朝阳区阜荣街10号首开广场F5层",
+                        text = companyItem.address,
                         style = TextStyle(
                             color = ZlColors.C_666666,
                             fontSize = 13.sp,
@@ -405,7 +455,7 @@ class CollectActivity : ComposeActivity() {
     }
 
     @Composable
-    private fun CompanyText(text: String, fontSize: TextUnit) {
+    private fun CompanyText(text: String, fontSize: TextUnit, color: Color = ZlColors.C_B2) {
         Text(
             modifier = Modifier
                 .widthIn(max = 220.dp)
@@ -414,14 +464,14 @@ class CollectActivity : ComposeActivity() {
             style = TextStyle(
                 fontSize = fontSize,
                 fontWeight = FontWeight.Normal,
-                color = ZlColors.C_666666,
+                color = color,
             ),
             maxLines = 1
         )
     }
 
     @Composable
-    private fun CollectFlow(tagList: List<String>) {
+    private fun CollectFlow(tagList: List<String>, color: Color) {
         FlowRow(
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             modifier = Modifier.padding(top = 6.dp),
@@ -435,7 +485,7 @@ class CollectActivity : ComposeActivity() {
                         )
                         .padding(horizontal = 8.dp, vertical = 4.dp),
                     text = it,
-                    color = ZlColors.C_B2,
+                    color = color,
                     fontSize = 12.sp
                 )
             }
@@ -443,7 +493,7 @@ class CollectActivity : ComposeActivity() {
     }
 
     @Composable
-    private fun HrLayout(jobItem: CollectJobItem) {
+    private fun HrLayout(jobItem: CollectJobItem, color: Color) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -451,21 +501,24 @@ class CollectActivity : ComposeActivity() {
             verticalAlignment = Alignment.CenterVertically
         ) {
             Box(modifier = Modifier.wrapContentSize()) {
-                Image(
+                AsyncImage(
+                    model = ImageRequest.Builder(LocalContext.current).data(jobItem.hrAvatar).build(),
+                    placeholder = painterResource(id = R.drawable.c_common_icon_hr_new_default),
+                    contentDescription = "",
                     modifier = Modifier
                         .size(24.dp)
                         .clip(CircleShape),
-                    painter = painterResource(id = R.drawable.c_common_icon_hr_new_default),
-                    contentDescription = null,
-                    contentScale = ContentScale.Crop,
+                    contentScale = ContentScale.Crop
                 )
-                Image(
-                    painter = painterResource(id = R.drawable.c_common_icon_head_hr),
-                    contentDescription = null,
-                    modifier = Modifier
-                        .align(Alignment.BottomEnd)
-                        .size(8.dp)
-                )
+                if (jobItem.hrOnline) {
+                    Image(
+                        painter = painterResource(id = R.drawable.c_common_icon_head_hr),
+                        contentDescription = null,
+                        modifier = Modifier
+                            .align(Alignment.BottomEnd)
+                            .size(8.dp)
+                    )
+                }
             }
             Text(
                 modifier = Modifier
@@ -473,12 +526,12 @@ class CollectActivity : ComposeActivity() {
                     .fillMaxWidth()
                     .weight(1f),
                 text = jobItem.hrName,
-                color = ZlColors.C_666666,
+                color = color,
                 fontSize = 12.sp
             )
             Text(
                 text = jobItem.publishDate,
-                color = ZlColors.C_B2,
+                color = color,
                 fontSize = 13.sp
             )
         }

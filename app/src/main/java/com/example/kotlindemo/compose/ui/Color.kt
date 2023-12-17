@@ -21,5 +21,7 @@ object ZlColors{
 
     val C_666666 = Color(0xFF666666)
     val C_5B7BE9 = Color(0xFF5B7BE9)
+    val C_B1B7BE = Color(0xFFB1B7BE)
+    val C_AAB0B7 = Color(0xFFAAB0B7)
 }
 
