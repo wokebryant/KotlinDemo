@@ -81,9 +81,11 @@ import com.example.kotlindemo.compose.util.ComposeUIUtil
 import com.example.kotlindemo.compose.viewmodel.CollectViewModel
 import com.example.kotlindemo.compose.widget.CenterTopAppBar
 import com.example.kotlindemo.compose.widget.CollectDialog
+import com.example.kotlindemo.compose.widget.EmptyContent
 import com.example.kotlindemo.compose.widget.LoadMoreLazyColum
 import com.example.kotlindemo.compose.widget.PagerTab
 import com.example.kotlindemo.compose.widget.PagerTabIndicator
+import com.example.kotlindemo.compose.widget.StatePage
 import com.example.kotlindemo.compose.widget.refresh.SwipeRefreshLayout
 import com.example.kotlindemo.compose.widget.refresh.header.LoadHeader
 import com.example.kotlindemo.utils.copyOf
@@ -145,7 +147,7 @@ class CollectActivity : ComposeActivity() {
                         ) {
                             // 点击事件
                             scope.launch {
-                                pagerState.animateScrollToPage(index)
+                                pagerState.scrollToPage(index)
                             }
                         }
                     }
@@ -197,7 +199,6 @@ class CollectActivity : ComposeActivity() {
                     .padding(horizontal = 8.dp)
             ) {
                 LoadMoreLazyColum(
-                    listSize = list.itemCount,
                     loadState = list.loadState,
                     modifier = Modifier.fillMaxSize()
                 ) {
@@ -220,6 +221,8 @@ class CollectActivity : ComposeActivity() {
                 }
             }
         }
+
+        StatePage(pagingItems = list, empty = EmptyContent(text = "仅展示最近3个月收藏的职位"))
     }
 
     @Composable
@@ -244,7 +247,6 @@ class CollectActivity : ComposeActivity() {
                     .padding(horizontal = 8.dp)
             ) {
                 LoadMoreLazyColum(
-                    listSize = list.itemCount,
                     loadState = list.loadState,
                     modifier = Modifier.fillMaxSize()
                 ) {
@@ -263,6 +265,7 @@ class CollectActivity : ComposeActivity() {
             }
         }
 
+        StatePage(pagingItems = list, empty = EmptyContent(text = "仅展示最近3个月收藏的公司"))
     }
 
     @OptIn(ExperimentalTextApi::class)

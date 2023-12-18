@@ -34,17 +34,17 @@ class CollectCompanyDataSource : PagingSource<Int, CollectCompanyItem>() {
 
     private fun getCompanyData(pageIndex: Int): CollectCompanyState {
         val jobList = mutableListOf<CollectCompanyItem>()
-        for (i in 0 until 5) {
-            val item = CollectCompanyItem(
-                companyName = "智联招聘 $i",
-                companyIcon = "",
-                companyProperty = "其它",
-                companySize = "1000-9999人",
-                industry = "互联网",
-                address = "北京市朝阳区阜荣街10号首开广场F5层"
-            )
-            jobList.add(item)
-        }
+//        for (i in 0 until 5) {
+//            val item = CollectCompanyItem(
+//                companyName = "智联招聘 $i",
+//                companyIcon = "",
+//                companyProperty = "其它",
+//                companySize = "1000-9999人",
+//                industry = "互联网",
+//                address = "北京市朝阳区阜荣街10号首开广场F5层"
+//            )
+//            jobList.add(item)
+//        }
         return CollectCompanyState(
             list =  jobList
         )
