@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingHorizontal="6dp">
+
+    <LinearLayout
+        android:id="@+id/ll_skeleton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="6dp"
+        android:paddingVertical="4dp"
+        android:orientation="vertical"
+        android:background="@drawable/layout_recommend_card_vertical"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <include
+            layout="@layout/layout_recommend_job_skeleton_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <View
+            android:id="@+id/v_divide"
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="12dp"
+            android:layout_height="0.5dp"
+            android:background="@color/C_B9" />
+
+        <include
+            layout="@layout/layout_recommend_job_skeleton_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <com.zhaopin.common.widget.RCLinearLayout
+        android:id="@+id/ll_empty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="30dp"
+        android:paddingBottom="30dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="160dp"
+            android:layout_height="120dp"
+            android:src="@drawable/b_common_b_app_no_data_icon"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            style="@style/style_text_normal_16"
+            android:textColor="@color/C_B1"
+            android:text="网络开小差了，刷新试试吧"/>
+
+        <TextView
+            android:id="@+id/tv_retry"
+            android:layout_width="88dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:text="刷新"
+            style="@style/style_text_normal_14"
+            android:textColor="@color/C_W1"
+            android:background="@drawable/shape_587cf7_18"/>
+
+    </com.zhaopin.common.widget.RCLinearLayout>
+
+</FrameLayout>

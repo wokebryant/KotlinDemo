@@ -1,8 +1,12 @@
 package com.example.kotlindemo.study.mvi
 
+import com.example.kotlindemo.task.jobtag.CardDirect
+import com.example.kotlindemo.task.jobtag.JobItemState
+import com.example.kotlindemo.task.jobtag.JobRecommendCardState
 import com.example.kotlindemo.task.jobtag.RecommendJobCard
 import com.example.kotlindemo.task.jobtag.RecommendJobTag
 import com.example.kotlindemo.task.jobtag.RecommendJobTagBean
+import com.example.kotlindemo.task.jobtag.RelatedLabelDTO
 import com.example.kotlindemo.task.jobtag.card.RecommendJobCardItem
 import com.example.kotlindemo.task.jobtag.card.RecommendJobCardState
 import com.example.kotlindemo.task.jobtag.card.RecommendJobCardTag
@@ -123,6 +127,47 @@ object MockDataStore {
                     RecommendJobCardTag(name = "乌鲁木齐")
                 )
             )
+        )
+    )
+
+    val mockJobRecommendNewBean = JobRecommendCardState(
+        type = CardDirect.Vertical,
+        title = "近期投递的相似职位推荐",
+        tagList = mutableListOf(
+            RelatedLabelDTO(code = "", name = "全部", selected = true),
+            RelatedLabelDTO(code = "", name = "眼科护士", selected = false),
+            RelatedLabelDTO(code = "", name = "门诊护士", selected = false),
+            RelatedLabelDTO(code = "", name = "整形护士", selected = false),
+            RelatedLabelDTO(code = "", name = "产科护士", selected = false),
+            RelatedLabelDTO(code = "", name = "皮肤科护士", selected = false),
+        ),
+        jobList = mutableListOf(
+            JobItemState(
+                jobName = "门诊护士字段超级长的情况展示",
+                salary = "1-1.5万",
+                companyName = "北京沃美健康科技",
+                companyStrength = "已上市",
+                companySize = "1000-9999人",
+                recommendReason = "根据工作经验推荐哈哈哈哈哈哈哈哈",
+                address = "朝阳区 建外"
+            ),
+            JobItemState(
+                jobName = "门诊护士字段超级长的情况展示",
+                salary = "1-1.5万",
+                companyName = "北京沃美健康科技字段超哈哈哈哈哈哈",
+                companyStrength = "已上市",
+                companySize = "1000-9999人",
+                recommendReason = "",
+                address = "朝阳区 建外",
+                skillTagList = mutableListOf(
+                    JobItemState.TagItem(
+                        value = "数据分析"
+                    ),
+                    JobItemState.TagItem(
+                        value = "医疗保险"
+                    ),
+                )
+            ),
         )
     )
 }

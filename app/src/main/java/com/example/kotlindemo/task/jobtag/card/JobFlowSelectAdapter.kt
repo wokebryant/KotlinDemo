@@ -2,7 +2,9 @@ package com.example.kotlindemo.task.jobtag.card
 
 import android.graphics.Typeface
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import com.example.kotlindemo.databinding.ItemJobFlowLayoutBinding
 import com.example.kotlindemo.utils.setGone
 import com.example.kotlindemo.utils.setVisible
@@ -29,24 +31,50 @@ class JobFlowSelectAdapter : FlowMVXLayoutAdapter<JobFlowLayoutUIState, ItemJobF
         data: JobFlowLayoutUIState,
         position: Int
     ) {
-        binding.tvTag.text = data.name
-        binding.tvTag.isEnabled = data.enable
+        when (data.type) {
+            TagUiType.Normal -> {
+                binding.tvTag.setVisible()
+                binding.tvSearchResultTag.setGone()
+                bindData(binding.tvTag, binding.tvTitle, data, position)
+            }
+            TagUiType.SearchResult -> {
+                binding.tvTag.setGone()
+                binding.tvSearchResultTag.setVisible()
+                bindData(binding.tvSearchResultTag, binding.tvTitle, data, position)
+            }
+        }
+    }
+
+    private fun bindData(
+        tagView: TextView,
+        titleView: TextView,
+        data: JobFlowLayoutUIState,
+        position: Int) {
+        tagView.text = data.name
+        tagView.isEnabled = data.enable
         if (data.enable) {
-            binding.tvTag.isSelected = data.selected
-            binding.tvTag.typeface = if (data.selected) Typeface.DEFAULT_BOLD else Typeface.DEFAULT
+            tagView.isSelected = data.selected
+            tagView.typeface = if (data.selected) Typeface.DEFAULT_BOLD else Typeface.DEFAULT
         }
-        if (position == 0 && data.title.isNotEmpty()) {
-            binding.tvTitle.setVisible()
-        } else {
-            binding.tvTitle.setGone()
-        }
+        titleView.visibility = if (position == 0 && data.title.isNotEmpty()) View.VISIBLE else View.GONE
+        titleView.text = data.title
     }
 }
 
 data class JobFlowLayoutUIState(
     override val name: String,
     override val selected: Boolean,
-    val title: String,
+    val code: String = "",
+    val title: String = "",
     val enable: Boolean,
+    val type: TagUiType = TagUiType.Normal,
     val itemClick: (position: Int, data: JobFlowLayoutUIState) -> Unit,
 ) : MVXTagUIState
+
+/**
+ * 标签样式
+ */
+enum class TagUiType {
+    Normal,
+    SearchResult
+}

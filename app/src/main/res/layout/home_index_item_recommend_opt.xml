@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:ignore="MissingDefaultResource"
     android:paddingHorizontal="8dp"
-    android:background="@color/C_B6">
+    android:background="@color/C_S2">
 
     <!-- 选择 -->
     <com.zhaopin.common.widget.RCConstraintLayout

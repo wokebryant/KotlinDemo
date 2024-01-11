@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:paddingHorizontal="16dp"
+    android:paddingBottom="26dp"
+    android:background="@drawable/layout_recommend_card_horizontal"
+    tools:ignore="MissingDefaultResource">
+
+    <TextView
+        android:id="@+id/tv_job_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:maxLines="1"
+        android:ellipsize="end"
+        style="@style/style_text_bold_16"
+        android:textColor="@color/C_B1"
+        tools:text="门诊护士字段超级"/>
+
+    <TextView
+        android:id="@+id/tv_salary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:maxLines="1"
+        android:ellipsize="end"
+        style="@style/style_text_bold_16"
+        android:textColor="@color/C_P1"
+        tools:text="1-1.5万"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:src="@drawable/ic_location_recommend"/>
+
+        <TextView
+            android:id="@+id/tv_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            style="@style/style_text_normal_13"
+            android:textColor="@color/C_B3"
+            tools:text="朝阳区 建外Soho"/>
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_company_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:maxLines="1"
+        android:ellipsize="end"
+        style="@style/style_text_normal_13"
+        android:textColor="@color/C_B2"
+        tools:text="北京沃美健康科技字段"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_recommend_reason"
+        android:layout_width="wrap_content"
+        android:layout_height="24dp"
+        android:layout_marginTop="12dp"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="6dp"
+        android:drawablePadding="4dp"
+        android:drawableStart="@drawable/ic_like_recommend"
+        android:textSize="12sp"
+        android:textColor="@color/C_P1"
+        tools:text="根据工作经验推荐"
+        tools:background="@color/C_P8"
+        android:visibility="gone"
+        tools:visibility="visible"/>
+
+    <com.zhaopin.common.widget.flowLayout.NoActionTagLy
+        android:id="@+id/layout_flow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        app:max_lines="1"
+        android:visibility="gone"/>
+
+</LinearLayout>
