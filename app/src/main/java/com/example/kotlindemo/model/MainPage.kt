@@ -36,4 +36,5 @@ sealed class MainItemType {
     object PositionRank: MainItemType()
     object JobDetail: MainItemType()
     object CollectCompose: MainItemType()
+    object AiRecommend: MainItemType()
 }

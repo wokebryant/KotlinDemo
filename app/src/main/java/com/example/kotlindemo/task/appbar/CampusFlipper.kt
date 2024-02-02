@@ -3,15 +3,10 @@ package com.example.kotlindemo.task.appbar
 import android.content.Context
 import android.graphics.Color
 import android.util.AttributeSet
-import android.view.LayoutInflater
-import android.view.View
 import android.view.animation.AnimationUtils
-import android.widget.ImageView
 import android.widget.TextView
 import android.widget.ViewFlipper
-import androidx.databinding.DataBindingUtil
 import com.example.kotlindemo.R
-import com.example.kotlindemo.databinding.CampusRoundImageBinding
 
 /**
  * @Description 校园轮播条

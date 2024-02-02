@@ -10,3 +10,18 @@ import com.example.kotlindemo.task.linkage.KeepProtocol
 data class AiRecommendListBean (
     val list: List<Any>
 ) : KeepProtocol
+
+
+data class AiRecommendQuestionBean (
+    val title: String?,
+    val questionId: Long?,
+    val questionText: String?,
+    val answers: List<Option>?
+) : KeepProtocol {
+
+    data class Option (
+        val text: String?,
+        val code: String?
+    )
+
+}

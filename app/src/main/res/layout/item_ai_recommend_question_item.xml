@@ -1,22 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-
-    <!--问题卡片列表中的 item-->
     <TextView
-        android:id="@+id/tv_question_card_item_text"
-        android:padding="@dimen/i_12dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/assistant_question_unselect_bg"
+        android:id="@+id/tv_option"
+        android:padding="12dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/ai_recommend_question_selector"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/C_222222"
-        android:textSize="@dimen/t_14sp"
-        android:textStyle="bold"
+        android:textColor="@color/C_B1"
+        style="@style/style_text_bold_14"
         tools:text="工程造价" />
 
-</RelativeLayout>
+</FrameLayout>

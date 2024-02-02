@@ -1,4 +1,4 @@
-package com.zhaopin.social.app.position.recommend.more.rank.manager;
+package com.example.kotlindemo.task.ai.util;
 
 import android.view.View;
 

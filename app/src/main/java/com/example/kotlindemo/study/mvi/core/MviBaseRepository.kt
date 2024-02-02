@@ -1,8 +1,8 @@
-package com.zhaopin.social.base.mvi.repo
+package com.example.kotlindemo.study.mvi.core
 
-import com.zhaopin.social.base.mvi.inter.IUiEvent
-import com.zhaopin.social.common.privacy.exceptionHandler
+import com.zhaopin.social.module_common_util.log.LogKitty
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -21,6 +21,10 @@ abstract class MviBaseRepository<Event : IUiEvent>(
 
     /** 协程 */
     protected val scope by lazy { CoroutineScope(SupervisorJob() + dispatcher + exceptionHandler) }
+
+    private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
+        LogKitty.e("MviBaseRepository", throwable)
+    }
 
     /** repo发送的消息，viewModel接受 */
     private val _eventFlow = MutableSharedFlow<Event>()

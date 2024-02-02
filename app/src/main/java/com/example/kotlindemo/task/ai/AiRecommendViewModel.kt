@@ -1,10 +1,8 @@
-package com.zhaopin.social.app.position.assistant.viewmodel
+package com.example.kotlindemo.task.ai
 
 import androidx.lifecycle.viewModelScope
-import com.zhaopin.social.app.position.assistant.model.AiRecommendEvent
-import com.zhaopin.social.app.position.assistant.model.AiRecommendState
-import com.zhaopin.social.app.position.assistant.repo.AiRecommendRepository
-import com.zhaopin.social.base.mvi.viewmodel.MviBaseViewModel
+import com.example.kotlindemo.study.mvi.core.MviBaseViewModel
+import com.example.kotlindemo.task.ai.util.toMockUiList
 import kotlinx.coroutines.launch
 
 /**
@@ -20,8 +18,57 @@ class AiRecommendViewModel(
 
     init {
         viewModelScope.launch {
-
+            repository.eventFlow.collect {
+                setEvent(it)
+            }
         }
+    }
+
+    /**
+     * 请求职位列表
+     */
+    fun requestJobListData() {
+        viewModelScope.launch(exceptionHandler) {
+            repository.requestJobListData().collect {
+                when (it) {
+                    is AiRecommendListResponse.Complete -> {
+                        setState {
+                            copy(
+                                list = it.data.toMockUiList(::onJobItemClick)
+                            )
+                        }
+                    }
+
+                    is AiRecommendListResponse.Empty -> {
+
+                    }
+
+                    is AiRecommendListResponse.Error -> {
+
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * 请求问题卡
+     */
+    fun requestQuestionData() {
+        viewModelScope.launch(exceptionHandler) {
+            repository.requestQuestionData()
+        }
+    }
+
+    /**
+     * 职位卡点击
+     */
+    private fun onJobItemClick(index: Int, state: AiJobState) {
+
+    }
+
+    fun removeJDCard(index: Int, item: AiJobState) {
+        repository.removeJDCard(index, item)
     }
 
 }

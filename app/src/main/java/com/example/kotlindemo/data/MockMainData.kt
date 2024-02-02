@@ -98,4 +98,10 @@ val mainItemList = mutableListOf(
         textColor = R.color.C_W1,
         bgColor = R.color.C_P3
     ),
+    MainItemState(
+        title = "Ai求职",
+        type = MainItemType.AiRecommend,
+        textColor = R.color.C_W1,
+        bgColor = R.color.C_P3
+    ),
 )

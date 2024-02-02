@@ -5,9 +5,11 @@ import android.content.Context
 import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.Color
+import android.graphics.Typeface
 import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.style.ForegroundColorSpan
+import android.text.style.StyleSpan
 import android.util.TypedValue
 import android.view.View
 import android.widget.ImageView
@@ -78,10 +80,26 @@ fun Int.toPx(): Int = (this * Resources.getSystem().displayMetrics.density).toIn
  * 给指定字符串上色
  */
 fun CharSequence.colorSpan(colorText: String, color: String) = SpannableStringBuilder(this).apply {
-    setSpan(
-        ForegroundColorSpan(Color.parseColor(color)),
-        indexOf(colorText),
-        indexOf(colorText) + colorText.length,
-        Spannable.SPAN_EXCLUSIVE_INCLUSIVE
-    )
+    if (indexOf(colorText) >= 0) {
+        setSpan(
+            ForegroundColorSpan(Color.parseColor(color)),
+            indexOf(colorText),
+            indexOf(colorText) + colorText.length,
+            Spannable.SPAN_EXCLUSIVE_INCLUSIVE
+        )
+    }
+}
+
+/**
+ * 给指定字符串加粗
+ */
+fun CharSequence.boldSpan(boldText: String) = SpannableStringBuilder(this).apply {
+    if (indexOf(boldText) > 0) {
+        setSpan(
+            StyleSpan(Typeface.BOLD),
+            indexOf(boldText),
+            indexOf(boldText) + boldText.length,
+            Spannable.SPAN_EXCLUSIVE_INCLUSIVE
+        )
+    }
 }

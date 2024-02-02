@@ -1,6 +1,234 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="650dp"
+    android:layout_marginHorizontal="10dp"
+    android:layout_marginTop="10dp"
+    android:paddingBottom="10dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:ignore="MissingDefaultResource"
+    android:orientation="vertical"
+    app:layout_radius="16dp">
+
+    <com.zhaopin.common.widget.RCConstraintLayout
+        android:id="@+id/cl_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:paddingBottom="22dp"
+        android:paddingHorizontal="12dp"
+        android:background="@color/C_W1"
+        tools:ignore="MissingDefaultResource"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/ll_feedback"
+        app:layout_radius="16dp">
+
+        <TableLayout
+            android:id="@+id/layout_tab"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:layout_marginTop="20dp"
+            android:shrinkColumns="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_salary"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TableRow android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/tv_job_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:focusable="false"
+                    android:singleLine="true"
+                    style="@style/style_text_bold_18"
+                    android:textColor="@color/C_B1"
+                    tools:text="高级" />
+
+                <ImageView
+                    android:id="@+id/iv_cur_interview"
+                    android:layout_width="48dp"
+                    android:layout_height="16dp"
+                    android:layout_marginStart="4dp"
+                    android:src="@drawable/ic_cur_interview_tag"/>
+
+                <com.zhaopin.common.widget.BitmapRecycledImageView
+                    android:id="@+id/iv_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="16dp"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginTop="0.5dp"
+                    android:visibility="gone" />
+
+            </TableRow>
+
+        </TableLayout>
+
+        <TextView
+            android:id="@+id/tv_salary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:minWidth="0dp"
+            style="@style/style_text_bold_16"
+            android:textColor="@color/C_P1"
+            tools:text="5-10万"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/layout_tab"/>
+
+        <include
+            android:id="@+id/in_cur_interview"
+            layout="@layout/layout_cur_interview_pop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="-200dp"
+            app:layout_constraintTop_toTopOf="@id/layout_tab"
+            app:layout_constraintBottom_toBottomOf="@id/layout_tab"
+            app:layout_constraintStart_toEndOf="@id/layout_tab"
+            android:visibility="gone"
+            tools:visibility="visible"/>
+
+        <LinearLayout
+            android:id="@+id/ll_company_info"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            app:layout_constraintTop_toBottomOf="@id/layout_tab"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                android:id="@+id/tv_company_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/style_text_normal_14"
+                android:textColor="@color/C_B2"
+                tools:text="北京百纳科技有限公司"/>
+
+            <TextView
+                android:id="@+id/tv_company_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                style="@style/style_text_normal_14"
+                android:textColor="@color/C_B2"
+                tools:text="500-999人"/>
+
+        </LinearLayout>
+
+        <com.zhaopin.common.widget.flowLayout.NoActionTagLy
+            android:id="@+id/layout_skill_flow"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:focusable="false"
+            app:max_lines="1"
+            app:max_select="-1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ll_company_info"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="gone"
+            tools:visibility="visible"/>
+
+        <LinearLayout
+            android:id="@+id/ll_location"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center_vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_skill_flow">
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_ai_location"/>
+
+            <TextView
+                android:id="@+id/tv_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                style="@style/style_text_normal_14"
+                android:textColor="@color/C_B2"
+                tools:text="北京·朝阳·望京"/>
+
+            <TextView
+                android:id="@+id/tv_distance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                style="@style/style_text_normal_14"
+                android:textColor="@color/C_B2"
+                tools:text="距住址12km"/>
+
+        </LinearLayout>
+
+        <!-- 职位解读 -->
+        <include
+            android:id="@+id/in_job_detail"
+            layout="@layout/layout_ai_recommend_job_detail"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ll_location"
+            app:layout_constraintBottom_toTopOf="@id/in_hr_info"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <FrameLayout
+            android:id="@+id/fl_mask"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <!-- HR信息 -->
+        <include
+            android:id="@+id/in_hr_info"
+            layout="@layout/layout_ai_recommend_hr"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/in_job_detail"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </com.zhaopin.common.widget.RCConstraintLayout>
+
+    <!-- 负反馈按钮 -->
+    <com.zhaopin.common.widget.RCLinearLayout
+        android:id="@+id/ll_feedback"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:paddingHorizontal="12dp"
+        android:gravity="center"
+        android:background="@color/C_W1"
+        app:layout_constraintTop_toBottomOf="@id/cl_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_radius="16dp">
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:src="@drawable/ic_feed_back"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:layout_marginStart="4dp"
+            style="@style/style_text_normal_13"
+            android:textColor="@color/C_B4"
+            android:text="@string/no_interest"/>
+
+    </com.zhaopin.common.widget.RCLinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
