@@ -13,6 +13,8 @@ import com.example.kotlindemo.databinding.ActivityMainBinding
 import com.example.kotlindemo.jetpack.paging3.PagingActivity
 import com.example.kotlindemo.model.MainItemType
 import com.example.kotlindemo.study.mvi.MviSampleActivity
+import com.example.kotlindemo.study.span.SpanActivity
+import com.example.kotlindemo.study.xmlbackground.XmlBackgroundActivity
 import com.example.kotlindemo.task.ai.AiRecommendActivity
 import com.example.kotlindemo.task.appbar.AppBarActivity
 import com.example.kotlindemo.task.jobdetail.JobDetailActivity
@@ -69,6 +71,10 @@ class MainActivity : BaseActivity() {
             MainItemType.MVI -> AppUtil.startActivity<MviSampleActivity>(this) {}
 
             MainItemType.Flow -> AppUtil.startActivity<FlowActivity>(this) {}
+
+            MainItemType.Span -> AppUtil.startActivity<SpanActivity>(this) {}
+
+            MainItemType.XMLBackground -> AppUtil.startActivity<XmlBackgroundActivity>(this) {}
 
             MainItemType.ZLTask -> { }
 

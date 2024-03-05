@@ -41,6 +41,10 @@ val mainItemList = mutableListOf(
         type = MainItemType.Flow
     ),
     MainItemState(
+        title = "富文本",
+        type = MainItemType.Span
+    ),
+    MainItemState(
         title = "MVI",
         type = MainItemType.MVI
     ),

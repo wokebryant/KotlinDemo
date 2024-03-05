@@ -27,6 +27,8 @@ sealed class MainItemType {
     object BlockChain: MainItemType()
     object MVI: MainItemType()
     object Flow: MainItemType()
+    object Span: MainItemType()
+    object XMLBackground: MainItemType()
     object ZLTask: MainItemType()
     object AppBar: MainItemType()
     object Linkage: MainItemType()
