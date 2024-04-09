@@ -1,0 +1,592 @@
+{
+  "v": "5.7.7",
+  "fr": 29.9700012207031,
+  "ip": 0,
+  "op": 30.0000012219251,
+  "w": 650,
+  "h": 290,
+  "nm": "合成 1",
+  "ddd": 0,
+  "assets": [
+    {
+      "id": "image_0",
+      "w": 627,
+      "h": 43,
+      "u": "",
+      "p": "data:image/png;base64,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",
+      "e": 1
+    },
+    {
+      "id": "image_1",
+      "w": 90,
+      "h": 180,
+      "u": "",
+      "p": "data:image/png;base64,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",
+      "e": 1
+    }
+  ],
+  "layers": [
+    {
+      "ddd": 0,
+      "ind": 1,
+      "ty": 2,
+      "nm": "上滑此区域，快速查看下一个职位.png",
+      "cl": "png",
+      "refId": "image_0",
+      "sr": 1,
+      "ks": {
+        "o": {
+          "a": 0,
+          "k": 100,
+          "ix": 11
+        },
+        "r": {
+          "a": 0,
+          "k": 0,
+          "ix": 10
+        },
+        "p": {
+          "a": 0,
+          "k": [
+            325,
+            247,
+            0
+          ],
+          "ix": 2,
+          "l": 2
+        },
+        "a": {
+          "a": 0,
+          "k": [
+            313.5,
+            21.5,
+            0
+          ],
+          "ix": 1,
+          "l": 2
+        },
+        "s": {
+          "a": 0,
+          "k": [
+            100,
+            100,
+            100
+          ],
+          "ix": 6,
+          "l": 2
+        }
+      },
+      "ao": 0,
+      "ip": 0,
+      "op": 30.0000012219251,
+      "st": 0,
+      "bm": 0
+    },
+    {
+      "ddd": 0,
+      "ind": 2,
+      "ty": 4,
+      "nm": "yuanxing",
+      "sr": 1,
+      "ks": {
+        "o": {
+          "a": 0,
+          "k": 100,
+          "ix": 11
+        },
+        "r": {
+          "a": 0,
+          "k": 0,
+          "ix": 10
+        },
+        "p": {
+          "a": 1,
+          "k": [
+            {
+              "i": {
+                "x": 0.833,
+                "y": 0.833
+              },
+              "o": {
+                "x": 0.167,
+                "y": 0.167
+              },
+              "t": 0,
+              "s": [
+                325.176,
+                166.043,
+                0
+              ],
+              "to": [
+                0,
+                -14.5,
+                0
+              ],
+              "ti": [
+                0,
+                14.5,
+                0
+              ]
+            },
+            {
+              "t": 24.00000097754,
+              "s": [
+                325.176,
+                79.043,
+                0
+              ]
+            }
+          ],
+          "ix": 2,
+          "l": 2
+        },
+        "a": {
+          "a": 0,
+          "k": [
+            7.5,
+            -10.25,
+            0
+          ],
+          "ix": 1,
+          "l": 2
+        },
+        "s": {
+          "a": 0,
+          "k": [
+            100,
+            100,
+            100
+          ],
+          "ix": 6,
+          "l": 2
+        }
+      },
+      "ao": 0,
+      "shapes": [
+        {
+          "ty": "gr",
+          "it": [
+            {
+              "ty": "rc",
+              "d": 1,
+              "s": {
+                "a": 0,
+                "k": [
+                  60,
+                  60
+                ],
+                "ix": 2
+              },
+              "p": {
+                "a": 0,
+                "k": [
+                  0,
+                  0
+                ],
+                "ix": 3
+              },
+              "r": {
+                "a": 0,
+                "k": 200,
+                "ix": 4
+              },
+              "nm": "矩形路径 1",
+              "mn": "ADBE Vector Shape - Rect",
+              "hd": false
+            },
+            {
+              "ty": "fl",
+              "c": {
+                "a": 0,
+                "k": [
+                  1,
+                  1,
+                  1,
+                  1
+                ],
+                "ix": 4
+              },
+              "o": {
+                "a": 0,
+                "k": 100,
+                "ix": 5
+              },
+              "r": 1,
+              "bm": 0,
+              "nm": "填充 1",
+              "mn": "ADBE Vector Graphic - Fill",
+              "hd": false
+            },
+            {
+              "ty": "tr",
+              "p": {
+                "a": 0,
+                "k": [
+                  7.324,
+                  -10.676
+                ],
+                "ix": 2
+              },
+              "a": {
+                "a": 0,
+                "k": [
+                  0,
+                  0
+                ],
+                "ix": 1
+              },
+              "s": {
+                "a": 0,
+                "k": [
+                  100,
+                  100
+                ],
+                "ix": 3
+              },
+              "r": {
+                "a": 0,
+                "k": 0,
+                "ix": 6
+              },
+              "o": {
+                "a": 0,
+                "k": 100,
+                "ix": 7
+              },
+              "sk": {
+                "a": 0,
+                "k": 0,
+                "ix": 4
+              },
+              "sa": {
+                "a": 0,
+                "k": 0,
+                "ix": 5
+              },
+              "nm": "变换"
+            }
+          ],
+          "nm": "矩形 1",
+          "np": 3,
+          "cix": 2,
+          "bm": 0,
+          "ix": 1,
+          "mn": "ADBE Vector Group",
+          "hd": false
+        }
+      ],
+      "ip": 0,
+      "op": 31.0000012626559,
+      "st": 0,
+      "bm": 0
+    },
+    {
+      "ddd": 0,
+      "ind": 3,
+      "ty": 2,
+      "nm": "jianbian",
+      "refId": "image_1",
+      "sr": 1,
+      "ks": {
+        "o": {
+          "a": 0,
+          "k": 100,
+          "ix": 11
+        },
+        "r": {
+          "a": 0,
+          "k": 0,
+          "ix": 10
+        },
+        "p": {
+          "a": 0,
+          "k": [
+            324.812,
+            211.125,
+            0
+          ],
+          "ix": 2,
+          "l": 2
+        },
+        "a": {
+          "a": 0,
+          "k": [
+            45,
+            179.938,
+            0
+          ],
+          "ix": 1,
+          "l": 2
+        },
+        "s": {
+          "a": 0,
+          "k": [
+            100,
+            100,
+            100
+          ],
+          "ix": 6,
+          "l": 2
+        }
+      },
+      "ao": 0,
+      "hasMask": true,
+      "masksProperties": [
+        {
+          "inv": false,
+          "mode": "a",
+          "pt": {
+            "a": 1,
+            "k": [
+              {
+                "i": {
+                  "x": 0.833,
+                  "y": 0.833
+                },
+                "o": {
+                  "x": 0.167,
+                  "y": 0.167
+                },
+                "t": 0,
+                "s": [
+                  {
+                    "i": [
+                      [
+                        24.301,
+                        0
+                      ],
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        0,
+                        -24.301
+                      ],
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        -24.301,
+                        0
+                      ],
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        0,
+                        24.301
+                      ],
+                      [
+                        0,
+                        0
+                      ]
+                    ],
+                    "o": [
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        -24.301,
+                        0
+                      ],
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        0,
+                        24.301
+                      ],
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        24.301,
+                        0
+                      ],
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        0,
+                        -24.301
+                      ]
+                    ],
+                    "v": [
+                      [
+                        45.938,
+                        90.375
+                      ],
+                      [
+                        43.875,
+                        90.375
+                      ],
+                      [
+                        -0.125,
+                        134.375
+                      ],
+                      [
+                        -0.125,
+                        135.938
+                      ],
+                      [
+                        43.875,
+                        179.938
+                      ],
+                      [
+                        45.938,
+                        179.938
+                      ],
+                      [
+                        89.938,
+                        135.938
+                      ],
+                      [
+                        89.938,
+                        134.375
+                      ]
+                    ],
+                    "c": true
+                  }
+                ]
+              },
+              {
+                "t": 24.00000097754,
+                "s": [
+                  {
+                    "i": [
+                      [
+                        24.301,
+                        0
+                      ],
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        0,
+                        -24.301
+                      ],
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        -24.301,
+                        0
+                      ],
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        0,
+                        24.301
+                      ],
+                      [
+                        0,
+                        0
+                      ]
+                    ],
+                    "o": [
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        -24.301,
+                        0
+                      ],
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        0,
+                        24.301
+                      ],
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        24.301,
+                        0
+                      ],
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        0,
+                        -24.301
+                      ]
+                    ],
+                    "v": [
+                      [
+                        45.939,
+                        0.694
+                      ],
+                      [
+                        43.876,
+                        0.694
+                      ],
+                      [
+                        -0.124,
+                        44.694
+                      ],
+                      [
+                        -0.125,
+                        135.938
+                      ],
+                      [
+                        43.875,
+                        179.938
+                      ],
+                      [
+                        45.938,
+                        179.938
+                      ],
+                      [
+                        89.938,
+                        135.938
+                      ],
+                      [
+                        89.939,
+                        44.694
+                      ]
+                    ],
+                    "c": true
+                  }
+                ]
+              }
+            ],
+            "ix": 1
+          },
+          "o": {
+            "a": 0,
+            "k": 100,
+            "ix": 3
+          },
+          "x": {
+            "a": 0,
+            "k": 0,
+            "ix": 4
+          },
+          "nm": "蒙版 1"
+        }
+      ],
+      "ip": 0,
+      "op": 31.0000012626559,
+      "st": 0,
+      "bm": 0
+    }
+  ],
+  "markers": []
+}

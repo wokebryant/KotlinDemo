@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/C_W1"
+    android:paddingBottom="16dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/tv_job_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="内容运营·北京"
+        style="@style/style_text_bold_18"
+        android:textColor="@color/C_B1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_salary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="10K-15K"
+        style="@style/style_text_bold_18"
+        android:textColor="@color/C_P1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_desc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/C_B2"
+        android:textSize="15sp"
+        android:lineSpacingExtra="7dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_job_name"
+        tools:text="全职/兼职    期望行业：房地产开发与经营/土地与公共设施管理/广播、电视、电影录音制作。"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

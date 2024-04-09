@@ -54,6 +54,7 @@ class MicroResumeListFragment(
     private fun request() {
         val data = mockMircoResumeList
         listAdapter.setList(data)
+        viewModel.requestList()
     }
 
     private fun collect() {

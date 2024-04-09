@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/job_detail_desc_title_bg"
+        android:layout_marginBottom="0dp"
+        android:layout_gravity="bottom"/>
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/style_text_bold_18"
+        android:textColor="@color/C_B1"
+        android:text="@string/job_desc" />
+
+</FrameLayout>

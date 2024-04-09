@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="650dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginHorizontal="10dp"
+    android:paddingBottom="10dp">
+
+    <com.zhaopin.common.widget.RCFrameLayout
+        android:id="@+id/cl_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="10dp"
+        android:background="@drawable/bg_resume_recommend_card"
+        app:layout_radius="16dp">
+
+        <com.example.kotlindemo.task.resume.ResumeRecommendCardRecyclerView
+            android:id="@+id/rv_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="68dp"
+            android:paddingBottom="32dp"
+            android:clipToPadding="false"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="68dp"
+            android:background="@drawable/bg_resume_recommend_card_mask"
+            android:layout_gravity="bottom"/>
+
+        <include
+            android:id="@+id/in_bottom_bar"
+            layout="@layout/layout_resume_recommend_bottom_bar"
+            android:layout_width="match_parent"
+            android:layout_height="68dp"
+            android:layout_gravity="bottom"/>
+
+    </com.zhaopin.common.widget.RCFrameLayout>
+
+    <!-- 错误页 -->
+    <include
+        android:id="@+id/in_error"
+        layout="@layout/layout_resume_recommend_card_error"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
+
+</FrameLayout>

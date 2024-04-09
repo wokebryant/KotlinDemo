@@ -11,7 +11,18 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.example.kotlindemo.base.BaseActivity
 import com.example.kotlindemo.databinding.ActivityFlowBinding
 import com.example.kotlindemo.utils.binding
+import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.flow.asFlow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.emitAll
+import kotlinx.coroutines.flow.flatMapMerge
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.single
+import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.launch
+import java.util.concurrent.Flow
 
 /**
  * @Description
@@ -38,6 +49,11 @@ class FlowActivity : BaseActivity() {
 
 //                collectFlow()
 //            }
+
+            lifecycleScope.launch {
+                val list = fetchUserData().single()
+                print(list)
+            }
         }
 
 
@@ -74,4 +90,24 @@ class FlowActivity : BaseActivity() {
             }
         }
     }
+
+    @OptIn(FlowPreview::class)
+    fun fetchUserData() = flow {
+        val mergeResultList = flowOf("user1", "user2", "user3")
+            .flatMapMerge {
+                flow {
+                    val userResponse = User(it + "哈哈哈哈")
+                    emit(userResponse)
+                }
+            }
+            .toList() // 将所有结果收集到List中
+
+
+        emitAll(flowOf(mergeResultList))
+    }
+
+    data class User (
+        val name: String
+    )
+
 }

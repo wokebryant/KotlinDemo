@@ -50,6 +50,7 @@
         <activity android:name=".compose.CollectActivity"/>
         <activity android:name=".task.jobdetail.JobDetailActivity"/>
         <activity android:name=".task.ai.AiRecommendActivity"/>
+        <activity android:name=".task.resume.ResumeRecommendActivity"/>
 
         <!-- 定义Startup Provider参数 -->
         <provider

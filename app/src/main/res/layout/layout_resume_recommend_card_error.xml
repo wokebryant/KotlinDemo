@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhaopin.common.widget.RCLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_resume_recommend_card"
+    android:gravity="center"
+    android:orientation="vertical"
+    app:layout_radius="16dp">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/core_common_error" />
+
+    <TextView
+        android:id="@+id/tv_check"
+        style="@style/style_text_normal_16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="网络不太给力, 刷新试试吧~"
+        android:textColor="@color/C_B1" />
+
+    <TextView
+        android:id="@+id/tv_refresh"
+        style="@style/style_button_middle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/shape_587cf7_18"
+        android:gravity="center"
+        android:paddingLeft="26dp"
+        android:paddingTop="7dp"
+        android:paddingRight="26dp"
+        android:paddingBottom="7dp"
+        android:text="刷新"
+        android:textColor="@color/C_FFFFFF" />
+
+</com.zhaopin.common.widget.RCLinearLayout>

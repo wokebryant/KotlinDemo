@@ -39,4 +39,5 @@ sealed class MainItemType {
     object JobDetail: MainItemType()
     object CollectCompose: MainItemType()
     object AiRecommend: MainItemType()
+    object ResumeRecommend: MainItemType()
 }

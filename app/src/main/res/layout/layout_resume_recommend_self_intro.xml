@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="20dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <include
+        android:id="@+id/in_title"
+        layout="@layout/layout_resume_recommend_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp" />
+
+    <com.zhaopin.common.widget.flowLayout.NoActionTagLy
+        android:id="@+id/layout_skill_flow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:focusable="false"
+        app:max_select="-1" />
+
+    <TextView
+        android:id="@+id/tv_intro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:lineSpacingExtra="7dp"
+        android:textColor="@color/C_B2"
+        android:textSize="15sp"
+        tools:text="专业能力MAX，有领导力，善于分享，可以带领团队走的更远，自信有活力，善于组织。专业能力MAX，有领导力，善于分享，可以带领团队走的更远，自信有活力，善于组织。"/>
+
+</LinearLayout>

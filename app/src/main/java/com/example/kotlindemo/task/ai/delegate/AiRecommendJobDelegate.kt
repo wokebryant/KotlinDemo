@@ -216,7 +216,7 @@ class AiRecommendJobDelegate(
             flowLayout.setAdapter(object : TagAdapter<String>(list) {
                 override fun getView(parent: FlowLayout?, position: Int, t: String?): View {
                     val textView = LayoutInflater.from(curContext)
-                        .inflate(R.layout.ai_recommend_skill_tag, null, false) as TextView
+                        .inflate(R.layout.resume_recommend_skill_tag, null, false) as TextView
                     textView.run {
                         text = t
                         background = Bovb.with().radius(4.dp.toFloat()).color(getColor(R.color.C_S2)).build()

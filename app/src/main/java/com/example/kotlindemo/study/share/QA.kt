@@ -12,7 +12,7 @@ fun main() {
     if (true) println("A")
     if (true) { println("B") }
     if (true) {
-        { println("C") }()
+        { println("C") }
     }
 
     { println("D") }

@@ -34,14 +34,14 @@ class FieldListRecyclerView @JvmOverloads constructor(
     }
 
     /** 内容颜色 */
-    var fieldColor = R.color.C_B3
+    var fieldColor = R.color.C_B2
     /** 分割线颜色 */
     @ColorRes
-    var divideLineColor = R.color.C_B6
+    var divideLineColor = R.color.C_EEEEEE
     /** 分割线高度 */
     var divideLineHeight = 8.dp
     /** 分割线Margin */
-    var divideLineMargin = 6.dp
+    var divideLineMargin = 4.dp
 
     init {
         layoutManager = LinearLayoutManager(context).apply {
@@ -64,9 +64,6 @@ class FieldListRecyclerView @JvmOverloads constructor(
             binding.tvField.run {
                 text = item
                 setTextColor(getColor(fieldColor))
-                updateLayoutParams<MarginLayoutParams> {
-                    marginStart = divideLineMargin
-                }
             }
             binding.vDivide.run {
                 // 最后一个字段去掉分割线
@@ -75,6 +72,7 @@ class FieldListRecyclerView @JvmOverloads constructor(
                 setBackgroundColor(getColor(divideLineColor))
                 updateLayoutParams<MarginLayoutParams> {
                     marginStart = divideLineMargin
+                    marginEnd = divideLineMargin
                 }
                 updateLayoutParams<ViewGroup.LayoutParams> {
                     height = divideLineHeight

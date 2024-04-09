@@ -20,6 +20,7 @@ import com.example.kotlindemo.task.appbar.AppBarActivity
 import com.example.kotlindemo.task.jobdetail.JobDetailActivity
 import com.example.kotlindemo.task.microenterprises.view.home.MicroResumeHomeFragment
 import com.example.kotlindemo.task.mutildelivery.DeliveryActivity
+import com.example.kotlindemo.task.resume.ResumeRecommendActivity
 import com.example.kotlindemo.task.search.PositionSearchBridgeActivity
 import com.example.kotlindemo.task.searchresult.PositionSearchResultActivity
 import com.example.kotlindemo.utils.AppUtil
@@ -95,6 +96,8 @@ class MainActivity : BaseActivity() {
             MainItemType.CollectCompose -> AppUtil.startActivity<CollectActivity>(this) {}
 
             MainItemType.AiRecommend -> AppUtil.startActivity<AiRecommendActivity>(this) {}
+
+            MainItemType.ResumeRecommend -> AppUtil.startActivity<ResumeRecommendActivity>(this) {}
         }
     }
 

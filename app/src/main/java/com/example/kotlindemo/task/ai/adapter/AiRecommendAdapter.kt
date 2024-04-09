@@ -1,6 +1,5 @@
 package com.example.kotlindemo.task.ai.adapter
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +13,6 @@ import com.example.kotlindemo.databinding.LayoutAiRecommendJobDetailSpanItemBind
 import com.example.kotlindemo.databinding.LayoutAiRecommendJobDetailTextItemBinding
 import com.example.kotlindemo.task.ai.AiJobState
 import com.example.kotlindemo.task.ai.JobInterpretState
-import com.example.kotlindemo.task.ai.delegate.AiRecommendJobDelegate
 import com.example.kotlindemo.utils.BindingViewHolder
 import com.example.kotlindemo.utils.boldSpan
 import com.example.kotlindemo.utils.colorSpan
@@ -109,7 +107,7 @@ class AiRecommendAdapter(
             flowLayout.setAdapter(object : TagAdapter<String>(list) {
                 override fun getView(parent: FlowLayout?, position: Int, t: String?): View {
                     val textView = LayoutInflater.from(curContext)
-                        .inflate(R.layout.ai_recommend_skill_tag, null, false) as TextView
+                        .inflate(R.layout.resume_recommend_skill_tag, null, false) as TextView
                     textView.run {
                         text = t
                         background = Bovb.with().radius(4.dp.toFloat()).color(getColor(R.color.C_S2)).build()

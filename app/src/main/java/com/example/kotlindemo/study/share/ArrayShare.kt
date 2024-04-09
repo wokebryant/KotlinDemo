@@ -8,9 +8,9 @@ package com.example.kotlindemo.study.share
 
 fun main() {
 //    createDefaultArray()
-//    createArrayByArrayOf()
+    createArrayByArrayOf()
 //    traverseArray()
-    sliceArray()
+//    sliceArray()
 }
 
 /**
