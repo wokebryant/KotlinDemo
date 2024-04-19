@@ -40,4 +40,5 @@ sealed class MainItemType {
     object CollectCompose: MainItemType()
     object AiRecommend: MainItemType()
     object ResumeRecommend: MainItemType()
+    object WechatSend: MainItemType()
 }

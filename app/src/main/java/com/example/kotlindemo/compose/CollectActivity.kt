@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentSize
@@ -120,6 +121,9 @@ class CollectActivity : ComposeActivity() {
         val bottomSheetState = rememberModalBottomSheetState(ModalBottomSheetValue.Hidden)
 
         Scaffold(
+            modifier = Modifier
+                .background(ZlColors.C_W1)
+                .statusBarsPadding(),
             topBar = { CollectAppBar() }
         ) {
             Column(

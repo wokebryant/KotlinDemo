@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.core.view.WindowCompat
 import com.example.kotlindemo.compose.ui.ZlTheme
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
@@ -19,9 +20,10 @@ abstract class ComposeActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // 设置Decor使得view层级获取到Insets
+        WindowCompat.setDecorFitsSystemWindows(window, false)
         setContent {
             ZlTheme {
-                StatusBar()
                 MainPage()
             }
         }
@@ -31,11 +33,4 @@ abstract class ComposeActivity : ComponentActivity() {
     @Composable
     abstract fun MainPage()
 
-    @Composable
-    fun StatusBar() {
-        rememberSystemUiController().setStatusBarColor(
-            color = Color.White,
-            darkIcons = true
-        )
-    }
 }

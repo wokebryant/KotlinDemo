@@ -7,6 +7,7 @@ import com.example.kotlindemo.study.flow.FlowActivity
 import com.example.kotlindemo.adapter.delegate.MainItemDelegate
 import com.example.kotlindemo.base.BaseActivity
 import com.example.kotlindemo.compose.CollectActivity
+import com.example.kotlindemo.compose.WechatSendActivity
 import com.example.kotlindemo.data.mainItemList
 import com.example.kotlindemo.task.linkage.LinkageActivity
 import com.example.kotlindemo.databinding.ActivityMainBinding
@@ -98,6 +99,8 @@ class MainActivity : BaseActivity() {
             MainItemType.AiRecommend -> AppUtil.startActivity<AiRecommendActivity>(this) {}
 
             MainItemType.ResumeRecommend -> AppUtil.startActivity<ResumeRecommendActivity>(this) {}
+
+            MainItemType.WechatSend -> AppUtil.startActivity<WechatSendActivity>(this) {}
         }
     }
 

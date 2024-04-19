@@ -114,4 +114,10 @@ val mainItemList = mutableListOf(
         textColor = R.color.C_W1,
         bgColor = R.color.C_P3
     ),
+    MainItemState(
+        title = "发送微信",
+        type = MainItemType.WechatSend,
+        textColor = R.color.C_W1,
+        bgColor = R.color.C_P3
+    ),
 )

@@ -4,6 +4,7 @@ import androidx.compose.foundation.Indication
 import androidx.compose.foundation.IndicationInstance
 import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.interaction.InteractionSource
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.material.ripple.RippleAlpha
@@ -12,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.ContentDrawScope
+import com.example.kotlindemo.compose.widget.DarkStatusBar
 
 /**
  * @Description 智联Compose主题
@@ -21,8 +23,13 @@ import androidx.compose.ui.graphics.drawscope.ContentDrawScope
 
 @Composable
 fun ZlTheme(
+    darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
+
+    // 默认黑色icon状态栏
+    DarkStatusBar()
+
     MaterialTheme {
         CompositionLocalProvider(
             LocalIndication provides NoIndication,
