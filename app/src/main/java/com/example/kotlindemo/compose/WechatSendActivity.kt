@@ -69,7 +69,13 @@ class WechatSendActivity : ComposeActivity() {
     @Composable
     override fun MainPage() {
         val scope = rememberCoroutineScope()
-        val bottomSheetState = rememberModalBottomSheetState(ModalBottomSheetValue.Hidden)
+        val bottomSheetState = rememberModalBottomSheetState(
+            initialValue = ModalBottomSheetValue.Hidden,
+            confirmStateChange = {
+                it == ModalBottomSheetValue.Expanded
+            },
+            skipHalfExpanded = true
+        )
 
         Scaffold(
             modifier = Modifier
