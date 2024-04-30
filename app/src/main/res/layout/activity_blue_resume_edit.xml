@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@color/C_W1">
+
+    <!-- 背景 -->
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/blue_reusme_edit_bg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <!-- 头部 -->
+    <LinearLayout
+        android:id="@+id/ll_header"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/fl_back"
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:paddingHorizontal="16dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_job_detail_back"/>
+
+        </FrameLayout>
+
+        <ProgressBar
+            android:id="@+id/resume_progress"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginBottom="36dp"
+            android:max="100"
+            android:progress="10"
+            android:progressDrawable="@drawable/resume_edit_upload_progress_horizontal" />
+
+    </LinearLayout>
+
+    <!-- 问答容器 -->
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/vp_blue"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_header"
+        app:layout_constraintBottom_toTopOf="@id/fl_bottom"/>
+
+    <!-- 底部 -->
+    <com.zhaopin.common.widget.RCFrameLayout
+        android:id="@+id/fl_bottom"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginHorizontal="64dp"
+        android:layout_marginVertical="10dp"
+        android:background="@drawable/blue_resume_edit_bottom_btn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/vp_blue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_radius="24dp">
+
+        <TextView
+            android:id="@+id/tv_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/next_step"
+            style="@style/style_text_bold_18"
+            android:textColor="@color/C_W1"/>
+
+    </com.zhaopin.common.widget.RCFrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

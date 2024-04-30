@@ -1,7 +1,6 @@
 package com.example.kotlindemo.activity
 
 import android.os.Bundle
-import android.view.View
 import android.view.Window
 import com.example.kotlindemo.study.flow.FlowActivity
 import com.example.kotlindemo.adapter.delegate.MainItemDelegate
@@ -18,6 +17,7 @@ import com.example.kotlindemo.study.span.SpanActivity
 import com.example.kotlindemo.study.xmlbackground.XmlBackgroundActivity
 import com.example.kotlindemo.task.ai.AiRecommendActivity
 import com.example.kotlindemo.task.appbar.AppBarActivity
+import com.example.kotlindemo.task.blueedit.activity.BlueResumeEditActivity
 import com.example.kotlindemo.task.jobdetail.JobDetailActivity
 import com.example.kotlindemo.task.microenterprises.view.home.MicroResumeHomeFragment
 import com.example.kotlindemo.task.mutildelivery.DeliveryActivity
@@ -101,6 +101,8 @@ class MainActivity : BaseActivity() {
             MainItemType.ResumeRecommend -> AppUtil.startActivity<ResumeRecommendActivity>(this) {}
 
             MainItemType.WechatSend -> AppUtil.startActivity<WechatSendActivity>(this) {}
+
+            MainItemType.BlueResumeEdit -> AppUtil.startActivity<BlueResumeEditActivity>(this) {}
         }
     }
 

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tv_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:background="@drawable/resume_edit_f5f7fa_radius_12"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp"
+    android:paddingTop="16dp"
+    android:paddingBottom="16dp"
+    tools:text="1个月"
+    android:textColor="@color/C_B1"
+    android:textSize="16sp" />

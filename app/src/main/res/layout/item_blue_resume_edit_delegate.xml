@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="20dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        style="@style/style_text_bold_16"
+        android:textColor="@color/C_B1"
+        tools:text="性格优点"/>
+
+    <com.zhaopin.common.widget.mvx.flowLayout.MVXFlowRecyclerView
+        android:id="@+id/rv_tag"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="16dp"
+        tools:listitem="@layout/blue_resume_edit_tag"
+        app:item_layout_mode="grid"
+        app:spanCount="3"
+        app:item_margin_bottom="16dp" />
+
+</LinearLayout>

@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
@@ -80,8 +81,10 @@ class WechatSendActivity : ComposeActivity() {
         Scaffold(
             modifier = Modifier
                 .background(ZlColors.C_W1)
-                .statusBarsPadding(),
-            topBar = { WechatAppBar() }
+                .statusBarsPadding()
+                .navigationBarsPadding(),
+            topBar = { WechatAppBar() },
+            bottomBar = {}
         ) {
             Column(
                 modifier = Modifier

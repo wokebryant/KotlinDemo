@@ -52,6 +52,7 @@
         <activity android:name=".task.jobdetail.JobDetailActivity"/>
         <activity android:name=".task.ai.AiRecommendActivity"/>
         <activity android:name=".task.resume.ResumeRecommendActivity"/>
+        <activity android:name=".task.blueedit.activity.BlueResumeEditActivity"/>
 
         <!-- 定义Startup Provider参数 -->
         <provider

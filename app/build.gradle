@@ -71,6 +71,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.5.1"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1"
     implementation "androidx.activity:activity-ktx:1.5.1"
+    implementation "androidx.fragment:fragment-ktx:1.4.1"
     implementation 'androidx.work:work-runtime:2.5.0'
     implementation 'androidx.paging:paging-runtime-ktx:3.2.0'
     implementation 'androidx.startup:startup-runtime:1.1.1'
@@ -96,7 +97,7 @@ dependencies {
     implementation 'com.zhaopin.zpm:module_common_widget:1.4.6'
     implementation 'com.zhaopin.zpm:module_common_util:1.1.45'
     implementation 'com.zhaopin.zpm:module_list:1.2.2'
-    implementation 'com.zhaopin.zpm:selectwidget:4.2.4'
+    implementation 'com.zhaopin.zpm:selectwidget:4.3.18'
     implementation 'com.zhaopin.zpm:shimmerlayout:2.1.3@aar'
 
     /** compose by target version */
