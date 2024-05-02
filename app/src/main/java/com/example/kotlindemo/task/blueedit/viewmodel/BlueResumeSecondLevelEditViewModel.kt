@@ -118,8 +118,17 @@ class BlueResumeSecondLevelEditViewModel : MviBaseViewModel<BlueEditPageState, B
     /**
      * 二级问题标签添加
      */
-    fun secondLevelTagAdd() {
-
+    fun secondLevelTagAdd(name: String) {
+        val newTagList = curList.copyOf().toMutableList()
+        val addTagState = BlueResumeTagState(
+            name = name,
+            selected = true,
+            type = BlueTagType.Delete,
+            id = "Auto"
+        )
+        val index = newTagList.size - 1
+        newTagList.add(index, addTagState)
+        updatePageState(newTagList)
     }
 
     /**

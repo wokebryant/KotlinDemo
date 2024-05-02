@@ -132,8 +132,8 @@ val advantagesQA = WorkPreferenceBean(
                     level = "3",
                     max = 3,
                     must = true,
-                    parentQuestionId = "",
-                    parentAnswerId = "",
+                    parentQuestionId = "pp1",
+                    parentAnswerId = "pp1",
                     questionType = "advantages",
                     subAnswerList = mutableListOf(
                         WorkPreferenceBean.SubAnswer(
@@ -181,68 +181,68 @@ val advantagesQA = WorkPreferenceBean(
                     level = "3",
                     max = 3,
                     must = true,
-                    parentQuestionId = "",
-                    parentAnswerId = "",
+                    parentQuestionId = "pp2",
+                    parentAnswerId = "pp2",
                     questionType = "advantages",
                     subAnswerList = mutableListOf(
                         WorkPreferenceBean.SubAnswer(
                             name = "工作优点1",
-                            id = "",
+                            id = "xx1",
                             selected = false
                         ),
                         WorkPreferenceBean.SubAnswer(
                             name = "工作优点2",
-                            id = "",
+                            id = "xx2",
                             selected = false
                         ),
                         WorkPreferenceBean.SubAnswer(
                             name = "工作优点3",
-                            id = "",
+                            id = "xx3",
                             selected = false
                         ),
                         WorkPreferenceBean.SubAnswer(
                             name = "工作优点4",
-                            id = "",
+                            id = "xx4",
                             selected = false
                         ),
                         WorkPreferenceBean.SubAnswer(
                             name = "工作优点5",
-                            id = "",
+                            id = "xx5",
                             selected = false
                         ),
                         WorkPreferenceBean.SubAnswer(
                             name = "工作优点6",
-                            id = "",
+                            id = "xx6",
                             selected = false
                         ),
                         WorkPreferenceBean.SubAnswer(
                             name = "工作优点7",
-                            id = "",
+                            id = "xx7",
                             selected = false
                         ),
                         WorkPreferenceBean.SubAnswer(
                             name = "工作优点8",
-                            id = "",
+                            id = "xx8",
                             selected = false
                         ),
                         WorkPreferenceBean.SubAnswer(
                             name = "工作优点9",
-                            id = "",
+                            id = "xx9",
                             selected = false
                         ),
                         WorkPreferenceBean.SubAnswer(
                             name = "工作优点10",
-                            id = "",
+                            id = "xx10",
                             selected = false
                         ),
                         WorkPreferenceBean.SubAnswer(
                             name = "工作优点11",
-                            id = "",
+                            id = "xx12",
                             selected = false
                         ),
                         WorkPreferenceBean.SubAnswer(
                             name = "工作优点12",
-                            id = "",
+                            id = "xx13",
                             selected = false
                         ),
                     )

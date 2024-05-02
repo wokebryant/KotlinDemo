@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.viewModels
+import androidx.core.view.size
 import androidx.core.view.updateLayoutParams
 import androidx.viewpager2.widget.ViewPager2
 import com.example.kotlindemo.base.BaseActivity
@@ -84,7 +85,7 @@ class BlueResumeEditActivity : BaseActivity() {
     }
 
     private fun collect() {
-        viewModel.stateFlow.collectState(this) {
+        viewModel.stateFlow.collectStateLast(this) {
             // 更新进度
             binding.resumeProgress.progress = it.progress
             // 按钮状态
@@ -92,7 +93,7 @@ class BlueResumeEditActivity : BaseActivity() {
             binding.tvBottom.text = it.bottomBtnContent
             binding.flBottom.isEnabled = it.bottomBtnEnable
         }
-        viewModel.stateFlow.collectState(this, BlueEditState::list) {
+        viewModel.stateFlow.collectStateLast(this, BlueEditState::list) {
             updateViewPager2(it)
         }
         viewModel.eventFlow.collectEvent(this) {
@@ -130,8 +131,14 @@ class BlueResumeEditActivity : BaseActivity() {
     }
 
     private fun showNext() {
-        binding.vpBlue.showNext()
-        viewModel.updateProgress()
+        val curItemIndex = binding.vpBlue.currentItem
+        val isLastItem = curItemIndex == viewPager2Adapter2.itemCount - 1
+        if (isLastItem) {
+            viewModel.uploadSaveAnswer()
+        } else {
+            binding.vpBlue.showNext()
+            viewModel.updateProgress()
+        }
     }
 
     private fun request() {

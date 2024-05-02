@@ -52,7 +52,7 @@ class BlueResumeSecondLevelQAFragment(
         if (activityResult.resultCode == AppCompatActivity.RESULT_OK) {
             val result = activityResult.data?.getSerializableExtra(ZPWSKeyWordMatchActivity.SEARCH_IMAGINE_SKILL_TAG)
                     as? SearchImagineSkillTag.SearchImagineSkillTagDataList
-
+            viewModel.secondLevelTagAdd("新增标签")
         }
     }
 
@@ -92,7 +92,7 @@ class BlueResumeSecondLevelQAFragment(
             binding.inTitle.tvExtra.text = if (pageState.max > 1) "（多选）" else ""
             parentViewModel.updateBottom(it.hasSelected, pageState.must)
         }
-        viewModel.stateFlow.collectState(this, BlueEditPageState::itemList) {
+        viewModel.stateFlow.collectStateLast(this, BlueEditPageState::itemList) {
             // 更新标签列表
             val tagList = it.first().list
             tagAdapter.submitList(tagList)
@@ -117,6 +117,8 @@ class BlueResumeSecondLevelQAFragment(
                 is BlueEditEvent.ShowLimitToast -> {
                     currentActivity()?.showToast(it.content)
                 }
+
+                else -> {}
             }
         }
     }

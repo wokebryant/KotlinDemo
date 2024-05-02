@@ -83,6 +83,25 @@ fun <State, A> StateFlow<State>.collectState(
 
 /**
  * Flow订阅局部刷新
+ * 1个参数
+ * ！！！KProperty1 属性使用反射，注意State 避免混淆
+ */
+fun <State, A> StateFlow<State>.collectStateLast(
+    lifecycleOwner: LifecycleOwner,
+    prop1: KProperty1<State, A>,
+    action: (A) -> Unit
+) {
+    lifecycleOwner.lifecycleScope.launchWhenStarted {
+        this@collectStateLast.map {
+            StateTuple1(prop1.get(it))
+        }.distinctUntilChanged().collect { (a) ->
+            action.invoke(a)
+        }
+    }
+}
+
+/**
+ * Flow订阅局部刷新
  * 2个参数
  */
 fun <State, A, B> StateFlow<State>.collectState(

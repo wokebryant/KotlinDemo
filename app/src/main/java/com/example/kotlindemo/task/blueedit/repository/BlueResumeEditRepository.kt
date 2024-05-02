@@ -7,6 +7,9 @@ import com.example.kotlindemo.task.blueedit.data.BlueMockDataSource
 import com.example.kotlindemo.task.blueedit.data.BlueResumeEditDataSource
 import com.example.kotlindemo.task.blueedit.model.BlueEditInfoSaveData
 import com.example.kotlindemo.task.blueedit.model.BlueResumeEditQAResponse
+import com.google.gson.Gson
+import com.zhaopin.social.appbase.util.currentActivity
+import com.zhaopin.toast.showToast
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
@@ -26,7 +29,7 @@ class BlueResumeEditRepository(
     private var qaData: BlueResumeEditQuestionBean? = null
 
     /** 答案列表 */
-    private var saveData = mutableListOf<BlueEditInfoSaveData>()
+    private var saveMap = mutableMapOf<Int, List<BlueEditInfoSaveData>>()
     /** 工作时长ID */
     private var workDurationId = ""
 
@@ -68,7 +71,23 @@ class BlueResumeEditRepository(
         position: Int,
         answerList: List<BlueEditInfoSaveData>
     ) {
-        saveData.addAll(answerList)
+        if (saveMap.contains(position)) {
+            saveMap[position] = answerList
+        } else {
+            saveMap[position] = answerList
+        }
+    }
+
+    /**
+     * 点击保存请求接口
+     */
+    fun uploadSaveAnswer() {
+        // 将Map数据转换成Json字符串
+        val saveList = mutableListOf<BlueEditInfoSaveData>()
+        saveMap.forEach {
+            saveList.addAll(it.value)
+        }
+        val json = Gson().toJson(saveList)
     }
 
 }

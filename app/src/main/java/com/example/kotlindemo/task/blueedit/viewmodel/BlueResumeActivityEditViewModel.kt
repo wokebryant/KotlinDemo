@@ -109,7 +109,7 @@ class BlueResumeActivityEditViewModel(
     ) {
         repository.saveCommonStepAnswer(position, answerList)
 
-//        currentActivity()?.showToast(answerList.first().answerList.toString())
+        currentActivity()?.showToast(answerList.first().answerList.toString())
     }
 
     /**
@@ -118,6 +118,13 @@ class BlueResumeActivityEditViewModel(
     fun saveWorkDurationPageAnswer(id: String) {
         repository.saveWorkDurationStepAnswer(id)
 
+    }
+
+    /**
+     * 点击保存请求接口
+     */
+    fun uploadSaveAnswer() {
+        repository.uploadSaveAnswer()
     }
 
     /**

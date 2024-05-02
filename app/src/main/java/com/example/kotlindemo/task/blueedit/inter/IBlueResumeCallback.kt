@@ -7,6 +7,14 @@ package com.example.kotlindemo.task.blueedit.inter
  */
 interface IBlueResumeCallback {
 
-    fun jumpCustomTagPage()
+    fun onThirdLevelTagClick(
+        itemPosition: Int,
+        tagPosition: Int,
+        selectedList: MutableSet<Int>,
+        fromFoldItem: Boolean,
+        isAdd: Boolean
+    )
+
+    fun onThirdLevelExpandClick(position: Int, selectedList: MutableSet<Int>)
 }
 

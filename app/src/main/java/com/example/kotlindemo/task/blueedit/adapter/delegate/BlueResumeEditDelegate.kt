@@ -3,6 +3,7 @@ package com.example.kotlindemo.task.blueedit.adapter.delegate
 import com.example.kotlindemo.databinding.ItemBlueResumeEditDelegateBinding
 import com.example.kotlindemo.task.blueedit.adapter.BlueResumeEditTagAdapter
 import com.example.kotlindemo.task.blueedit.adapter.BlueTagType
+import com.example.kotlindemo.task.blueedit.inter.IBlueResumeCallback
 import com.example.kotlindemo.task.blueedit.model.BlueEditInfoSaveData
 import com.example.kotlindemo.task.blueedit.model.BlueEditPageState
 import com.example.kotlindemo.task.blueedit.model.BlueResumeTagState
@@ -14,7 +15,7 @@ import com.zhaopin.list.multitype.binder.BindingViewDelegate
  * @Date 2024/04/28
  */
 class BlueResumeEditDelegate(
-    private val onThreeLevelSelectedCallback: (BlueEditInfoSaveData) -> Unit
+    private val callback: IBlueResumeCallback? = null
 ) : BindingViewDelegate<BlueEditPageState.ItemState, ItemBlueResumeEditDelegateBinding>() {
 
     override fun onBindViewHolder(
@@ -30,18 +31,21 @@ class BlueResumeEditDelegate(
         item: BlueEditPageState.ItemState,
         position: Int
     ) {
-        val originList = item.list
         val selectedList = mutableSetOf<Int>()
+        val isFoldItem = item.list.size > 8 && item.list[8].type == BlueTagType.Expand
+
+        // 初始化选中的Set
+        initSelectedList(item.list, selectedList)
 
         // 初始化Adapter
         val tagAdapter = BlueResumeEditTagAdapter().apply {
             itemClick = { tagPosition, state ->
                 itemClick(
-                    adapter = this,
-                    originList = originList,
                     selectedList = selectedList,
-                    position = tagPosition,
+                    tagPosition = tagPosition,
+                    itemPosition = position,
                     state = state,
+                    isFoldItem = isFoldItem
                 )
             }
         }
@@ -52,98 +56,45 @@ class BlueResumeEditDelegate(
         }
         // 更新UI
         binding.tvTitle.text = item.title
-        val showList = getFirstShowList(originList)
-        tagAdapter.submitList(showList)
-        // 初始化选中的Set
-        initSelectedList(originList, selectedList)
+        tagAdapter.submitList(item.list)
     }
 
     /**
      * 初始化选中的Set
      */
     private fun initSelectedList(
-        originList: List<BlueResumeTagState>,
+        tagList: List<BlueResumeTagState>,
         selectedList: MutableSet<Int>
     ) {
-        originList.forEachIndexed { index, blueResumeTagState ->
+        tagList.forEachIndexed { index, blueResumeTagState ->
             if (blueResumeTagState.selected) {
                 selectedList.add(index)
             }
         }
     }
 
-    /**
-     * 获取首次展示的列表
-     */
-    private fun getFirstShowList(originList: List<BlueResumeTagState>): List<BlueResumeTagState> {
-        return if (originList.size > 9) {
-            val subList = originList.subList(0, 8).toMutableList()
-            val footTag = BlueResumeTagState(
-                name = "",
-                selected = false,
-                type = BlueTagType.Expand
-            )
-            subList.add(footTag)
-            subList
-        } else {
-            originList
-        }
-    }
-
-    /**
-     * 点击监听
-     */
     private fun itemClick(
-        adapter: BlueResumeEditTagAdapter,
-        originList: List<BlueResumeTagState>,
         selectedList: MutableSet<Int>,
-        position: Int,
+        tagPosition: Int,
+        itemPosition: Int,
         state: BlueResumeTagState,
+        isFoldItem: Boolean
     ) {
-        // 展开全部
         if (state.type == BlueTagType.Expand) {
-            val showList = originList.mapIndexed { index, blueResumeTagState ->
-                blueResumeTagState.copy(selected = selectedList.contains(index))
-            }
-            adapter.submitList(showList)
+            callback?.onThirdLevelExpandClick(itemPosition, selectedList)
             return
         }
 
         // 点击标签
-        if (selectedList.contains(position)) {
-            selectedList.remove(position)
+        val isAdd = if (selectedList.contains(tagPosition)) {
+            selectedList.remove(tagPosition)
+            false
         } else {
-            selectedList.add(position)
+            selectedList.add(tagPosition)
+            true
         }
 
-        val newTagList = adapter.curList().mapIndexed { index, blueResumeTagState ->
-            blueResumeTagState.copy(selected = selectedList.contains(index))
-        }
-        adapter.submitList(newTagList)
-        // 三级标签点击回调
-        val saveData = BlueEditInfoSaveData(
-            answerList = getSelectedAnswerIdList(selectedList, adapter.curList()),
-            level = "3",
-            questionId = state.questionId,
-            questionType = state.questionType,
-            parentAnswerId = state.parentAnswerId,
-            parentQuestionId = state.parentQuestionId
-        )
-        onThreeLevelSelectedCallback.invoke(saveData)
-    }
-
-    private fun getSelectedAnswerIdList(
-        selectedList: MutableSet<Int>,
-        curList: List<BlueResumeTagState>
-    ): List<String> {
-        val idList = mutableListOf<String>()
-        curList.forEachIndexed { index, blueResumeTagState ->
-            if (selectedList.contains(index)) {
-                idList.add(blueResumeTagState.id)
-            }
-        }
-
-        return idList
+        callback?.onThirdLevelTagClick(itemPosition, tagPosition, selectedList, isFoldItem, isAdd)
     }
 
 }

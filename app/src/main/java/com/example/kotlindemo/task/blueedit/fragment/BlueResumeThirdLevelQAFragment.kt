@@ -10,12 +10,14 @@ import com.example.kotlindemo.study.mvi.core.collectEvent
 import com.example.kotlindemo.study.mvi.core.collectState
 import com.example.kotlindemo.study.mvi.core.collectStateLast
 import com.example.kotlindemo.task.blueedit.adapter.delegate.BlueResumeEditDelegate
+import com.example.kotlindemo.task.blueedit.inter.IBlueResumeCallback
 import com.example.kotlindemo.task.blueedit.model.BlueEditEvent
 import com.example.kotlindemo.task.blueedit.model.BlueEditPageState
 import com.example.kotlindemo.task.blueedit.viewmodel.BlueResumeActivityEditViewModel
 import com.example.kotlindemo.task.blueedit.viewmodel.BlueResumeSecondLevelEditViewModel
 import com.example.kotlindemo.task.blueedit.viewmodel.BlueResumeThirdLevelEditViewModel
 import com.zhaopin.list.multitype.adapter.MultiTypeAdapter
+import com.zhaopin.list.multitype.adapter.setItem
 import com.zhaopin.list.multitype.adapter.setList
 import com.zhaopin.social.appbase.util.currentActivity
 import com.zhaopin.toast.showToast
@@ -28,7 +30,7 @@ import com.zhaopin.toast.showToast
 class BlueResumeThirdLevelQAFragment(
     private val position: Int,
     private val pageState: BlueEditPageState,
-) : BaseFragment<FragmentBlueResumeThirdQaBinding>() {
+) : BaseFragment<FragmentBlueResumeThirdQaBinding>(), IBlueResumeCallback {
 
     private val parentViewModel: BlueResumeActivityEditViewModel by activityViewModels()
     private val viewModel: BlueResumeThirdLevelEditViewModel by viewModels()
@@ -36,9 +38,7 @@ class BlueResumeThirdLevelQAFragment(
     /** 三级问题列表适配器 */
     private val listAdapter by lazy {
         MultiTypeAdapter().apply {
-            register(BlueResumeEditDelegate { answer ->
-                viewModel.thirdLevelTagSaveData(answer)
-            })
+            register(BlueResumeEditDelegate(this@BlueResumeThirdLevelQAFragment))
         }
     }
 
@@ -68,7 +68,7 @@ class BlueResumeThirdLevelQAFragment(
             // 更新底部按钮状态
             parentViewModel.updateBottom(it.hasSelected, pageState.must)
         }
-        viewModel.stateFlow.collectState(this, BlueEditPageState::itemList) {
+        viewModel.stateFlow.collectStateLast(this, BlueEditPageState::itemList) {
             // 更新Item列表
             if (it.isNotEmpty()) {
                 listAdapter.setList(it)
@@ -82,6 +82,9 @@ class BlueResumeThirdLevelQAFragment(
                 is BlueEditEvent.ShowLimitToast -> {
                     currentActivity()?.showToast(it.content)
                 }
+                is BlueEditEvent.UpdateThirdLevelItem -> {
+                    listAdapter.setItem(it.position, it.item)
+                }
 
                 else -> {}
             }
@@ -92,6 +95,26 @@ class BlueResumeThirdLevelQAFragment(
         super.onResume()
         // 更新底部按钮状态
         parentViewModel.updateBottom(viewModel.hasSelected(), pageState.must)
+    }
+
+    /**
+     * 标签点击
+     */
+    override fun onThirdLevelTagClick(
+        itemPosition: Int,
+        tagPosition: Int,
+        selectedList: MutableSet<Int>,
+        fromFoldItem: Boolean,
+        isAdd: Boolean
+    ) {
+        viewModel.onTagClick(itemPosition, tagPosition, selectedList, fromFoldItem, isAdd)
+    }
+
+    /**
+     * 展开更多点击
+     */
+    override fun onThirdLevelExpandClick(position: Int, selectedList: MutableSet<Int>) {
+        viewModel.onExpandClick(position, selectedList)
     }
 
 }

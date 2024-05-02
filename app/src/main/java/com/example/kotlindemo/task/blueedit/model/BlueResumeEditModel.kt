@@ -43,6 +43,8 @@ sealed class BlueEditEvent : IUiEvent {
     object ShowNextPage : BlueEditEvent()
     /** 展示选择超限Toast */
     data class ShowLimitToast(val content: String) : BlueEditEvent()
+    /** 三级标签Item更新 */
+    data class UpdateThirdLevelItem(val position: Int, val item: Any) : BlueEditEvent()
 }
 
 /**
@@ -71,6 +73,11 @@ data class BlueEditPageState(
 
     /** 页面问题级别,默认2级 */
     val pageLevel get() = if (itemList.size == 1) 2 else 3
+}
+
+sealed class BottomAction {
+    object Next: BottomAction()
+    object Save: BottomAction()
 }
 
 /**
