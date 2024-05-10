@@ -1,10 +1,12 @@
 package com.example.kotlindemo.compose
 
+import android.graphics.Color
 import androidx.activity.viewModels
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -16,7 +18,10 @@ import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
@@ -27,15 +32,25 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Paint
+import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextPainter
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.kotlindemo.R
@@ -193,7 +208,9 @@ class WechatSendActivity : ComposeActivity() {
 
                     Spacer(modifier = Modifier.size(12.dp))
 
-                    Column(modifier = Modifier.wrapContentSize()) {
+                    Column(
+                        modifier = Modifier.wrapContentSize(),
+                    ) {
                         Text(
                             text = if (isFirstCard) SEND_WECHAT else DO_NOT_SEND_WECHAT,
                             color = ZlColors.C_B1,
@@ -201,18 +218,24 @@ class WechatSendActivity : ComposeActivity() {
                             fontSize = 18.sp
                         )
 
-                        Spacer(modifier = Modifier.size(6.dp))
-
                         if (haveWechat) {
+                            Spacer(modifier = Modifier.size(6.dp))
+
                             Row(
                                 modifier = Modifier
-                                    .wrapContentSize(),
-                                verticalAlignment = Alignment.CenterVertically
+                                    .fillMaxWidth()
+                                    .padding(end = 16.dp),
                             ) {
+                                val text = "微信号：cid8765cid8765cid8765cid8765cid8765cid8765"
+
                                 Text(
-                                    text = "微信号：cid8765432",
+                                    text = text,
                                     color = ZlColors.C_B3,
-                                    fontSize = 14.sp
+                                    fontSize = 14.sp,
+                                    overflow = TextOverflow.Ellipsis,
+                                    maxLines = 1,
+                                    modifier = Modifier
+                                        .weight(1f, false)
                                 )
                                 Text(
                                     modifier = Modifier
