@@ -23,6 +23,8 @@ import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.BottomSheetState
+import androidx.compose.material.BottomSheetValue
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.ExperimentalMaterialApi
@@ -87,10 +89,6 @@ class WechatSendActivity : ComposeActivity() {
         val scope = rememberCoroutineScope()
         val bottomSheetState = rememberModalBottomSheetState(
             initialValue = ModalBottomSheetValue.Hidden,
-            confirmStateChange = {
-                it == ModalBottomSheetValue.Expanded
-            },
-            skipHalfExpanded = true
         )
 
         Scaffold(

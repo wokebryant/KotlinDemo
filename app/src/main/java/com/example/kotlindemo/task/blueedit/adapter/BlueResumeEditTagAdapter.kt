@@ -67,6 +67,8 @@ class BlueResumeEditTagAdapter : FlowMVXLayoutListAdapter<BlueResumeTagState, Bl
                 binding.ivDelete.onClick {
                     onDeleteClick.invoke(position, data)
                 }
+                val img = if (data.selected) R.drawable.ic_tag_delete_selected else R.drawable.ic_tag_delete_un_selected
+                binding.ivDelete.setImageResource(img)
                 // 测量TextView宽度和文本宽度
                 binding.tvCustom.post {
                     val textViewWidth = binding.tvCustom.width

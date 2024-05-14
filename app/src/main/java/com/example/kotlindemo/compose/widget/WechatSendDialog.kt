@@ -1,9 +1,13 @@
 package com.example.kotlindemo.compose.widget
 
+import android.view.MotionEvent
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.DraggableState
+import androidx.compose.foundation.gestures.Orientation
+import androidx.compose.foundation.gestures.draggable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -21,6 +25,7 @@ import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Checkbox
 import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.ModalBottomSheetLayout
 import androidx.compose.material.ModalBottomSheetState
 import androidx.compose.material.ModalBottomSheetValue
@@ -32,8 +37,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.input.pointer.PointerEventPass
+import androidx.compose.ui.input.pointer.PointerInputChange
+import androidx.compose.ui.input.pointer.pointerInteropFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -58,7 +68,7 @@ fun WechatSendDialog(
     scope: CoroutineScope,
     state: ModalBottomSheetState,
 ) {
-    ModalBottomSheetLayout(
+    NonDraggableModalBottomSheetLayout(
         modifier = Modifier.fillMaxWidth(),
         sheetState = state,
         sheetShape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp),
@@ -241,5 +251,42 @@ fun WechatSendBottomBox(
                 )
             }
         }
+    }
+}
+
+@OptIn(ExperimentalMaterialApi::class, ExperimentalComposeUiApi::class)
+@Composable
+fun NonDraggableModalBottomSheetLayout(
+    modifier: Modifier = Modifier,
+    sheetState: ModalBottomSheetState,
+    sheetShape: Shape = MaterialTheme.shapes.medium,
+    sheetContent: @Composable () -> Unit,
+    content: @Composable () -> Unit
+) {
+    // 创建一个Modifier来拦截触摸事件
+    val nonDraggableModifier = Modifier.pointerInteropFilter {
+        when (it.action) {
+            MotionEvent.ACTION_MOVE -> {
+                false
+            }
+
+            else -> {
+                false
+            }
+        }
+    }
+
+    // 使用自定义的Modifier包装sheetContent
+    ModalBottomSheetLayout(
+        modifier = modifier,
+        sheetState = sheetState,
+        sheetShape = sheetShape,
+        sheetContent = {
+            Box(modifier = nonDraggableModifier) {
+                sheetContent()
+            }
+        }
+    ) {
+        content()
     }
 }

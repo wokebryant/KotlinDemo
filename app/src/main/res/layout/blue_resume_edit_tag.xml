@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:paddingHorizontal="26dp"
+            android:paddingHorizontal="8dp"
             android:paddingVertical="16dp"
             tools:text="包装工"
             android:textColor="@color/color_common_tag_select_test"
@@ -46,7 +46,7 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
+                android:layout_marginStart="4dp"
                 android:textColor="@color/C_B2"
                 android:textSize="16sp"
                 android:text="@string/customize"/>
@@ -78,6 +78,7 @@
                 android:id="@+id/iv_delete"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
+                android:layout_marginTop="1dp"
                 android:layout_marginStart="2dp"
                 android:src="@drawable/ic_tag_delete"/>
 

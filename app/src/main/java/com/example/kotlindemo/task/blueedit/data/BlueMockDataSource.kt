@@ -262,37 +262,37 @@ val customQA = WorkPreferenceBean(
     max = 3,
     answerList = mutableListOf(
         WorkPreferenceBean.Answer(
-            name = "自定义电话",
+            name = "哈哈",
             id = "cu1",
             selected = false,
             subQuestionList = emptyList()
         ),
         WorkPreferenceBean.Answer(
-            name = "自定义手机",
+            name = "桃子",
             id = "cu2",
             selected = false,
             subQuestionList = emptyList()
         ),
         WorkPreferenceBean.Answer(
-            name = "哈哈哈哈哈",
+            name = "苹果",
             id = "cu3",
             selected = false,
             subQuestionList = emptyList()
         ),
         WorkPreferenceBean.Answer(
-            name = "开心开心",
+            name = "例子例子例子",
             id = "cu4",
             selected = false,
             subQuestionList = emptyList()
         ),
         WorkPreferenceBean.Answer(
-            name = "自定义苹果",
+            name = "香蕉",
             id = "cu5",
             selected = false,
             subQuestionList = emptyList()
         ),
         WorkPreferenceBean.Answer(
-            name = "自定义例子",
+            name = "西瓜",
             id = "cu6",
             selected = false,
             subQuestionList = emptyList()
