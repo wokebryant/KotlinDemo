@@ -1,19 +1,11 @@
 package com.example.kotlindemo.compose.widget
 
-import android.view.MotionEvent
 import androidx.activity.compose.BackHandler
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.gestures.DraggableState
-import androidx.compose.foundation.gestures.Orientation
-import androidx.compose.foundation.gestures.draggable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -23,13 +15,10 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.Checkbox
 import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.ModalBottomSheetLayout
 import androidx.compose.material.ModalBottomSheetState
 import androidx.compose.material.ModalBottomSheetValue
-import androidx.compose.material.Shapes
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -37,18 +26,19 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.input.pointer.PointerEventPass
-import androidx.compose.ui.input.pointer.PointerInputChange
-import androidx.compose.ui.input.pointer.pointerInteropFilter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
+import coil.request.ImageRequest
 import com.example.kotlindemo.R
+import com.example.kotlindemo.compose.ext.noRipple
+import com.example.kotlindemo.compose.noRippleClickable
 import com.example.kotlindemo.compose.ui.ZlColors
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -65,21 +55,25 @@ fun WechatSendDialog(
     onSendClick: () -> Unit,
     onNotSendClick: () -> Unit,
     onNotNotice: () -> Unit,
+    onChecked: (Boolean) -> Unit,
     scope: CoroutineScope,
     state: ModalBottomSheetState,
+    hrAvatar: String = ""
 ) {
-    NonDraggableModalBottomSheetLayout(
+    ModalBottomSheetLayout(
         modifier = Modifier.fillMaxWidth(),
         sheetState = state,
         sheetShape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp),
         sheetContent = {
             WechatSendTopBox(
-                onNotNotice = onNotNotice
+                onNotNotice = onNotNotice,
+                hrAvatar = hrAvatar
             )
             WechatSendBottomBox(
                 isSelected = false,
                 onNotSendClick = onNotSendClick,
-                onSendClick = onSendClick
+                onSendClick = onSendClick,
+                onChecked = onChecked
             )
         }
     ) {
@@ -99,6 +93,7 @@ fun WechatSendDialog(
 @Composable
 fun WechatSendTopBox(
     onNotNotice: () -> Unit,
+    hrAvatar: String
 ) {
     Box(
         modifier = Modifier
@@ -116,7 +111,7 @@ fun WechatSendTopBox(
             modifier = Modifier
                 .align(Alignment.TopEnd)
                 .padding(top = 14.dp, end = 16.dp)
-                .clickable { onNotNotice.invoke() },
+                .noRippleClickable { onNotNotice.invoke() },
             verticalAlignment = Alignment.CenterVertically
         ) {
             SimpleImage(
@@ -147,14 +142,18 @@ fun WechatSendTopBox(
                 modifier = Modifier.size(24.dp, 10.dp)
             )
             Spacer(modifier = Modifier.size(8.dp))
-            SimpleImage(
-                id = R.drawable.c_common_icon_hr_new_default,
+            AsyncImage(
                 modifier = Modifier
                     .size(62.dp)
                     .align(Alignment.Top)
                     .clip(shape = CircleShape)
                     .border(width = 3.dp, color = ZlColors.C_W1, shape = CircleShape)
-                    .padding(13.dp),
+                    .padding(3.dp),
+                model = ImageRequest.Builder(LocalContext.current).data(hrAvatar).build(),
+                contentDescription = "",
+                contentScale = ContentScale.Fit,
+                placeholder = painterResource(id = R.drawable.c_common_icon_hr_new_default),
+                error = painterResource(id = R.drawable.c_common_icon_hr_new_default)
             )
         }
     }
@@ -165,6 +164,7 @@ fun WechatSendBottomBox(
     isSelected: Boolean,
     onSendClick: () -> Unit,
     onNotSendClick: () -> Unit,
+    onChecked: (Boolean) -> Unit
 ) {
     var checkState by remember {
         mutableStateOf(isSelected)
@@ -202,7 +202,8 @@ fun WechatSendBottomBox(
                     elevation = null,
                     modifier = Modifier
                         .height(44.dp)
-                        .weight(1f)
+                        .weight(1f),
+                    interactionSource = noRipple
                 ) {
                     Text(
                         text = "不发送",
@@ -221,7 +222,8 @@ fun WechatSendBottomBox(
                     elevation = null,
                     modifier = Modifier
                         .height(44.dp)
-                        .weight(1f)
+                        .weight(1f),
+                    interactionSource = noRipple
                 ) {
                     Text(
                         text = "发送",
@@ -239,54 +241,18 @@ fun WechatSendBottomBox(
                     id = if (checkState) R.drawable.ic_wechat_checked else R.drawable.ic_wechat_un_check,
                     modifier = Modifier
                         .size(16.dp)
-                        .clickable {
+                        .noRippleClickable {
                             checkState = !checkState
+                            onChecked.invoke(checkState)
                         }
                 )
                 Spacer(modifier = Modifier.size(2.dp))
                 Text(
-                    text = "每次投递，均沿用此设置",
+                    text = "每次投递默认发送微信",
                     color = ZlColors.C_B2,
                     fontSize = 13.sp,
                 )
             }
         }
-    }
-}
-
-@OptIn(ExperimentalMaterialApi::class, ExperimentalComposeUiApi::class)
-@Composable
-fun NonDraggableModalBottomSheetLayout(
-    modifier: Modifier = Modifier,
-    sheetState: ModalBottomSheetState,
-    sheetShape: Shape = MaterialTheme.shapes.medium,
-    sheetContent: @Composable () -> Unit,
-    content: @Composable () -> Unit
-) {
-    // 创建一个Modifier来拦截触摸事件
-    val nonDraggableModifier = Modifier.pointerInteropFilter {
-        when (it.action) {
-            MotionEvent.ACTION_MOVE -> {
-                false
-            }
-
-            else -> {
-                false
-            }
-        }
-    }
-
-    // 使用自定义的Modifier包装sheetContent
-    ModalBottomSheetLayout(
-        modifier = modifier,
-        sheetState = sheetState,
-        sheetShape = sheetShape,
-        sheetContent = {
-            Box(modifier = nonDraggableModifier) {
-                sheetContent()
-            }
-        }
-    ) {
-        content()
     }
 }

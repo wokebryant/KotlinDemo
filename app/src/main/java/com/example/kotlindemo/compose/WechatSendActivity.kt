@@ -127,6 +127,7 @@ class WechatSendActivity : ComposeActivity() {
             onSendClick = { currentActivity()?.showToast("发送") },
             onNotSendClick = { currentActivity()?.showToast("不发送") },
             onNotNotice = {currentActivity()?.showToast("不再提醒") },
+            onChecked = {},
             scope = scope,
             state = bottomSheetState
         )
