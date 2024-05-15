@@ -56,12 +56,16 @@ import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.kotlindemo.R
+import com.example.kotlindemo.compose.ext.noRipple
 import com.example.kotlindemo.compose.ui.ZlColors
 import com.example.kotlindemo.compose.viewmodel.WechatSendState
 import com.example.kotlindemo.compose.viewmodel.WechatSendViewModel
 import com.example.kotlindemo.compose.widget.CenterTopAppBar
 import com.example.kotlindemo.compose.widget.SimpleImage
 import com.example.kotlindemo.compose.widget.WechatSendDialog
+import com.example.kotlindemo.task.deliverytop.DeliveryCardState
+import com.example.kotlindemo.task.deliverytop.DeliveryPrivilegeDialog
+import com.example.kotlindemo.task.deliverytop.DialogState
 import com.zhaopin.social.appbase.util.currentActivity
 import com.zhaopin.toast.showToast
 import kotlinx.coroutines.launch
@@ -89,6 +93,7 @@ class WechatSendActivity : ComposeActivity() {
         val scope = rememberCoroutineScope()
         val bottomSheetState = rememberModalBottomSheetState(
             initialValue = ModalBottomSheetValue.Hidden,
+            skipHalfExpanded = true
         )
 
         Scaffold(
@@ -123,15 +128,48 @@ class WechatSendActivity : ComposeActivity() {
             }
         }
 
-        WechatSendDialog(
-            onSendClick = { currentActivity()?.showToast("发送") },
-            onNotSendClick = { currentActivity()?.showToast("不发送") },
-            onNotNotice = {currentActivity()?.showToast("不再提醒") },
-            onChecked = {},
+//        WechatSendDialog(
+//            onSendClick = { currentActivity()?.showToast("发送") },
+//            onNotSendClick = { currentActivity()?.showToast("不发送") },
+//            onNotNotice = {currentActivity()?.showToast("不再提醒") },
+//            onChecked = {},
+//            scope = scope,
+//            state = bottomSheetState
+//        )
+        DeliveryPrivilegeDialog(
+            onConfirmClick = { },
             scope = scope,
-            state = bottomSheetState
+            sheetState = bottomSheetState,
+            dialogState = DialogState(
+                list = list,
+                count = "111"
+            )
         )
     }
+
+    private val list = listOf(
+        DeliveryCardState(
+            type = 1,
+            position = 0,
+            isSelected = false,
+            isGray = true,
+            mainTitle = "投递置顶",
+            subTitle = "投递后就展示",
+            countString = "剩余3次"
+        ),
+        DeliveryCardState(
+            type = 2,
+            position = 1,
+            mainTitle = "投递必应",
+            subTitle = "投递后优先展示，HR有反馈才扣费",
+            countString = "剩余3次"
+        ),
+        DeliveryCardState(
+            type = 3,
+            position = 2,
+            mainTitle = "不使用特权",
+        )
+    )
 
     @Composable
     fun WechatAppBar() {
