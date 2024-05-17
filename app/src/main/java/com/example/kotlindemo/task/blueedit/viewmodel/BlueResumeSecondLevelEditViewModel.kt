@@ -124,7 +124,8 @@ class BlueResumeSecondLevelEditViewModel : MviBaseViewModel<BlueEditPageState, B
             name = name,
             selected = true,
             type = BlueTagType.Delete,
-            id = "Auto"
+            id = "Auto",
+            extra = System.currentTimeMillis()
         )
         val index = newTagList.size - 1
         newTagList.add(index, addTagState)

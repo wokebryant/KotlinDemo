@@ -93,7 +93,8 @@ data class BlueResumeTagState(
     val questionId: String = "",
     val questionType: String = "",
     val parentAnswerId: String = "",
-    val parentQuestionId: String = ""
+    val parentQuestionId: String = "",
+    val extra: Long = 0
 ) : MVXTagUIState
 
 sealed class BlueResumeEditQAResponse {

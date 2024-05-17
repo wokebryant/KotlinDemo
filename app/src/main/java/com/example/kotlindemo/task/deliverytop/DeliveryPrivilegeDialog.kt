@@ -193,10 +193,12 @@ fun DeliveryCenter(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         items(list) {
-            DeliveryChooseCard(
-                state = it,
-                onCheck = onCheck
-            )
+            if (!it.isHide) {
+                DeliveryChooseCard(
+                    state = it,
+                    onCheck = onCheck
+                )
+            }
         }
     }
 }
@@ -327,6 +329,8 @@ data class DeliveryCardState(
     var isSelected: Boolean = false,
     // 是否置为灰色
     val isGray: Boolean = false,
+    // 是否隐藏
+    val isHide: Boolean = false,
     // 主标题
     val mainTitle: String = "",
     // 副标题

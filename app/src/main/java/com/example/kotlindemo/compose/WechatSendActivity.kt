@@ -160,6 +160,7 @@ class WechatSendActivity : ComposeActivity() {
         DeliveryCardState(
             type = 2,
             position = 1,
+            isHide = true,
             mainTitle = "投递必应",
             subTitle = "投递后优先展示，HR有反馈才扣费",
             countString = "剩余3次"
