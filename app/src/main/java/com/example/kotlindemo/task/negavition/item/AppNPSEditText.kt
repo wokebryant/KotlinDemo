@@ -91,7 +91,7 @@ class AppNPSEditText : AppCompatEditText {
     private val mRect = Rect()
 
 
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
 //        // 动态修改顶部空白区域的高度
 //        mRect.set(0, 0, getWidth(), Math.max(0, getPaddingTop() - getScrollY()));
 //        canvas?.drawRect(mRect, getPaint());

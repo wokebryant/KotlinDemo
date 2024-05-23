@@ -22,6 +22,7 @@ import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.PagerScope
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -116,7 +117,7 @@ class CollectActivity : ComposeActivity() {
         val pageList = viewModel.pageList
         viewModel.getJobData()
 
-        val pagerState = rememberPagerState()
+        val pagerState = rememberPagerState{ 2 }
         val scope = rememberCoroutineScope()
         val bottomSheetState = rememberModalBottomSheetState(ModalBottomSheetValue.Hidden)
 
@@ -158,9 +159,8 @@ class CollectActivity : ComposeActivity() {
                 }
 
                 HorizontalPager(
-                    pageCount = pageList.size,
+                    modifier = Modifier.fillMaxSize(),
                     state = pagerState,
-                    modifier = Modifier.fillMaxSize()
                 ) { pageIndex ->
                     if (pageIndex == 0) {
                         JobPage(scope, bottomSheetState)

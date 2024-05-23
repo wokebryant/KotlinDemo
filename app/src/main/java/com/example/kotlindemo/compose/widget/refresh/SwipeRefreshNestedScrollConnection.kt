@@ -25,7 +25,7 @@ internal class SwipeRefreshNestedScrollConnection(
         // If swiping isn't enabled, return zero
         !enabled -> Offset.Zero
         // If we're refreshing, return zero
-        state.isRefreshing -> Offset.Zero
+        state.isRefreshing -> available
         // If the user is swiping up, handle it
         source == NestedScrollSource.Drag && available.y < 0 -> onScroll(available)
         else -> Offset.Zero

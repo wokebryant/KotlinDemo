@@ -21,7 +21,7 @@ class ZLCircleImageView @JvmOverloads constructor(
     defStyleAttr: Int = 0,
 )  : ShapeableImageView(context, attr, defStyleAttr){
 
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         try {
             if (width != 0 && height != 0 && width == height) {
                 shapeAppearanceModel = ShapeAppearanceModel

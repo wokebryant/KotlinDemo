@@ -166,7 +166,7 @@ class WheelPointMarkView @JvmOverloads constructor(
         }
     }
 
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         drawRay(canvas)
         drawGuideLine(canvas)
