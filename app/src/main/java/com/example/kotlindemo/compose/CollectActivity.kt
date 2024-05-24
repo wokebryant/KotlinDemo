@@ -63,13 +63,13 @@ import com.example.kotlindemo.compose.data.CollectJobItem
 import com.example.kotlindemo.compose.ui.ZlColors
 import com.example.kotlindemo.compose.util.ComposeUIUtil
 import com.example.kotlindemo.compose.viewmodel.CollectViewModel
-import com.example.kotlindemo.compose.widget.BoScaffold
 import com.example.kotlindemo.compose.widget.CenterTopAppBar
 import com.example.kotlindemo.compose.widget.CollectDialog
 import com.example.kotlindemo.compose.widget.LoadMoreLazyColum
 import com.example.kotlindemo.compose.widget.PagerTab
 import com.example.kotlindemo.compose.widget.PagerTabIndicator
 import com.example.kotlindemo.compose.widget.Paging3StatePage
+import com.example.kotlindemo.compose.widget.Screen
 import com.example.kotlindemo.compose.widget.refresh.SwipeRefreshLayout
 import com.example.kotlindemo.compose.widget.refresh.header.LoadHeader
 import com.example.kotlindemo.compose.widget.stateLayout.PageState
@@ -104,7 +104,7 @@ class CollectActivity : ComposeActivity() {
         val bottomSheetState = rememberModalBottomSheetState(ModalBottomSheetValue.Hidden)
         val pageState = rememberPageState(state = PageState.Content())
 
-        BoScaffold(
+        Screen(
             title = "收藏页",
             pageState = pageState,
             onActionClick = {

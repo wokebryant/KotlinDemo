@@ -20,7 +20,7 @@ import com.example.kotlindemo.compose.widget.stateLayout.rememberPageState
 import com.zhaopin.social.appbase.util.currentActivity
 
 /**
- * @Description 页面脚手架
+ * @Description 页面模版
  * @Author LuoJia
  * @Date 2024/05/23
  */
@@ -40,7 +40,7 @@ import com.zhaopin.social.appbase.util.currentActivity
  * @param content 内容
  */
 @Composable
-fun BoScaffold(
+fun Screen(
     modifier: Modifier = Modifier,
     pageState: PageState = rememberPageState(),
     title: String = "",

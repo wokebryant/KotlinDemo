@@ -13,8 +13,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
+import com.example.kotlindemo.R
 import com.example.kotlindemo.compose.widget.stateLayout.StatePage
 import com.example.kotlindemo.compose.widget.stateLayout.rememberPageState
+import com.example.kotlindemo.compose.widget.stateLayout.state.EmptyState
+import com.example.kotlindemo.compose.widget.stateLayout.state.defaultEmptyState
 import kotlinx.coroutines.delay
 
 /**
@@ -81,9 +84,13 @@ class PageStateActivity : ComposeActivity() {
                 ) {
                     Text(text = "错误页")
                 }
+                val emptyState = EmptyState(
+                    emptyImage = R.drawable.core_common_error,
+                    emptyTip = "我是自定义文案"
+                )
                 Button(
                     modifier = modifier,
-                    onClick = { pageState.showEmpty() }
+                    onClick = { pageState.showEmpty(state = emptyState) }
                 ) {
                     Text(text = "空页面")
                 }
