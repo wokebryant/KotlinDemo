@@ -17,7 +17,7 @@ import com.example.kotlindemo.compose.widget.stateLayout.widget.DefaultErrorLayo
 import com.example.kotlindemo.compose.widget.stateLayout.widget.DefaultLoadingLayout
 
 /**
- * @Description
+ * @Description Compose通用状态页
  * @Author LuoJia
  * @Date 2024/04/12
  */
@@ -27,9 +27,9 @@ import com.example.kotlindemo.compose.widget.stateLayout.widget.DefaultLoadingLa
  * 通用状态页数据
  */
 sealed class PageData {
-    object Loading : PageData()
+    data object Loading : PageData()
 
-    object Success : PageData()
+    data object Content : PageData()
 
     data class Error(
         val state: ErrorState,
@@ -46,6 +46,16 @@ sealed class PageData {
  */
 class PageState(state: PageData) {
 
+    companion object {
+        fun Loading() = PageData.Loading
+
+        fun Content() = PageData.Content
+
+        fun Empty(state: EmptyState = defaultEmptyState) = PageData.Empty(state)
+
+        fun Error(state: ErrorState = defaultErrorState) = PageData.Error(state)
+    }
+
     /** 内部交互的状态 */
     internal var interactionState by mutableStateOf(state)
 
@@ -53,23 +63,38 @@ class PageState(state: PageData) {
     val state: PageData
         get() = interactionState
 
-    /** 供外部修改当前状态 */
-    fun setState(pageData: PageData) {
-        interactionState = pageData
+    /**
+     * 展示内容
+     */
+    fun showContent() {
+        interactionState = PageData.Content
     }
 
+    /**
+     * 展示加载状态
+     */
+    fun showLoading() {
+        interactionState = PageData.Loading
+    }
+
+    /**
+     * 展示空页面
+     */
+    fun showEmpty(state: EmptyState = defaultEmptyState) {
+        interactionState = PageData.Empty(state)
+    }
+
+    /**
+     * 展示错误页
+     */
+    fun showError(state: ErrorState = defaultErrorState) {
+        interactionState = PageData.Error(state)
+    }
+
+    /** 是否处于加载态 */
     val isLoading: Boolean
         get() = interactionState is PageData.Loading
 
-    companion object {
-        fun loading() = PageData.Loading
-
-        fun success() = PageData.Success
-
-        fun empty(state: EmptyState = defaultEmptyState) = PageData.Empty(state)
-
-        fun error(state: ErrorState = defaultErrorState) = PageData.Error(state)
-    }
 }
 
 @Composable
@@ -79,8 +104,11 @@ fun rememberPageState(state: PageData = PageData.Loading): PageState {
     }
 }
 
+/**
+ * 智联默认的状态页
+ */
 @Composable
-fun CommonStateLayout(
+fun StatePage(
     modifier: Modifier = Modifier,
     pageState: PageState = rememberPageState(),
     retry: (PageData) -> Unit = { },
@@ -89,7 +117,7 @@ fun CommonStateLayout(
     error: @Composable BoxScope.(PageData) -> Unit = { DefaultErrorLayout(it) },
     content: @Composable BoxScope.() -> Unit = { }
 ) {
-    StateLayout(
+    CustomStatePage(
         modifier = modifier,
         pageState = pageState,
         retry = retry,
@@ -100,8 +128,11 @@ fun CommonStateLayout(
     )
 }
 
+/**
+ * 如果想完全实现自定义StateLayout，调用这个方法
+ */
 @Composable
-fun StateLayout(
+fun CustomStatePage(
     modifier: Modifier = Modifier,
     pageState: PageState,
     retry: (PageData) -> Unit = { },
@@ -112,7 +143,7 @@ fun StateLayout(
 ) {
     Box(modifier = modifier) {
         when (pageState.interactionState) {
-            is PageData.Success -> content.invoke(this)
+            is PageData.Content -> content.invoke(this)
             is PageData.Loading -> loading.invoke(this)
             is PageData.Error -> {
                 val errorState = (pageState.interactionState as PageData.Error).copy(

@@ -16,63 +16,45 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.statusBarsPadding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.pager.HorizontalPager
-import androidx.compose.foundation.pager.PagerScope
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.ModalBottomSheetState
 import androidx.compose.material.ModalBottomSheetValue
-import androidx.compose.material.Scaffold
 import androidx.compose.material.ScrollableTabRow
 import androidx.compose.material.Surface
-import androidx.compose.material.TabRow
 import androidx.compose.material.Text
 import androidx.compose.material.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
-import androidx.compose.runtime.snapshotFlow
-import androidx.compose.runtime.snapshots.SnapshotMutableState
-import androidx.compose.runtime.snapshots.SnapshotStateMap
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.ExperimentalTextApi
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.rememberTextMeasurer
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
-import androidx.paging.filter
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.kotlindemo.R
@@ -81,18 +63,18 @@ import com.example.kotlindemo.compose.data.CollectJobItem
 import com.example.kotlindemo.compose.ui.ZlColors
 import com.example.kotlindemo.compose.util.ComposeUIUtil
 import com.example.kotlindemo.compose.viewmodel.CollectViewModel
+import com.example.kotlindemo.compose.widget.BoScaffold
 import com.example.kotlindemo.compose.widget.CenterTopAppBar
 import com.example.kotlindemo.compose.widget.CollectDialog
-import com.example.kotlindemo.compose.widget.EmptyContent
 import com.example.kotlindemo.compose.widget.LoadMoreLazyColum
 import com.example.kotlindemo.compose.widget.PagerTab
 import com.example.kotlindemo.compose.widget.PagerTabIndicator
-import com.example.kotlindemo.compose.widget.StatePage
+import com.example.kotlindemo.compose.widget.Paging3StatePage
 import com.example.kotlindemo.compose.widget.refresh.SwipeRefreshLayout
 import com.example.kotlindemo.compose.widget.refresh.header.LoadHeader
-import com.example.kotlindemo.utils.copyOf
-import com.zhaopin.social.appbase.util.curContext
-import com.zhaopin.toast.showToast
+import com.example.kotlindemo.compose.widget.stateLayout.PageState
+import com.example.kotlindemo.compose.widget.stateLayout.rememberPageState
+import com.example.kotlindemo.compose.widget.stateLayout.state.defaultEmptyState
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -120,12 +102,14 @@ class CollectActivity : ComposeActivity() {
         val pagerState = rememberPagerState{ 2 }
         val scope = rememberCoroutineScope()
         val bottomSheetState = rememberModalBottomSheetState(ModalBottomSheetValue.Hidden)
+        val pageState = rememberPageState(state = PageState.Content())
 
-        Scaffold(
-            modifier = Modifier
-                .background(ZlColors.C_W1)
-                .statusBarsPadding(),
-            topBar = { CollectAppBar() }
+        BoScaffold(
+            title = "收藏页",
+            pageState = pageState,
+            onActionClick = {
+                pageState.showContent()
+            }
         ) {
             Column(
                 modifier = Modifier
@@ -226,7 +210,7 @@ class CollectActivity : ComposeActivity() {
             }
         }
 
-        StatePage(pagingItems = list, empty = EmptyContent(text = "仅展示最近3个月收藏的职位"))
+        Paging3StatePage(pagingItems = list, empty = defaultEmptyState.copy(emptyTip = "仅展示3个月的收藏"))
     }
 
     @Composable
@@ -269,7 +253,7 @@ class CollectActivity : ComposeActivity() {
             }
         }
 
-        StatePage(pagingItems = list, empty = EmptyContent(text = "仅展示最近3个月收藏的公司"))
+        Paging3StatePage(pagingItems = list, empty = defaultEmptyState.copy(emptyTip = "仅展示过去三个月公司收藏"))
     }
 
     @OptIn(ExperimentalTextApi::class)
@@ -446,7 +430,7 @@ class CollectActivity : ComposeActivity() {
         CenterTopAppBar(
             title = {
                 Text(
-                    text = "我的收藏",
+                    text = "我的收藏123",
                 )
             },
             navigationIcon = {

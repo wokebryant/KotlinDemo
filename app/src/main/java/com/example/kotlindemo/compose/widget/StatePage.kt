@@ -29,6 +29,9 @@ import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import com.example.kotlindemo.R
 import com.example.kotlindemo.compose.ui.ZlColors
+import com.example.kotlindemo.compose.widget.stateLayout.state.EmptyState
+import com.example.kotlindemo.compose.widget.stateLayout.state.ErrorState
+import com.example.kotlindemo.compose.widget.stateLayout.state.defaultErrorState
 
 /**
  * @Description 页面状态
@@ -36,19 +39,11 @@ import com.example.kotlindemo.compose.ui.ZlColors
  * @Date 2023/12/18
  */
 
-data class EmptyContent(
-    val text: String
-)
-
-data class ErrorContent(
-    val text: String
-)
-
 @Composable
-fun <T : Any>StatePage(
+fun <T : Any> Paging3StatePage(
     pagingItems: LazyPagingItems<T>,
-    empty: EmptyContent,
-    error: ErrorContent = ErrorContent(text = "网络不太给力，刷新试试吧～")
+    empty: EmptyState,
+    error: ErrorState = defaultErrorState
 ) {
     when (pagingItems.loadState.refresh) {
         // 展示加载状态
@@ -87,7 +82,7 @@ fun RefreshLoadingPage() {
 
 @Composable
 fun RefreshEmptyPage(
-    empty: EmptyContent
+    empty: EmptyState
 ) {
     Box(
         modifier = Modifier
@@ -105,7 +100,7 @@ fun RefreshEmptyPage(
                 modifier = Modifier.size(width = 200.dp, height = 150.dp)
             )
             Text(
-                text = empty.text,
+                text = empty.emptyTip,
                 style = TextStyle(
                     fontSize = 16.sp
                 ),
@@ -117,7 +112,7 @@ fun RefreshEmptyPage(
 
 @Composable
 fun RefreshErrorPage(
-    error: ErrorContent,
+    error: ErrorState,
     retry: () -> Unit
 ) {
     Box(
@@ -136,7 +131,7 @@ fun RefreshErrorPage(
                 modifier = Modifier.size(width = 200.dp, height = 150.dp)
             )
             Text(
-                text = error.text,
+                text = error.errorTip,
                 style = TextStyle(
                     fontSize = 16.sp
                 ),

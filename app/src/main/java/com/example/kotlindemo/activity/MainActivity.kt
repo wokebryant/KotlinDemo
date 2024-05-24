@@ -6,6 +6,7 @@ import com.example.kotlindemo.study.flow.FlowActivity
 import com.example.kotlindemo.adapter.delegate.MainItemDelegate
 import com.example.kotlindemo.base.BaseActivity
 import com.example.kotlindemo.compose.CollectActivity
+import com.example.kotlindemo.compose.PageStateActivity
 import com.example.kotlindemo.compose.WechatSendActivity
 import com.example.kotlindemo.data.mainItemList
 import com.example.kotlindemo.task.linkage.LinkageActivity
@@ -103,6 +104,8 @@ class MainActivity : BaseActivity() {
             MainItemType.WechatSend -> AppUtil.startActivity<WechatSendActivity>(this) {}
 
             MainItemType.BlueResumeEdit -> AppUtil.startActivity<BlueResumeEditActivity>(this) {}
+
+            MainItemType.ComposeStateLayout -> AppUtil.startActivity<PageStateActivity>(this) {}
         }
     }
 

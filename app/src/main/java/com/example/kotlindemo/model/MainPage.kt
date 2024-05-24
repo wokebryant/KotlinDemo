@@ -42,4 +42,5 @@ sealed class MainItemType {
     object ResumeRecommend: MainItemType()
     object WechatSend: MainItemType()
     object BlueResumeEdit: MainItemType()
+    object ComposeStateLayout: MainItemType()
 }

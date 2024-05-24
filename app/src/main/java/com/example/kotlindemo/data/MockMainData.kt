@@ -49,6 +49,10 @@ val mainItemList = mutableListOf(
         type = MainItemType.MVI
     ),
     MainItemState(
+        title = "Compose通用状态页",
+        type = MainItemType.ComposeStateLayout
+    ),
+    MainItemState(
         title = "智联需求",
         type = MainItemType.ZLTask,
         textColor = R.color.C_W1,
