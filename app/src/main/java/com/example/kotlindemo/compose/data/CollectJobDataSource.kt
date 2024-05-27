@@ -44,7 +44,7 @@ class CollectJobDataSource : PagingSource<Int, CollectJobItem>() {
         for (i in 0 until 10) {
             val item = CollectJobItem(
                 isOffline = i == 3,
-                jobName = "职位名称哈哈哈哈哈哈哈哈哈哈哈哈 $pageIndex $i",
+                jobName = "职位名称 $pageIndex $i",
                 firstTagUrl = "https://img09.zhaopin.cn/2012/other/mobile/capp/position/ui21/tag_JD_daizhao_3x.png?w=84&h=48&r=3",
                 salary = "1万-3万",
                 companyName = if (pageIndex == 1 && i == 0) "智联招聘" else "哈哈哈哈",

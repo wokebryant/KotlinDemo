@@ -13,7 +13,7 @@ class CollectRepository {
     private val pageSize = 10
 
     fun requestJobData() = Pager(
-        config = PagingConfig(pageSize),
+        config = PagingConfig(pageSize = pageSize, prefetchDistance = 2),
         pagingSourceFactory = { CollectJobDataSource() }
     ).flow
 

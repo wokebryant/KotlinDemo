@@ -55,6 +55,7 @@ import androidx.compose.ui.unit.sp
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
+import androidx.paging.compose.itemKey
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.kotlindemo.R
@@ -192,9 +193,7 @@ class CollectActivity : ComposeActivity() {
                 ) {
                     items(
                         count = list.itemCount,
-                        key = {
-                            list[it]?.jobName ?: ""
-                        }
+                        key = list.itemKey { it.jobName }
                     ) { it ->
                         val itemData = list[it] ?: return@items
                         CollectJobCard(
