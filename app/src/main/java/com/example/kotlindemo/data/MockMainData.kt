@@ -130,4 +130,22 @@ val mainItemList = mutableListOf(
         textColor = R.color.C_W1,
         bgColor = R.color.C_P3
     ),
+    MainItemState(
+        title = "登录验证",
+        type = MainItemType.LoginAuth,
+        textColor = R.color.C_W1,
+        bgColor = R.color.C_P3
+    ),
+    MainItemState(
+        title = "登录邮箱验证",
+        type = MainItemType.LoginAuthMail,
+        textColor = R.color.C_W1,
+        bgColor = R.color.C_P3
+    ),
+    MainItemState(
+        title = "绑定手机号验证",
+        type = MainItemType.LoginCheckBindPhone,
+        textColor = R.color.C_W1,
+        bgColor = R.color.C_P3
+    ),
 )

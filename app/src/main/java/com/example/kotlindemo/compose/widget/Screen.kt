@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
@@ -59,6 +60,7 @@ fun Screen(
         modifier = Modifier
             .background(ZlColors.C_W1)
             .statusBarsPadding()
+            .navigationBarsPadding()
             .then(modifier),
         topBar = {
             if (!isHideAppBar) {

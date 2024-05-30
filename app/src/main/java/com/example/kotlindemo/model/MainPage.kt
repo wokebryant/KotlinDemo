@@ -43,4 +43,7 @@ sealed class MainItemType {
     object WechatSend: MainItemType()
     object BlueResumeEdit: MainItemType()
     object ComposeStateLayout: MainItemType()
+    object LoginAuthMail: MainItemType()
+    object LoginAuth: MainItemType()
+    object LoginCheckBindPhone: MainItemType()
 }

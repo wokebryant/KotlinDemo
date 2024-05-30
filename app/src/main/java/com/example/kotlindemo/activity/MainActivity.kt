@@ -20,6 +20,9 @@ import com.example.kotlindemo.task.ai.AiRecommendActivity
 import com.example.kotlindemo.task.appbar.AppBarActivity
 import com.example.kotlindemo.task.blueedit.activity.BlueResumeEditActivity
 import com.example.kotlindemo.task.jobdetail.JobDetailActivity
+import com.example.kotlindemo.task.login.LoginAuthActivity
+import com.example.kotlindemo.task.login.LoginCheckBindPhoneActivity
+import com.example.kotlindemo.task.login.LoginMailAuthActivity
 import com.example.kotlindemo.task.microenterprises.view.home.MicroResumeHomeFragment
 import com.example.kotlindemo.task.mutildelivery.DeliveryActivity
 import com.example.kotlindemo.task.resume.ResumeRecommendActivity
@@ -106,6 +109,12 @@ class MainActivity : BaseActivity() {
             MainItemType.BlueResumeEdit -> AppUtil.startActivity<BlueResumeEditActivity>(this) {}
 
             MainItemType.ComposeStateLayout -> AppUtil.startActivity<PageStateActivity>(this) {}
+
+            MainItemType.LoginAuth -> AppUtil.startActivity<LoginAuthActivity>(this) {}
+
+            MainItemType.LoginAuthMail -> AppUtil.startActivity<LoginMailAuthActivity>(this) {}
+
+            MainItemType.LoginCheckBindPhone -> AppUtil.startActivity<LoginCheckBindPhoneActivity>(this) {}
         }
     }
 

@@ -1,12 +1,9 @@
 package com.example.kotlindemo.compose
 
-import android.graphics.Color
 import androidx.activity.viewModels
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -18,13 +15,8 @@ import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.BottomSheetState
-import androidx.compose.material.BottomSheetValue
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.ExperimentalMaterialApi
@@ -34,38 +26,26 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Paint
-import androidx.compose.ui.layout.onGloballyPositioned
-import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.TextPainter
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.kotlindemo.R
-import com.example.kotlindemo.compose.ext.noRipple
 import com.example.kotlindemo.compose.ui.ZlColors
 import com.example.kotlindemo.compose.viewmodel.WechatSendState
 import com.example.kotlindemo.compose.viewmodel.WechatSendViewModel
 import com.example.kotlindemo.compose.widget.CenterTopAppBar
 import com.example.kotlindemo.compose.widget.SimpleImage
-import com.example.kotlindemo.compose.widget.WechatSendDialog
 import com.example.kotlindemo.task.deliverytop.DeliveryCardState
-import com.example.kotlindemo.task.deliverytop.DeliveryPrivilegeDialog
-import com.example.kotlindemo.task.deliverytop.DialogState
+import com.example.kotlindemo.task.login.dialog.NoVerifyCodeDialog
+import com.example.kotlindemo.task.login.dialog.NoVerifyCodeDialogState
 import com.zhaopin.social.appbase.util.currentActivity
 import com.zhaopin.toast.showToast
 import kotlinx.coroutines.launch
@@ -136,15 +116,61 @@ class WechatSendActivity : ComposeActivity() {
 //            scope = scope,
 //            state = bottomSheetState
 //        )
-        DeliveryPrivilegeDialog(
-            onConfirmClick = { },
-            scope = scope,
-            sheetState = bottomSheetState,
-            dialogState = DialogState(
-                list = list,
-                count = "111"
-            )
+//        DeliveryPrivilegeDialog(
+//            onConfirmClick = { },
+//            scope = scope,
+//            sheetState = bottomSheetState,
+//            dialogState = DialogState(
+//                list = list,
+//                count = "111"
+//            )
+//        )
+
+        val noVerifyCodeDialogState = NoVerifyCodeDialogState(
+            title = "收不到验证码？",
+            list = mutableListOf(
+                "1.请确认手机号是否正确",
+                "2.请确认手机收否停机",
+                "3.可以选择使用其他账号登录",
+                "4.手机号不用了，无法登陆或者换绑，去换绑",
+            ),
+            onTipClick = {
+                currentActivity()?.showToast("点击隐私协议")
+            }
         )
+        NoVerifyCodeDialog(
+            sheetState = bottomSheetState,
+            dialogState = noVerifyCodeDialogState
+        )
+
+//        val loginQuestionDialogState = LoginQuestionDialogState(
+//            title = "登录遇到问题？",
+//            list = listOf(
+//                LoginQuestionDialogState.Item(
+//                    pic = R.drawable.ic_login_change_bind,
+//                    title = "手机号无法登录，换绑手机号",
+//                    content = "手机号停机或者不用了，通过身份验证后换绑一个新手机号码",
+//                    onClick = {
+//                        currentActivity()?.showToast("换绑")
+//                    }
+//                ),
+//                LoginQuestionDialogState.Item(
+//                    pic = R.drawable.ic_login_lock,
+//                    title = "忘记密码",
+//                    content = "通过手机验证码设置新的登录密码",
+//                    onClick = {
+//                        currentActivity()?.showToast("忘记密码")
+//                    }
+//                )
+//            ),
+//            onTipClick = {
+//                currentActivity()?.showToast("联系客服")
+//            }
+//        )
+//        LoginQuestionDialog(
+//            sheetState = bottomSheetState,
+//            dialogState = loginQuestionDialogState
+//        )
     }
 
     private val list = listOf(

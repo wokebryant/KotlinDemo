@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingHorizontal="20dp"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/fl_top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="44dp">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_job_detail_back"/>
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:textColor="@color/C_B1"
+            android:text="@string/please_input_bind_phone_number"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textSize="14sp"
+            android:textColor="@color/C_B2"
+            android:text="@string/call_custom_service_find"/>
+
+        <com.zhaopin.common.widget.RCLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:layout_marginTop="32dp"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="28dp"
+            app:layout_radius="12dp"
+            android:background="@color/C_B10">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_phone_area_code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/style_text_bold_16"
+                android:textColor="@color/C_B1"
+                android:drawableEnd="@drawable/ic_arrow_down"
+                android:drawablePadding="8dp"
+                android:text="0086"/>
+
+            <AutoCompleteTextView
+                android:id="@+id/tv_input_number"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="20dp"
+                android:background="@null"
+                android:ellipsize="end"
+                android:hint="@string/please_input_phone_number"
+                android:imeOptions="actionNext"
+                android:inputType="number"
+                android:maxLength="11"
+                android:singleLine="true"
+                android:textColor="@color/C_B1"
+                android:textColorHint="@color/C_B5"
+                android:textCursorDrawable="@drawable/bg_curse"
+                android:textSize="16sp">
+
+                <requestFocus />
+
+            </AutoCompleteTextView>
+
+        </com.zhaopin.common.widget.RCLinearLayout>
+
+        <com.zhaopin.common.widget.RCFrameLayout
+            android:id="@+id/fl_next"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginHorizontal="40dp"
+            app:layout_radius="22dp"
+            android:background="@drawable/drawable_login_input">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                style="@style/style_text_bold_16"
+                android:textColor="@color/C_W1"
+                android:text="@string/next_step"/>
+
+        </com.zhaopin.common.widget.RCFrameLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
