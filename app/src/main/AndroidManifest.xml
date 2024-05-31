@@ -55,7 +55,7 @@
         <activity android:name=".task.resume.ResumeRecommendActivity"/>
         <activity android:name=".task.blueedit.activity.BlueResumeEditActivity"/>
         <activity android:name=".task.login.LoginAuthActivity"/>
-        <activity android:name=".task.login.LoginMailAuthActivity"/>
+        <activity android:name=".task.login.mail.LoginMailAuthActivity"/>
         <activity android:name=".task.login.LoginCheckBindPhoneActivity"/>
 
         <!-- 定义Startup Provider参数 -->

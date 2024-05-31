@@ -22,7 +22,7 @@ import com.example.kotlindemo.task.blueedit.activity.BlueResumeEditActivity
 import com.example.kotlindemo.task.jobdetail.JobDetailActivity
 import com.example.kotlindemo.task.login.LoginAuthActivity
 import com.example.kotlindemo.task.login.LoginCheckBindPhoneActivity
-import com.example.kotlindemo.task.login.LoginMailAuthActivity
+import com.example.kotlindemo.task.login.mail.LoginMailAuthActivity
 import com.example.kotlindemo.task.microenterprises.view.home.MicroResumeHomeFragment
 import com.example.kotlindemo.task.mutildelivery.DeliveryActivity
 import com.example.kotlindemo.task.resume.ResumeRecommendActivity

@@ -11,3 +11,5 @@ interface IUiState
 interface IUiIntent
 
 interface IUiEvent
+
+interface IUiEffect

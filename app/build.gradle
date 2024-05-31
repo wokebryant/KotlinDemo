@@ -113,6 +113,7 @@ dependencies {
     /** androidx组件 compose版 */
     implementation 'androidx.activity:activity-compose:1.6.1'
     implementation "androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1"
+    implementation "androidx.lifecycle:lifecycle-runtime-compose:2.6.1"
     implementation "androidx.paging:paging-compose:3.2.0"
     /** compose accompanist */
     implementation "com.google.accompanist:accompanist-systemuicontroller:$accompanist_version"

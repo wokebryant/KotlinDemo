@@ -1,38 +1,30 @@
-package com.example.kotlindemo.compose.ui
+package com.zhaopin.social.compose.ui
 
 import androidx.compose.ui.graphics.Color
 
 /**
- * @Description
+ * @Description 颜色
  * @Author LuoJia
  * @Date 2023/11/16
  */
 
-object ZlColors{
+/**
+ * 智联基础颜色（自定义颜色不要在这里添加）
+ */
+object ZlColor{
     val C_B1 = Color(0xFF222222)
-    val C_222222 = Color(0xFF222222)
-    val C_222222_0 = Color(0x00222222)
-    val C_222222_10 = Color(0x1A222222)
-    val C_222222_20 = Color(0x33222222)
-    val C_222222_30 = Color(0x4D222222)
-    val C_222222_40 = Color(0x66222222)
-    val C_222222_5 = Color(0x0D222222)
-    val C_222222_60 = Color(0x99222222)
-    val C_222222_80 = Color(0xCC222222)
     val C_B1_80 = Color(0xCC222222)
-    val C_666666 = Color(0xFF666666)
     val C_B2 = Color(0xFF555C70)
     val C_B2_90 = Color(0xE6555C70)
     val C_B3 = Color(0xFF9399AD)
-    val C_B5 = Color(0XFFB6BBCC)
     val C_B4 = Color(0xFFA6ACBF)
+    val C_B5 = Color(0XFFB6BBCC)
     val C_B6 = Color(0xFFC5CAD9)
     val C_B7 = Color(0xFFD5D9E5)
     val C_B8 = Color(0xFFE4E7F2)
     val C_B9 = Color(0xFFEDEFF7)
     val C_B10 = Color(0xFFF5F6FA)
     val C_W1 = Color(0xFFFFFFFF)
-    val C_FFFFFF_90 = Color(0xE6FFFFFF) // 90% opacity
     val C_P1 = Color(0xFF426EFF)
     val C_P2 = Color(0xFF577EFF)
     val C_P3 = Color(0xFF809DFF)
@@ -47,12 +39,29 @@ object ZlColors{
     val C_Y1 = Color(0xFFFA7719)
     val C_Y2 = Color(0xFFFDF6F0)
     val C_G2 = Color(0XFF663614)
-    val C_5B7BE9 = Color(0xFF5B7BE9)
+}
+
+/**
+ * 自定义颜色
+ */
+object CustomColor {
+    val C_222222 = Color(0xFF222222)
+    val C_222222_0 = Color(0x00222222)
+    val C_222222_10 = Color(0x1A222222)
+    val C_222222_20 = Color(0x33222222)
+    val C_222222_30 = Color(0x4D222222)
+    val C_222222_40 = Color(0x66222222)
+    val C_222222_5 = Color(0x0D222222)
+    val C_222222_60 = Color(0x99222222)
+    val C_222222_80 = Color(0xCC222222)
+    val C_666666 = Color(0xFF666666)
     val C_B1B7BE = Color(0xFFB1B7BE)
     val C_AAB0B7 = Color(0xFFAAB0B7)
     val C_FCEBC9 = Color(0xFFFCEBC9)
     val C_FCF8F0 = Color(0XFFFCF8F0)
     val C_683C10 = Color(0XFF683C10)
+    val C_FFFFFF_90 = Color(0xE6FFFFFF) // 90% opacity
+    val C_5B7BE9 = Color(0xFF5B7BE9)
     val C_000000 = Color(0xFF000000)
     val C_000000_10 = Color(0x1A000000)
     val C_000000_20 = Color(0x33000000)

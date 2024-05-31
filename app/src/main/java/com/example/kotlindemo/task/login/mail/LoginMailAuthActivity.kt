@@ -1,8 +1,7 @@
-package com.example.kotlindemo.task.login
+package com.example.kotlindemo.task.login.mail
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -11,8 +10,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.Button
-import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
@@ -32,17 +29,21 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.kotlindemo.compose.ComposeActivity
-import com.example.kotlindemo.compose.ext.noRipple
 import com.example.kotlindemo.compose.ui.ZlColors
 import com.example.kotlindemo.compose.widget.Screen
 import com.example.kotlindemo.compose.widget.stateLayout.PageData
 import com.example.kotlindemo.compose.widget.stateLayout.rememberPageState
+import com.example.kotlindemo.study.mvi.core.collectAsStateWithLifecycle
+import com.example.kotlindemo.study.mvi.core.collectSideEffect
+import com.example.kotlindemo.task.login.LoginCheckBindPhoneViewModel
+import com.example.kotlindemo.task.login.P1StyleButton
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -56,27 +57,37 @@ class LoginMailAuthActivity : ComposeActivity() {
     @Preview
     @Composable
     override fun MainPage() {
-        val state = testState
+        val viewModel : LoginMailAuthViewModel = viewModel()
+        val state by viewModel.collectAsStateWithLifecycle()
+        val pageState = rememberPageState(PageData.Content)
+
+        viewModel.collectSideEffect { effect ->
+            when (effect) {
+                is LoginMailAuthEffect.JumpChangePhoneNumberPage -> {}
+                is LoginMailAuthEffect.JumpErrorPage -> {}
+            }
+        }
 
         Screen(
-            pageState = rememberPageState(PageData.Content)
+            pageState = pageState,
+            onRetry = {
+                pageState.showContent()
+            }
         ) {
             Column(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(start = 20.dp, top = 20.dp, end = 20.dp)
             ) {
-                Top(state = state,)
-                Center(state = state)
-                Bottom {
-                    // 点击回调
-                }
+                Top(state = state)
+                Center(state = state, inputTextChange = { viewModel.updateInput(it) })
+                Bottom(enable = state.submitEnable, onConfirm = { viewModel.submit() })
             }
         }
     }
 
     @Composable
-    fun Top(state: LoginMailAuthDataState) {
+    fun Top(state: LoginMailAuthState) {
         Column {
             Text(
                 text = state.title,
@@ -99,7 +110,8 @@ class LoginMailAuthActivity : ComposeActivity() {
 
     @Composable
     fun Center(
-        state: LoginMailAuthDataState,
+        state: LoginMailAuthState,
+        inputTextChange: (String) -> Unit
     ) {
         Column(
             modifier = Modifier
@@ -127,7 +139,6 @@ class LoginMailAuthActivity : ComposeActivity() {
                     .padding(end = 20.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                var inputText by remember { mutableStateOf("") }
                 // 焦点
                 val focusRequester = remember { FocusRequester() }
                 // 软键盘
@@ -139,7 +150,7 @@ class LoginMailAuthActivity : ComposeActivity() {
                     softKeyboard?.show()
                 }
                 TextField(
-                    value = inputText,
+                    value = state.code,
                     colors = TextFieldDefaults.textFieldColors(
                         backgroundColor = Color.Transparent,
                         focusedIndicatorColor = Color.Transparent,
@@ -158,8 +169,7 @@ class LoginMailAuthActivity : ComposeActivity() {
                         )
                     },
                     onValueChange = {
-                        inputText = it
-
+                        inputTextChange.invoke(it)
                     },
                     modifier = Modifier
                         .weight(1f)
@@ -206,28 +216,16 @@ class LoginMailAuthActivity : ComposeActivity() {
     }
 
     @Composable
-    fun Bottom(onConfirm: () -> Unit) {
-        var enable by remember {
-            mutableStateOf(true)
-        }
+    fun Bottom(
+        enable: Boolean,
+        onConfirm: () -> Unit
+    ) {
         P1StyleButton(
             text = "提交",
             paddingHorizontal = 40.dp,
             enable = enable,
-            onClick = { enable = false }
+            onClick = { onConfirm.invoke() }
         )
     }
 
-    val testState = LoginMailAuthDataState(
-        title = "请输入邮箱号和验证码",
-        content = "若邮箱收不到验证码，请返回至上一步重新选择验证方式",
-        email = "邮箱号：123****879@11.com"
-    )
-
 }
-
-data class LoginMailAuthDataState (
-    val title: String,
-    val content: String,
-    val email: String
-)

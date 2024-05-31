@@ -59,7 +59,7 @@ fun DefaultLoadingLayout() {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(ZlColors.C_W1),
+            .background(Color.Transparent),
         contentAlignment = Alignment.Center
     ) {
         val isPlaying by remember {
