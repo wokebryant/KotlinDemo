@@ -30,9 +30,9 @@ import androidx.compose.ui.unit.sp
 import com.example.kotlindemo.R
 import com.example.kotlindemo.compose.ext.noRipple
 import com.example.kotlindemo.compose.noRippleClickable
-import com.example.kotlindemo.compose.ui.ZlColors
 import com.example.kotlindemo.compose.widget.SimpleImage
 import com.example.kotlindemo.task.login.P1StyleButton
+import com.zhaopin.social.compose.ui.ZlColor
 import kotlinx.coroutines.launch
 
 /**
@@ -83,7 +83,7 @@ internal fun NoVerifyCodeDialogTop(
             modifier = Modifier.padding(start = 20.dp, top = 28.dp),
             text = title,
             style = TextStyle(
-                color = ZlColors.C_B1,
+                color = ZlColor.C_B1,
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold
             )
@@ -96,7 +96,7 @@ private fun NoVerifyCodeDialogCenter(
     dialogState: NoVerifyCodeDialogState
 ) {
     val spanStyle = SpanStyle(
-        color = ZlColors.C_B1,
+        color = ZlColor.C_B1,
         fontSize = 15.sp,
     )
     LazyColumn(
@@ -121,7 +121,7 @@ private fun NoVerifyCodeDialogCenter(
                                 tag = "tag1",
                                 annotation = endText
                             )
-                            withStyle(style = spanStyle.copy(color = ZlColors.C_P1)) {
+                            withStyle(style = spanStyle.copy(color = ZlColor.C_P1)) {
                                 append(endText)
                             }
                             pop()
@@ -146,7 +146,7 @@ private fun NoVerifyCodeDialogCenter(
                         modifier = Modifier.padding(bottom = 8.dp),
                         text = it,
                         style = TextStyle(
-                            color = ZlColors.C_B1,
+                            color = ZlColor.C_B1,
                             fontSize = 15.sp,
                         )
                     )

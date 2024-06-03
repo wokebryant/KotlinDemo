@@ -42,8 +42,8 @@ import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.kotlindemo.R
-import com.example.kotlindemo.compose.ui.ZlColors
 import com.example.kotlindemo.compose.widget.stateLayout.PageData
+import com.zhaopin.social.compose.ui.ZlColor
 
 /**
  * @Description 默认状态布局
@@ -77,7 +77,7 @@ fun DefaultLoadingLayout() {
             modifier = Modifier
                 .size(68.dp)
                 .clip(shape = RoundedCornerShape(8.dp))
-                .background(ZlColors.C_B1_80),
+                .background(ZlColor.C_B1_80),
             contentAlignment = Alignment.Center
         ) {
             LottieAnimation(
@@ -100,7 +100,7 @@ fun DefaultEmptyLayout(data: PageData) {
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(ZlColors.C_W1)
+                .background(ZlColor.C_W1)
                 .pointerInput(Unit) {
                     // 触摸拦截逻辑，防止触摸触发下拉刷新
                     awaitPointerEventScope {
@@ -148,7 +148,7 @@ fun DefaultErrorLayout(data: PageData) {
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(ZlColors.C_W1)
+                .background(ZlColor.C_W1)
                 .pointerInput(Unit) {
                     // 触摸拦截逻辑，防止触摸触发下拉刷新
                     awaitPointerEventScope {
@@ -185,8 +185,8 @@ fun DefaultErrorLayout(data: PageData) {
                     onClick = { data.retry.invoke(data) },
                     shape = RoundedCornerShape(24.dp),
                     colors = ButtonDefaults.buttonColors(
-                        contentColor = ZlColors.C_W1,
-                        backgroundColor = ZlColors.C_P1
+                        contentColor = ZlColor.C_W1,
+                        backgroundColor = ZlColor.C_P1
                     ),
                     modifier = Modifier
                         .padding(top = 20.dp)

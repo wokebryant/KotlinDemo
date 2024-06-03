@@ -39,7 +39,7 @@ import coil.request.ImageRequest
 import com.example.kotlindemo.R
 import com.example.kotlindemo.compose.ext.noRipple
 import com.example.kotlindemo.compose.noRippleClickable
-import com.example.kotlindemo.compose.ui.ZlColors
+import com.zhaopin.social.compose.ui.ZlColor
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -120,7 +120,7 @@ fun WechatSendTopBox(
             )
             Text(
                 text = "不再提醒",
-                color = ZlColors.C_B2,
+                color = ZlColor.C_B2,
                 fontSize = 13.sp
             )
         }
@@ -147,7 +147,7 @@ fun WechatSendTopBox(
                     .size(62.dp)
                     .align(Alignment.Top)
                     .clip(shape = CircleShape)
-                    .border(width = 3.dp, color = ZlColors.C_W1, shape = CircleShape)
+                    .border(width = 3.dp, color = ZlColor.C_W1, shape = CircleShape)
                     .padding(3.dp),
                 model = ImageRequest.Builder(LocalContext.current).data(hrAvatar).build(),
                 contentDescription = "",
@@ -181,7 +181,7 @@ fun WechatSendBottomBox(
             // 标题
             Text(
                 text = "是否将微信发送给对方",
-                color = ZlColors.C_B1,
+                color = ZlColor.C_B1,
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold
             )
@@ -196,8 +196,8 @@ fun WechatSendBottomBox(
                     onClick = { onNotSendClick.invoke() },
                     shape = RoundedCornerShape(22.dp),
                     colors = ButtonDefaults.buttonColors(
-                        backgroundColor = ZlColors.C_P7,
-                        contentColor = ZlColors.C_P1
+                        backgroundColor = ZlColor.C_P7,
+                        contentColor = ZlColor.C_P1
                     ),
                     elevation = null,
                     modifier = Modifier
@@ -216,8 +216,8 @@ fun WechatSendBottomBox(
                     onClick = { onSendClick.invoke() },
                     shape = RoundedCornerShape(22.dp),
                     colors = ButtonDefaults.buttonColors(
-                        backgroundColor = ZlColors.C_P1,
-                        contentColor = ZlColors.C_W1
+                        backgroundColor = ZlColor.C_P1,
+                        contentColor = ZlColor.C_W1
                     ),
                     elevation = null,
                     modifier = Modifier
@@ -249,7 +249,7 @@ fun WechatSendBottomBox(
                 Spacer(modifier = Modifier.size(2.dp))
                 Text(
                     text = "每次投递默认发送微信",
-                    color = ZlColors.C_B2,
+                    color = ZlColor.C_B2,
                     fontSize = 13.sp,
                 )
             }

@@ -43,11 +43,11 @@ import androidx.compose.ui.unit.sp
 import com.example.kotlindemo.R
 import com.example.kotlindemo.compose.ext.noRipple
 import com.example.kotlindemo.compose.noRippleClickable
-import com.example.kotlindemo.compose.ui.ZlColors
 import com.example.kotlindemo.compose.widget.SimpleImage
 import com.example.kotlindemo.compose.widget.WechatSendBottomBox
 import com.example.kotlindemo.compose.widget.WechatSendTopBox
 import com.zhaopin.social.appbase.util.currentActivity
+import com.zhaopin.social.compose.ui.ZlColor
 import com.zhaopin.toast.showToast
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -73,7 +73,7 @@ fun DeliveryPrivilegeDialog(
         modifier = Modifier.fillMaxWidth(),
         sheetState = sheetState,
         sheetShape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp),
-        sheetBackgroundColor = ZlColors.C_S2,
+        sheetBackgroundColor = ZlColor.C_S2,
         sheetContent = {
             DeliveryTop(
                 count = dialogState.count,
@@ -214,12 +214,12 @@ fun DeliveryChooseCard(
             .padding(bottom = 10.dp)
             .height(84.dp),
         shape = RoundedCornerShape(10.dp),
-        border = if (state.isSelected) BorderStroke(1.dp, ZlColors.C_P1) else null,
+        border = if (state.isSelected) BorderStroke(1.dp, ZlColor.C_P1) else null,
     ) {
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(ZlColors.C_W1)
+                .background(ZlColor.C_W1)
         ) {
             Row(
                 modifier = Modifier
@@ -254,14 +254,14 @@ fun DeliveryChooseCard(
                         text = state.mainTitle,
                         fontWeight = FontWeight.Bold,
                         fontSize = 16.sp,
-                        color = if (state.isGray) ZlColors.C_B3 else ZlColors.C_B1
+                        color = if (state.isGray) ZlColor.C_B3 else ZlColor.C_B1
                     )
                     if (state.subTitle.isNotEmpty()) {
                         Spacer(modifier = Modifier.size(6.dp))
                         Text(
                             text = state.subTitle,
                             fontSize = 13.sp,
-                            color = if (state.isGray) ZlColors.C_B5 else ZlColors.C_B3
+                            color = if (state.isGray) ZlColor.C_B5 else ZlColor.C_B3
                         )
                     }
                 }
@@ -269,7 +269,7 @@ fun DeliveryChooseCard(
                 if (state.countString.isNotEmpty()) {
                     Text(
                         text = state.countString,
-                        color = if (state.isGray) ZlColors.C_B3 else ZlColors.C_B1,
+                        color = if (state.isGray) ZlColor.C_B3 else ZlColor.C_B1,
                         fontSize = 14.sp
                     )
                 }
@@ -290,13 +290,13 @@ fun DeliveryBottom(onConfirm: () -> Unit) {
         elevation = null,
         shape = RoundedCornerShape(size = 22.dp),
         colors = ButtonDefaults.buttonColors(
-            backgroundColor = ZlColors.C_P1
+            backgroundColor = ZlColor.C_P1
         ),
         interactionSource = noRipple
     ) {
         Text(
             text = "确定",
-            color = ZlColors.C_W1,
+            color = ZlColor.C_W1,
             fontSize = 16.sp,
         )
     }
@@ -305,19 +305,19 @@ fun DeliveryBottom(onConfirm: () -> Unit) {
 val titleCommonStyle = TextStyle(
     fontWeight = FontWeight.Bold,
     fontSize = 18.sp,
-    color = ZlColors.C_B1
+    color = ZlColor.C_B1
 )
 
 val titleSpanBlueStyle = SpanStyle(
     fontWeight = FontWeight.Bold,
     fontSize = 18.sp,
-    color = ZlColors.C_P1
+    color = ZlColor.C_P1
 )
 
 val titleSpanBlackStyle = SpanStyle(
     fontWeight = FontWeight.Bold,
     fontSize = 18.sp,
-    color = ZlColors.C_B1
+    color = ZlColor.C_B1
 )
 
 data class DeliveryCardState(

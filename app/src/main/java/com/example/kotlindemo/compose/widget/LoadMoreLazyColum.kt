@@ -24,10 +24,10 @@ import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import com.example.kotlindemo.R
-import com.example.kotlindemo.compose.ui.ZlColors
 import com.example.kotlindemo.compose.widget.refresh.footer.LoadFooter
 import com.zhaopin.social.appbase.util.curContext
 import com.zhaopin.social.appbase.util.currentActivity
+import com.zhaopin.social.compose.ui.ZlColor
 import com.zhaopin.toast.showToast
 
 @Composable
@@ -64,7 +64,7 @@ fun LoadMoreLazyColum(
                             text = "已经到底咯～",
                             style = TextStyle(
                                 fontSize =  13.sp,
-                                color = ZlColors.C_B1B7BE
+                                color = ZlColor.C_S2
                             )
                         )
                     }

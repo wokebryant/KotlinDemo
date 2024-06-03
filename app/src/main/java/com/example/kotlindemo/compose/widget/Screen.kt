@@ -13,12 +13,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import com.example.kotlindemo.R
-import com.example.kotlindemo.compose.ui.ZlColors
 import com.example.kotlindemo.compose.widget.stateLayout.PageData
 import com.example.kotlindemo.compose.widget.stateLayout.PageState
 import com.example.kotlindemo.compose.widget.stateLayout.StatePage
 import com.example.kotlindemo.compose.widget.stateLayout.rememberPageState
 import com.zhaopin.social.appbase.util.currentActivity
+import com.zhaopin.social.compose.ui.ZlColor
 
 /**
  * @Description 页面模版
@@ -58,7 +58,7 @@ fun Screen(
 
     Scaffold(
         modifier = Modifier
-            .background(ZlColors.C_W1)
+            .background(ZlColor.C_W1)
             .statusBarsPadding()
             .navigationBarsPadding()
             .then(modifier),

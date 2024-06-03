@@ -21,11 +21,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.kotlindemo.R
 import com.example.kotlindemo.compose.ComposeActivity
-import com.example.kotlindemo.compose.ui.ZlColors
 import com.example.kotlindemo.compose.widget.Screen
 import com.example.kotlindemo.compose.widget.SimpleImage
 import com.example.kotlindemo.compose.widget.stateLayout.PageState
 import com.example.kotlindemo.compose.widget.stateLayout.rememberPageState
+import com.zhaopin.social.compose.ui.ZlColor
 
 /**
  * @Description 登录验证失败页面
@@ -61,7 +61,7 @@ class LoginAuthFailActivity : ComposeActivity() {
                     Text(
                         text = "验证失败",
                         style = TextStyle(
-                            color = ZlColors.C_B1,
+                            color = ZlColor.C_B1,
                             fontWeight = FontWeight.Bold,
                             fontSize = 26.sp
                         ),
@@ -73,7 +73,7 @@ class LoginAuthFailActivity : ComposeActivity() {
                     append("剩余")
                     withStyle(
                         style = SpanStyle(
-                            color = ZlColors.C_P1,
+                            color = ZlColor.C_P1,
                             fontSize = 16.sp
                         )
                     ) {
@@ -84,7 +84,7 @@ class LoginAuthFailActivity : ComposeActivity() {
                 Text(
                     text = annotatedString,
                     style = TextStyle(
-                        color = ZlColors.C_B2,
+                        color = ZlColor.C_B2,
                         fontSize = 16.sp
                     ),
                     modifier = Modifier.padding(top = 10.dp)
@@ -93,7 +93,7 @@ class LoginAuthFailActivity : ComposeActivity() {
                 Text(
                     text = CONTENT,
                     style = TextStyle(
-                        color = ZlColors.C_B3,
+                        color = ZlColor.C_B3,
                         fontSize = 14.sp
                     ),
                     modifier = Modifier.padding(top = 28.dp),

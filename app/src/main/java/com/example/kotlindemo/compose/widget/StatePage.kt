@@ -28,10 +28,10 @@ import androidx.compose.ui.unit.sp
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import com.example.kotlindemo.R
-import com.example.kotlindemo.compose.ui.ZlColors
 import com.example.kotlindemo.compose.widget.stateLayout.state.EmptyState
 import com.example.kotlindemo.compose.widget.stateLayout.state.ErrorState
 import com.example.kotlindemo.compose.widget.stateLayout.state.defaultErrorState
+import com.zhaopin.social.compose.ui.ZlColor
 
 /**
  * @Description 页面状态
@@ -72,10 +72,10 @@ fun <T : Any> Paging3StatePage(
 fun RefreshLoadingPage() {
     Box(modifier = Modifier
         .fillMaxSize()
-        .background(ZlColors.C_W1)) {
+        .background(ZlColor.C_W1)) {
         CircularProgressIndicator(
             modifier = Modifier.align(alignment = Alignment.Center),
-            color = ZlColors.C_P1
+            color = ZlColor.C_P1
         )
     }
 }
@@ -87,7 +87,7 @@ fun RefreshEmptyPage(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(ZlColors.C_W1),
+            .background(ZlColor.C_W1),
         contentAlignment = Alignment.Center
     ) {
         Column(
@@ -118,7 +118,7 @@ fun RefreshErrorPage(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(ZlColors.C_W1),
+            .background(ZlColor.C_W1),
         contentAlignment = Alignment.Center
     ) {
         Column(
@@ -141,8 +141,8 @@ fun RefreshErrorPage(
                 onClick = { retry() },
                 shape = RoundedCornerShape(24.dp),
                 colors = ButtonDefaults.buttonColors(
-                    contentColor = ZlColors.C_W1,
-                    backgroundColor = ZlColors.C_P1
+                    contentColor = ZlColor.C_W1,
+                    backgroundColor = ZlColor.C_P1
                 ),
                 modifier = Modifier.padding(top = 20.dp).width(84.dp).height(36.dp)
             ) {

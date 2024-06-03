@@ -61,7 +61,6 @@ import coil.request.ImageRequest
 import com.example.kotlindemo.R
 import com.example.kotlindemo.compose.data.CollectCompanyItem
 import com.example.kotlindemo.compose.data.CollectJobItem
-import com.example.kotlindemo.compose.ui.ZlColors
 import com.example.kotlindemo.compose.util.ComposeUIUtil
 import com.example.kotlindemo.compose.viewmodel.CollectViewModel
 import com.example.kotlindemo.compose.widget.CenterTopAppBar
@@ -76,6 +75,7 @@ import com.example.kotlindemo.compose.widget.refresh.header.LoadHeader
 import com.example.kotlindemo.compose.widget.stateLayout.PageState
 import com.example.kotlindemo.compose.widget.stateLayout.rememberPageState
 import com.example.kotlindemo.compose.widget.stateLayout.state.defaultEmptyState
+import com.zhaopin.social.compose.ui.ZlColor
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -179,12 +179,12 @@ class CollectActivity : ComposeActivity() {
             indicator = {
                 LoadHeader(state = it)
             },
-            modifier = Modifier.background(ZlColors.C_S2)
+            modifier = Modifier.background(ZlColor.C_S2)
         ) {
             Box(
                 modifier = Modifier
                     .fillMaxSize()
-                    .background(ZlColors.C_S2)
+                    .background(ZlColor.C_S2)
                     .padding(horizontal = 8.dp)
             ) {
                 LoadMoreLazyColum(
@@ -225,12 +225,12 @@ class CollectActivity : ComposeActivity() {
             indicator = {
                 LoadHeader(state = it)
             },
-            modifier = Modifier.background(ZlColors.C_S2)
+            modifier = Modifier.background(ZlColor.C_S2)
         ) {
             Box(
                 modifier = Modifier
                     .fillMaxSize()
-                    .background(ZlColors.C_S2)
+                    .background(ZlColor.C_S2)
                     .padding(horizontal = 8.dp)
             ) {
                 LoadMoreLazyColum(
@@ -395,7 +395,7 @@ class CollectActivity : ComposeActivity() {
                     Text(
                         text = companyItem.companyName,
                         style = TextStyle(
-                            color = ZlColors.C_B1,
+                            color = ZlColor.C_B1,
                             fontSize = 18.sp,
                             fontWeight = FontWeight.Bold
                         )
@@ -412,7 +412,7 @@ class CollectActivity : ComposeActivity() {
                     Text(
                         text = companyItem.address,
                         style = TextStyle(
-                            color = ZlColors.C_666666,
+                            color = ZlColor.C_B1,
                             fontSize = 13.sp,
                         ),
                         maxLines = 1,
@@ -445,7 +445,7 @@ class CollectActivity : ComposeActivity() {
     }
 
     @Composable
-    private fun CompanyText(text: String, fontSize: TextUnit, color: Color = ZlColors.C_B2) {
+    private fun CompanyText(text: String, fontSize: TextUnit, color: Color = ZlColor.C_B2) {
         Text(
             modifier = Modifier
                 .widthIn(max = 220.dp)
@@ -470,7 +470,7 @@ class CollectActivity : ComposeActivity() {
                 Text(
                     modifier = Modifier
                         .background(
-                            color = ZlColors.C_S2,
+                            color = ZlColor.C_S2,
                             shape = RoundedCornerShape(4.dp)
                         )
                         .padding(horizontal = 8.dp, vertical = 4.dp),

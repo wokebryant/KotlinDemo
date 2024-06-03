@@ -36,7 +36,6 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.kotlindemo.compose.ComposeActivity
-import com.example.kotlindemo.compose.ui.ZlColors
 import com.example.kotlindemo.compose.widget.Screen
 import com.example.kotlindemo.compose.widget.stateLayout.PageData
 import com.example.kotlindemo.compose.widget.stateLayout.rememberPageState
@@ -44,6 +43,7 @@ import com.example.kotlindemo.study.mvi.core.collectAsStateWithLifecycle
 import com.example.kotlindemo.study.mvi.core.collectSideEffect
 import com.example.kotlindemo.task.login.LoginCheckBindPhoneViewModel
 import com.example.kotlindemo.task.login.P1StyleButton
+import com.zhaopin.social.compose.ui.ZlColor
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -92,7 +92,7 @@ class LoginMailAuthActivity : ComposeActivity() {
             Text(
                 text = state.title,
                 style = TextStyle(
-                    color = ZlColors.C_B1,
+                    color = ZlColor.C_B1,
                     fontWeight = FontWeight.Bold,
                     fontSize = 26.sp
                 )
@@ -101,7 +101,7 @@ class LoginMailAuthActivity : ComposeActivity() {
                 modifier = Modifier.padding(top = 8.dp),
                 text = state.content,
                 style = TextStyle(
-                    color = ZlColors.C_B2,
+                    color = ZlColor.C_B2,
                     fontSize = 14.sp
                 )
             )
@@ -122,7 +122,7 @@ class LoginMailAuthActivity : ComposeActivity() {
                 modifier = Modifier.padding(start = 20.dp),
                 text = state.email,
                 style = TextStyle(
-                    color = ZlColors.C_B1,
+                    color = ZlColor.C_B1,
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Bold
                 )
@@ -135,7 +135,7 @@ class LoginMailAuthActivity : ComposeActivity() {
                     .padding(top = 33.dp, bottom = 36.dp)
                     .height(54.dp)
                     .clip(RoundedCornerShape(12.dp))
-                    .background(ZlColors.C_B10)
+                    .background(ZlColor.C_B10)
                     .padding(end = 20.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -155,7 +155,7 @@ class LoginMailAuthActivity : ComposeActivity() {
                         backgroundColor = Color.Transparent,
                         focusedIndicatorColor = Color.Transparent,
                         unfocusedIndicatorColor = Color.Transparent,
-                        cursorColor = ZlColors.C_P1
+                        cursorColor = ZlColor.C_P1
                     ),
                     singleLine = true,
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
@@ -163,7 +163,7 @@ class LoginMailAuthActivity : ComposeActivity() {
                         Text(
                             text = "请输入邮箱验证码",
                             style = TextStyle(
-                                color = ZlColors.C_B5,
+                                color = ZlColor.C_B5,
                                 fontSize = 16.sp
                             )
                         )
@@ -194,7 +194,7 @@ class LoginMailAuthActivity : ComposeActivity() {
         Text(
             text = if (isCountdownRunning) "重新发送（${countdownSeconds}s）" else "获取验证码",
             style = TextStyle(
-                color = ZlColors.C_P1,
+                color = ZlColor.C_P1,
                 fontSize = 14.sp
             ),
             modifier = Modifier.clickable(enabled = !isCountdownRunning) {

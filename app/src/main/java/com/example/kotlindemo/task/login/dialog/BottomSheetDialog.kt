@@ -18,7 +18,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.example.kotlindemo.compose.ui.ZlColors
+import com.zhaopin.social.compose.ui.ZlColor
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -33,7 +33,7 @@ import kotlinx.coroutines.launch
 fun BottomSheetDialog(
     sheetState: ModalBottomSheetState,
     sheetShape: RoundedCornerShape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp),
-    sheetBackgroundColor: Color = ZlColors.C_W1,
+    sheetBackgroundColor: Color = ZlColor.C_W1,
     scope: CoroutineScope = rememberCoroutineScope(),
     enableBackClose: Boolean = true,
     sheetContent: @Composable ColumnScope.() -> Unit,

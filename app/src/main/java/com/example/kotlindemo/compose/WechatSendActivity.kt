@@ -38,7 +38,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.kotlindemo.R
-import com.example.kotlindemo.compose.ui.ZlColors
 import com.example.kotlindemo.compose.viewmodel.WechatSendState
 import com.example.kotlindemo.compose.viewmodel.WechatSendViewModel
 import com.example.kotlindemo.compose.widget.CenterTopAppBar
@@ -47,6 +46,7 @@ import com.example.kotlindemo.task.deliverytop.DeliveryCardState
 import com.example.kotlindemo.task.login.dialog.NoVerifyCodeDialog
 import com.example.kotlindemo.task.login.dialog.NoVerifyCodeDialogState
 import com.zhaopin.social.appbase.util.currentActivity
+import com.zhaopin.social.compose.ui.ZlColor
 import com.zhaopin.toast.showToast
 import kotlinx.coroutines.launch
 
@@ -78,7 +78,7 @@ class WechatSendActivity : ComposeActivity() {
 
         Scaffold(
             modifier = Modifier
-                .background(ZlColors.C_W1)
+                .background(ZlColor.C_W1)
                 .statusBarsPadding()
                 .navigationBarsPadding(),
             topBar = { WechatAppBar() },
@@ -87,7 +87,7 @@ class WechatSendActivity : ComposeActivity() {
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .background(ZlColors.C_S2)
+                    .background(ZlColor.C_S2)
                     .padding(it)
                     .padding(top = 10.dp, start = 20.dp, end = 20.dp)
             ) {
@@ -248,7 +248,7 @@ class WechatSendActivity : ComposeActivity() {
                 .fillMaxWidth()
                 .height(112.dp),
             shape = RoundedCornerShape(10.dp),
-            border = if (isSelected) BorderStroke(1.dp, ZlColors.C_P1) else null,
+            border = if (isSelected) BorderStroke(1.dp, ZlColor.C_P1) else null,
         ) {
             Box(
                 modifier = Modifier
@@ -277,7 +277,7 @@ class WechatSendActivity : ComposeActivity() {
                     ) {
                         Text(
                             text = if (isFirstCard) SEND_WECHAT else DO_NOT_SEND_WECHAT,
-                            color = ZlColors.C_B1,
+                            color = ZlColor.C_B1,
                             fontWeight = FontWeight.Bold,
                             fontSize = 18.sp
                         )
@@ -294,7 +294,7 @@ class WechatSendActivity : ComposeActivity() {
 
                                 Text(
                                     text = text,
-                                    color = ZlColors.C_B3,
+                                    color = ZlColor.C_B3,
                                     fontSize = 14.sp,
                                     overflow = TextOverflow.Ellipsis,
                                     maxLines = 1,
@@ -308,7 +308,7 @@ class WechatSendActivity : ComposeActivity() {
                                             currentActivity()?.showToast("修改")
                                         },
                                     text = "修改",
-                                    color = ZlColors.C_P1,
+                                    color = ZlColor.C_P1,
                                     fontSize = 14.sp
                                 )
                             }
@@ -323,7 +323,7 @@ class WechatSendActivity : ComposeActivity() {
                             .size(42.dp, 22.dp)
                             .align(Alignment.TopEnd)
                             .clip(RoundedCornerShape(bottomStart = 10.dp))
-                            .background(ZlColors.C_P7),
+                            .background(ZlColor.C_P7),
                         contentAlignment = Alignment.Center
                     ) {
                         Text(
@@ -331,7 +331,7 @@ class WechatSendActivity : ComposeActivity() {
                             style = TextStyle(
                                 fontSize = 12.sp,
                                 fontWeight = FontWeight.Bold,
-                                color = ZlColors.C_P1
+                                color = ZlColor.C_P1
                             ),
                             textAlign = TextAlign.Center
                         )
@@ -346,7 +346,7 @@ class WechatSendActivity : ComposeActivity() {
         Text(
             text = TIP_CONTENT,
             fontSize = 13.sp,
-            color = ZlColors.C_B3
+            color = ZlColor.C_B3
         )
     }
 
@@ -361,12 +361,12 @@ class WechatSendActivity : ComposeActivity() {
             elevation = null,
             shape = RoundedCornerShape(size = 22.dp),
             colors = ButtonDefaults.buttonColors(
-                backgroundColor = ZlColors.C_P1
+                backgroundColor = ZlColor.C_P1
             )
         ) {
             Text(
                 text = "保存",
-                color = ZlColors.C_W1,
+                color = ZlColor.C_W1,
                 fontSize = 16.sp,
             )
         }

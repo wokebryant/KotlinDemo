@@ -1,7 +1,7 @@
 package com.example.kotlindemo.compose.data
 
 import androidx.compose.ui.graphics.Color
-import com.example.kotlindemo.compose.ui.ZlColors
+import com.zhaopin.social.compose.ui.ZlColor
 
 /**
  * @Description
@@ -14,14 +14,14 @@ data class CollectJobState(
 
 data class CollectJobItem(
     val isOffline: Boolean,
-    val offlineColor: Color = ZlColors.C_B3,
-    val onlineColor: Color = ZlColors.C_B2,
+    val offlineColor: Color = ZlColor.C_B3,
+    val onlineColor: Color = ZlColor.C_B2,
     val jobName: String,
-    val jobNameColor: Color = ZlColors.C_B1,
+    val jobNameColor: Color = ZlColor.C_B1,
     val firstTagUrl: String = "",
     val secondTagUrl: String = "",
     val salary: String,
-    val salaryColor: Color = ZlColors.C_P1,
+    val salaryColor: Color = ZlColor.C_P1,
     val companyName: String,
     val companyStrength: String,
     val companySize: String,

@@ -27,11 +27,11 @@ import androidx.compose.ui.unit.sp
 import com.example.kotlindemo.R
 import com.example.kotlindemo.compose.ComposeActivity
 import com.example.kotlindemo.compose.noRippleClickable
-import com.example.kotlindemo.compose.ui.ZlColors
 import com.example.kotlindemo.compose.widget.Screen
 import com.example.kotlindemo.compose.widget.SimpleImage
 import com.example.kotlindemo.compose.widget.stateLayout.PageData
 import com.example.kotlindemo.compose.widget.stateLayout.rememberPageState
+import com.zhaopin.social.compose.ui.ZlColor
 
 /**
  * @Description 登录身份验证页面
@@ -75,7 +75,7 @@ class LoginAuthActivity : ComposeActivity() {
             Text(
                 text = state.title,
                 style = TextStyle(
-                    color = ZlColors.C_B1,
+                    color = ZlColor.C_B1,
                     fontWeight = FontWeight.Bold,
                     fontSize = 26.sp
                 )
@@ -84,7 +84,7 @@ class LoginAuthActivity : ComposeActivity() {
                 modifier = Modifier.padding(top = 8.dp),
                 text = state.content,
                 style = TextStyle(
-                    color = ZlColors.C_B2,
+                    color = ZlColor.C_B2,
                     fontSize = 14.sp
                 )
             )
@@ -99,7 +99,7 @@ class LoginAuthActivity : ComposeActivity() {
                 .clip(RoundedCornerShape(10.dp))
                 .fillMaxWidth()
                 .height(85.dp)
-                .background(ZlColors.C_B10)
+                .background(ZlColor.C_B10)
                 .padding(horizontal = 12.dp)
                 .noRippleClickable { item.onClick.invoke() },
             contentAlignment = Alignment.Center
@@ -123,7 +123,7 @@ class LoginAuthActivity : ComposeActivity() {
                         Text(
                             text = item.title,
                             style = TextStyle(
-                                color = ZlColors.C_B1,
+                                color = ZlColor.C_B1,
                                 fontSize = 18.sp,
                                 fontWeight = FontWeight.Bold
                             )
@@ -134,10 +134,10 @@ class LoginAuthActivity : ComposeActivity() {
                                 modifier = Modifier
                                     .size(30.dp, 16.dp)
                                     .clip(RoundedCornerShape(8.dp))
-                                    .background(ZlColors.C_R1),
+                                    .background(ZlColor.C_R1),
                                 text = "推荐",
                                 style = TextStyle(
-                                    color = ZlColors.C_W1,
+                                    color = ZlColor.C_W1,
                                     fontSize = 11.sp,
                                 ),
                                 textAlign = TextAlign.Center
@@ -148,7 +148,7 @@ class LoginAuthActivity : ComposeActivity() {
                     Text(
                         text = item.content,
                         style = TextStyle(
-                            color = ZlColors.C_B3,
+                            color = ZlColor.C_B3,
                             fontSize = 12.sp
                         )
                     )

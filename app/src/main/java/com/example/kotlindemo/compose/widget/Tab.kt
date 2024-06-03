@@ -27,7 +27,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.lerp
 import androidx.compose.ui.unit.sp
 import com.example.kotlindemo.compose.noRippleClickable
-import com.example.kotlindemo.compose.ui.ZlColors
+import com.zhaopin.social.compose.ui.ZlColor
 import kotlin.math.abs
 
 /**
@@ -46,8 +46,8 @@ fun PagerTab(pagerState: PagerState, index: Int, title: String, onClick: () -> U
     val fontWeight = if (selected) FontWeight.Bold else FontWeight.Normal
     Tab(
         selected = selected,
-        selectedContentColor = ZlColors.C_B1,
-        unselectedContentColor = ZlColors.C_B2,
+        selectedContentColor = ZlColor.C_B1,
+        unselectedContentColor = ZlColor.C_B2,
         onClick = {
             onClick.invoke()
         },
@@ -70,7 +70,7 @@ fun PagerTab(pagerState: PagerState, index: Int, title: String, onClick: () -> U
 fun PagerTabIndicator(
     tabPositions: List<TabPosition>,
     pagerState: PagerState,
-    color: Color = ZlColors.C_P1,
+    color: Color = ZlColor.C_P1,
     @FloatRange(from = 0.0, to = 1.0) percent: Float = 0.25f,
     height: Dp = 3.dp,
     heightOffset: Dp = 5.dp

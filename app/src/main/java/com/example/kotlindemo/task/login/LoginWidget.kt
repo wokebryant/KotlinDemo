@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.kotlindemo.compose.ext.noRipple
-import com.example.kotlindemo.compose.ui.ZlColors
+import com.zhaopin.social.compose.ui.ZlColor
 
 /**
  * @Description
@@ -36,7 +36,7 @@ internal fun LoginCallCustomServiceText(
     onClick: () -> Unit
 ) {
     val annotatedString = buildAnnotatedString {
-        withStyle(style = SpanStyle(color = ZlColors.C_B3, fontSize = 14.sp)) {
+        withStyle(style = SpanStyle(color = ZlColor.C_B3, fontSize = 14.sp)) {
             append("如需帮助，可")
         }
 
@@ -44,7 +44,7 @@ internal fun LoginCallCustomServiceText(
             tag = "tag1",
             annotation = "联系客服"
         )
-        withStyle(style = SpanStyle(color = ZlColors.C_P1, fontSize = 14.sp)) {
+        withStyle(style = SpanStyle(color = ZlColor.C_P1, fontSize = 14.sp)) {
             append("联系客服")
         }
         pop()
@@ -89,13 +89,13 @@ fun P1StyleButton(
         elevation = null,
         shape = RoundedCornerShape(size = shapeSize),
         colors = ButtonDefaults.buttonColors(
-            backgroundColor =if (enable) ZlColors.C_P1 else ZlColors.C_P5
+            backgroundColor =if (enable) ZlColor.C_P1 else ZlColor.C_P5
         ),
         interactionSource = noRipple
     ) {
         Text(
             text = text,
-            color = ZlColors.C_W1,
+            color = ZlColor.C_W1,
             fontSize = 16.sp,
             fontWeight = FontWeight.Bold
         )

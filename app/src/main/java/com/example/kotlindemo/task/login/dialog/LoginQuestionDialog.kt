@@ -30,9 +30,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.kotlindemo.R
 import com.example.kotlindemo.compose.noRippleClickable
-import com.example.kotlindemo.compose.ui.ZlColors
 import com.example.kotlindemo.compose.widget.SimpleImage
 import com.example.kotlindemo.task.login.LoginCallCustomServiceText
+import com.zhaopin.social.compose.ui.ZlColor
 import kotlinx.coroutines.launch
 
 /**
@@ -52,7 +52,7 @@ fun LoginQuestionDialog(
     BottomSheetDialog(
         sheetState = sheetState,
         scope = scope,
-        sheetBackgroundColor = ZlColors.C_S2
+        sheetBackgroundColor = ZlColor.C_S2
     ) {
         NoVerifyCodeDialogTop(
             title = dialogState.title,
@@ -86,7 +86,7 @@ private fun LoginQuestionCard(
             .fillMaxWidth()
             .padding(horizontal = 10.dp)
             .clip(RoundedCornerShape(10.dp))
-            .background(ZlColors.C_W1)
+            .background(ZlColor.C_W1)
             .padding(horizontal = 12.dp, vertical = 20.dp)
             .noRippleClickable { item.onClick.invoke() },
         contentAlignment = Alignment.Center
@@ -107,7 +107,7 @@ private fun LoginQuestionCard(
                 Text(
                     text = item.title,
                     style = TextStyle(
-                        color = ZlColors.C_B1,
+                        color = ZlColor.C_B1,
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold
                     )
@@ -116,7 +116,7 @@ private fun LoginQuestionCard(
                 Text(
                     text = item.content,
                     style = TextStyle(
-                        color = ZlColors.C_B3,
+                        color = ZlColor.C_B3,
                         fontSize = 13.sp
                     )
                 )
