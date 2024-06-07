@@ -6,6 +6,7 @@ import android.graphics.Point
 import android.util.DisplayMetrics
 import android.util.Log
 import android.view.WindowManager
+import com.zhaopin.social.appbase.util.curContext
 
 /**
  * Created by lwq on 2019-10-21.
@@ -78,6 +79,13 @@ object SizeUtils {
         } else {
             0
         }
+    }
+
+    fun getMetricsFull(): DisplayMetrics {
+        val  metrics = DisplayMetrics()
+        val windowMgr = curContext.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+        windowMgr.defaultDisplay.getRealMetrics(metrics)
+        return metrics
     }
 
 }

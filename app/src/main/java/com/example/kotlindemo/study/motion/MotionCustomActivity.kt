@@ -70,6 +70,7 @@ class MotionCustomActivity : BaseActivity() {
                 it.mCustomConstraints["TextColor"] = attrColor
                 ConstraintAttribute.setAttributes(titleTextView, it.mCustomConstraints)
             }
+            // Android MotionLayout动态设置结束状态的TopMargin
         }
 
 

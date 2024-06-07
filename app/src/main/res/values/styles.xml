@@ -24,6 +24,11 @@
         <item name="android:background">@android:color/transparent</item>
     </style>
 
+    <style name="BottomSheetNoAnim" parent="Animation.Design.BottomSheetDialog">
+        <item name="android:windowEnterAnimation">@null</item>
+        <item name="android:windowExitAnimation">@null</item>
+    </style>
+
     <style name="RoundedStyle">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">6dp</item>

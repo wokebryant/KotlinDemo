@@ -4,33 +4,23 @@
     android:id="@+id/content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="false"
     android:background="@android:color/white"
-    android:paddingTop="30dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="260dp"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:theme="@style/AppTheme">
 
-        <com.example.kotlindemo.study.motion.MotionToolBar
+        <androidx.constraintlayout.motion.widget.MotionLayout
             android:id="@+id/motionLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:motionDebug="NO_DEBUG"
             app:layoutDescription="@xml/motion_in_app_bar"
-            android:minHeight="52dp"
-            app:layout_scrollFlags="scroll|enterAlways|snap|exitUntilCollapsed">
-
-            <ImageView
-                android:id="@+id/background"
-                android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:background="@android:color/black"
-                android:src="@drawable/tree_scene"
-                android:scaleType="centerCrop"/>
+            android:minHeight="100dp"
+            app:layout_scrollFlags="scroll|enterAlways|exitUntilCollapsed">
 
             <ImageView
                 android:id="@+id/sun"
@@ -38,28 +28,20 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_sun"/>
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/logo"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:clickable="false"
-                android:src="@drawable/ic_kukong"/>
-
             <TextView
                 android:id="@+id/tipText"
-                android:text="Time flies fast"
+                android:text="在线简历已发送"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="serif-monospace"
                 android:textSize="18sp"
-                android:textColor="@color/title_color"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
-        </com.example.kotlindemo.study.motion.MotionToolBar>
+                android:textColor="@color/title_color" />
+        </androidx.constraintlayout.motion.widget.MotionLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nested_scroll_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">

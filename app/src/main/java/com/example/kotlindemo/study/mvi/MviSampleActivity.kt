@@ -13,7 +13,9 @@ import com.example.kotlindemo.task.jobtag.card.RecommendJobCardNewDelegate
 import com.example.kotlindemo.utils.binding
 import com.example.kotlindemo.utils.setGone
 import com.example.kotlindemo.utils.setVisible
+import com.zhaopin.list.multitype.adapter.AnimationType
 import com.zhaopin.list.multitype.adapter.MultiTypeAdapter
+import com.zhaopin.list.multitype.adapter.setAnimationWithDefault
 import com.zhaopin.list.multitype.loadmore.model.LoadMoreStatus
 import com.zhaopin.social.module_common_util.ext.onClick
 import com.zhaopin.toast.showToast
@@ -42,6 +44,8 @@ class MviSampleActivity : BaseActivity() {
             register(RecommendJobCardDelegate())
             register(RecommendJobCardNewDelegate())
             register(MviListItemDelegate())
+            animationEnable = true
+            setAnimationWithDefault(AnimationType.SlideInLeft)
         }
     }
 

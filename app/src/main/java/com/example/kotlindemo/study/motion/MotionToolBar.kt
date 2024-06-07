@@ -12,10 +12,10 @@ class MotionToolBar @JvmOverloads constructor(
 
     override fun onOffsetChanged(appBarLayout: AppBarLayout?, verticalOffset: Int) {
         Log.e("MotionToolBar", "onOffsetChanged: ----->$verticalOffset, scroll range--> ${appBarLayout?.totalScrollRange}")
-        val seekPosition = -verticalOffset / (appBarLayout?.totalScrollRange!!.toFloat()/5*3)
+        val seekPosition = -verticalOffset / (appBarLayout?.totalScrollRange!!.toFloat())
         //progress = seekPosition
         //motion_in_app_bar下使用
-        progress = 1 - seekPosition;
+        progress = 1 - seekPosition
     }
 
     override fun onAttachedToWindow() {

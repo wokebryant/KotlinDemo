@@ -3,7 +3,9 @@ package com.example.kotlindemo.task.jobdetail
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.FrameLayout
+import androidx.fragment.app.FragmentActivity
 import com.example.kotlindemo.databinding.LayoutJobDetailTopBarBinding
+import com.example.kotlindemo.task.afterdelivery.AfterDeliveryDialog
 import com.example.kotlindemo.utils.setVisible
 import com.zhaopin.social.appbase.util.currentActivity
 import com.zhaopin.social.common.extension.isGone
@@ -34,11 +36,11 @@ class JobDetailTopBar @JvmOverloads constructor(
             ivBack.onClick {
                 currentActivity()?.finish()
             }
-            ivShare.onJClick {
-
-            }
             ivCollect.onJClick {
-
+                (currentActivity() as? FragmentActivity)?.let {
+                    val dialog = AfterDeliveryDialog.newInstance()
+                    dialog.show(it.supportFragmentManager, dialog.bottomSheetDialogListener)
+                }
             }
             ivReport.onClick {
 

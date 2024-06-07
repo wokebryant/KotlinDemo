@@ -82,6 +82,11 @@
     <string name="call_custom_service_find">如忘记手机号，可联系客服找回</string>
     <string name="please_input_phone_number">请输入手机号</string>
 
+    <string name="all_selected">全选</string>
+    <string name="online_resume_has_send">在线简历已发送</string>
+    <string name="you_maybe_like">你可能还喜欢</string>
+    <string name="no_similar_job_recommend">暂无相似职位推荐</string>
+
     <string name="content_recommend_detail_title">内容算法说明</string>
     <string name="content_recommend_detail_body">内容推荐算法是以用户的属性信息、行为信息，以及内容库中的内容属性信息为基础，采用深度学习等机器学习策略，通过召回，排序，过滤，加权等流程，最终为您推荐更加便捷、更加符合您个性化需求的内容及服务信息，有助于提升您的浏览体验。\n\n内容推荐算法主要分为召回和排序两个主要流程：\n· 在召回阶段，我们可能会使用到以下必要的信息∶您操作、使用的行为信息（包括点击，点赞，收藏，评论等），以及将您在智联账号下使用某项服务中提供的信息（包括性别，职位，行业，薪资水平，教育水平，专业，求职意向状态，省份，城市，期望的岗位等）进行综合统计、分析以提取您的偏好特征，用来向您推荐或展示您可能感兴趣的内容及服务信息。\n· 在排序阶段，排序模型从召回阶段召回的内容中，根据您和内容的属性信息，召回阶段对内容的相关性打分，推荐结果的多样性以及推荐内容的热门程度等因素，返回召回结果中内容的点击率预期值，从而对召回内容进行排序，并返回推荐结果。\n\n若您不想看到为您推荐的内容及服务等信息，您可以在智联招聘APP端"我的-隐私中心-个性化推荐设置-个性化内容推荐”中点击相应按钮进行关闭，关闭后将会影响客户端（主要为职Q首页内容feed）的默认推荐内容。您可以自主决定开启或关闭，这有助于您对推荐内容的控制及自主决策。</string>
 

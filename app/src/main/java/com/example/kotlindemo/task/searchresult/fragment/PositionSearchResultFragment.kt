@@ -12,7 +12,9 @@ import com.example.kotlindemo.task.searchresult.ResultJobState
 import com.example.kotlindemo.task.searchresult.bean.PositionSearchResultFilterTag
 import com.example.kotlindemo.task.searchresult.bean.PositionSearchResultFilterTagsBean
 import com.example.kotlindemo.task.searchresult.viewholder.PositionSearchResultFilterMoreDelegate
+import com.zhaopin.list.multitype.adapter.AnimationType
 import com.zhaopin.list.multitype.adapter.MultiTypeAdapter
+import com.zhaopin.list.multitype.adapter.setAnimationWithDefault
 import com.zhaopin.list.multitype.adapter.setList
 
 /**
@@ -36,6 +38,8 @@ class PositionSearchResultFragment : BaseFragment<FragmentPositionSearchResultBi
     private val jobListAdapter by lazy {
         MultiTypeAdapter().apply {
             register(PositionResultJobDelegate())
+            animationEnable = true
+            setAnimationWithDefault(AnimationType.SlideInLeft)
         }
     }
 

@@ -3,6 +3,7 @@ package com.example.kotlindemo.widget
 import android.annotation.SuppressLint
 import android.content.DialogInterface
 import android.os.Bundle
+import android.util.Log
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
@@ -14,12 +15,16 @@ import androidx.fragment.app.FragmentManager
 import androidx.viewbinding.ViewBinding
 import com.example.kotlindemo.R
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetBehavior.BottomSheetCallback
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.zhaopin.social.appbase.util.currentActivity
 import com.zhaopin.social.module_common_util.binding.FragmentBinding
 import com.zhaopin.social.module_common_util.binding.FragmentBindingDelegate
 import com.zhaopin.toast.showToast
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 /**
  * @Description: BottomSheetDialogFragment基类
@@ -49,6 +54,18 @@ abstract class BaseBottomSheetDialogFragment<VB : ViewBinding> : BottomSheetDial
     var disableBackClose = true
     /** 设置点击空白处是否能够关闭弹窗 */
     var outsideClickClose = false
+
+    /** 滑动监听 */
+    private val bottomSheetBehaviorCallback = object : BottomSheetCallback() {
+        override fun onStateChanged(bottomSheet: View, newState: Int) {
+            listener?.onStateChanged(bottomSheet, newState)
+        }
+
+        override fun onSlide(bottomSheet: View, slideOffset: Float) {
+            listener?.onSlide(bottomSheet, slideOffset)
+        }
+
+    }
 
     /**
      *  设置Dialog样式
@@ -86,6 +103,7 @@ abstract class BaseBottomSheetDialogFragment<VB : ViewBinding> : BottomSheetDial
                 behavior.isDraggable = isDraggable
                 behavior.isHideable = isHideable
                 behavior.skipCollapsed = skipCollapsed
+                behavior.addBottomSheetCallback(bottomSheetBehaviorCallback)
                 setOnKeyListener { _, keyCode, _ ->
                     return@setOnKeyListener if (disableBackClose) {
                         keyCode == KeyEvent.KEYCODE_BACK
@@ -101,6 +119,10 @@ abstract class BaseBottomSheetDialogFragment<VB : ViewBinding> : BottomSheetDial
                     onOutSideClick()
                 }
             }
+            rootView.postDelayed(
+                { this.dialog?.window?.setWindowAnimations(R.style.BottomSheetAnim) },
+                200
+            )
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -109,8 +131,18 @@ abstract class BaseBottomSheetDialogFragment<VB : ViewBinding> : BottomSheetDial
     override fun onStop() {
         super.onStop()
         // 去除后台切换至前台的动画
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.P) {
-            dialog?.window?.setWindowAnimations(-1)
+        dialog?.window?.setWindowAnimations(R.style.BottomSheetNoAnim)
+    }
+
+    fun updateDraggable(enable: Boolean) {
+        val dialog = dialog as BottomSheetDialog
+        val rootView = dialog.findViewById<FrameLayout>(R.id.design_bottom_sheet)!!
+        rootView.layoutParams.height = expandHeight
+        dialog.apply {
+            behavior.isDraggable = enable
+            isDraggable = enable
+            initState = BottomSheetBehavior.STATE_EXPANDED
+            expandHeight = ViewGroup.LayoutParams.WRAP_CONTENT
         }
     }
 
