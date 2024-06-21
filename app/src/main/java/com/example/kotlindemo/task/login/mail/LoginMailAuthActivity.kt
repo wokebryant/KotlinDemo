@@ -38,7 +38,9 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.kotlindemo.compose.ComposeActivity
 import com.example.kotlindemo.compose.widget.Screen
 import com.example.kotlindemo.compose.widget.stateLayout.PageData
+import com.example.kotlindemo.compose.widget.stateLayout.PageState
 import com.example.kotlindemo.compose.widget.stateLayout.rememberPageState
+import com.example.kotlindemo.compose.widget.stateLayout.state.EmptyState
 import com.example.kotlindemo.study.mvi.core.collectAsStateWithLifecycle
 import com.example.kotlindemo.study.mvi.core.collectSideEffect
 import com.example.kotlindemo.task.login.LoginCheckBindPhoneViewModel
@@ -59,7 +61,6 @@ class LoginMailAuthActivity : ComposeActivity() {
     override fun MainPage() {
         val viewModel : LoginMailAuthViewModel = viewModel()
         val state by viewModel.collectAsStateWithLifecycle()
-        val pageState = rememberPageState(PageData.Content)
 
         viewModel.collectSideEffect { effect ->
             when (effect) {
@@ -68,12 +69,7 @@ class LoginMailAuthActivity : ComposeActivity() {
             }
         }
 
-        Screen(
-            pageState = pageState,
-            onRetry = {
-                pageState.showContent()
-            }
-        ) {
+        Screen {
             Column(
                 modifier = Modifier
                     .fillMaxSize()

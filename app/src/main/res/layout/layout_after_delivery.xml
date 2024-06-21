@@ -20,11 +20,13 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_radius="16dp" />
 
-    <ImageView
+    <com.example.kotlindemo.widget.ZLLottieAnimationView
         android:id="@+id/iv_icon"
         android:layout_width="56dp"
         android:layout_height="56dp"
-        android:src="@drawable/ic_delivery_resume"/>
+        app:lottie_fileName="after_delivery_icon.json"
+        app:lottie_loop="false"
+        app:lottie_autoPlay="true" />
 
     <TextView
         android:id="@+id/tv_title"

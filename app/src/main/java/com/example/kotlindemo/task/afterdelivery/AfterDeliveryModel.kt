@@ -1,5 +1,6 @@
 package com.example.kotlindemo.task.afterdelivery
 
+import androidx.constraintlayout.widget.Placeholder
 import com.example.kotlindemo.study.mvi.core.IUiEvent
 import com.example.kotlindemo.study.mvi.core.IUiState
 
@@ -43,7 +44,8 @@ data class AfterDeliveryCardState(
     val hrJob: String,
     val selected: Boolean,
     val onSelectedClick: OnAfterDeliveryItemClick,
-    val onItemClick: OnAfterDeliverySelectedClick
+    val onItemClick: OnAfterDeliverySelectedClick,
+    val isPlaceholder: Boolean = false
 )
 
 sealed class AfterDeliveryEvent : IUiEvent {
@@ -64,7 +66,13 @@ internal fun List<Int>.toUiList(
     onItemClick: OnAfterDeliveryItemClick,
     onSelectedClick: OnAfterDeliverySelectedClick
 ): MutableList<AfterDeliveryCardState> {
-    val jobList = this.map {
+    val newList = this.toMutableList()
+    if (newList.size < 4) {
+        newList.add(3)
+        newList.add(4)
+//        newList.add(5)
+    }
+    val jobList = newList.map {
         getJobCardState(it, onItemClick, onSelectedClick)
     }
     return jobList.toMutableList()
@@ -87,7 +95,8 @@ private fun getJobCardState(
         hrJob = "招聘经理",
         selected = false,
         onSelectedClick = onSelectedClick,
-        onItemClick = onItemClick
+        onItemClick = onItemClick,
+        isPlaceholder = index == 3 || index == 4
     )
 }
 

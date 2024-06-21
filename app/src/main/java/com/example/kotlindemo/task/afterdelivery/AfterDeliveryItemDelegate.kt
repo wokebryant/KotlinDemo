@@ -14,6 +14,7 @@ import com.zhaopin.social.appbase.util.curContext
 import com.zhaopin.social.background.util.Bovb
 import com.zhaopin.social.common.extension.getColor
 import com.zhaopin.social.common.extension.setGone
+import com.zhaopin.social.common.extension.setInvisible
 import com.zhaopin.social.common.extension.setVisible
 import com.zhaopin.social.module_common_util.ext.dp
 import com.zhaopin.social.module_common_util.ext.onClick
@@ -38,6 +39,10 @@ class AfterDeliveryItemDelegate : BindingViewDelegate<AfterDeliveryCardState, It
         item: AfterDeliveryCardState,
         position: Int
     ) {
+        if (item.isPlaceholder) {
+            binding.root.setInvisible()
+            return
+        }
         with(binding) {
             ivCheck.isSelected = item.selected
             // 职位 - 工资

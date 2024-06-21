@@ -20,7 +20,7 @@ class AfterDeliveryViewModel(
 
     companion object {
         private const val WHAT = 0X1001
-        private const val ADD_CARD_INTERVAL = 100L
+        private const val ADD_CARD_INTERVAL = 0L
     }
 
     override fun createInitialState() = AfterDeliveryState()
@@ -57,7 +57,7 @@ class AfterDeliveryViewModel(
      */
     fun requestJobList() {
         viewModelScope.launch(exceptionHandler) {
-            delay(2000)
+//            delay(2000)
             val jobList = repository.requestJobList()
             setState {
                 copy(
@@ -66,7 +66,7 @@ class AfterDeliveryViewModel(
                     pageState = AfterDeliveryPageState.Content
                 )
             }
-            delay(100)
+            delay(600)
             startAddCard()
         }
     }
@@ -165,7 +165,7 @@ class AfterDeliveryViewModel(
                 allSelected = false,
                 deliveryBtnContent = "请选择职位",
                 deliveryBtnEnable = false,
-                pageState = AfterDeliveryPageState.NextEmpty
+                pageState = AfterDeliveryPageState.Content
             )
         }
         startAddCard()

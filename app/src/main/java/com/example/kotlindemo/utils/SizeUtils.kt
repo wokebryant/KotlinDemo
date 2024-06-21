@@ -1,10 +1,13 @@
 package com.example.kotlindemo.utils
 
+import android.app.Activity
 import android.content.Context
 import android.content.res.Resources
 import android.graphics.Point
 import android.util.DisplayMetrics
 import android.util.Log
+import android.view.View
+import android.view.ViewGroup
 import android.view.WindowManager
 import com.zhaopin.social.appbase.util.curContext
 
@@ -79,6 +82,23 @@ object SizeUtils {
         } else {
             0
         }
+    }
+
+    // 该方法需要在View完全被绘制出来之后调用，否则判断不了
+    fun isNavigationBarExist(activity: Activity): Boolean {
+        val vp = activity.window.decorView as? ViewGroup
+        if (vp != null) {
+            for (i in 0 until vp.childCount) {
+                vp.getChildAt(i).context.packageName
+                if (vp.getChildAt(i).id != View.NO_ID && "navigationBarBackground" == activity.resources.getResourceEntryName(
+                        vp.getChildAt(i).id
+                    )
+                ) {
+                    return true
+                }
+            }
+        }
+        return false
     }
 
     fun getMetricsFull(): DisplayMetrics {

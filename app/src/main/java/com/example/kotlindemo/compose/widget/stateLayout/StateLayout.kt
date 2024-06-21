@@ -98,7 +98,7 @@ class PageState(state: PageData) {
 }
 
 @Composable
-fun rememberPageState(state: PageData = PageData.Loading): PageState {
+fun rememberPageState(state: PageData = PageData.Content): PageState {
     return remember {
         PageState(state)
     }

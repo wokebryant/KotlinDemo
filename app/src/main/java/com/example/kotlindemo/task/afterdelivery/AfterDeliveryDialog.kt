@@ -1,8 +1,10 @@
 package com.example.kotlindemo.task.afterdelivery
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.os.Bundle
 import android.view.View
+import android.view.View.NO_ID
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.view.updateLayoutParams
@@ -19,6 +21,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.zhaopin.common.widget.loading.LoadingDialog
 import com.zhaopin.list.multitype.adapter.MultiTypeAdapter
 import com.zhaopin.list.multitype.adapter.setList
+import com.zhaopin.social.appbase.util.curContext
 import com.zhaopin.social.appbase.util.currentActivity
 import com.zhaopin.social.module_common_util.common.StatusBarUtils
 import com.zhaopin.social.module_common_util.ext.dp
@@ -84,6 +87,7 @@ class AfterDeliveryDialog : BaseBottomSheetDialogFragment<LayoutAfterDeliveryBin
     }
 
     private fun setDialogParams() {
+        disableBackClose = false
         outsideClickClose = true
         isDraggable = true
         isHideable = false
@@ -94,8 +98,8 @@ class AfterDeliveryDialog : BaseBottomSheetDialogFragment<LayoutAfterDeliveryBin
     private fun setRecyclerView() {
         binding.rvList.run {
             adapter = listAdapter
-            itemAnimator = SlideInUpAnimator().apply {
-                addDuration = 300
+            itemAnimator = SlideInUpAnimator2().apply {
+                addDuration = 400
             }
         }
     }
@@ -103,7 +107,9 @@ class AfterDeliveryDialog : BaseBottomSheetDialogFragment<LayoutAfterDeliveryBin
     private fun setDeliveryBottomMargin() {
         val screenHeight = SizeUtils.getMetricsFull().heightPixels
         val statusBarHeight = StatusBarUtils.getStatusBarHeight()
-        val topMargin = screenHeight - 56.dp - statusBarHeight
+        val showNav = SizeUtils.isNavigationBarExist(currentActivity()!!)
+        val navBarHeight = if (showNav) SizeUtils.getNavBarHeight(curContext) else 0
+        val topMargin = screenHeight - 56.dp - statusBarHeight - navBarHeight
         val endConstraintSet = binding.motionContainer.getConstraintSet(R.id.end)
         endConstraintSet?.setMargin(R.id.fl_bottom, ConstraintSet.TOP, topMargin)
         binding.motionContainer.updateState(R.id.end, endConstraintSet)
