@@ -2,13 +2,18 @@ package com.example.kotlindemo.task.afterdelivery
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.graphics.Rect
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.View.NO_ID
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.view.updateLayoutParams
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.NO_POSITION
 import com.example.kotlindemo.R
 import com.example.kotlindemo.databinding.LayoutAfterDeliveryBinding
 import com.example.kotlindemo.study.mvi.core.collectEvent
@@ -21,6 +26,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.zhaopin.common.widget.loading.LoadingDialog
 import com.zhaopin.list.multitype.adapter.MultiTypeAdapter
 import com.zhaopin.list.multitype.adapter.setList
+import com.zhaopin.list.multitype.binder.ItemViewDelegate
 import com.zhaopin.social.appbase.util.curContext
 import com.zhaopin.social.appbase.util.currentActivity
 import com.zhaopin.social.module_common_util.common.StatusBarUtils
@@ -60,6 +66,7 @@ class AfterDeliveryDialog : BaseBottomSheetDialogFragment<LayoutAfterDeliveryBin
             if (newState == BottomSheetBehavior.STATE_EXPANDED) {
                 updateDraggable(enable = false)
                 isInTop = true
+                checkItemVisible()
             }
         }
 
@@ -68,6 +75,14 @@ class AfterDeliveryDialog : BaseBottomSheetDialogFragment<LayoutAfterDeliveryBin
             binding.motionContainer.progress = slideOffset
         }
     }
+
+    private val initHeight: Int
+        get() {
+            val screenHeight = SizeUtils.getMetricsFull().heightPixels
+            val navBarHeight = if (SizeUtils.isNavigationBarExist(currentActivity())) SizeUtils.getNavBarHeight(curContext) else 0
+            val initHeight = screenHeight - navBarHeight - 200.dp
+            return initHeight
+        }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -92,7 +107,9 @@ class AfterDeliveryDialog : BaseBottomSheetDialogFragment<LayoutAfterDeliveryBin
         isDraggable = true
         isHideable = false
         initState = BottomSheetBehavior.STATE_COLLAPSED
-        peekHeight = 575.dp
+//        peekHeight = 575.dp
+        peekHeight = initHeight
+
     }
 
     private fun setRecyclerView() {
@@ -101,17 +118,32 @@ class AfterDeliveryDialog : BaseBottomSheetDialogFragment<LayoutAfterDeliveryBin
             itemAnimator = SlideInUpAnimator2().apply {
                 addDuration = 400
             }
+            addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                    super.onScrollStateChanged(recyclerView, newState)
+                    if(newState == RecyclerView.SCROLL_STATE_IDLE) {
+                        checkItemVisible()
+                    }
+                }
+            })
         }
     }
 
     private fun setDeliveryBottomMargin() {
         val screenHeight = SizeUtils.getMetricsFull().heightPixels
         val statusBarHeight = StatusBarUtils.getStatusBarHeight()
-        val showNav = SizeUtils.isNavigationBarExist(currentActivity()!!)
+        val showNav = SizeUtils.isNavigationBarExist(currentActivity())
         val navBarHeight = if (showNav) SizeUtils.getNavBarHeight(curContext) else 0
-        val topMargin = screenHeight - 56.dp - statusBarHeight - navBarHeight
+        val topMarginEnd = screenHeight - 56.dp - statusBarHeight - navBarHeight
+
+        val topMarginStart = initHeight - 56.dp
+        val startConstraintSet = binding.motionContainer.getConstraintSet(R.id.start)
+        startConstraintSet?.setMargin(R.id.fl_bottom, ConstraintSet.TOP, topMarginStart)
+        binding.motionContainer.updateState(R.id.start, startConstraintSet)
+
+
         val endConstraintSet = binding.motionContainer.getConstraintSet(R.id.end)
-        endConstraintSet?.setMargin(R.id.fl_bottom, ConstraintSet.TOP, topMargin)
+        endConstraintSet?.setMargin(R.id.fl_bottom, ConstraintSet.TOP, topMarginEnd)
         binding.motionContainer.updateState(R.id.end, endConstraintSet)
     }
 
@@ -124,6 +156,7 @@ class AfterDeliveryDialog : BaseBottomSheetDialogFragment<LayoutAfterDeliveryBin
         viewModel.eventFlow.collectEvent(this) {
             when (it) {
                 is AfterDeliveryEvent.ResetCardList -> {
+                    exposedSet.clear()
                     listAdapter.items.clear()
                     listAdapter.notifyDataSetChanged()
                 }
@@ -135,6 +168,46 @@ class AfterDeliveryDialog : BaseBottomSheetDialogFragment<LayoutAfterDeliveryBin
                 }
                 is AfterDeliveryEvent.AllSelectedClick -> {
                     listAdapter.setList(it.jobList)
+                }
+                is AfterDeliveryEvent.StartExpose -> {
+                    checkItemVisible()
+                }
+            }
+        }
+    }
+
+    private val exposedSet = mutableSetOf<Int>()
+
+    /**
+     * 动画结束后检测ItemView在屏幕中的绝对坐标（RecycleView判断第一个最后一个显示Item的方法无效）
+     */
+    private fun checkItemVisible() {
+        listAdapter.items.forEachIndexed { index, any ->
+            val itemViewType = listAdapter.getItemViewType(index)
+            val delegate =
+                listAdapter.types.getType<Any>(itemViewType).delegate as ItemViewDelegate<*, *>
+            if (delegate is AfterDeliveryItemDelegate) {
+                val view = binding.rvList.layoutManager?.findViewByPosition(index)
+                view?.let {
+                    val rect = Rect()
+                    val isRectInScreen = view.getGlobalVisibleRect(rect)
+
+                    // 屏幕高度
+                    val screenHeight = SizeUtils.getMetricsFull().heightPixels
+                    // 全选布局高度
+                    val allSelectedViewHeight = 56.dp
+                    // 导航栏高度
+                    val showNav = SizeUtils.isNavigationBarExist(currentActivity()!!)
+                    val navBarHeight = if (showNav) SizeUtils.getNavBarHeight(curContext) else 0
+                    // 获取RecyclerView在屏幕中实际的bottom值
+                    val realRVBottom = screenHeight - allSelectedViewHeight - navBarHeight
+                    // 拿卡片top和realRVBottom做比较
+                    val isItemVisible = isRectInScreen && rect.top < realRVBottom
+
+                    if (isItemVisible && !exposedSet.contains(index) && (any as? AfterDeliveryCardState)?.isPlaceholder == false) {
+                        exposedSet.add(index)
+                        Log.e("AfterDeliveryExpose: ", " isRectShow $index")
+                    }
                 }
             }
         }

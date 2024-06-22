@@ -60,6 +60,8 @@ sealed class AfterDeliveryEvent : IUiEvent {
     ) : AfterDeliveryEvent()
     // 全选点击
     data class AllSelectedClick(val jobList: List<AfterDeliveryCardState>) : AfterDeliveryEvent()
+    // 开始曝光
+    object StartExpose: AfterDeliveryEvent()
 }
 
 internal fun List<Int>.toUiList(
@@ -67,11 +69,11 @@ internal fun List<Int>.toUiList(
     onSelectedClick: OnAfterDeliverySelectedClick
 ): MutableList<AfterDeliveryCardState> {
     val newList = this.toMutableList()
-    if (newList.size < 4) {
-        newList.add(3)
-        newList.add(4)
-//        newList.add(5)
-    }
+//    if (newList.size < 4) {
+//        newList.add(3)
+//        newList.add(4)
+////        newList.add(5)
+//    }
     val jobList = newList.map {
         getJobCardState(it, onItemClick, onSelectedClick)
     }
@@ -96,7 +98,7 @@ private fun getJobCardState(
         selected = false,
         onSelectedClick = onSelectedClick,
         onItemClick = onItemClick,
-        isPlaceholder = index == 3 || index == 4
+//        isPlaceholder = index == 3 || index == 4
     )
 }
 

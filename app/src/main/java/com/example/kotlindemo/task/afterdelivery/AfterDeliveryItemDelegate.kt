@@ -1,7 +1,10 @@
 package com.example.kotlindemo.task.afterdelivery
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import coil.load
 import com.example.kotlindemo.R
@@ -9,6 +12,8 @@ import com.example.kotlindemo.databinding.ItemAfterDeliveryBinding
 import com.zhaopin.common.widget.flowLayout.FlowLayout
 import com.zhaopin.common.widget.flowLayout.NoActionTagLy
 import com.zhaopin.common.widget.flowLayout.TagAdapter
+import com.zhaopin.list.expose.bindExpose
+import com.zhaopin.list.expose.exposeKey
 import com.zhaopin.list.multitype.binder.BindingViewDelegate
 import com.zhaopin.social.appbase.util.curContext
 import com.zhaopin.social.background.util.Bovb
@@ -25,6 +30,17 @@ import com.zhaopin.social.module_common_util.ext.onClick
  * @Date 2024/06/06
  */
 class AfterDeliveryItemDelegate : BindingViewDelegate<AfterDeliveryCardState, ItemAfterDeliveryBinding>() {
+
+    var title: LinearLayout? = null
+
+    override fun onCreateViewHolder(
+        context: Context,
+        parent: ViewGroup
+    ): BindingViewHolder<ItemAfterDeliveryBinding> {
+        return super.onCreateViewHolder(context, parent).apply {
+            itemView.bindExpose()
+        }
+    }
 
     override fun onBindViewHolder(
         binding: ItemAfterDeliveryBinding,
@@ -44,6 +60,9 @@ class AfterDeliveryItemDelegate : BindingViewDelegate<AfterDeliveryCardState, It
             return
         }
         with(binding) {
+            title = binding.llJobSalary
+            // 设置曝光埋点
+            root.exposeKey = item
             ivCheck.isSelected = item.selected
             // 职位 - 工资
             tvJobName.text = item.jobName
@@ -60,7 +79,7 @@ class AfterDeliveryItemDelegate : BindingViewDelegate<AfterDeliveryCardState, It
                 error(R.drawable.c_common_icon_hr_new_default)
             }
             tvHrName.text = item.hrName
-            tvHrJob.text = item.hrJob
+//            tvHrJob.text = item.hrJob
 
             // 选择框点击
             binding.ivCheck.onClick {

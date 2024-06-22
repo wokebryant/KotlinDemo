@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import com.zhaopin.social.appbase.util.curContext
+import com.zhaopin.social.appbase.util.currentActivity
 
 /**
  * Created by lwq on 2019-10-21.
@@ -84,9 +85,12 @@ object SizeUtils {
         }
     }
 
-    // 该方法需要在View完全被绘制出来之后调用，否则判断不了
-    fun isNavigationBarExist(activity: Activity): Boolean {
-        val vp = activity.window.decorView as? ViewGroup
+
+    /**
+     * 导航栏是否显示 (能够判断全面屏手机小白条是否展示)
+     */
+    fun isNavigationBarExist(activity: Activity?): Boolean {
+        val vp = activity?.window?.decorView as? ViewGroup
         if (vp != null) {
             for (i in 0 until vp.childCount) {
                 vp.getChildAt(i).context.packageName

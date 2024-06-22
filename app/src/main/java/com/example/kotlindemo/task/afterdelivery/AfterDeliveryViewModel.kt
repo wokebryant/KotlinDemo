@@ -44,6 +44,12 @@ class AfterDeliveryViewModel(
                     it.jobList.getOrNull(index)?.let { item ->
                         setEvent(AfterDeliveryEvent.AddCard(item))
                     }
+                    if (index == it.jobList.size - 1) {
+                        viewModelScope.launch {
+                            delay(800)
+                            setEvent(AfterDeliveryEvent.StartExpose)
+                        }
+                    }
                 }
 
                 val newMsg = obtainMessage(WHAT, ++index)

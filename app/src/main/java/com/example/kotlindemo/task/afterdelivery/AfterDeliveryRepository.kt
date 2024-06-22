@@ -13,7 +13,7 @@ class AfterDeliveryRepository : MviBaseRepository<AfterDeliveryEvent>() {
     fun requestJobList(): List<Int> {
         // TODO 测试代码
         val testList = mutableListOf<Int>()
-        repeat(2) {
+        repeat(5) {
             testList.add(it)
         }
         return testList
