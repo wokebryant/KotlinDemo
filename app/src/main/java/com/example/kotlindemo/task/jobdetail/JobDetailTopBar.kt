@@ -6,6 +6,7 @@ import android.widget.FrameLayout
 import androidx.fragment.app.FragmentActivity
 import com.example.kotlindemo.databinding.LayoutJobDetailTopBarBinding
 import com.example.kotlindemo.task.afterdelivery.AfterDeliveryDialog
+import com.example.kotlindemo.task.afterdelivery.LoginQuestionDialog2
 import com.example.kotlindemo.utils.setVisible
 import com.zhaopin.social.appbase.util.currentActivity
 import com.zhaopin.social.common.extension.isGone
@@ -43,7 +44,8 @@ class JobDetailTopBar @JvmOverloads constructor(
                 }
             }
             ivReport.onClick {
-
+                val dialog = LoginQuestionDialog2(currentActivity()!!)
+                dialog.show()
             }
         }
     }

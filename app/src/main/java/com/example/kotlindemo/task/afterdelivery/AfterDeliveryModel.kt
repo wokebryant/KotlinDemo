@@ -20,7 +20,7 @@ data class AfterDeliveryState(
     // 投递按钮是否可点击
     val deliveryBtnEnable: Boolean = false,
     // 页面状态
-    val pageState: AfterDeliveryPageState = AfterDeliveryPageState.Loading
+    val pageState: AfterDeliveryPageState = AfterDeliveryPageState.Content
 ) : IUiState
 
 enum class AfterDeliveryPageState() {

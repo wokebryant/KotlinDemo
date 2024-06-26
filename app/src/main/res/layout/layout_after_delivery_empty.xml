@@ -10,8 +10,9 @@
     app:layout_radius="10dp">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/iv_img"
+        android:layout_width="160dp"
+        android:layout_height="120dp"
         android:src="@drawable/core_common_error"/>
 
     <TextView

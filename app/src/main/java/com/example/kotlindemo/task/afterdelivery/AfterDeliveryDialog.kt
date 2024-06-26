@@ -1,19 +1,16 @@
 package com.example.kotlindemo.task.afterdelivery
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.graphics.Rect
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.view.View.NO_ID
 import android.view.ViewGroup
+import android.view.ViewGroup.MarginLayoutParams
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.view.updateLayoutParams
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.NO_POSITION
 import com.example.kotlindemo.R
 import com.example.kotlindemo.databinding.LayoutAfterDeliveryBinding
 import com.example.kotlindemo.study.mvi.core.collectEvent
@@ -32,7 +29,6 @@ import com.zhaopin.social.appbase.util.currentActivity
 import com.zhaopin.social.module_common_util.common.StatusBarUtils
 import com.zhaopin.social.module_common_util.ext.dp
 import com.zhaopin.social.module_common_util.ext.onClick
-import jp.wasabeef.recyclerview.animators.SlideInUpAnimator
 
 /**
  * @Description 职位投后弹窗
@@ -92,7 +88,9 @@ class AfterDeliveryDialog : BaseBottomSheetDialogFragment<LayoutAfterDeliveryBin
         setRecyclerView()
         // 动态设置投递区域 TopMargin
         setDeliveryBottomMargin()
+        setEmptyHeight()
 
+        checkItemVisible()
         // 收集数据
         collect()
         // 请求数据
@@ -261,6 +259,26 @@ class AfterDeliveryDialog : BaseBottomSheetDialogFragment<LayoutAfterDeliveryBin
         startConstraintSet?.setVisibility(R.id.fl_bottom, View.GONE)
         binding.motionContainer.updateState(R.id.start, startConstraintSet)
         binding.motionContainer.updateState(R.id.end, endConstraintSet)
+    }
+
+    private fun setEmptyHeight() {
+        val emptyHeight = initHeight - 244.dp
+        if (emptyHeight < 331.dp) {
+            binding.inEmpty.root.updateLayoutParams<ViewGroup.LayoutParams> {
+                height = emptyHeight
+            }
+            binding.inEmpty.root.updateLayoutParams<MarginLayoutParams> {
+                bottomMargin = 10.dp
+            }
+            binding.inEmpty.ivImg.updateLayoutParams<ViewGroup.LayoutParams> {
+                width = 128.dp
+                height = 96.dp
+            }
+            binding.inEmpty.tvContent.textSize = 14f
+            binding.inEmpty.tvContent.updateLayoutParams<MarginLayoutParams> {
+                topMargin = 8.dp
+            }
+        }
     }
 
     private fun request() {

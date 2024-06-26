@@ -63,7 +63,7 @@ class AfterDeliveryViewModel(
      */
     fun requestJobList() {
         viewModelScope.launch(exceptionHandler) {
-//            delay(2000)
+            delay(2000)
             val jobList = repository.requestJobList()
             setState {
                 copy(
