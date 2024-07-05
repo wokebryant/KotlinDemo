@@ -19,6 +19,8 @@ import com.example.kotlindemo.task.afterdelivery.AfterDeliveryDialog
 import com.example.kotlindemo.task.afterdelivery.LoginQuestionDialog2
 import com.example.kotlindemo.task.login.dialog.NoVerifyCodeDialog
 import com.example.kotlindemo.task.login.dialog.NoVerifyCodeDialogState
+import com.example.kotlindemo.task.nps.PositionNPSDialog
+import com.example.kotlindemo.task.nps.testNPSState
 import com.example.kotlindemo.utils.setVisible
 import com.zhaopin.social.appbase.util.currentActivity
 import com.zhaopin.social.common.extension.isGone
@@ -62,29 +64,9 @@ class JobDetailTopBar @JvmOverloads constructor(
 //                dialog.show()
 //            }
             ivReport.onClick {
-                currentActivity()?.showComposeDialog {
-                    val scope = rememberCoroutineScope()
-                    val bottomSheetState = rememberModalBottomSheetState(
-                        initialValue = ModalBottomSheetValue.Expanded,
-                        skipHalfExpanded = true
-                    )
-
-                    val noVerifyCodeDialogState = NoVerifyCodeDialogState(
-                        title = "收不到验证码？",
-                        list = mutableListOf(
-                            "1.请确认手机号是否正确",
-                            "2.请确认手机收否停机",
-                            "3.可以选择使用其他账号登录",
-                            "4.手机号不用了，无法登陆或者换绑，去换绑",
-                        ),
-                        onTipClick = {
-                            currentActivity()?.showToast("点击隐私协议")
-                        }
-                    )
-                    NoVerifyCodeDialog(
-                        sheetState = bottomSheetState,
-                        dialogState = noVerifyCodeDialogState
-                    )
+                (currentActivity() as? FragmentActivity)?.let {
+                    val dialog = PositionNPSDialog.newInstance(testNPSState)
+                    dialog.show(it.supportFragmentManager)
                 }
             }
         }
