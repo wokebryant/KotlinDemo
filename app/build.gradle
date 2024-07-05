@@ -93,9 +93,11 @@ dependencies {
     implementation 'net.yslibrary.keyboardvisibilityevent:keyboardvisibilityevent:3.0.0-RC3'
     implementation 'com.ethanhua:skeleton:1.1.2'
     implementation 'jp.wasabeef:recyclerview-animators:4.0.2'
+//    implementation 'com.github.zhpanvip:viewpagerindicator:1.2.3'
+    implementation 'com.github.zhpanvip:bannerviewpager:3.5.12'
 
     implementation 'de.hdodenhof:circleimageview:3.1.0'
-    implementation 'com.zhaopin.zpm:module_common_widget:1.4.6'
+    implementation 'com.zhaopin.zpm:module_common_widget:1.5.8'
     implementation 'com.zhaopin.zpm:module_common_util:1.1.45'
     implementation 'com.zhaopin.zpm:module_list:1.2.2'
     implementation 'com.zhaopin.zpm:selectwidget:4.3.18'

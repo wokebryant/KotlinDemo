@@ -142,7 +142,16 @@ abstract class BaseBottomSheetDialogFragment<VB : ViewBinding> : BottomSheetDial
             behavior.isDraggable = enable
             isDraggable = enable
             initState = BottomSheetBehavior.STATE_EXPANDED
-            expandHeight = ViewGroup.LayoutParams.WRAP_CONTENT
+        }
+    }
+
+    /**
+     * 默认不限制最大高度，如需要这里设置
+     */
+    fun setMaxHeight(maxHeight: Int) {
+        val dialog = dialog as BottomSheetDialog
+        dialog.apply {
+            behavior.maxHeight = maxHeight
         }
     }
 

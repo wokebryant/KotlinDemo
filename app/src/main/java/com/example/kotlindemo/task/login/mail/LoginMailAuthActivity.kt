@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Text
@@ -35,8 +36,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.kotlindemo.R
 import com.example.kotlindemo.compose.ComposeActivity
 import com.example.kotlindemo.compose.widget.Screen
+import com.example.kotlindemo.compose.widget.SimpleImage
 import com.example.kotlindemo.compose.widget.stateLayout.PageData
 import com.example.kotlindemo.compose.widget.stateLayout.PageState
 import com.example.kotlindemo.compose.widget.stateLayout.rememberPageState
@@ -76,7 +79,13 @@ class LoginMailAuthActivity : ComposeActivity() {
                     .padding(start = 20.dp, top = 20.dp, end = 20.dp)
             ) {
                 Top(state = state)
-                Center(state = state, inputTextChange = { viewModel.updateInput(it) })
+                Center(
+                    state = state,
+                    inputTextChange = { viewModel.updateInput(it) },
+                    getVerifyCodeClick = { viewModel.startGeetest() },
+                    onTimeTickerFinish = { viewModel.timeTickerFinish() },
+                    clear = { viewModel.clear() }
+                )
                 Bottom(enable = state.submitEnable, onConfirm = { viewModel.submit() })
             }
         }
@@ -107,7 +116,10 @@ class LoginMailAuthActivity : ComposeActivity() {
     @Composable
     fun Center(
         state: LoginMailAuthState,
-        inputTextChange: (String) -> Unit
+        inputTextChange: (String) -> Unit,
+        getVerifyCodeClick: () -> Unit,
+        onTimeTickerFinish: () -> Unit,
+        clear: () -> Unit
     ) {
         Column(
             modifier = Modifier
@@ -172,7 +184,22 @@ class LoginMailAuthActivity : ComposeActivity() {
                         .focusRequester(focusRequester)
                 )
 
-                CountdownText()
+                if (state.code.isNotEmpty()) {
+                    SimpleImage(
+                        id = R.drawable.login_icon_clear_new,
+                        modifier = Modifier
+                            .padding(end = 30.dp)
+                            .clickable {
+                                clear.invoke()
+                            }
+                    )
+                }
+
+                CountdownText(
+                    startTimeTicker = state.startTimeTicker,
+                    getVerifyCodeClick = getVerifyCodeClick,
+                    onTimeTickerFinish = onTimeTickerFinish
+                )
             }
         }
     }
@@ -181,32 +208,35 @@ class LoginMailAuthActivity : ComposeActivity() {
      * 倒计时文本
      */
     @Composable
-    fun CountdownText() {
+    fun CountdownText(
+        startTimeTicker: Boolean,
+        getVerifyCodeClick: () -> Unit,
+        onTimeTickerFinish: () -> Unit
+    ) {
         var countdownSeconds by remember { mutableStateOf(60) }
-        var isCountdownRunning by remember { mutableStateOf(false) }
 
-        val coroutineScope = rememberCoroutineScope()
+        // 开始倒计时
+        LaunchedEffect(key1 = startTimeTicker) {
+            if (startTimeTicker) {
+                for (i in 60 downTo 1) {
+                    countdownSeconds = i
+                    delay(1000)
+                    if (countdownSeconds == 1) {
+                        onTimeTickerFinish.invoke()
+                    }
+                }
+            }
+        }
 
         Text(
-            text = if (isCountdownRunning) "重新发送（${countdownSeconds}s）" else "获取验证码",
+            text = if (startTimeTicker) "重新发送（${countdownSeconds}s）" else "获取验证码",
             style = TextStyle(
                 color = ZlColor.C_P1,
                 fontSize = 14.sp
             ),
-            modifier = Modifier.clickable(enabled = !isCountdownRunning) {
-                if (!isCountdownRunning) {
-                    isCountdownRunning = true
-                    // 开始倒计时
-                    coroutineScope.launch {
-                        for (i in 20 downTo 1) {
-                            countdownSeconds = i
-                            delay(1000)
-                            if (countdownSeconds == 1) {
-                                isCountdownRunning = false
-                            }
-                        }
-                    }
-                }
+            modifier = Modifier.clickable(enabled = !startTimeTicker) {
+                // 获取验证码
+                getVerifyCodeClick.invoke()
             }
         )
     }

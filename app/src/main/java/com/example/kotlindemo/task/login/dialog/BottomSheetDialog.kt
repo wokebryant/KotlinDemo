@@ -3,6 +3,7 @@ package com.example.kotlindemo.task.login.dialog
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.ModalBottomSheetLayout
@@ -39,7 +40,7 @@ fun BottomSheetDialog(
     sheetContent: @Composable ColumnScope.() -> Unit,
 ) {
     ModalBottomSheetLayout(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier.fillMaxWidth().navigationBarsPadding(),
         sheetState = sheetState,
         sheetShape = sheetShape,
         sheetBackgroundColor = sheetBackgroundColor,

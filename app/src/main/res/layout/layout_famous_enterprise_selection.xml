@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhaopin.common.widget.RCConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/C_W1"
+    android:paddingHorizontal="12dp"
+    app:layout_radius="10dp">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        style="@style/style_text_bold_18"
+        android:textColor="@color/C_B1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="名企精选"/>
+
+    <com.zhaopin.common.widget.RCLinearLayout
+        android:id="@+id/ll_more"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:paddingVertical="5.5dp"
+        android:paddingStart="6dp"
+        android:paddingEnd="5dp"
+        android:gravity="center"
+        android:background="#F0F5FA"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_radius="7dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_more"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0.5dp"
+            android:layout_marginStart="4.5dp"
+            android:src="@drawable/ic_campus_black_arrow_right"/>
+
+    </com.zhaopin.common.widget.RCLinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_title">
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vp_card"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <com.zhaopin.common.widget.indicator.IndicatorView
+            android:id="@+id/view_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="10dp"/>
+
+    </LinearLayout>
+
+</com.zhaopin.common.widget.RCConstraintLayout>

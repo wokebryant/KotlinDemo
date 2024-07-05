@@ -130,18 +130,25 @@ class LoginAuthActivity : ComposeActivity() {
                         )
                         if (item.showTag) {
                             Spacer(modifier = Modifier.size(4.dp))
-                            Text(
-                                modifier = Modifier
-                                    .size(30.dp, 16.dp)
-                                    .clip(RoundedCornerShape(8.dp))
-                                    .background(ZlColor.C_R1),
-                                text = "推荐",
-                                style = TextStyle(
-                                    color = ZlColor.C_W1,
-                                    fontSize = 11.sp,
-                                ),
-                                textAlign = TextAlign.Center
+                            SimpleImage(
+                                id = R.drawable.ic_tag_recommend,
+                                modifier = Modifier.padding(bottom = 1.dp).size(30.dp, 16.dp)
                             )
+//                            Box(
+//                                modifier = Modifier
+//                                    .size(30.dp, 16.dp)
+//                                    .clip(RoundedCornerShape(8.dp))
+//                                    .background(ZlColor.C_R1),
+//                                contentAlignment = Alignment.Center
+//                            ) {
+//                                Text(
+//                                    text = "推荐",
+//                                    style = TextStyle(
+//                                        color = ZlColor.C_W1,
+//                                        fontSize = 11.sp,
+//                                    )
+//                                )
+//                            }
                         }
                     }
                     Spacer(modifier = Modifier.size(4.dp))

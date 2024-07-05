@@ -19,6 +19,8 @@ class AppBarActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         with(binding) {
 //            appbar.setVisible()
+            appbar2.setViewPager()
+//            appbar2.setViewPager2(lifecycle)
         }
     }
 

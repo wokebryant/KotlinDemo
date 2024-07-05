@@ -19,7 +19,9 @@ data class LoginMailAuthState (
     // 邮箱号
     val email: String = "邮箱号：123****879@11.com",
     // 按钮是否可点击
-    val submitEnable: Boolean = false
+    val submitEnable: Boolean = false,
+    // 是否开始倒计时
+    val startTimeTicker: Boolean = false
 ) : IUiState
 
 sealed interface LoginMailAuthEffect : IUiEffect {
