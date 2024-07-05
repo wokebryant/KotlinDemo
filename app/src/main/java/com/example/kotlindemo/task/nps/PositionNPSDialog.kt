@@ -66,6 +66,8 @@ class PositionNPSDialog : BaseBottomSheetDialogFragment<LayoutPositionNpsBinding
     private val faceDesc = listOf("非常差", "不满意", "一般", "满意", "非常好")
     /** 被选中的下标 */
     private var selectedIndex = -1
+    private val isEnableSelected: Boolean
+        get() = selectedIndex != -1
     /** 按钮是否可点 */
     private var buttonEnable = false
         set(value) {
@@ -110,8 +112,9 @@ class PositionNPSDialog : BaseBottomSheetDialogFragment<LayoutPositionNpsBinding
     }
 
     private fun setInitSelectedFace() {
-        if (selectedIndex != -1) {
+        if (isEnableSelected) {
             setFace(index = selectedIndex, isSelected = true)
+            setTagLayout()
         }
     }
 
@@ -126,7 +129,7 @@ class PositionNPSDialog : BaseBottomSheetDialogFragment<LayoutPositionNpsBinding
         faceBinding.ivFace.setImageResource(drawable)
         faceBinding.tvDesc.text = faceDesc[index]
         faceBinding.tvDesc.typeface = typeface
-        if (selectedIndex != -1) {
+        if (isEnableSelected) {
             binding.ivBg.setBackgroundResource(bgList[index])
         }
     }
@@ -137,7 +140,7 @@ class PositionNPSDialog : BaseBottomSheetDialogFragment<LayoutPositionNpsBinding
             itemAnimator = null
         }
         val tagList = state?.faceList?.getOrNull(selectedIndex)?.tagList
-        if (selectedIndex != -1 && !tagList.isNullOrEmpty()) {
+        if (isEnableSelected && !tagList.isNullOrEmpty()) {
             binding.llTag.setVisible()
             tagAdapter.submitList(tagList)
         } else {

@@ -42,7 +42,7 @@ data class NPSTagState(
 ) : MVXTagUIState, Serializable
 
 val testNPSState = PositionNPSState(
-    selectedIndex = -1,
+    selectedIndex = 2,
     faceList = listOf(
         PositionNPSState.Face(
             lottieUrl = "",
