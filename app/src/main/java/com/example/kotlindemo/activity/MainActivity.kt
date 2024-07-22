@@ -8,6 +8,7 @@ import com.example.kotlindemo.base.BaseActivity
 import com.example.kotlindemo.compose.CollectActivity
 import com.example.kotlindemo.compose.PageStateActivity
 import com.example.kotlindemo.compose.WechatSendActivity
+import com.example.kotlindemo.compose.paging.sample.ZLPagingActivity
 import com.example.kotlindemo.data.mainItemList
 import com.example.kotlindemo.task.linkage.LinkageActivity
 import com.example.kotlindemo.databinding.ActivityMainBinding
@@ -109,6 +110,8 @@ class MainActivity : BaseActivity() {
             MainItemType.BlueResumeEdit -> AppUtil.startActivity<BlueResumeEditActivity>(this) {}
 
             MainItemType.ComposeStateLayout -> AppUtil.startActivity<PageStateActivity>(this) {}
+
+            MainItemType.ComposePaging -> AppUtil.startActivity<ZLPagingActivity>(this) {}
 
             MainItemType.LoginAuth -> AppUtil.startActivity<LoginAuthActivity>(this) {}
 

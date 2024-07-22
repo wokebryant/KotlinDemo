@@ -53,6 +53,10 @@ val mainItemList = mutableListOf(
         type = MainItemType.ComposeStateLayout
     ),
     MainItemState(
+        title = "Compose分页库",
+        type = MainItemType.ComposePaging
+    ),
+    MainItemState(
         title = "智联需求",
         type = MainItemType.ZLTask,
         textColor = R.color.C_W1,

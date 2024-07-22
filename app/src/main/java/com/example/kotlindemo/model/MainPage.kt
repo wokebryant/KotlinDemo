@@ -46,4 +46,5 @@ sealed class MainItemType {
     object LoginAuthMail: MainItemType()
     object LoginAuth: MainItemType()
     object LoginCheckBindPhone: MainItemType()
+    object ComposePaging: MainItemType()
 }
