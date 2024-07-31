@@ -29,4 +29,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appbar2">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_image_tv5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:text="荣耀V40轻奢版 5G 超级快充 6400万超清四摄 8GB+128GB钛空银 " />
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
