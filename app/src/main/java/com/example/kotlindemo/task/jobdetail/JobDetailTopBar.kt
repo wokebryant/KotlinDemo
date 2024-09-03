@@ -13,10 +13,13 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.fragment.app.FragmentActivity
+import com.example.kotlindemo.compose.dialog.DeliveryAbnormalDialog
+import com.example.kotlindemo.compose.dialog.DeliveryAbnormalManager
 import com.example.kotlindemo.compose.ui.ZlTheme
 import com.example.kotlindemo.databinding.LayoutJobDetailTopBarBinding
 import com.example.kotlindemo.task.afterdelivery.AfterDeliveryDialog
 import com.example.kotlindemo.task.afterdelivery.LoginQuestionDialog2
+import com.example.kotlindemo.task.deliverytop.DeliveryPrivilegeManager
 import com.example.kotlindemo.task.login.dialog.NoVerifyCodeDialog
 import com.example.kotlindemo.task.login.dialog.NoVerifyCodeDialogState
 import com.example.kotlindemo.task.nps.PositionNPSDialog
@@ -29,6 +32,7 @@ import com.zhaopin.social.common.extension.setGone
 import com.zhaopin.social.module_common_util.ext.binding
 import com.zhaopin.social.module_common_util.ext.onClick
 import com.zhaopin.toast.showToast
+import org.json.JSONObject
 
 /**
  * @Description
@@ -64,24 +68,19 @@ class JobDetailTopBar @JvmOverloads constructor(
 //                dialog.show()
 //            }
             ivReport.onClick {
-                (currentActivity() as? FragmentActivity)?.let {
-                    val dialog = PositionNPSDialog.newInstance(testNPSState)
-                    dialog.show(it.supportFragmentManager)
+//                (currentActivity() as? FragmentActivity)?.let {
+//                    val dialog = PositionNPSDialog.newInstance(testNPSState)
+//                    dialog.show(it.supportFragmentManager)
+//                }
+                val jsonObject = JSONObject().apply {
+                    put("punishState", 1)
+                    put("unlockTime", 20000L)
+                    put("uncivilizedCount", 3)
+                    put("title", "投递异常")
+                    put("content", "对招聘方存在不文明用语，暂不可投递。请规范您的言行，如再次出现不文明用语可能会被禁言以及封禁账号")
+                    put("buttonType", 1)
                 }
-            }
-        }
-    }
-
-    fun Activity.showComposeDialog(content: @Composable () -> Unit) {
-        val composeView = ComposeView(this)
-        val rootView = this.window?.decorView?.findViewById<ViewGroup>((android.R.id.content))
-        rootView?.addView(composeView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
-        composeView.run {
-            setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
-            setContent {
-                ZlTheme {
-                    content()
-                }
+                DeliveryAbnormalManager.showDeliveryAbnormalDialog(jsonObject)
             }
         }
     }

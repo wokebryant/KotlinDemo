@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material.Button
@@ -19,7 +20,9 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.kotlindemo.R
 import com.example.kotlindemo.compose.ext.noRipple
+import com.example.kotlindemo.compose.widget.SimpleImage
 import com.zhaopin.social.compose.ui.ZlColor
 
 /**
@@ -93,6 +96,10 @@ fun P1StyleButton(
         ),
         interactionSource = noRipple
     ) {
+        SimpleImage(
+            id = R.drawable.ic_delivery_abnormal_call,
+            modifier = Modifier.padding(end = 4.dp).size(20.dp)
+        )
         Text(
             text = text,
             color = ZlColor.C_W1,

@@ -121,7 +121,7 @@ class FoldTextView @JvmOverloads constructor(
             mTagColor = arr.getColor(R.styleable.FoldTextView_tagColor, TAG_COLOR)
             mTipClickable = arr.getBoolean(R.styleable.FoldTextView_tipClickable, false)
             mFoldText = arr.getString(R.styleable.FoldTextView_foldText)
-            mExpandText = arr.getString(R.styleable.FoldTextView_expandText)
+            mExpandText = arr.getString(R.styleable.FoldTextView_unFoldText)
             isShowTip = arr.getBoolean(R.styleable.FoldTextView_showTip, false)
             isShowTipAfterExpand = arr.getBoolean(
                 R.styleable.FoldTextView_showTipAfterExpand,

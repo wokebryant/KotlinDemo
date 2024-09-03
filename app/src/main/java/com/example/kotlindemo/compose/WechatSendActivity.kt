@@ -13,9 +13,12 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.requiredWidthIn
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
@@ -270,50 +273,56 @@ class WechatSendActivity : ComposeActivity() {
                             }
                     )
 
-                    Spacer(modifier = Modifier.size(12.dp))
+//                    Spacer(modifier = Modifier.size(12.dp))
 
-                    Column(
-                        modifier = Modifier.wrapContentSize(),
-                    ) {
-                        Text(
-                            text = if (isFirstCard) SEND_WECHAT else DO_NOT_SEND_WECHAT,
-                            color = ZlColor.C_B1,
-                            fontWeight = FontWeight.Bold,
-                            fontSize = 18.sp
-                        )
+                    Box {
+                        Column(
+//                        modifier = Modifier.fillMaxWidth()
+                        ) {
+                            Text(
+                                text = if (isFirstCard) SEND_WECHAT else DO_NOT_SEND_WECHAT,
+                                color = ZlColor.C_B1,
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 18.sp
+                            )
 
-                        if (haveWechat) {
-                            Spacer(modifier = Modifier.size(6.dp))
+                            if (haveWechat) {
+                                Spacer(modifier = Modifier.size(6.dp))
 
-                            Row(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(end = 16.dp),
-                            ) {
-                                val text = "微信号：cid8765cid8765cid8765cid8765cid8765cid8765"
-
-                                Text(
-                                    text = text,
-                                    color = ZlColor.C_B3,
-                                    fontSize = 14.sp,
-                                    overflow = TextOverflow.Ellipsis,
-                                    maxLines = 1,
+                                Row(
                                     modifier = Modifier
-                                        .weight(1f, false)
-                                )
-                                Text(
-                                    modifier = Modifier
-                                        .padding(start = 6.dp)
-                                        .clickable {
-                                            currentActivity()?.showToast("修改")
-                                        },
-                                    text = "修改",
-                                    color = ZlColor.C_P1,
-                                    fontSize = 14.sp
-                                )
+                                        .fillMaxWidth()
+                                        .padding(end = 16.dp),
+                                ) {
+                                    val text = "微信号：cid8"
+
+                                    Text(
+                                        text = text,
+                                        color = ZlColor.C_B3,
+                                        fontSize = 14.sp,
+                                        overflow = TextOverflow.Ellipsis,
+                                        maxLines = 1,
+                                        modifier = Modifier
+                                            .weight(1f, false)
+                                    )
+                                    Text(
+                                        modifier = Modifier
+                                            .padding(start = 6.dp)
+                                            .widthIn(max = 250.dp)
+                                            .clickable {
+                                                currentActivity()?.showToast("修改")
+                                            },
+                                        text = "修改哈哈哈哈哈哈哈哈哈哈嘻嘻嘻休息i下哈哈哈hahhah哈哈哈哈哈哈哈哈疯狂的",
+                                        color = ZlColor.C_P1,
+                                        fontSize = 14.sp,
+                                        overflow = TextOverflow.Ellipsis,
+                                        maxLines = 1,
+                                    )
+                                }
                             }
                         }
                     }
+
                 }
 
                 // 推荐标签

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="40dp"
+    tools:ignore="MissingDefaultResource,ResourceName">
+
+    <com.zhaopin.common.widget.RCFrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@color/C_W1"
+        app:layout_radius="16dp">
+
+        <com.zhaopin.common.widget.RCFrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_delivery_abnormal_dialog">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="24dp"
+                android:paddingBottom="24dp"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:src="@drawable/ic_delivery_abnormal_warning"/>
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:textColor="@color/C_B1"
+                    style="@style/style_text_bold_18"
+                    tools:text="消息异常"/>
+
+                <TextView
+                    android:id="@+id/tv_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginHorizontal="24dp"
+                    android:gravity="center"
+                    android:textSize="14sp"
+                    android:textColor="@color/C_B2"
+                    tools:text="对招聘方存在不文明用语，暂不可发消息。请规范你的言行。如再次出现不文明用语可能"/>
+
+                <LinearLayout
+                    android:id="@+id/ll_timer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_delivery_abnormal_line_1"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="8dp"
+                            android:text="距离解除"/>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_delivery_abnormal_line_2"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:layout_marginTop="10dp">
+
+                        <include
+                            android:id="@+id/in_hour"
+                            layout="@layout/layout_delivery_abnormal_timer"/>
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/ic_delivery_abnormal_divide"/>
+
+                        <include
+                            android:id="@+id/in_minute"
+                            layout="@layout/layout_delivery_abnormal_timer"/>
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/ic_delivery_abnormal_divide"/>
+
+                        <include
+                            android:id="@+id/in_second"
+                            layout="@layout/layout_delivery_abnormal_timer"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <com.zhaopin.common.widget.RCLinearLayout
+                    android:id="@+id/ll_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:layout_marginHorizontal="48dp"
+                    android:layout_marginTop="24dp"
+                    android:gravity="center"
+                    android:background="@color/C_P1"
+                    app:layout_radius="22dp">
+
+                    <ImageView
+                        android:id="@+id/iv_call"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="4dp"
+                        android:src="@drawable/ic_delivery_abnormal_call"/>
+
+                    <TextView
+                        android:id="@+id/tv_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/style_text_bold_16"
+                        android:textColor="@color/C_W1"
+                        android:text="知道了"/>
+
+                </com.zhaopin.common.widget.RCLinearLayout>
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/iv_close"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_gravity="end"
+                android:src="@drawable/ic_delivery_abnormal_close"/>
+
+        </com.zhaopin.common.widget.RCFrameLayout>
+
+    </com.zhaopin.common.widget.RCFrameLayout>
+
+
+</FrameLayout>

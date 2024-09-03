@@ -95,7 +95,7 @@
     <attr name="tipWithTag" format="boolean"/> <!-- 提示是否添加标签 -->
     <attr name="tipClickable" format="boolean" /> <!-- 提示可否点击 -->
     <attr name="foldText" format="string" /> <!-- 折叠提示语 -->
-    <attr name="expandText" format="string" /> <!-- 展开提示语 -->
+    <attr name="unFoldText" format="string" /> <!-- 展开提示语 -->
     <attr name="showTipAfterExpand" format="boolean" /> <!-- 展开后是否显示提示语 -->
   </declare-styleable>
 

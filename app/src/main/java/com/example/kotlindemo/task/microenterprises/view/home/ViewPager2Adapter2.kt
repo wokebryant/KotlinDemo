@@ -119,4 +119,4 @@ class ViewPager2Adapter2(
 
 }
 
-typealias ZLFragment = () -> Fragment
+//typealias ZLFragment = () -> Fragment

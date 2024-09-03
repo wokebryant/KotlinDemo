@@ -1,11 +1,17 @@
 package com.example.kotlindemo.compose.ext
 
+import android.app.Activity
+import android.view.ViewGroup
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
+import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.platform.ViewCompositionStrategy
+import com.example.kotlindemo.compose.ui.ZlTheme
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emptyFlow
 
@@ -45,3 +51,17 @@ val noRipple = object : MutableInteractionSource {
 //        }
 //    )
 //}
+
+fun Activity.showComposeDialog(content: @Composable () -> Unit) {
+    val composeView = ComposeView(this)
+    val rootView = this.window?.decorView?.findViewById<ViewGroup>((android.R.id.content))
+    rootView?.addView(composeView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+    composeView.run {
+        setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
+        setContent {
+            ZlTheme {
+                content()
+            }
+        }
+    }
+}

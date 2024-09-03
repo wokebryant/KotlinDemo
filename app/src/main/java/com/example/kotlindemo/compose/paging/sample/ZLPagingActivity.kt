@@ -18,7 +18,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.kotlindemo.compose.ComposeActivity
-import com.example.kotlindemo.compose.paging.LinearList
+import com.example.kotlindemo.compose.paging.FetchStateColumn
 import com.example.kotlindemo.compose.paging.PagingState
 import com.example.kotlindemo.compose.widget.Screen
 import com.example.kotlindemo.compose.widget.refresh.SwipeRefreshLayout
@@ -55,7 +55,7 @@ class ZLPagingActivity : ComposeActivity() {
                 isRefreshing = state.pagingSate == PagingState.Refresh,
                 onRefresh = { viewModel.refresh() }
             ) {
-                LinearList(modifier = Modifier.fillMaxSize(), data = state.list) {
+                FetchStateColumn(modifier = Modifier.fillMaxSize(), data = state.list) { item, index ->
                     Box(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -64,13 +64,13 @@ class ZLPagingActivity : ComposeActivity() {
                             .background(ZlColor.C_P3, RoundedCornerShape(8.dp))
                             .padding(start = 10.dp)
                             .clickable {
-//                                viewModel.deleteItem(0)
+                                viewModel.deleteItem(index)
 //                                viewModel.addItem(0, PagingItem("我是新增的Item"))
-                                viewModel.updateItem(0, (it as PagingItem).copy(name = "我被更新了"))
+//                                viewModel.updateItem(0, (it as PagingItem).copy(name = "我被更新了"))
                             },
                         contentAlignment = Alignment.CenterStart
                     ) {
-                        val text = (it as PagingItem).name
+                        val text = (item as PagingItem).name
                         Text(text = text)
                     }
                 }

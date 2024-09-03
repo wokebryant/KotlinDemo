@@ -18,6 +18,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import com.example.kotlindemo.R
 import com.zhaopin.social.common.extension.getDrawable
 import com.zhaopin.social.module_common_util.ext.dp
+import com.zhaopin.social.module_common_util.ext.onClick
 import com.zhaopin.social.module_common_util.ext.sp
 
 /**
@@ -65,6 +66,10 @@ class FoldJobTextView @JvmOverloads constructor(
     private var maxX: Float = 0f
     private var minY: Float = 0f
     private var maxY: Float = 0f
+    /** 扩展的点击范围 */
+    private val clickExpandRangeX = 200.dp
+    private val clickExpandRangeY = 20.dp
+    private val clickInterval = 250
     /** 收起全文不在同一行时，增加一个变量记录坐标*/
     private var middleY: Float = 0f
     /** 原始文本行数 */
@@ -76,6 +81,8 @@ class FoldJobTextView @JvmOverloads constructor(
     /** 最大展示高度 */
     private var maxHeight = 100.dp.toFloat()
 
+    var onTransCallback: ((Boolean) -> Unit)? = null
+
     init {
         mShowMaxLine = MAX_LINE
         if (attrs != null) {
@@ -86,7 +93,7 @@ class FoldJobTextView @JvmOverloads constructor(
             mTipColor = arr.getColor(R.styleable.FoldTextView_tipColor, TIP_COLOR)
             mTipClickable = arr.getBoolean(R.styleable.FoldTextView_tipClickable, false)
             mFoldText = arr.getString(R.styleable.FoldTextView_foldText)
-            mExpandText = arr.getString(R.styleable.FoldTextView_expandText)
+            mExpandText = arr.getString(R.styleable.FoldTextView_unFoldText)
             isShowTipAfterExpand = arr.getBoolean(R.styleable.FoldTextView_showTipAfterExpand, false)
             arr.recycle()
         }
@@ -131,16 +138,19 @@ class FoldJobTextView @JvmOverloads constructor(
             maxX =
                 paddingLeft + layout.getPrimaryHorizontal(spannable.lastIndexOf(mExpandText!![mExpandText!!.length - 1]) + 1)
             val bound = Rect()
-            layout.getLineBounds(originalLineCount - 1, bound)
-            if (mLieCount > originalLineCount) {
-                //不在同一行
-                minY = (paddingTop + bound.top).toFloat()
-                middleY = minY + paint.fontMetrics.descent - paint.fontMetrics.ascent
-                maxY = middleY + paint.fontMetrics.descent - paint.fontMetrics.ascent
-            } else {
-                //同一行
-                minY = (paddingTop + bound.top).toFloat()
-                maxY = minY + paint.fontMetrics.descent - paint.fontMetrics.ascent
+            try {
+                layout.getLineBounds(mLieCount, bound)
+                if (mLieCount > originalLineCount) {
+                    //不在同一行
+                    minY = (paddingTop + bound.top).toFloat()
+                    middleY = minY + paint.fontMetrics.descent - paint.fontMetrics.ascent
+                    maxY = middleY + paint.fontMetrics.descent - paint.fontMetrics.ascent
+                } else {
+                    //同一行
+                    minY = (paddingTop + bound.top).toFloat()
+                    maxY = minY + paint.fontMetrics.descent - paint.fontMetrics.ascent
+                }
+            } catch (_: Exception){
             }
 
         } else {
@@ -184,6 +194,7 @@ class FoldJobTextView @JvmOverloads constructor(
         mShowMaxLine = (maxHeight / lineHeight).toInt()
         //记录原始行数
         originalLineCount = l.lineCount
+        onTransCallback?.invoke(l.lineCount > mShowMaxLine)
         if (l.lineCount > mShowMaxLine) {
             isOverMaxLine = true
             val span = SpannableStringBuilder()
@@ -229,7 +240,7 @@ class FoldJobTextView @JvmOverloads constructor(
                 val textAndDrawableWidth = foldTextWidth + drawableWidth  + drawablePadding
                 minX = (width.toFloat() - textAndDrawableWidth) / 2
                 maxX = minX + textAndDrawableWidth
-                offsetY = 8.dp
+                offsetY = 7.dp
             }
             minY = height - (paint.fontMetrics.descent - paint.fontMetrics.ascent) - paddingBottom + offsetY
             maxY = (height - paddingBottom).toFloat() + offsetY
@@ -271,11 +282,14 @@ class FoldJobTextView @JvmOverloads constructor(
                     }
                 }
 
-                MotionEvent.ACTION_CANCEL,
+//                MotionEvent.ACTION_CANCEL,
                 MotionEvent.ACTION_UP -> {
+                    if (!isShowTipAfterExpand && isExpand) {
+                        return super.onTouchEvent(event)
+                    }
                     val delTime = System.currentTimeMillis() - clickTime
                     clickTime = 0L
-                    if (delTime < ViewConfiguration.getTapTimeout() && isInRange(
+                    if (delTime < clickInterval && isInRange(
                             event.x,
                             event.y
                         )
@@ -289,9 +303,6 @@ class FoldJobTextView @JvmOverloads constructor(
         }
         return super.onTouchEvent(event)
     }
-
-    private val clickExpandRangeX = 200.dp
-    private val clickExpandRangeY = 20.dp
 
     private fun isInRange(x: Float, y: Float): Boolean {
         return if (minX < maxX) {

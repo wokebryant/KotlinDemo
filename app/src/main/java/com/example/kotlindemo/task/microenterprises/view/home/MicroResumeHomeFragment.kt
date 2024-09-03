@@ -24,7 +24,7 @@ class MicroResumeHomeFragment : BaseActivity(), MircoResumeHomeCallback{
 
     private val viewModel by viewModels<MicroFragmentHomeViewModel>()
 
-    private lateinit var viewpagerAdapter: ViewPager2Adapter
+    private lateinit var viewpagerAdapter: ViewPager2Adapter2
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +36,7 @@ class MicroResumeHomeFragment : BaseActivity(), MircoResumeHomeCallback{
         with(binding) {
             // 设置ViewPager2
             viewPager.run {
-                viewpagerAdapter = ViewPager2Adapter(this@MicroResumeHomeFragment)
+                viewpagerAdapter = ViewPager2Adapter2(this@MicroResumeHomeFragment)
                 adapter = viewpagerAdapter
                 offscreenPageLimit = 3
                 registerOnPageChangeCallback(onPageChangeCallback)
@@ -53,9 +53,9 @@ class MicroResumeHomeFragment : BaseActivity(), MircoResumeHomeCallback{
     }
 
     private fun initData() {
-        val fragmentList = mutableListOf<Fragment>()
+        val fragmentList = mutableListOf<ZLFragment>()
         mockMircoJobList.forEach {
-            fragmentList.add ( MicroResumeListFragment(it) )
+            fragmentList.add { MicroResumeListFragment(it) }
         }
         viewpagerAdapter.setList(fragmentList)
     }
@@ -76,7 +76,7 @@ class MicroResumeHomeFragment : BaseActivity(), MircoResumeHomeCallback{
     override fun onAddJobClick() {
         val newTab = MircoResumeJobBean(jobName = "新增Tab")
         mockMircoJobList.add(newTab)
-        viewpagerAdapter.addItem(MicroResumeListFragment(newTab))
+        viewpagerAdapter.addItem { MicroResumeListFragment(newTab) }
         binding.viewPager.currentItem = viewpagerAdapter.itemCount - 1
     }
 

@@ -58,6 +58,7 @@
         <activity android:name=".task.login.mail.LoginMailAuthActivity"/>
         <activity android:name=".task.login.LoginCheckBindPhoneActivity"/>
         <activity android:name=".compose.paging.sample.ZLPagingActivity"/>
+        <activity android:name=".study.span.SpanActivity"/>
 
         <!-- 定义Startup Provider参数 -->
         <provider
