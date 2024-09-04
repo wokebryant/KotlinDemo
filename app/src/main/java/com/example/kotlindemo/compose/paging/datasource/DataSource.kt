@@ -8,6 +8,7 @@ import java.util.concurrent.atomic.AtomicBoolean
 abstract class DataSource<T : Any>(coroutineScope: CoroutineScope = MainScope()) : BaseDataSource<T>(coroutineScope) {
     private val fetchStateHolder = FetchStateHolder()
     private val invalid = AtomicBoolean(false)
+    private val endPage = AtomicBoolean(false)
     private var retryFunc: () -> Unit = {}
 
     /**
@@ -31,6 +32,8 @@ abstract class DataSource<T : Any>(coroutineScope: CoroutineScope = MainScope())
     }
 
     private fun dispatchLoadInitial(clear: Boolean) {
+        endPage.set(false)
+
         if (clear) {
             clearAll(delay = true)
         }
@@ -52,7 +55,7 @@ abstract class DataSource<T : Any>(coroutineScope: CoroutineScope = MainScope())
     protected fun dispatchLoadAround(position: Int) {
         if (isInvalid()) return
 
-        if (shouldLoadAfter(position)) {
+        if (shouldLoadAfter(position) && !isEndPage()) {
             if (fetchStateHolder.isNotReady()) {
                 return
             }
@@ -94,6 +97,15 @@ abstract class DataSource<T : Any>(coroutineScope: CoroutineScope = MainScope())
 
     private fun isInvalid(): Boolean {
         return invalid.get()
+    }
+
+
+    fun setEndPage() {
+        endPage.compareAndSet(false, true)
+    }
+
+    private fun isEndPage(): Boolean {
+        return endPage.get()
     }
 
     private fun changeFetchState(newState: FetchState) {

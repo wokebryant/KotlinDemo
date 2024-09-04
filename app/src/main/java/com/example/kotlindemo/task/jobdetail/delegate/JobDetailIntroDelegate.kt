@@ -14,6 +14,8 @@ import com.example.kotlindemo.task.jobdetail.CurInterviewPanelData
 import com.example.kotlindemo.task.jobdetail.IntroState
 import com.example.kotlindemo.task.jobdetail.IntroTagData
 import com.example.kotlindemo.task.jobdetail.SameDayInterviewPanel
+import com.example.kotlindemo.utils.FontUtil
+import com.example.kotlindemo.utils.setZlFontRegular
 import com.zhaopin.common.widget.flowLayout.origin.FlowLayoutOrigin
 import com.zhaopin.common.widget.flowLayout.origin.TagAdapterOrigin
 import com.zhaopin.common.widget.flowLayout.origin.TagFlowLayoutOrigin
@@ -40,7 +42,8 @@ class JobDetailIntroDelegate : BindingViewDelegate<IntroState, JobDetailItemIntr
     private fun setView(binding: JobDetailItemIntroBinding, item: IntroState) {
         Log.i("LuoJia-RE", "JobDetailIntroDelegate")
         with(binding) {
-            tvJobName.text = item.jobName
+            tvJobName.text = "1232ddv哈哈哈哈哈"
+//            tvJobName.setZlFontRegular()
             tvSalary.text = item.salary
             tvStreet.text = item.street
             tvRouteTime.text = item.routeTime
