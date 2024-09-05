@@ -43,8 +43,8 @@ class JobDetailIntroDelegate : BindingViewDelegate<IntroState, JobDetailItemIntr
         Log.i("LuoJia-RE", "JobDetailIntroDelegate")
         with(binding) {
             tvJobName.text = "1232ddv哈哈哈哈哈"
-//            tvJobName.setZlFontRegular()
             tvSalary.text = item.salary
+            tvSalary.setZlFontRegular()
             tvStreet.text = item.street
             tvRouteTime.text = item.routeTime
             // 设置标签

@@ -61,15 +61,15 @@
         <activity android:name=".study.span.SpanActivity"/>
 
         <!-- 定义Startup Provider参数 -->
-        <provider
-            android:name="androidx.startup.InitializationProvider"
-            android:authorities="${applicationId}.androidx-startup"
-            android:exported="false"
-            tools:node="merge">
-            <meta-data
-                android:name="com.example.kotlindemo.jetpack.startup.SampleInitializer"
-                android:value="android.startup"/>
-        </provider>
+<!--        <provider-->
+<!--            android:name="androidx.startup.InitializationProvider"-->
+<!--            android:authorities="${applicationId}.androidx-startup"-->
+<!--            android:exported="false"-->
+<!--            tools:node="merge">-->
+<!--            <meta-data-->
+<!--                android:name="com.example.kotlindemo.jetpack.startup.SampleInitializer"-->
+<!--                android:value="android.startup"/>-->
+<!--        </provider>-->
 
     </application>
 

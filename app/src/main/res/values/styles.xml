@@ -46,7 +46,7 @@
     </style>
 
     <style name="ZlRegularFontStyle" parent="@android:style/TextAppearance.Small">
-        <item name="android:fontFamily">@font/noto_sans_bold_italic</item>
+        <item name="android:fontFamily">@font/zl_shuzixinzi_regular</item>
     </style>
 
 </resources>

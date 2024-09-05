@@ -15,7 +15,7 @@ import com.zhaopin.social.appbase.util.curContext
 object FontUtil {
 
     /** 字体资源引用 */
-    private val ZL_FONT_NORMAL = R.font.noto_sans_bold_italic
+    private val ZL_FONT_NORMAL = R.font.zl_shuzixinzi_regular
 
     /**缓存字体 Map*/
     private val cacheTypeFaceMap: HashMap<Int, Typeface> = HashMap()
