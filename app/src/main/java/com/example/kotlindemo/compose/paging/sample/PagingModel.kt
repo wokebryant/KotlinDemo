@@ -15,7 +15,7 @@ data class PagingState(
 ) : IUiState
 
 data class PagingItem (
-    val name: String,
+    val name: String
 ) : ComposeItem
 
 sealed class PagingEffect : IUiEffect {

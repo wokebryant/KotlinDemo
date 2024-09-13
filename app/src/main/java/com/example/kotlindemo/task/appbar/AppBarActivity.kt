@@ -40,6 +40,8 @@ class AppBarActivity : BaseActivity() {
 //                textMarginImage = 4.dp.toInt()
             }
             textImageTv5.addTag(tv5Config)
+
+            vFilterList.setData()
         }
     }
 

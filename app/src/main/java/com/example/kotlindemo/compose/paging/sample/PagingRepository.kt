@@ -1,5 +1,6 @@
 package com.example.kotlindemo.compose.paging.sample
 
+import android.util.Log
 import com.example.kotlindemo.compose.paging.ComposeItem
 import com.example.kotlindemo.compose.paging.ComposePagingRepository
 import com.example.kotlindemo.compose.paging.PagingState
@@ -29,7 +30,7 @@ class PagingRepository(
 
         // mock数据,模拟网络请求
         val firstPageList = mutableListOf<PagingItem>()
-        for (i in 0 until 5) {
+        for (i in 0 until 20) {
             val pagingItem = PagingItem(
                 name = "我是Item $i"
             )
@@ -50,9 +51,10 @@ class PagingRepository(
     override suspend fun loadMore(): List<ComposeItem>? {
         curPage ++
 
+        Log.i("WokeBryant: ", "loadMore")
         delay(2000)
         val morePageList = mutableListOf<PagingItem>()
-        for (i in (curPage - 1) * 5 until curPage * 5) {
+        for (i in (curPage - 1) * 20 until curPage * 20) {
             val pagingItem = PagingItem(
                 name = "我是Item $i"
             )

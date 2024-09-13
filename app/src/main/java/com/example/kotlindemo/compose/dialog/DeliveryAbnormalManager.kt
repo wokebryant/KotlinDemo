@@ -27,16 +27,16 @@ object DeliveryAbnormalManager {
                     unLockTime = bean.unlockTime ?: 0,
                     isCallService = bean.buttonType == 2
                 )
-//                currentActivity()?.showComposeDialog {
-//                    DeliveryAbnormalDialog(
-//                        show = true,
-//                        state = dialogState
-//                    )
-//                }
-                currentActivity()?.let { activity ->
-                    val dialog = DeliveryAbnormalDialog2(activity, dialogState)
-                    dialog.show()
+                currentActivity()?.showComposeDialog {
+                    DeliveryAbnormalDialog(
+                        show = true,
+                        state = dialogState
+                    )
                 }
+//                currentActivity()?.let { activity ->
+//                    val dialog = DeliveryAbnormalDialog2(activity, dialogState)
+//                    dialog.show()
+//                }
 
             }
         } catch (e: Exception) {

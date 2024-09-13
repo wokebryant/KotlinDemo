@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhaopin.common.widget.RCFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="24dp"
+    android:layout_marginEnd="10dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:layout_radius="16dp">
+
+    <TextView
+        android:id="@+id/tv_tag"
+        android:layout_width="48dp"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        style="@style/style_text_bold_14"
+        android:textColor="@color/C_W1"
+        android:background="@color/C_P1"
+        tools:text="综合" />
+
+    <ImageView
+        android:id="@+id/iv_tag"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:src="@drawable/ic_pro_match_un_selected"
+        android:visibility="gone"/>
+
+</com.zhaopin.common.widget.RCFrameLayout>
